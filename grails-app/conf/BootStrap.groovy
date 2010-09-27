@@ -22,8 +22,11 @@ class BootStrap {
 		if (!adminUser.authorities.contains(adminRole)) {
 			UserRole.create adminUser, adminRole
 		}
+		if (!adminUser.authorities.contains(userRole)) {
+			UserRole.create adminUser, userRole
+		}
 		
 		new Requestmap(url: '/account/*', configAttribute: 'ROLE_USER').save(failOnError: true)
-		new Requestmap(url: '/user', configAttribute: 'ROLE_ADMIN').save(failOnError: true)
+		new Requestmap(url: '/user/*', configAttribute: 'ROLE_ADMIN').save(failOnError: true)
 	}
 }

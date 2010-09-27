@@ -27,7 +27,6 @@
                 <div class="dialog">
                     <table>
                         <tbody>
-                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="username"><g:message code="user.username.label" default="Username" /></label>
@@ -45,25 +44,7 @@
                                     <g:textField name="password" value="${userInstance?.password}" />
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="accountExpired"><g:message code="user.accountExpired.label" default="Account Expired" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: userInstance, field: 'accountExpired', 'errors')}">
-                                    <g:checkBox name="accountExpired" value="${userInstance?.accountExpired}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="accountLocked"><g:message code="user.accountLocked.label" default="Account Locked" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: userInstance, field: 'accountLocked', 'errors')}">
-                                    <g:checkBox name="accountLocked" value="${userInstance?.accountLocked}" />
-                                </td>
-                            </tr>
-                        
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="enabled"><g:message code="user.enabled.label" default="Enabled" /></label>
@@ -72,25 +53,7 @@
                                     <g:checkBox name="enabled" value="${userInstance?.enabled}" />
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="passwordExpired"><g:message code="user.passwordExpired.label" default="Password Expired" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: userInstance, field: 'passwordExpired', 'errors')}">
-                                    <g:checkBox name="passwordExpired" value="${userInstance?.passwordExpired}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="person"><g:message code="user.person.label" default="Person" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: userInstance, field: 'person', 'errors')}">
-                                    <g:select name="person.id" from="${p1.Person.list()}" optionKey="id" value="${userInstance?.person?.id}"  />
-                                </td>
-                            </tr>
-                        
+
                         </tbody>
                     </table>
                 </div>
