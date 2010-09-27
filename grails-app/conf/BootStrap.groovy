@@ -25,8 +25,10 @@ class BootStrap {
 		if (!adminUser.authorities.contains(userRole)) {
 			UserRole.create adminUser, userRole
 		}
-		
+		new Requestmap(url: '/', configAttribute: 'ROLE_USER').save(failOnError: true)
 		new Requestmap(url: '/account/*', configAttribute: 'ROLE_USER').save(failOnError: true)
+		new Requestmap(url: '/bank', configAttribute: 'ROLE_USER').save(failOnError: true)
+		new Requestmap(url: '/person', configAttribute: 'ROLE_USER').save(failOnError: true)
 		new Requestmap(url: '/user/*', configAttribute: 'ROLE_ADMIN').save(failOnError: true)
 	}
 }
