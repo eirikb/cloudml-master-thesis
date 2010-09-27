@@ -7,11 +7,9 @@ class AccountController {
     def index = {
         redirect(action: "list", params: params)
     }
+	
+	def springSecurityService
 
-    def list = {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [accountInstanceList: Account.list(params), accountInstanceTotal: Account.count()]
-    }
 
     def create = {
         def accountInstance = new Account()
@@ -21,28 +19,24 @@ class AccountController {
 
     def save = {
         def accountInstance = new Account(params)
+		def id = springSecurityService.principal?.id?.toInteger()
+		def user = User.get(id)
+		accountInstance.user = user
         if (accountInstance.save(flush: true)) {
+			user.addToAccounts(accountInstance).save()
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])}"
-            redirect(action: "show", id: accountInstance.id)
+            redirect(controller: "bank")
         }
         else {
             render(view: "create", model: [accountInstance: accountInstance])
         }
     }
 
-    def show = {
-        def accountInstance = Account.get(params.id)
-        if (!accountInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-            redirect(action: "list")
-        }
-        else {
-            [accountInstance: accountInstance]
-        }
-    }
-
     def edit = {
         def accountInstance = Account.get(params.id)
+		def id = springSecurityService.principal?.id?.toInteger()
+		def user = User.get(id)
+		def personInstance = user.person
         if (!accountInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
             redirect(action: "list")
@@ -71,25 +65,6 @@ class AccountController {
             }
             else {
                 render(view: "edit", model: [accountInstance: accountInstance])
-            }
-        }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-            redirect(action: "list")
-        }
-    }
-
-    def delete = {
-        def accountInstance = Account.get(params.id)
-        if (accountInstance) {
-            try {
-                accountInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-                redirect(action: "list")
-            }
-            catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-                redirect(action: "show", id: params.id)
             }
         }
         else {

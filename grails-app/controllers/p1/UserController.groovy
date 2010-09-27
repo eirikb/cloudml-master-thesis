@@ -51,6 +51,7 @@ class UserController {
 	
 	def edit = {
 		def userInstance = User.get(params.id)
+		userInstance.person = new Person()
 		if (!userInstance) {
 			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), params.id])}"
 			redirect(action: "list")
@@ -66,7 +67,6 @@ class UserController {
 			if (params.version) {
 				def version = params.version.toLong()
 				if (userInstance.version > version) {
-					
 					userInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'user.label', default: 'User')] as Object[], "Another user has updated this User while you were editing")
 					render(view: "edit", model: [userInstance: userInstance])
 					return
