@@ -1,6 +1,8 @@
 package p1
 
-class User {
+import java.io.Serializable;
+
+class User implements Serializable {
 	
 	static hasMany = [accounts: Account]
 	

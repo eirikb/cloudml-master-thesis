@@ -1,6 +1,8 @@
 package p1
 
-class Account {
+import java.io.Serializable;
+
+class Account implements Serializable {
 	static belongsTo = [user: User]
 	
 	String name

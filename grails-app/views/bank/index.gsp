@@ -1,22 +1,12 @@
-
-
 <%@ page import="p1.User" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title>Bank</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="useredit" controller="person" action="edit"><g:message code="default.edit.label" args="['Person']" /></g:link></span>
-            <sec:ifAllGranted roles="ROLE_ADMIN">
-  		    	<span class="menuButton"><g:link class="list" controller="user" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            	<span class="menuButton"><g:link class="create" controller="user" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-			</sec:ifAllGranted>
-        </div>
+    	<g:render template="menuTemplate" />
         <div class="body">
             <g:if test="${flash.message}">
             	<div class="message">${flash.message}</div>
@@ -56,7 +46,7 @@
 		                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 		                            <td>${fieldValue(bean: account, field: "name")}</td>
 		                            <td>${fieldValue(bean: account, field: "balance")}</td>
-		                            <td><g:link class="transfer" action="transfer" event="selectUser">Transfer</g:link></td>
+		                            <td><g:link class="transfer" controller="bank" action="transfer" event="start" id="${account.id }">Transfer</g:link></td>
 		                        </tr>
 		                    </g:each>
 		                    </tbody>
