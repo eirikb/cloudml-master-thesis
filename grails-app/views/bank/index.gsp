@@ -56,7 +56,7 @@
 		                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 		                            <td>${fieldValue(bean: account, field: "name")}</td>
 		                            <td>${fieldValue(bean: account, field: "balance")}</td>
-		                            <td><g:link class="transfer" controller="account" action="transfer">Transfer</g:link></td>
+		                            <td><g:link class="transfer" action="transfer" event="selectUser">Transfer</g:link></td>
 		                        </tr>
 		                    </g:each>
 		                    </tbody>
