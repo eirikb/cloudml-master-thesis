@@ -10,6 +10,9 @@
 		<div class="body">
 			<h2>Transfer money from account '${account?.name }'</h2>
 			<h3>Select amount and account for the user ${user?.username }</h3>
+			<g:if test="${message}">
+            	<div class="message">${message}</div>
+            </g:if>
 			<g:form action="transfer">
 				<g:select from="${accounts }" name="account" optionValue="name" optionKey="id" />
 				<div class="clear"></div>

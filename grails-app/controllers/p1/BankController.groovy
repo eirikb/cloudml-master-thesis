@@ -5,25 +5,13 @@ import p1.User;
 class BankController {
 	
 	def springSecurityService
+	def bankService
 	
 	def index = {
 		def id = springSecurityService.principal?.id?.toInteger()
 		def user = User.get(id)
 		[user: user]
 	}
-	//	
-	//	def transferFlow = {
-	//		selectUser {
-	//			println "yadda"
-	//		}
-	//		selectToUser {
-	//			on("selectUser").to "enterPersonalDetails"
-	//			println "wth"
-	//		}
-	//		asdf {
-	//			println "neida"
-	//		}
-	//	}
 	
 	def transferFlow = {
 		
@@ -66,19 +54,22 @@ class BankController {
 			action {
 				def account = flow.account
 				def account2 = Account.get(params.account)
-				def amount = params.amount.toInteger()
-				if (account && account2 && amount) {
-					flow.amount = amount
-					flow.account2 = account2
-					account.balance -= amount
-					account.save(flush: true)
-					account2.balance += amount
-					account2.save(flush: true)
-					return success()
-				} else{
-					return error()
+				try {
+					def amount = params.amount.toInteger()
+					if (account && account2 && amount) {
+						bankService.transferMoney(account, account2, amount)
+						flow.amount = amount
+						flow.account2 = account2
+						return success()
+					} else{
+						return error()
+					}
+				} catch (NumberFormatException e) {
+					flash.message = "Amount must be a number"
+					return selectAccount() 
 				}
 			}
+			on("selectAccount").to("selectAccount")
 			on("success").to("done")
 			on("error").to("fail")
 		}

@@ -35,7 +35,6 @@ class PersonController {
 		def user = User.get(id)
 		def personInstance = user.person
 		if (!personInstance) {
-			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'person.label', default: 'Person'), params.id])}"
 			redirect(action: "create")
 		}
 		else {
