@@ -45,7 +45,6 @@ var Template = function(template) {
     for (k in self.Resources) {
         for (l in self.Resources[k]) {
             if (self.Resources[k][l].constructor === Object) {
-                console.log(k, l, self.Resources[k][l]);
                 var ref = self.Resources[k][l]['Ref'];
                 if (ref) {
                     self.Resources[k][l] = findRef(ref);
