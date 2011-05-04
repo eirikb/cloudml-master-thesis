@@ -10,7 +10,7 @@ var Template = function(template, profile) {
             if (data.hasOwnProperty(prop)) {
                 if (data[prop]) {
                     if (!obj.hasOwnProperty(prop)) {
-                        self.meta.warnings.push('Profile does not have property ' + prop + ' for object ' + obj.name);
+                        self.meta.warnings.push('Profile does not have property ' + prop + ' for object ' + obj.toString());
                     }
                     obj[prop] = data[prop];
                 }
@@ -21,14 +21,19 @@ var Template = function(template, profile) {
 
     function create(name, data) {
         var a = data.Type.split('::'),
-        objConstructor = new profile()[a[0]], obj, i;
+        objConstructor = profile[a[0]], obj, k, i;
         for (i = 1; i < a.length; i++) {
             objConstructor = objConstructor[a[i]];
         }
-        obj = merge(new objConstructor(name), data.Properties);
+        obj = merge(new objConstructor(name, data.Type), data.Properties);
         for (i = 0; i < obj.meta.required.length; i++) {
             if (!obj[obj.meta.required[i]]) {
-                self.meta.warnings.push('Requied property ' + obj.meta.required[i] + ' is not set in ' + obj.name);
+                self.meta.warnings.push('Requied property ' + obj.meta.required[i] + ' is not set in ' + obj.toString());
+            }
+        }
+        for (k in obj) {
+            if (!obj[k]) {
+                delete obj[k];
             }
         }
         return obj;
