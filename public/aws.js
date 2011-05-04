@@ -1,4 +1,4 @@
-var profile = function() {
+var Profile = function() {
     var self = this;
     this.Common = function(name, type) {
         this.meta = {
@@ -37,7 +37,7 @@ var profile = function() {
                 this.SecurityGroupIngress = 'AWS::EC"::SecurityGroupRole?';
                 this.GroupDescription = '';
                 this.Description = '';
-                this.meta.requied.push('GroupDescription');
+                this.meta.required.push('GroupDescription');
             },
             EIP : function() {
                 self.Common.apply(this, arguments);
