@@ -1,11 +1,15 @@
-var Template = function(template) {
+var Template = function(template, profile) {
     var self = this, k, l;
     self.Resources = {};
+    self.warnings = [];
 
     function merge(obj, data) {
         for (var prop in data) {
-            if (Object.prototype.hasOwnProperty.call(data, prop)) {
+            if (data.hasOwnProperty(prop)) {
                 if (data[prop]) {
+                    if (!obj.hasOwnProperty(prop)) {
+                        self.warnings.push('Profile does not have property ' + prop + ' for object ' + obj.name);
+                    }
                     obj[prop] = data[prop];
                 }
             }
@@ -15,11 +19,17 @@ var Template = function(template) {
 
     function create(name, data) {
         var a = data.Type.split('::'),
-        objConstructor = Resources, i;
-        for (i = 0; i < a.length; i++) {
+        objConstructor = new profile()[a[0]], obj, i;
+        for (i = 1; i < a.length; i++) {
             objConstructor = objConstructor[a[i]];
         }
-        return merge(new objConstructor(name), data.Properties);
+        obj = merge(new objConstructor(name), data.Properties);
+        for (i = 0; i < obj.meta.required.length; i++) {
+            if (!obj[obj.meta.required[i]]) {
+                self.warnings.push('Requied property ' + obj.meta.required[i] + ' is not set in ' + obj.name);
+            }
+        }
+        return obj;
     }
 
     function findRef(ref) {
@@ -37,7 +47,16 @@ var Template = function(template) {
         return null;
     }
 
+    function appendMeta(col) {
+        for (var k in col) {
+            col[k].meta = col[k].meta ? col[k].meta : {};
+        }
+    }
+
     self.Parameters = template.Parameters;
+    self.Mappings = template.Mappings;
+    appendMeta(self.Parameters);
+    appendMeta(self.Mappings);
 
     for (k in template.Resources) {
         self.Resources[k] = create(k, template.Resources[k]);
@@ -47,7 +66,7 @@ var Template = function(template) {
             if (self.Resources[k][l].constructor === Object) {
                 var ref = self.Resources[k][l]['Ref'];
                 if (ref) {
-                    self.Resources[k][l] = findRef(ref);
+                    self.Resources[k][l] = new Ref(findRef(ref));
                 }
             } 
         }
@@ -56,3 +75,6 @@ var Template = function(template) {
     return self;
 };
 
+Ref = function(ref) {
+    this.ref = ref;
+};
