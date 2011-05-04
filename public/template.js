@@ -1,14 +1,16 @@
 var Template = function(template, profile) {
     var self = this, k, l;
     self.Resources = {};
-    self.warnings = [];
+    self.meta = {
+        warnings: []
+    };
 
     function merge(obj, data) {
         for (var prop in data) {
             if (data.hasOwnProperty(prop)) {
                 if (data[prop]) {
                     if (!obj.hasOwnProperty(prop)) {
-                        self.warnings.push('Profile does not have property ' + prop + ' for object ' + obj.name);
+                        self.meta.warnings.push('Profile does not have property ' + prop + ' for object ' + obj.name);
                     }
                     obj[prop] = data[prop];
                 }
@@ -26,7 +28,7 @@ var Template = function(template, profile) {
         obj = merge(new objConstructor(name), data.Properties);
         for (i = 0; i < obj.meta.required.length; i++) {
             if (!obj[obj.meta.required[i]]) {
-                self.warnings.push('Requied property ' + obj.meta.required[i] + ' is not set in ' + obj.name);
+                self.meta.warnings.push('Requied property ' + obj.meta.required[i] + ' is not set in ' + obj.name);
             }
         }
         return obj;
