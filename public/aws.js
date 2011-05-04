@@ -1,20 +1,8 @@
-var Profile = function() {
-    var self = this;
-    this.Common = function(name, type) {
-        this.meta = {
-            name: name,
-            type: type,
-            required: []
-        };
-
-        this.toString = function() {
-            return name + ' (' + type + ')';
-        };
-    };
+var Profile = function(Common) {
     this.AWS = {
         EC2: {
             Instance: function() {
-                self.Common.apply(this, arguments);
+                Common.apply(this, arguments);
                 this.AvailabilityZone = '';
                 this.DisableApiTermination = '';
                 this.ImageId = '';
@@ -31,23 +19,24 @@ var Profile = function() {
                 this.Volumes = ['AWS::EC2::MountPoin'];
                 this.Description = '';
                 this.meta.required.push('PlacementGroupName');
+                this.init();
             },
             SecurityGroup: function() {
-                self.Common.apply(this, arguments)
+                Common.apply(this, arguments)
                 this.SecurityGroupIngress = 'AWS::EC"::SecurityGroupRole?';
                 this.GroupDescription = '';
                 this.Description = '';
                 this.meta.required.push('GroupDescription');
             },
             EIP : function() {
-                self.Common.apply(this, arguments);
+                Common.apply(this, arguments);
                 this.Description = '';
             }
         }
     };
-    this.AWS.EC2.Instance.prototype = new this.Common();
-    this.AWS.EC2.SecurityGroup.prototype = new this.Common();
-    this.AWS.EC2.EIP.prototype = new this.Common();
+    this.AWS.EC2.Instance.prototype = new Common();
+    this.AWS.EC2.SecurityGroup.prototype = new Common();
+    this.AWS.EC2.EIP.prototype = new Common();
     this.Fn = {
         FindInMap: function() {
 
