@@ -1,5 +1,5 @@
-var Resources = {
-    AWS : {
+var profile = function() {
+    this.AWS = {
         EC2: {
             Instance: function(name) {
                 this.name = name;
@@ -18,19 +18,25 @@ var Resources = {
                 this.UserData = '';
                 this.Volumes = ['AWS::EC2::MountPoin'];
                 this.Description = '';
-                this.required = ['PlacementGroupName'];
+                this.meta = {
+                    required: ['PlacementGroupName']
+                };
             },
             SecurityGroup: function(name) {
                 this.name = name;
                 this.SecurityGroupIngress = 'AWS::EC"::SecurityGroupRole?';
                 this.GroupDescription = '';
                 this.Description = '';
-                this.required = ['GroupDescription'];
+                this.meta = {
+                    required: ['GroupDescription']
+                };
             },
             EIP : function(name) {
                 this.name = name;
                 this.Description = '';
-                this.required = [];
+                this.meta = {
+                    required: []
+                };
             }
         }
     }
