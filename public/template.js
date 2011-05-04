@@ -1,5 +1,5 @@
 var Template = function(template, profile) {
-    var self = this, k, l;
+    var self = this, k, i, l;
     self.Resources = {};
     self.meta = {
         warnings: []
@@ -19,6 +19,15 @@ var Template = function(template, profile) {
         return obj;
     }
 
+    function cleanup(obj) {
+        for (var k in obj) {
+            if (obj[k].unused) {
+                delete obj[k];
+            }
+        }
+        return obj;
+    };
+
     function create(name, data) {
         var a = data.Type.split('::'),
         objConstructor = profile[a[0]], obj, k, i;
@@ -26,14 +35,10 @@ var Template = function(template, profile) {
             objConstructor = objConstructor[a[i]];
         }
         obj = merge(new objConstructor(name, data.Type), data.Properties);
+        cleanup(obj);
         for (i = 0; i < obj.meta.required.length; i++) {
             if (!obj[obj.meta.required[i]]) {
                 self.meta.warnings.push('Requied property ' + obj.meta.required[i] + ' is not set in ' + obj.toString());
-            }
-        }
-        for (k in obj) {
-            if (!obj[k]) {
-                delete obj[k];
             }
         }
         return obj;
@@ -75,13 +80,43 @@ var Template = function(template, profile) {
                 if (ref) {
                     self.Resources[k][l] = new Ref(findRef(ref));
                 }
-            } 
+            } else if (self.Resources[k][l].constructor === Array) {
+                for (i = 0; i < self.Resources[k][l].length; i++) {
+                    var ref = self.Resources[k][l][i]['Ref'];
+                    if (ref) {
+                        self.Resources[k][l][i] = new Ref(findRef(ref));
+                    }
+                }
+            }
         }
     }
 
     return self;
 };
 
-Ref = function(ref) {
+var Ref = function(ref) {
     this.ref = ref;
+};
+
+var Common = function(name, type) {
+    this.meta = {
+        name: name,
+        type: type,
+        required: []
+    };
+
+    this.init = function() {
+        for (var k in this) {
+            if (k !== 'meta' && k !== 'init' && k !== 'toString') {
+                this[k] = {
+                    unused: true, 
+                    type: this[k]
+                };
+            }
+        }
+    };
+
+    this.toString = function() {
+        return name + ' (' + type + ')';
+    };
 };
