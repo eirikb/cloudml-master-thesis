@@ -1,9 +1,7 @@
-var Profile = function(Common) {
-	var Common = typeof require !== 'undefined' ? require('common').Common: Common;
+var Profile = function() {
 	this.AWS = {
 		EC2: {
 			Instance: function() {
-				Common.apply(this, arguments);
 				this.AvailabilityZone = '';
 				this.DisableApiTermination = '';
 				this.ImageId = '';
@@ -19,25 +17,23 @@ var Profile = function(Common) {
 				this.UserData = '';
 				this.Volumes = ['AWS::EC2::MountPoin'];
 				this.Description = '';
-				this.meta.required.push('PlacementGroupName');
-				this.init();
+				this.meta = {
+                    required: ['PlacementGroupName']
+                }
 			},
 			SecurityGroup: function() {
-				Common.apply(this, arguments)
 				this.SecurityGroupIngress = 'AWS::EC"::SecurityGroupRole?';
 				this.GroupDescription = '';
 				this.Description = '';
-				this.meta.required.push('GroupDescription');
+				this.meta = {
+                    required: ['GroupDescription']
+                }
 			},
 			EIP: function() {
-				Common.apply(this, arguments);
 				this.Description = '';
 			}
 		}
 	};
-	this.AWS.EC2.Instance.prototype = new Common();
-	this.AWS.EC2.SecurityGroup.prototype = new Common();
-	this.AWS.EC2.EIP.prototype = new Common();
 	this.Fn = {
 		FindInMap: function() {
 
