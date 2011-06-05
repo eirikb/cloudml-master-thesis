@@ -1,5 +1,3 @@
-var _ = require('underscore');
-
 var Template = function(profile, template) {
 	var self = this,
 	k, i, l;
