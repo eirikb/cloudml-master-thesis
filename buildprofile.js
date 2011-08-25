@@ -1,4 +1,5 @@
 var http = require('http'),
+    fs = require('fs'),
 $ = require('jquery'),
 userGuideHost = 'docs.amazonwebservices.com',
 userGuideUrl = '/AWSCloudFormation/latest/UserGuide/',
@@ -25,8 +26,9 @@ function get(path, callback) {
 }
 
 get('_toc.html', function(result) {
+    var i = 0;
     console.log('Got list of resources');
-    var total = $(result).find('#aws-product-property-reference a').each(function(i) {
+    var total = $(result).find('#aws-product-property-reference a').each(function() {
         var href = $(this).attr('href');
         console.log('Fetching %s', href);
         get(href, function(result) {
@@ -45,9 +47,12 @@ get('_toc.html', function(result) {
             });
 
             resources[$r.find('h1').text().replace(/ \w*/, '')] = obj;
-            console.log(i);
-            if (i === total - 1) {
-                console.log('DONE!');
+
+            i++;
+            console.log(Math.floor((i / total) * 100) + '%');
+            if (i === total) {
+                fs.writeFileSync('profile.json', JSON.stringify(resources));
+                console.log('DONE');
             }
         });
     }).size();
