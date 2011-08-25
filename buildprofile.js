@@ -26,7 +26,7 @@ function get(path, callback) {
 
 get('_toc.html', function(result) {
     console.log('Got list of resources');
-    $(result).find('#aws-product-property-reference a').each(function() {
+    var total = $(result).find('#aws-product-property-reference a').each(function(i) {
         var href = $(this).attr('href');
         console.log('Fetching %s', href);
         get(href, function(result) {
@@ -45,10 +45,11 @@ get('_toc.html', function(result) {
             });
 
             resources[$r.find('h1').text().replace(/ \w*/, '')] = obj;
-
-            console.log('');
-            console.log(resources);
+            console.log(i);
+            if (i === total - 1) {
+                console.log('DONE!');
+            }
         });
-    });
+    }).size();
 });
 
