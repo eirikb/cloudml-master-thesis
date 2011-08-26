@@ -1,12 +1,12 @@
 var http = require('http'),
 fs = require('fs'),
 scraper = require('scraper'),
-        pref = 'http://docs.amazonwebservices.com/AWSCloudFormation/latest/UserGuide/',
+pref = 'http://docs.amazonwebservices.com/AWSCloudFormation/latest/UserGuide/',
 resources = {};
 
 console.log('Building profile from %s', pref);
 
-scraper(pref + '_toc.html', function(err , $) {
+scraper(pref + '_toc.html', function(err, $) {
     var i = 0,
     total;
     console.log('Got list of resources');
@@ -23,11 +23,11 @@ scraper(pref + '_toc.html', function(err , $) {
 
             $('.informaltable tbody tr').each(function() {
                 $(this).find('td').each(function(i) {
-                    obj[props[i]] = $(this).text().trim().join('\n', '-');
+                    obj[props[i]] = $(this).text().trim().split('\n').join('-');
                 });
             });
 
-            resources[$r.find('h1').text().replace(/ \w*/, '')] = obj;
+            resources[$('h1').text().replace(/ \w*/, '')] = obj;
 
             i++;
             console.log(Math.floor((i / total) * 100) + '%');
