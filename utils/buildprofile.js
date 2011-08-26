@@ -14,17 +14,18 @@ scraper(pref + '_toc.html', function(err, $) {
         var href = $(this).attr('href');
         console.log('Fetching %s', href);
         scraper(pref + href, function(err, $) {
-            var props = [],
-            obj = {};
-
-            $('.informaltable thead th').each(function() {
-                props.push($(this).text());
-            });
+            var obj = {};
 
             $('.informaltable tbody tr').each(function() {
-                $(this).find('td').each(function(i) {
-                    obj[props[i]] = $(this).text().trim().split('\n').join('-');
+                var names = [];
+                $(this).find('td').each(function() {
+                    names.push($(this).text().trim().split('\n').join('-'));
                 });
+                obj[names[0]] = {
+                    type: names[1],
+                    required: names[2],
+                    notes: names[3]
+                };
             });
 
             resources[$('h1').text().replace(/ \w*/, '')] = obj;
