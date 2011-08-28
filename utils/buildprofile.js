@@ -19,16 +19,22 @@ scraper(pref + '_toc.html', function(err, $) {
             resource;
 
             if (!resources[names[0]]) {
-                resources[names[0]] = {};
+                resources[names[0]] = {
+                    types: {},
+                    properties: {}
+                };
             }
 
-            resource = resources[names[0]];
+            resource = resources[names[0]].types;
 
             names.slice(1).forEach(function(name) {
                 if (!resource[name]) {
-                    resource[name] = {};
+                    resource[name] = {
+                        types: {},
+                        properties: {}
+                    };
                 }
-                resource = resource[name];
+                resource = resource[name].types;
             });
 
             $('.informaltable tbody tr').each(function() {
@@ -42,7 +48,7 @@ scraper(pref + '_toc.html', function(err, $) {
                     properties.push(property);
                 });
 
-                resource[properties[0]] = {
+                resource[properties[0]].properties = {
                     type: properties[1],
                     required: properties[2],
                     notes: properties[3]
