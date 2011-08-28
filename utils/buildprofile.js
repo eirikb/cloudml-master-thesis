@@ -14,21 +14,40 @@ scraper(pref + '_toc.html', function(err, $) {
         var href = $(this).attr('href');
         console.log('Fetching %s', href);
         scraper(pref + href, function(err, $) {
-            var obj = {};
+            var type = $('h1').text().replace(/ .+$/, ''),
+            names = type.split('::'),
+            resource;
 
-            $('.informaltable tbody tr').each(function() {
-                var names = [];
-                $(this).find('td').each(function() {
-                    names.push($(this).text().trim().split('\n').join('-'));
-                });
-                obj[names[0]] = {
-                    type: names[1],
-                    required: names[2],
-                    notes: names[3]
-                };
+            if (!resources[names[0]]) {
+                resources[names[0]] = {};
+            }
+
+            resource = resources[names[0]];
+
+            names.slice(1).forEach(function(name) {
+                if (!resource[name]) {
+                    resource[name] = {};
+                }
+                resource = resource[name];
             });
 
-            resources[$('h1').text().replace(/ \w*/, '')] = obj;
+            $('.informaltable tbody tr').each(function() {
+                var properties = [];
+
+                $(this).find('td').each(function() {
+                    var property = $(this).text();
+                    property = property.split('\n').map(function(p) {
+                        return p.trim();
+                    }).join(' ');
+                    properties.push(property);
+                });
+
+                resource[properties[0]] = {
+                    type: properties[1],
+                    required: properties[2],
+                    notes: properties[3]
+                };
+            });
 
             i++;
             console.log(Math.floor((i / total) * 100) + '%');
