@@ -15,27 +15,13 @@ scraper(pref + '_toc.html', function(err, $) {
         console.log('Fetching %s', href);
         scraper(pref + href, function(err, $) {
             var type = $('h1').text().replace(/ .+$/, ''),
-            names = type.split('::'),
             resource;
 
-            if (!resources[names[0]]) {
-                resources[names[0]] = {
-                    types: {},
-                    properties: {}
-                };
+            if (!resources[type]) {
+                resources[type] = {};
             }
 
-            resource = resources[names[0]].types;
-
-            names.slice(1).forEach(function(name) {
-                if (!resource[name]) {
-                    resource[name] = {
-                        types: {},
-                        properties: {}
-                    };
-                }
-                resource = resource[name].types;
-            });
+            resource = resources[type];
 
             $('.informaltable tbody tr').each(function() {
                 var properties = [];
@@ -44,11 +30,11 @@ scraper(pref + '_toc.html', function(err, $) {
                     var property = $(this).text();
                     property = property.split('\n').map(function(p) {
                         return p.trim();
-                    }).join(' ');
+                    }).join(' ').trim();
                     properties.push(property);
                 });
 
-                resource[properties[0]].properties = {
+                resource[properties[0]] = {
                     type: properties[1],
                     required: properties[2],
                     notes: properties[3]
