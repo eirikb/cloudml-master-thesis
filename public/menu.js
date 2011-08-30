@@ -27,7 +27,6 @@ cloudml.menu = (function() {
 
         });
         return root;
-
     }
 
     var init = function(data) {
@@ -40,6 +39,12 @@ cloudml.menu = (function() {
             dnd: {
                 drop_check: function(data) {
                     return $(data.o).data('draggable');
+                },
+                drop_finish: function(data) {
+                    var $o = $(data.o),
+            e = data.e;
+                
+                    cloudml.diagram.addClass(e.offsetX, e.offsetY, $o.text(), $o.data('properties'));
                 }
             },
             crrm: {
@@ -56,7 +61,7 @@ cloudml.menu = (function() {
             $('#menu').jstree('close_all');
             $('#menu').jstree('search', $(this).val());
         });
-    }
+    };
 
     return {
         init: init
