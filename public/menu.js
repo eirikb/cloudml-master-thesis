@@ -3,41 +3,29 @@ cloudml.menu = (function() {
         var root = [];
         _(data).chain().keys().each(function(key) {
             var types = key.split('::'),
-            obj = _(root).chain().select(function(o) {
-                return o.data === types[0];
-            }).first().value();
+            parent = root;
 
-            if (_(obj).isUndefined()) {
-                obj = {
-                    data: _(types).first()
-                };
-                root.push(obj);
-            }
-
-            _(types.slice(1)).chain().each(function(type, i) {
-                var child;
-                if (!obj.children) {
-                    obj.children = [];
-                }
-                child = _(obj.children).chain().select(function(c) {
-                    return c.data === type;
+            _(types).each(function(type, i) {
+                var obj = _(parent).chain().select(function(o) {
+                    return o.data === type;
                 }).first().value();
-                if (_(child).isUndefined()) {
-                    child = {
-                        data: type
+                if (_(obj).isUndefined()) {
+                    obj = {
+                        data: type,
+                        children: []
                     };
+                    parent.push(obj);
                     if (type === _(types).last()) {
-                        child.metadata = {
-                            draggable: true
+                        obj.metadata = {
+                            draggable: true,
+                            properties: data[key]
                         };
                     }
-                    obj.children.push(child);
                 }
-                obj = child;
+                parent = obj.children;
             });
 
         });
-        console.log(root)
         return root;
 
     }
@@ -51,11 +39,7 @@ cloudml.menu = (function() {
             },
             dnd: {
                 drop_check: function(data) {
-                    console.log(arguments);
-                    _(arguments[0]).each(function(a, i) {
-                        console.log(i, $(a).data('draggable'));
-                    });
-                    return false;
+                    return $(data.o).data('draggable');
                 }
             },
             crrm: {
