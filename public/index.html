@@ -20,6 +20,7 @@
         <script src="jquery.jstree.js"></script>
         <script src="main.js"></script>
         <script src="menu.js"></script>
+        <script src="diagram.js"></script>
     </head>
     <body>
         <div class="topbar">
@@ -54,8 +55,19 @@
                         <input id="search" type="text">
                         <div id="menu"></div> 
                     </div>
-                    <div id="panel" class="jstree-drop span12 columns">
+                    <div class="span12 columns">
+                        <div id="diagram" class="jstree-drop"></div>
                         <strong>Loading...</strong>
+                    <table class="zebra-striped">
+                        <thead>
+                            <th>Property</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                            <th>Value</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                     </div>
                 </div>
             </section>
