@@ -6,11 +6,14 @@ var fs = require('fs');
 var preprocessor = require('./preprocessor.js'),
 entityTransformator = require('./entitytransformator.js');
 
-if (process.argv.length >= 3) {
+var targets = ['aws', 'rackspace'];
+
+if (process.argv.length >= 4 && targets.indexOf(process.argv[3]) >= 0) {
     var templateFile = process.argv[2];
     readFile(templateFile);
 } else {
-    console.log('Please provide template file as argument');
+    console.log('Usage: templatefile target <parameters>');
+    console.log('Available targets:', targets.join(' '));
 }
 
 function readFile(templateFile) {
@@ -32,9 +35,10 @@ function parseData(data) {
 }
 
 function processData(data) {
+    var target = process.argv[3];
     data = preprocessor.preprocess(data);
     data.Resources.forEach(function(resource) {
-        resource = entityTransformator.entityTransformation('aws', resource);
+        resource = entityTransformator.entityTransformation(target, resource);
         console.log(resource);
     });
 }

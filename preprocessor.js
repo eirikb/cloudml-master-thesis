@@ -13,13 +13,13 @@ exports.preprocess = function(data) {
 function mapParameters(data) {
     var parameters = {},
     argvParameters = Object.keys(data.Parameters);
-    if (argvParameters.length === process.argv.length - 3) {
+    if (argvParameters.length === process.argv.length - 4) {
         argvParameters.forEach(function(key, i) {
-            parameters[key] = process.argv[i + 3];
+            parameters[key] = process.argv[i + 4];
         });
         return parameters;
     } else {
-        console.error('Must specify these parameters:', argvParameters);
+        console.error('Must specify these parameters:', argvParameters.join(' '));
     }
 }
 
