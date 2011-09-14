@@ -1,6 +1,7 @@
 var fs = require('fs');
 
-var preprocessor = require('./preprocessor.js');
+var preprocessor = require('./preprocessor.js'),
+postprocessor = require('./postprocessor.js');
 
 if (process.argv.length >= 3) {
     var templateFile = process.argv[2];
@@ -21,8 +22,11 @@ function readFile(templateFile) {
 
 function parseData(data) {
     try {
-        preprocessor.preprocess(JSON.parse(data));
+        data = preprocessor.preprocess(JSON.parse(data));
+        data = postprocessor.postprocess('aws', data);
+        console.log(require('util').inspect(data, true, null));
     } catch(err) {
         console.error(err.message);
     }
 }
+

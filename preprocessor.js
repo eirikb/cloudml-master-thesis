@@ -3,7 +3,8 @@ exports.preprocess = function(data) {
     data.Resources.forEach(function(resource) {
         processParameters(resource.Properties, parameters);
     });
-    console.log(require('util').inspect(data, true, null));
+    delete data.Parameters;
+    return data;
 };
 
 function mapParameters(data) {
