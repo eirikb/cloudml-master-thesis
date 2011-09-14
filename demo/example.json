@@ -12,8 +12,8 @@
 
   "Resources" : [
     {
-      "type" : "HW::Instance",
-      "properties" : {
+      "Type" : "HW::Instance",
+      "Properties" : {
         "name": {
           "Ref": "name"
         },
