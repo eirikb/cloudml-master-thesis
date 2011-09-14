@@ -1,3 +1,7 @@
+//
+//  This script will scrape all entities from Rackspace documentaion
+//  Usage: node <this file>
+//
 var $ = require('jquery'),
 http = require('http'),
 fs = require('fs'),

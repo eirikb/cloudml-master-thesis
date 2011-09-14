@@ -1,3 +1,7 @@
+//
+// This script will scrape all entities from AWS documentation.
+// Usage: node <this file>
+//
 var http = require('http'),
 fs = require('fs'),
 scraper = require('scraper'),
