@@ -26,7 +26,10 @@ function readFile(templateFile) {
 function parseData(data) {
     try {
         data = preprocessor.preprocess(JSON.parse(data));
-        entityTransformator.entityTransformation('aws', data);
+        data.Resources.forEach(function(resource) {
+            resource = entityTransformator.entityTransformation('aws', resource);
+            console.log(resource);
+        });
     } catch(err) {
         console.error(err.message);
     }
