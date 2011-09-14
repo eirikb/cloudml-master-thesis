@@ -3,8 +3,8 @@
 //
 var fs = require('fs');
 
-var preprocessor = require('./preprocessor.js'),
-entityTransformator = require('./entitytransformator.js');
+var preprocess = require('./preprocess.js'),
+transform = require('./transform.js');
 
 var targets = ['aws', 'rackspace'];
 
@@ -36,9 +36,9 @@ function parseData(data) {
 
 function processData(data) {
     var target = process.argv[3];
-    data = preprocessor.preprocess(data);
+    data = preprocess.preprocess(data);
     data.Resources.forEach(function(resource) {
-        resource = entityTransformator.entityTransformation(target, resource);
+        resource = transform.transform(target, resource);
         console.log(resource);
     });
 }
