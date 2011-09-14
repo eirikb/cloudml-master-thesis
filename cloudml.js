@@ -25,13 +25,17 @@ function readFile(templateFile) {
 
 function parseData(data) {
     try {
-        data = preprocessor.preprocess(JSON.parse(data));
-        data.Resources.forEach(function(resource) {
-            resource = entityTransformator.entityTransformation('aws', resource);
-            console.log(resource);
-        });
+        processData(JSON.parse(data));
     } catch(err) {
         console.error(err.message);
     }
+}
+
+function processData(data) {
+    data = preprocessor.preprocess(data);
+    data.Resources.forEach(function(resource) {
+        resource = entityTransformator.entityTransformation('aws', resource);
+        console.log(resource);
+    });
 }
 
