@@ -1,0 +1,28 @@
+{
+  "Parameters" : {
+    "name" : {
+      "description" : "Name of instance",
+      "type" : "String"
+    },
+    "key": {
+      "description" : "Whole SSH-key to provide SSH access to the instance",
+      "type": "String"
+    }
+  },
+
+  "Resources" : [
+    {
+      "type" : "HW::Instance",
+      "properties" : {
+        "name": {
+          "Ref", "name"
+        },
+        "imageId": 1,
+        "flavor": "small",
+        "key": {
+          "Ref": "key"
+        }
+      }
+    }
+  ]
+}
