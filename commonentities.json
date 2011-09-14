@@ -1,0 +1,17 @@
+{
+    "HW::Instance": {
+        "imageId": {
+            "type": "String",
+            "required": "Yes",
+            "notes": "Provides the unique ID of the virtual Image."
+        }, "flavor": {
+            "type": "String",
+            "required": "No",
+            "notes": "Size of the instance, small, medium, large"
+        }, "key": {
+            "type": "String",
+            "required": "No",
+            "notes": "SSH-key"
+        }
+    }
+}
