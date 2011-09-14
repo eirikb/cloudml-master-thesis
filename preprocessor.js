@@ -7,6 +7,14 @@ if (process.argv.length >= 3) {
     console.log('Please provide template file as argument');
 }
 
+exports.preprocess = function(resources) {
+    var parameters = mapParameters(data);
+    data.Resources.forEach(function(resource) {
+        processParameters(resource.Properties, parameters);
+    });
+    console.log(require('util').inspect(data, true, null));
+};
+
 function readFile(templateFile) {
     fs.readFile(templateFile, function(err, data) {
         if (!err) {
@@ -36,14 +44,6 @@ function mapParameters(data) {
     } else {
         console.error('Must specify these parameters:', argvParameters);
     }
-}
-
-function processResources(data) {
-    var parameters = mapParameters(data);
-    data.Resources.forEach(function(resource) {
-        processParameters(resource.Properties, parameters);
-    });
-    console.log(require('util').inspect(data, true, null));
 }
 
 function processParameters(properties, parameters) {
