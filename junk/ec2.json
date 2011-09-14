@@ -1,0 +1,65 @@
+{ ImageId: 
+   { required: 'Yes',
+     notes: 'Provides the unique ID of the Amazon Machine Image (AMI) that was assigned during registration.',
+     type: 'String' },
+  RamDiskId: 
+   { required: 'No',
+     notes: 'The ID of the RAM disk to select. Some kernels require additional drivers at launch. Check the kernel requirements for information on whether you need to specify a RAM disk. To find kernel requirements, refer to the AWS Resource Center and search for the kernel ID.',
+     type: 'String' },
+  PrivateIpAddress: 
+   { required: 'No',
+     notes: 'If you\'re using Amazon Virtual Private Cloud, you can optionally use this parameter to assign the instance a specific available IP address from the subnet (e.g., 10.0.0.25). Default: Amazon VPC selects an IP address from the subnet for the instance.',
+     type: 'String' },
+  DisableApiTermination: 
+   { required: 'No',
+     notes: 'Boolean indicating whether the instance can be terminated through the API.',
+     type: 'String' },
+  KeyName: 
+   { required: 'No',
+     notes: 'Provides the name of the EC2 key pair.',
+     type: 'String' },
+  KernelId: 
+   { required: 'No',
+     notes: 'The kernel ID',
+     type: 'String' },
+  SecurityGroupIds: 
+   { required: 'No',
+     notes: 'Required for VPC security groups. A list containing the security group IDs for VPC security groups to assign to the Amazon EC2 instance.',
+     type: 'Comma Delimited list' },
+  PlacementGroupName: 
+   { required: 'No',
+     notes: 'The name of an existing placement group you want to launch the intstance into (for cluster instances).',
+     type: 'String' },
+  Monitoring: 
+   { required: 'No',
+     notes: 'Whether monitoring is enabled for the instance.',
+     type: 'String' },
+  Volumes: 
+   { required: 'No',
+     notes: 'The EBS volumes to attach to the instance.',
+     type: 'List of EC2 MountPoint types' },
+  InstanceType: 
+   { required: 'No',
+     notes: 'The instance type (for example, m1.small).',
+     type: 'String' },
+  UserData: 
+   { required: 'No',
+     notes: 'Base64-encoded MIME user data made available to the instances.',
+     type: 'String' },
+  AvailabilityZone: 
+   { required: 'No',
+     notes: 'Specifies the name of the Availability Zone the instance is located in.',
+     type: 'String' },
+  SubnetId: 
+   { required: 'No',
+     notes: 'If you\'re using Amazon Virtual Private Cloud, this specifies the ID of the subnet you want to launch the instance into.',
+     type: 'String' },
+  Tags: 
+   { required: 'No',
+     notes: 'The tags you want to attach to the instance.',
+     type: 'List of EC2 Tags type' },
+  SecurityGroups: 
+   { required: 'No',
+     notes: 'Valid only for EC2 security groups. A list containing the EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template.',
+     type: 'Comma Delimited list' } }
+undefined
