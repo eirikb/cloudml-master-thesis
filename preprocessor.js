@@ -1,3 +1,6 @@
+//
+//  Setting correct parameters
+//
 exports.preprocess = function(data) {
     var parameters = mapParameters(data);
     data.Resources.forEach(function(resource) {

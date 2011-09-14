@@ -1,7 +1,10 @@
+//
+//  Read template file from file system and orchestrate
+//
 var fs = require('fs');
 
 var preprocessor = require('./preprocessor.js'),
-postprocessor = require('./postprocessor.js');
+entityTransformator = require('./entitytransformator.js');
 
 if (process.argv.length >= 3) {
     var templateFile = process.argv[2];
@@ -23,8 +26,7 @@ function readFile(templateFile) {
 function parseData(data) {
     try {
         data = preprocessor.preprocess(JSON.parse(data));
-        data = postprocessor.postprocess('aws', data);
-        console.log(require('util').inspect(data, true, null));
+        entityTransformator.entityTransformation('aws', data);
     } catch(err) {
         console.error(err.message);
     }
