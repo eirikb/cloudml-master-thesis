@@ -1,7 +1,7 @@
 //
 //  Transform entites for resources according to provider
 //
-exports.entityTransformation = function(type, resource) {
+exports.transform = function(type, resource) {
     switch (type) {
     case 'aws':
         return aws(resource);
