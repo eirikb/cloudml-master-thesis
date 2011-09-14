@@ -5,10 +5,8 @@ exports.transform = function(type, resource) {
     switch (type) {
     case 'aws':
         return aws(resource);
-        break;
     case 'racksace':
         return rackspace(resource);
-        break;
     default:
         console.error('Unknown type', type);
         break;
@@ -26,7 +24,7 @@ function aws(r) {
     resource[p.name] = {
         Type: 'AWS::EC2::Instance',
         Properties: properties
-    }
+    };
     return resource;
 }
 
