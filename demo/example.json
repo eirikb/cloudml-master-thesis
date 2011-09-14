@@ -15,7 +15,7 @@
       "type" : "HW::Instance",
       "properties" : {
         "name": {
-          "Ref", "name"
+          "Ref": "name"
         },
         "imageId": 1,
         "flavor": "small",
