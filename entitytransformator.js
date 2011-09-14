@@ -1,4 +1,7 @@
-exports.postprocess = function(type, data) {
+//
+//  Transform entites for resources according to provider
+//
+exports.entityTransformation = function(type, data) {
     switch (type) {
     case 'aws':
         aws(data);
@@ -14,9 +17,6 @@ exports.postprocess = function(type, data) {
 };
 
 function aws(data) {
-    var template = {
-        Resources: {}
-    };
     data.Resources.forEach(function(resource) {
     });
 }
