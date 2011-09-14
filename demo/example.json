@@ -3,10 +3,6 @@
     "name" : {
       "description" : "Name of instance",
       "type" : "String"
-    },
-    "key": {
-      "description" : "Whole SSH-key to provide SSH access to the instance",
-      "type": "String"
     }
   },
 
@@ -18,10 +14,7 @@
           "Ref": "name"
         },
         "imageId": 1,
-        "flavor": "small",
-        "key": {
-          "Ref": "key"
-        }
+        "flavor": "small"
       }
     }
   ]
