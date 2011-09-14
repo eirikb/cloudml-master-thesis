@@ -17,6 +17,9 @@ get = function(p, callback) {
             data += c;
         });
         res.on('end', function() {
+            if (data.match(/404/)) {
+                console.warn('Might be 404d', p);
+            }
             callback(data);
         });
     });
@@ -25,7 +28,7 @@ save = function(p) {
     get(p, function(r) {
         var name = path.basename(p);
         console.log('Saving', name);
-        fs.writeFileSync(name, r);
+        fs.writeFileSync('r/' + name, r);
     });
 },
 donelist = [];
@@ -39,7 +42,7 @@ function rec(p) {
                 if (href.match(/\.xsd$/)) {
                     rec(href);
                 } else if (href.match(/\.json/)) {
-                    save(href);
+                    save(href.replace(/^\.\.\//, ''));
                 }
             });
         });
