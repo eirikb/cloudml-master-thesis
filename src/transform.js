@@ -1,7 +1,15 @@
 //
 //  Transform entites for resources according to provider
 //
-exports.transform = function(type, resource) {
+exports.transformResources = function(target, data) {
+    var resources = [];
+    data.Resources.forEach(function(resource) {
+        resources.push(transform(target, resource));
+    });
+    return resources;
+};
+
+function transform(type, resource) {
     switch (type) {
     case 'aws':
         return aws(resource);
