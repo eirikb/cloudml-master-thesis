@@ -29,5 +29,7 @@ function aws(resources) {
     console.log(require('util').inspect(template, true, null));
 }
 
-function rackspace(resources) {}
+function rackspace(resources) {
+    console.log(require('util').inspect(resources, true, null));
+}
 
