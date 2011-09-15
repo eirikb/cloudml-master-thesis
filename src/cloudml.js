@@ -17,7 +17,7 @@ if (process.argv.length >= 4 && targets.indexOf(process.argv[3]) >= 0) {
     readFile(templateFile, function(data) {
         data = preprocess.preprocess(data);
         resources = transform.transformResources(target, data);
-        console.log(resources);
+        callout(resources);
     });
 } else {
     console.log('Usage: templatefile target <parameters>');
@@ -41,5 +41,4 @@ function parseData(data, callback) {
         console.error(err.message);
     }
 }
-
 
