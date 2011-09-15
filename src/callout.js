@@ -26,10 +26,10 @@ function aws(resources) {
         Resources: r
     };
 
-    console.log(require('util').inspect(template, true, null));
+    console.log(require('util').inspect(template, false, null));
 }
 
 function rackspace(resources) {
-    console.log(require('util').inspect(resources, true, null));
+    console.log(require('util').inspect(resources, false, null));
 }
 
