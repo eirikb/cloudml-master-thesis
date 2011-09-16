@@ -1,6 +1,8 @@
 //
 //  Calling out to targets
 //  
+var https = require('https');
+
 exports.callout = function(target, resources) {
     switch (target) {
     case 'aws':
@@ -13,7 +15,14 @@ exports.callout = function(target, resources) {
 };
 
 function aws(resources) {
-    var template, r = {};
+    var template, r = {},
+    options = {
+        host: 'cloudformation.us-east-1.amazonaws.com',
+        //host: 'localhost',
+        //port: 9001,
+        method: 'POST'
+    },
+    req;
 
     resources.forEach(function(resource) {
         var name = Object.keys(resource)[0];
@@ -27,6 +36,20 @@ function aws(resources) {
     };
 
     console.log(require('util').inspect(template, false, null));
+
+    var req = https.request(options, function(res) {
+        console.log('STATUS: ' + res.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(res.headers));
+        res.setEncoding('utf8');
+        res.on('data', function(chunk) {
+            console.log('BODY: ' + chunk);
+        });
+    });
+
+    req.on('error', function(e) {
+        console.log('problem with request: ' + e.message);
+    });
+
 }
 
 function rackspace(resources) {
