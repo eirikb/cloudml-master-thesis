@@ -20,29 +20,18 @@ exports.createTemplate = function(template) {
         host: 'cloudformation.us-east-1.amazonaws.com',
         method: 'POST',
         headers: {
+            Date: now.toUTCString(),
             'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
             'Content-Length': body.length,
-            Date: now.toUTCString(),
             'x-amzn-authorization': auth
         }
     };
 
-    console.log(require('util').inspect(template, false, null));
-    console.log(require('util').inspect(options, false, null));
-    console.log(require('util').inspect(body, false, null));
-
-    console.log('Connecting...');
     req = https.request(options, function(res) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
         res.setEncoding('utf8');
         res.on('data', function(chunk) {
             console.log('BODY: ' + chunk);
         });
-    });
-
-    req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
     });
 
     req.write(body);
