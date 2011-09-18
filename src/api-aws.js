@@ -12,7 +12,9 @@ exports.createTemplate = function(template) {
     var req, now = new Date(),
     key = JSON.parse(fs.readFileSync('aws-key.json')),
     body = qs.stringify({
-        Action: 'ListStacks'
+        Action: 'CreateStack',
+        StackName: 'test',
+        TemplateBody: JSON.stringify(template)
     }),
     auth = 'AWS3-HTTPS ' + 'AWSAccessKeyId=' + key.id + ', ' + 'Algorithm=HmacSHA256, ' + 'Signature=' + hmacSha256(key.key, now.toUTCString()),
     options = {
