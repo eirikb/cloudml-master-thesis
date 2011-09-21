@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>p1</groupId>
-  <artifactId>P1</artifactId>
+  <groupId>example</groupId>
+  <artifactId>testapp</artifactId>
   <packaging>war</packaging>
-  <version>0.1</version>
+  <version>1.0-SNAPSHOT</version>
 
   <dependencies>
-      <dependency>
-          <groupId>javax.security</groupId>
-              <artifactId>jaas</artifactId>
-                  <version>1.0.01</version>
-              </dependency>
     <dependency>
       <groupId>org.grails</groupId>
       <artifactId>grails-bootstrap</artifactId>
@@ -108,19 +103,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
   </dependencies>
 
   <repositories>
-           <repository>
-                       <id>jboss.org</id>
-                               <name>jboss-maven2-release-repository</name>
-                                       <url>http://www.mvnsearch.org/maven2/</url>
-                                             </repository>
-<!-- 
-                                                 
+    <!-- Required to get hold of JTA -->
     <repository>
         <id>jboss.org</id>
         <name>jboss.org</name>            
         <url>http://repository.jboss.com/maven2/</url>
     </repository>
--->
     <repository>
       <id>maven2-repository.dev.java.net</id>
       <name>Java.net Repository for Maven</name>
