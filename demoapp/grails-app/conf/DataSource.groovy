@@ -9,7 +9,7 @@ hibernate {
     cache.use_query_cache = true
     cache.provider_class = 'net.sf.ehcache.hibernate.EhCacheProvider'
 }
-// environment specific settings
+
 environments {
     development {
         dataSource {
