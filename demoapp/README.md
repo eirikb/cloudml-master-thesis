@@ -23,3 +23,9 @@ And for the application:
     git clone git@github.com:eirikb/cloudml.git
     cd cloudml/demoapp
     grails run-app
+
+Maven
+-
+
+Tried to mavenify the project, but without luck. Dependency issues all over,  
+will have another go maybe when Grails 2.0 is released - it should have excellent maven support.
