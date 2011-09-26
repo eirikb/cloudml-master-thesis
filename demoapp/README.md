@@ -1,7 +1,7 @@
 Demo application
 -
 
-This is a simple example application in [http://grails.org](grails).  
+This is a simple example application in [Grails](http://grails.org).  
 It mainly features these technologies:  
 
 * Hibernate
@@ -20,6 +20,6 @@ To run the application grails is needed, this should get you started:
 
 And for the application:  
 
-    git clone https://github.com/eirikb/cloudml
+    git clone git@github.com:eirikb/cloudml.git
     cd cloudml/demoapp
     grails run-app
