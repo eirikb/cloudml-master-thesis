@@ -1,0 +1,25 @@
+Demo application
+-
+
+This is a simple example application in [http://grails.org](grails).  
+It mainly features these technologies:  
+
+* Hibernate
+* Spring MVC
+* Spring security
+* Webflow
+
+Running
+-
+
+To run the application grails is needed, this should get you started:  
+
+    wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-1.3.7.zip
+    unzip grails-1.3.7
+    export PATH=$PATH:grails-1.3.7/bin
+
+And for the application:  
+
+    git clone https://github.com/eirikb/cloudml
+    cd cloudml/demoapp
+    grails run-app
