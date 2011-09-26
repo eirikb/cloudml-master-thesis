@@ -16,7 +16,7 @@ To run the application grails is needed, this should get you started:
 
     wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-1.3.7.zip
     unzip grails-1.3.7
-    export PATH=$PATH:grails-1.3.7/bin
+    export PATH=$PATH:$PWD/grails-1.3.7/bin
 
 And for the application:  
 
