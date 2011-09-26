@@ -1,4 +1,4 @@
-import p1.*
+import bank.*
 
 class BootStrap {
 	

@@ -1,4 +1,4 @@
-package p1
+package bank
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
