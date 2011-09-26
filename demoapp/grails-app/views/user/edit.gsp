@@ -1,6 +1,6 @@
 
 
-<%@ page import="p1.User" %>
+<%@ page import="bank.User" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -104,7 +104,7 @@
                                   <label for="person"><g:message code="user.person.label" default="Person" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: userInstance, field: 'person', 'errors')}">
-                                    <g:select name="person.id" from="${p1.Person.list()}" optionKey="id" value="${userInstance?.person?.id}"  />
+                                    <g:select name="person.id" from="${bank.Person.list()}" optionKey="id" value="${userInstance?.person?.id}"  />
                                 </td>
                             </tr>
                         

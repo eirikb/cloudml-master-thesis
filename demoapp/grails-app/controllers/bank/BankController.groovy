@@ -1,6 +1,6 @@
-package p1
+package bank
 
-import p1.User;
+import bank.User;
 
 class BankController {
 	

@@ -1,6 +1,6 @@
 
 
-<%@ page import="p1.Person" %>
+<%@ page import="bank.Person" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
