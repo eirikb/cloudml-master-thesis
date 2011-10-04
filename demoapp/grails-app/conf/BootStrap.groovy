@@ -25,11 +25,17 @@ class BootStrap {
 		if (!adminUser.authorities.contains(userRole)) {
 			UserRole.create adminUser, userRole
 		}
-		new Requestmap(url: '/', configAttribute: 'ROLE_USER').save(failOnError: true)
-		new Requestmap(url: '/account/*', configAttribute: 'ROLE_USER').save(failOnError: true)
-		new Requestmap(url: '/bank', configAttribute: 'ROLE_USER').save(failOnError: true)
-		new Requestmap(url: '/bank/*', configAttribute: 'ROLE_USER').save(failOnError: true)
-		new Requestmap(url: '/person', configAttribute: 'ROLE_USER').save(failOnError: true)
-		new Requestmap(url: '/user/*', configAttribute: 'ROLE_ADMIN').save(failOnError: true)
+		createRequestmap('/', 'ROLE_USER')
+		createRequestmap('/account/*', 'ROLE_USER')
+		createRequestmap('/bank', 'ROLE_USER')
+		createRequestmap('/bank/*', 'ROLE_USER')
+		createRequestmap('/person', 'ROLE_USER')
+		createRequestmap('/user/*', 'ROLE_ADMIN')
 	}
+
+    def void createRequestmap(url, role) {
+        if (!Requestmap.findByUrl(url)) {
+            new Requestmap(url: url, configAttribute: role).save(failOnError: true)
+        }
+    }
 }
