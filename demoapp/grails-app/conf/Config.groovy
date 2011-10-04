@@ -80,6 +80,14 @@ log4j = {
            'net.sf.ehcache.hibernate'
 
     warn   'org.mortbay.log'
+
+    environments {
+        production {
+            appenders {
+//                rollingFile name: "stacktrace", maxFileSize: 1024, file: "/var/run/tomcat/myApp-stacktrace.log"
+            }
+        }
+    }
 }
 
 // Added by the Spring Security Core plugin:
