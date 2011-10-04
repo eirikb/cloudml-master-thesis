@@ -84,7 +84,7 @@ log4j = {
     environments {
         production {
             appenders {
-//                rollingFile name: "stacktrace", maxFileSize: 1024, file: "/var/run/tomcat/myApp-stacktrace.log"
+                rollingFile name: "stacktrace", maxFileSize: 1024, file: "/var/run/tomcat/myApp-stacktrace.log"
             }
         }
     }
