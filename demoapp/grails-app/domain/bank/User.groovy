@@ -20,7 +20,10 @@ class User implements Serializable {
 		person nullable: true
 	}
 	
-	static mapping = { password column: '`password`' }
+    static mapping = { 
+      table '`user`' 
+      password column: '`password`' 
+   } 
 	
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this).collect { it.role } as Set
