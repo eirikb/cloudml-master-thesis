@@ -8,17 +8,14 @@ Run setup.sh to download and temporarily setup ec2-tools:
 
     . ./setup.sh
 
-Run run.sh to create three instances  
+Run run.sh to create three instances and give you the id + url
 
     sh run.sh
 
-Run desc.sh to get instance DNS (can provide ID from run.sh)
 
-    sh desc.sh
+inject remote-install-psql.sh to install psql
 
-Run psql.sh to install and setup psql on an instance
-
-    sh psql.sh [ec2.SOME-INSTANCE-HERE-eu-west-1.compute.amazonaws.com]
+    sh inject.sh install-remote-psql.sh [ec2.SOME-INSTANCE-HERE-eu-west-1.compute.amazonaws.com]
 
 
 Manually ssh into this box and do this:
@@ -29,15 +26,21 @@ Manually ssh into this box and do this:
 
 Use the password bank, log out
 
+Install tomact like this:
+
+    sh inject.sh remote-install-tomcat.sh [ec2.SOME-INSTANCE-HERE-BUT-NOT-THE-DB-ONE-eu-west-1.compute.amazonaws.com]
+
 Update grails-app/conf/DataSource.groovy with correct URL to new database instance and run
 
     cd ../demoapp
     grails war
     cd ../ec2
 
+
 cd back to ec2
 Then run deploy.sh
 
     sh deploy.sh [ec2.SOME-INSTANCE-HERE-BUT-NOT-THE-DB-ONE-eu-west-1.compute.amazonaws.com]
+
 
 
