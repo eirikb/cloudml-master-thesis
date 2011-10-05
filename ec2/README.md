@@ -23,21 +23,21 @@ Run psql.sh to install and setup psql on an instance
 
 Manually ssh into this box and do this:
 
-
-   ssh -i pem/dev.pem ec2-user@[ec2.SOME-INSTANCE-HERE-eu-west-1.compute.amazonaws.com]
-   sudo su postgres
-   createuser -sP bank
+    ssh -i pem/dev.pem ec2-user@[ec2.SOME-INSTANCE-HERE-eu-west-1.compute.amazonaws.com]
+    sudo su postgres
+    createuser -sP bank
 
 Use the password bank, log out
 
-cd to demoapp
 Update grails-app/conf/DataSource.groovy with correct URL to new database instance and run
 
-   grails war
+    cd ../demoapp
+    grails war
+    cd ../ec2
 
 cd back to ec2
 Then run deploy.sh
 
-   sh deploy.sh [ec2.SOME-INSTANCE-HERE-BUT-NOT-THE-DB-ONE-eu-west-1.compute.amazonaws.com]
+    sh deploy.sh [ec2.SOME-INSTANCE-HERE-BUT-NOT-THE-DB-ONE-eu-west-1.compute.amazonaws.com]
 
 
