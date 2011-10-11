@@ -30,7 +30,7 @@ environments {
             dialect = org.hibernate.dialect.PostgreSQLDialect
             username = "bank"
             password = "bank"
-            url = "jdbc:postgresql://ec2-46-51-149-201.eu-west-1.compute.amazonaws.com:5432/bank"
+            url = "jdbc:postgresql://ec2-46-137-65-155.eu-west-1.compute.amazonaws.com:5432/bank"
         }
     }
 }
