@@ -28,18 +28,21 @@
 \part{Introduction}
 \chapter{Terminology table}
 
-\begin{tabular}{ | l | p{10cm} | }
-  \hline
-  \textbf{Word} & \textbf{Meaning} \\
-  \hline
-  Instance & Virtual machine instance. \\ \hline
-  Resource & Set of services that a cloud provider support.
-  Can be a instance, storage capacity, geographical location, SSO. Some are physical for the user, others are automatical. \\ \hline
-  Stack & Set of resources. \\ \hline
-  Provider & Company that makes a business of selling cloud solutions. Such as Amazon (AWS), Rackspace, Azure and Linode. \\ \hline
-  Profile & Part of CloudML used to represent Resources for other providers. \\ \hline
-  CloudFormation & Amazon AWS CloudFormation \\ \hline
-\end{tabular}
+\begin{table}
+    \caption{Terminologies}
+    \begin{tabular}{ | l | p{10cm} | }
+      \hline
+      \textbf{Word} & \textbf{Meaning} \\
+      \hline
+      Instance & Virtual machine instance. \\ \hline
+      Resource & Set of services that a cloud provider support.
+      Can be a instance, storage capacity, geographical location, SSO. Some are physical for the user, others are automatical. \\ \hline
+      Stack & Set of resources. \\ \hline
+      Provider & Company that makes a business of selling cloud solutions. Such as Amazon (AWS), Rackspace, Azure and Linode. \\ \hline
+      Profile & Part of CloudML used to represent Resources for other providers. \\ \hline
+      CloudFormation & Amazon AWS CloudFormation \\ \hline
+    \end{tabular}
+\end{table}
 
 \chapter{Problem}
 There are many cloud providers on the global market today. These providers support many layers of cloud, 
@@ -141,33 +144,39 @@ similar to a proxy. This can work with the benefits that many middleware softwar
 redundancy and transformations, but it also has the disadvantages such as single point of failure and version inconsistencies.
 
 \section{Table}
-\begin{tabular}{ | p{2cm} | p{2cm} | p{2.5cm} | p{2cm} | p{2cm} | p{2cm} |}
-  \hline
-  \textbf{Solution} & \textbf{Easy to start with} & \textbf{Business level viable} & \textbf{Model driven} & \textbf{Multicloud} & \textbf{Standard} \\
-  \hline
- Amazon CloudFormation & No & No & No & No & No \\ \hline
- CA Applogic & Yes & Yes & Yes & No & No \\ \hline
- Libcloud & No  & No & No & Yes & No \\ \hline
- jclouds & No & No & No & Yes & No \\ \hline
- OPA & Yes & No & No & No & No \\ \hline
- Whirr & No & No & No & Yes & No \\ \hline
- Deltacloud & No & No & No & Yes & No \\ \hline
-\end{tabular}
+\begin{table}
+    \caption{Analysis}
+    \begin{tabular}{ | p{2cm} | p{2cm} | p{2.5cm} | p{2cm} | p{2cm} | p{2cm} |}
+      \hline
+      \textbf{Solution} & \textbf{Easy to start with} & \textbf{Business level viable} & \textbf{Model driven} & \textbf{Multicloud} & \textbf{Standard} \\
+      \hline
+     Amazon CloudFormation & No & No & No & No & No \\ \hline
+     CA Applogic & Yes & Yes & Yes & No & No \\ \hline
+     Libcloud & No  & No & No & Yes & No \\ \hline
+     jclouds & No & No & No & Yes & No \\ \hline
+     OPA & Yes & No & No & No & No \\ \hline
+     Whirr & No & No & No & Yes & No \\ \hline
+     Deltacloud & No & No & No & Yes & No \\ \hline
+    \end{tabular}
+\end{table}
 
 \chapter{Requirements}
 \section{Table}
 \section{Table}
-\begin{tabular}{ | l | p{7cm} | l | }
-  \hline
-  \textbf{Requirement} & \textbf{Short description} & \textbf{Importance} \\ \hline
-  Lexical model & Language should be based on a lexical model. & 3 \\ \hline
-  Graphical model & Lexical model should be represented in diagrams. & 2 \\ \hline
-  Multicloud & The language should work against more than one provider. & 2 \\ \hline
-  Adaptable (?) & Providers should be able to express what they offer according to the CloudML vocabulary to support automation. & 3 \\ \hline
-  Executable & The language will be accompanied by an execution engine able to process it and perform static analysis on a given CloudML file. & x \\ \hline
-  API & The language should be easy to use through an API. & x \\ \hline
-  Versoning (VCS) & The lexical language should be easy to maintain in a VCS such as Git, Mercurial or SVN. & x \\ \hline
-\end{tabular}
+\begin{table}
+    \caption{Requirements}
+    \begin{tabular}{ | l | p{7cm} | l | }
+      \hline
+      \textbf{Requirement} & \textbf{Short description} & \textbf{Importance} \\ \hline
+      Lexical model & Language should be based on a lexical model. & 3 \\ \hline
+      Graphical model & Lexical model should be represented in diagrams. & 2 \\ \hline
+      Multicloud & The language should work against more than one provider. & 2 \\ \hline
+      Adaptable (?) & Providers should be able to express what they offer according to the CloudML vocabulary to support automation. & 3 \\ \hline
+      Executable & The language will be accompanied by an execution engine able to process it and perform static analysis on a given CloudML file. & x \\ \hline
+      API & The language should be easy to use through an API. & x \\ \hline
+      Versoning (VCS) & The lexical language should be easy to maintain in a VCS such as Git, Mercurial or SVN. & x \\ \hline
+    \end{tabular}
+\end{table}
 
 \section{Model}
 \subsection{Lexical}
@@ -218,6 +227,7 @@ but rather more concretely what parts of a system stack that can be configured.
     child {node [rectangle] {Services}
     child {node [rectangle] {Instances}}};
   \end{tikzpicture}
+  \caption{Cloud layers}
 \end{figure}
 
 The figure above, Figure 1, show the different layers that CloudML can and should support. 
