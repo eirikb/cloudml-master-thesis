@@ -1,0 +1,213 @@
+\NeedsTeXFormat{LaTeX2e}[1994/12/01] %% Any version, really.
+\ProvidesPackage{uiosloforside}[2011/01/17 v2.12 UiO document class]
+\RequirePackage{ifthen}
+\newboolean{uiof@altfont}
+\DeclareOption{altfont}{\setboolean{uiof@altfont}{true}}
+\DeclareOption{american}{\def \uiof@dept{Department of Informatics}%
+  \def \uiof@univ{University of Oslo}}
+\DeclareOption{british}{\ExecuteOptions{american}}
+\DeclareOption{color}{\AtEndOfPackage{%
+  \RequirePackage[usenames]{color}%
+  \IfFileExists{uiocolor.sty}{\RequirePackage{uiocolor}}{}}}
+\DeclareOption{colour}{\ExecuteOptions{color}}
+\DeclareOption{english}{\ExecuteOptions{american}}
+\DeclareOption{norsk}{\def \uiof@dept{Institutt for informatikk}%
+  \def \uiof@univ{Universitetet i Oslo}}
+\DeclareOption{nynorsk}{\ExecuteOptions{norsk}}
+\DeclareOption{proceedings}{\def \uiof@issn{0809-3865}}
+\DeclareOption{report}{\def \uiof@issn{0806-3036}}
+\DeclareOption{thesis}{\def \uiof@issn{0809-3857}}
+\DeclareOption{UKenglish}{\ExecuteOptions{american}}
+\IfFileExists{t1poc.fd}{}{\ExecuteOptions{altfont}}
+\ExecuteOptions{american}
+\ExecuteOptions{report}
+\DeclareOption*{\PackageWarning{uiosloforside}{Unknwown
+    option `\CurrentOption' ignored}}
+\ProcessOptions \relax
+\RequirePackage{calc}
+\RequirePackage{graphicx}
+\RequirePackage{keyval}
+\RequirePackage{type1cm,type1ec}
+\newcommand{\uiof@blankpage}{\begingroup
+  \let \cleardoublepage = \relax
+  \begin{\uiof@titlepage}
+    \setcounter{page}{99001+1}
+    \thispagestyle{empty}\null
+  \end{\uiof@titlepage}
+\endgroup}
+\@ifundefined{titlingpage}
+  {\newcommand{\uiof@titlepage}{titlepage}}
+  {\newcommand{\uiof@titlepage}{titlingpage}%
+   \renewcommand{\uiof@blankpage}{}}
+\newcommand{\uiosloforside}[1][]{
+  \begin{\uiof@titlepage}
+    \setcounter{page}{99001}
+    \setkeys{uiof@options}{#1}
+    \thispagestyle{uiosloforside}\null
+    \let \ps@titlingpage = \ps@uiosloforside
+  \end{\uiof@titlepage}
+  \if@twoside \uiof@blankpage \fi
+  \setcounter{page}{1}
+}
+\define@key{uiof@options}{altlogo}{\def \uiof@altlogo{#1}}
+\define@key{uiof@options}{author}{\def \@author{#1}}
+\define@key{uiof@options}{boxcolor}{%
+  \@ifundefined{color}
+    {\PackageError{uiosloforside}{Use 
+        `\string\usepackage[color]{uiosloforside}' 
+        to enable use of colours}}{}
+  \def \uiof@boxcol{#1}}
+\define@key{uiof@options}{date}{\def \@date{#1}}
+\define@key{uiof@options}{dept}{\def \uiof@dept {#1}}
+\define@key{uiof@options}{ill}{\def \uiof@ill{#1}}
+\define@key{uiof@options}{isbn}{\def \uiof@isbn{#1}}
+\newcommand{\uiof@isbn}{}
+\define@key{uiof@options}{issn}{\def \uiof@issn{#1}}
+\define@key{uiof@options}{kind}{\def \uiof@kind{#1}}
+\newcommand{\uiof@kind}{}
+\define@key{uiof@options}{logo}{\def \uiof@logo{#1}}
+\define@key{uiof@options}{subtitle}[]{\def \uiof@subtitle{#1}}
+\define@key{uiof@options}{textcolor}{%
+  \@ifundefined{color}
+    {\PackageError{uiosloforside}{Use 
+        `\string\usepackage[color]{uiosloforside}' 
+        to enable use of colours}}{}
+  \def \uiof@textcol{#1}}
+\newcommand{\uiof@textcol}{black}
+\define@key{uiof@options}{title}{\def \@title{#1}}
+\define@key{uiof@options}{univ}{\def \uiof@univ {#1}}
+\def \uiof@altlogo {}
+\def \uiof@ill {}
+\def \uiof@logo{uiologo-45mm}
+\newcommand{\ps@uiosloforside}{%
+  \long\def \@evenhead {\hspace*{-\evensidemargin}\hspace*{-1in}%
+    \hspace*{2.45cm}\rlap{\raisebox{\uiof@raise}[0pt][0pt]{\vtop to \uiof@ht{\null
+  \vskip 0pt plus 1.618fill
+  \ifthenelse{\equal{\uiof@ill}{}}%
+    {}%
+    {\includegraphics[width=7.8cm]{\uiof@ill}}%
+  \vskip 0pt plus 1fill
+  \ifthenelse{\equal{\uiof@altlogo}{}}%
+    {}%
+    {\includegraphics[width=7.8cm]{\uiof@altlogo}}}}}%
+\hspace*{9.3cm}\rlap{\raisebox{\the\uiof@raise}[0pt][0pt]{\vtop to \uiof@ht{\null
+    \@ifundefined{uiof@boxcol}
+    {\includegraphics{uiof-grey}}
+    {{\color{\uiof@boxcol}\rule{7.8cm}{18.8cm}}}\vfill
+    \includegraphics[width=7.8cm]{\uiof@logo}}}}%
+\rlap{\hspace*{0.45cm}%
+\setlength{\uiof@temp}{\uiof@raise-0.6cm}%
+\raisebox{\the\uiof@temp}[0pt][0pt]{\vtop to 17.6cm{\null
+    \setlength{\parindent}{0pt}  \setlength{\parskip}{0pt}
+\setlength{\hsize}{7.8cm-0.45cm-0.45cm}
+\raggedright  \sloppy
+\ifthenelse{\boolean{uiof@altfont}}
+  {\renewcommand{\rmdefault}{pnc}
+   \renewcommand{\sfdefault}{pag}}
+  {\renewcommand{\rmdefault}{poc}
+   \renewcommand{\sfdefault}{pfa}}
+\renewcommand{\ttdefault}{pcr}
+\normalfont
+\@ifundefined{color}{}{\color{\uiof@textcol}}
+\renewcommand{\and}{\endgraf \vspace{10pt}}
+    \fontsize{14}{17pt}\selectfont
+{\boldmath\textbf{\MakeUppercase{\uiof@univ}}}\endgraf
+{\boldmath\textbf{\uiof@dept}}\endgraf
+\vspace{0pt plus 1fill}
+\fontsize{20}{24pt}\selectfont
+{\boldmath\textbf{\@title\strut}}\endgraf
+\@ifundefined{@subtitle}{}
+  {\def \uiof@subtitle {\@subtitle}}
+\ifthenelse{\equal{\uiof@subtitle}{}}
+  {}
+  {\vspace{0pt plus 0.1fill}
+   \fontsize{17}{20pt}\selectfont
+   \uiof@subtitle\endgraf}
+\ifthenelse{\equal{\uiof@kind}{}}
+  {}
+  {\vspace{0pt plus 0.618fill}
+   \fontsize{20}{24pt}\selectfont
+   \uiof@kind\endgraf}
+\vspace{0pt plus 0.618fill}
+\textrm{\@author\strut}\endgraf
+\ifthenelse{\equal{\uiof@isbn}{}}
+  {}
+  {\vspace{0pt plus 1.618 fill}
+   \begin{tabular}{@{}ll@{}}
+     \textsc{Isbn}& \uiof@isbn\\ 
+     \textsc{Issn}& \uiof@issn\\ 
+   \end{tabular}\endgraf}
+\vspace{0pt plus 1fill}
+\fontsize{14}{17pt}\selectfont
+{\boldmath\textbf{\@date}}}} }\hfill}%
+  \long\def \@oddhead {\hspace*{-\oddsidemargin}\hspace*{-1in}%
+    \hspace*{2.45cm}\rlap{\raisebox{\uiof@raise}[0pt][0pt]{\vtop to \uiof@ht{\null
+  \vskip 0pt plus 1.618fill
+  \ifthenelse{\equal{\uiof@ill}{}}%
+    {}%
+    {\includegraphics[width=7.8cm]{\uiof@ill}}%
+  \vskip 0pt plus 1fill
+  \ifthenelse{\equal{\uiof@altlogo}{}}%
+    {}%
+    {\includegraphics[width=7.8cm]{\uiof@altlogo}}}}}%
+\hspace*{9.3cm}\rlap{\raisebox{\the\uiof@raise}[0pt][0pt]{\vtop to \uiof@ht{\null
+    \@ifundefined{uiof@boxcol}
+    {\includegraphics{uiof-grey}}
+    {{\color{\uiof@boxcol}\rule{7.8cm}{18.8cm}}}\vfill
+    \includegraphics[width=7.8cm]{\uiof@logo}}}}%
+\rlap{\hspace*{0.45cm}%
+\setlength{\uiof@temp}{\uiof@raise-0.6cm}%
+\raisebox{\the\uiof@temp}[0pt][0pt]{\vtop to 17.6cm{\null
+    \setlength{\parindent}{0pt}  \setlength{\parskip}{0pt}
+\setlength{\hsize}{7.8cm-0.45cm-0.45cm}
+\raggedright  \sloppy
+\ifthenelse{\boolean{uiof@altfont}}
+  {\renewcommand{\rmdefault}{pnc}
+   \renewcommand{\sfdefault}{pag}}
+  {\renewcommand{\rmdefault}{poc}
+   \renewcommand{\sfdefault}{pfa}}
+\renewcommand{\ttdefault}{pcr}
+\normalfont
+\@ifundefined{color}{}{\color{\uiof@textcol}}
+\renewcommand{\and}{\endgraf \vspace{10pt}}
+    \fontsize{14}{17pt}\selectfont
+{\boldmath\textbf{\MakeUppercase{\uiof@univ}}}\endgraf
+{\boldmath\textbf{\uiof@dept}}\endgraf
+\vspace{0pt plus 1fill}
+\fontsize{20}{24pt}\selectfont
+{\boldmath\textbf{\@title\strut}}\endgraf
+\@ifundefined{@subtitle}{}
+  {\def \uiof@subtitle {\@subtitle}}
+\ifthenelse{\equal{\uiof@subtitle}{}}
+  {}
+  {\vspace{0pt plus 0.1fill}
+   \fontsize{17}{20pt}\selectfont
+   \uiof@subtitle\endgraf}
+\ifthenelse{\equal{\uiof@kind}{}}
+  {}
+  {\vspace{0pt plus 0.618fill}
+   \fontsize{20}{24pt}\selectfont
+   \uiof@kind\endgraf}
+\vspace{0pt plus 0.618fill}
+\textrm{\@author\strut}\endgraf
+\ifthenelse{\equal{\uiof@isbn}{}}
+  {}
+  {\vspace{0pt plus 1.618 fill}
+   \begin{tabular}{@{}ll@{}}
+     \textsc{Isbn}& \uiof@isbn\\ 
+     \textsc{Issn}& \uiof@issn\\ 
+   \end{tabular}\endgraf}
+\vspace{0pt plus 1fill}
+\fontsize{14}{17pt}\selectfont
+{\boldmath\textbf{\@date}}}} }\hfill}%
+  \def \@evenfoot {}%
+  \let \@oddfoot = \@evenfoot
+}
+\newlength{\uiof@ht}
+\setlength{\uiof@ht}{18.8cm+6.5mm+7.8cm}%
+\newlength{\uiof@raise}
+\setlength{\uiof@raise}{1in+\topmargin+\headheight-1.4cm}%
+\newlength{\uiof@temp}
+\providecommand{\subtitle}[1]{\def \uiof@subtitle{#1}}
+\newcommand{\uiof@subtitle}{}
+\endinput
