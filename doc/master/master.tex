@@ -2,6 +2,7 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{url}
 \usepackage{babel,textcomp,uiosloforside,varioref,graphicx}
+\usepackage{tikz}
 \urlstyle{sf}
 
 \title{CloudML}
@@ -211,6 +212,13 @@ PaaS (Platform as a Service) and SaaS (Software as a Service), although for Clou
 The concepts around the language are not defined by what levels of a vendor management responsibilities it should support, 
 but rather more concretely what parts of a system stack that can be configured.
 
+\begin{figure}
+  \begin{tikzpicture}
+    \node [rectangle] {Services} 
+    child {node [rectangle] {Services}
+    child {node [rectangle] {Instances}}};
+  \end{tikzpicture}
+\end{figure}
 
 The figure above, Figure 1, show the different layers that CloudML can and should support. 
 The top most level is services that a provider might support, such as CDN, geo-based serving, monitoring and load balancing. 
