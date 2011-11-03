@@ -16,17 +16,18 @@
 \frontmatter{}
 \maketitle{}
 
-\chapter*{Abstract}
+\section*{Abstract}
 
 \tableofcontents{}
 \listoffigures{}
 \listoftables{}
 
-\chapter*{Preface}
+\section*{Preface}
 
 \mainmatter{}
-\part{Introduction}
-\chapter{Terminology table}
+\chapter{Introduction}
+%% Use index instead
+\section{Terminology table}
 
 \begin{table}
     \caption{Terminologies}
@@ -44,7 +45,7 @@
     \end{tabular}
 \end{table}
 
-\chapter{Problem}
+\section{Problem}
 There are many cloud providers on the global market today. These providers support many layers of cloud, 
 such as PaaS (Platform as a Service) and IaaS (Infrastructure as a Service). 
 This vast amount of providers and new technologies and services can be overwhelming for many companies and small and medium businesses. 
@@ -63,8 +64,8 @@ If a provider does not offer any management interface and want to implement this
 a standard format to set the foundation would help them achieve a better product for their end users.
 These are some of the problems with cloud hosting today, and that CloudML will be designed to solve.
 
-\chapter{Analysis}
-\section{Amazon AWS CloudFormation}
+\section{Analysis}
+\subsection{Amazon AWS CloudFormation}
 \url{http://aws.amazon.com}
 
 This is a service provided by Amazon from their popular Amazon Web Services. 
@@ -78,7 +79,7 @@ The format that Amazon uses for the templates is a very good format, the syntax 
 but the structure and semantics of the template itself is not used by any other providers or cloud management tooling, 
 so it can not be considered a multicloud solution. Even though JSON is a readable format, does not make it viable as a presentation medium on a business level.
 
-\section{CA Applogic}
+\subsection{CA Applogic}
 \url{http://www.3tera.com/AppLogic/}
 
 Applogic from CA is a proprietary model based web application for management of private clouds. 
@@ -90,7 +91,7 @@ Their solution will also prove beneficial when conducting business level consult
 They also support a version of ADL (Architecture Deployement Language), a good step on its way to standardization. 
 But this solution is only made for private clouds running their own controller, this can prove troublesome for migration, both in to and out of the infrastructure.
 
-\section{libcloud and jclouds}
+\subsection{libcloud and jclouds}
 \url{http://libcloud.apache.org/}
 \url{http://www.jclouds.org/}
 
@@ -105,7 +106,7 @@ And links between resources can be hard to see, as the API lacks correlation bet
 Libcloud have solved the multicloud problem in a very detailed manner, but the complexity is therefore even larger. 
 The API is also Python-only and could therefor be considered to have high tool-chain dependency.
 
-\section{OPA}
+\subsection{OPA}
 \url{http://opalang.org/}
 
 OPA is a cloud language aimed at easing development of modern web applications. It is a new language, 
@@ -127,13 +128,13 @@ and so it can also benefit from some cloud based load balancers, even though thi
 The conclusion about OPA is that it is not a language meant for configuration, and could not easily benefit from a model based approach, 
 and it does not intentionally solve multicloud.
 
-\section{Whirr}
+\subsection{Whirr}
 \url{http://whirr.apache.org/}
 
 This is a binary and code-based application for creating and starting short-lived clusters for hadoop instances.
 It support multiple cloud providers. It has a layout for configuration but it is mainly property-based, and aimed at making clusters. 
 
-\section{Deltacloud}
+\subsection{Deltacloud}
 \url{http://incubator.apache.org/deltacloud/}
 
 Deltacloud has a similar procedure as jclouds and libcloud, but with a REST API. 
@@ -143,7 +144,7 @@ As well as having similar problems as other APIs this approach means that every 
 similar to a proxy. This can work with the benefits that many middleware software have, such as cahing, queues, 
 redundancy and transformations, but it also has the disadvantages such as single point of failure and version inconsistencies.
 
-\section{Table}
+\subsection{Table}
 \begin{table}
     \caption{Analysis}
     \begin{tabular}{ | p{2cm} | p{2cm} | p{2.5cm} | p{2cm} | p{2cm} | p{2cm} |}
@@ -160,9 +161,9 @@ redundancy and transformations, but it also has the disadvantages such as single
     \end{tabular}
 \end{table}
 
-\chapter{Requirements}
-\section{Table}
-\section{Table}
+\section{Requirements}
+\subsection{Table}
+\subsection{Table}
 \begin{table}
     \caption{Requirements}
     \begin{tabular}{ | l | p{7cm} | l | }
@@ -178,8 +179,8 @@ redundancy and transformations, but it also has the disadvantages such as single
     \end{tabular}
 \end{table}
 
-\section{Model}
-\subsection{Lexical}
+\subsection{Model}
+\paragraph{Lexical}
 When approaching a global audience consisting of both academics and professional providers it is important to create a solid foundation, 
 which also should be concrete and easy to both use and implement.
 The best approach would be to support both graphical and lexical models, 
@@ -187,13 +188,13 @@ but a graphical annotation would not suffice when promising simplicity and ease 
 Graphical model could also be much more complex to design, while a lexical model can define a concrete model on a lower level.
 Since the language will be a simple way to template configuration, a well known data markup language would be sufficient for the core syntax, such as JSON or XML.
 
-\subsection{Graphical}
+\paragraph{Graphical}
 A graphical representation of CloudML is important as users should recognize the annotation and feel comfortable with it. 
 Strict, concrete and simple lexical syntax based on a data structured language should work as core for a graphical annotation. 
 An UML profile could be used over component diagrams, but any notation should be sufficient. 
 One fundamental advantage about graphical models are helpfulness in affiliations with commercial and business accountables.
 
-\section{Multicloud}
+\subsection{Multicloud}
 One of the biggest problems with the cloud today is the vast amount of different providers. 
 There are usually few reasons for large commercial delegates to have support for contestants. 
 Some smaller businesses could on the other hand benefit greatly of a standard and union between providers.
@@ -202,20 +203,20 @@ Cloud computing users are concerned with the ability to easily swap between diff
 independence and flexibility. CloudML and its engine need to apply to several providers with different set of systems, 
 features, APIs, payment methods and services. This requirement anticipate support for at least two different providers such as Amazon AWS and Rackspace.
 
-\section{Executable}
+\subsection{Executable}
 The language must be dependant of an underlying engine, this is because creating stacks can be in form of a process, 
 and the language should not be an impediment for deployment flows. The engine will not be a part of the PIM version of CloudML, 
 but the language must reinforce this reasoning.
 
-\section{API}
+\subsection{API}
 The engine underlying CloudML should be easily accessible on a state of the art basis. 
 This is most correctly achieved by implementing an REST based API, which can process CloudML template files correctly. 
 
-\section{Versoning}
+\subsection{Versoning}
 The file format should be in such form it can be stored a VCS system such as Git, Subversion or Mercurial. 
 This is important for end users to be able to maintain templates that defines the stacks they have built, for future reuse.
 
-\section{Granularity}
+\subsection{Granularity}
 Cloud computing is often defined into different categories, such as IaaS (Infrastructure as a Service), 
 PaaS (Platform as a Service) and SaaS (Software as a Service), although for CloudML it needs to narrow it down or rather redefine our point of view.
 The concepts around the language are not defined by what levels of a vendor management responsibilities it should support, 
@@ -240,15 +241,15 @@ On the bottom there are two levels, both representing instances. In the instance
 such as different virtual machines. This level is tightly connected to the Software-layer as connections between instances 
 is very likely to be defined through software, such as databases, web accelerators and application servers.
 
-\chapter{Background}
+\section{Background}
 
-\part{The project}
+\chapter{The project}
 
-\chapter{Planning the project}
+\section{Planning the project}
 
-\part{Conclusion}
+\chapter{Conclusion}
 
-\chapter{Results}
+\section{Results}
 
 \backmatter{}
 \bibliographystyle{plain}
