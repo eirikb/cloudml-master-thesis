@@ -2,8 +2,11 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{url}
 \usepackage{babel,textcomp,uiosloforside,varioref,graphicx}
+\usepackage{makeidx}
 \usepackage{tikz}
 \urlstyle{sf}
+
+\makeindex
 
 \title{CloudML}
 \subtitle{A DSL for model- and web-based realisation of applications in the cloud}
@@ -35,24 +38,6 @@ Clearly states:
 \chapter{Introduction}
 
 \section{Background}
-
-\section{Terminology table}
-
-\begin{table}
-    \caption{Terminologies}
-    \begin{tabular}{ | l | p{10cm} | }
-      \hline
-      \textbf{Word} & \textbf{Meaning} \\
-      \hline
-      Instance & Virtual machine instance. \\ \hline
-      Resource & Set of services that a cloud provider support.
-      Can be a instance, storage capacity, geographical location, SSO. Some are physical for the user, others are automatical. \\ \hline
-      Stack & Set of resources. \\ \hline
-      Provider & Company that makes a business of selling cloud solutions. Such as Amazon (AWS), Rackspace, Azure and Linode. \\ \hline
-      Profile & Part of CloudML used to represent Resources for other providers. \\ \hline
-      CloudFormation & Amazon AWS CloudFormation \\ \hline
-    \end{tabular}
-\end{table}
 
 \section{Problem}
 There are many cloud providers on the global market today. These providers support many layers of cloud, 
@@ -170,6 +155,8 @@ redundancy and transformations, but it also has the disadvantages such as single
     \end{tabular}
 \end{table}
 
+\chapter{Contribution}
+
 \section{Requirements}
 \subsection{Table}
 \subsection{Table}
@@ -248,9 +235,7 @@ such as databases, application servers, logging services. All in all software th
 but that the customer would like to have automatically or semi-automatically configured and reconfigured.
 On the bottom there are two levels, both representing instances. In the instance-level CloudML should bind together instances 
 such as different virtual machines. This level is tightly connected to the Software-layer as connections between instances 
-is very likely to be defined through software, such as databases, web accelerators and application servers.
-
-\chapter{Contribution}
+is very likely to be defined through software, such as \index{databases}, web accelerators and application servers.
 
 \section{Planning the project}
 
@@ -259,6 +244,25 @@ is very likely to be defined through software, such as databases, web accelerato
 \section{Results}
 
 \section{Perspectives}
+
+TODO: Create proper index
+\begin{table}
+    \caption{Terminologies}
+    \begin{tabular}{ | l | p{10cm} | }
+      \hline
+      \textbf{Word} & \textbf{Meaning} \\
+      \hline
+      \index{Instance} & Virtual machine instance. \\ \hline
+      Resource & Set of services that a cloud provider support.
+      Can be a instance, storage capacity, geographical location, SSO. Some are physical for the user, others are automatical. \\ \hline
+      Stack & Set of resources. \\ \hline
+      Provider & Company that makes a business of selling cloud solutions. Such as Amazon (AWS), Rackspace, Azure and Linode. \\ \hline
+      Profile & Part of CloudML used to represent Resources for other providers. \\ \hline
+      CloudFormation & Amazon AWS CloudFormation \\ \hline
+    \end{tabular}
+\end{table}
+
+\printindex
 
 \backmatter{}
 \bibliographystyle{plain}
