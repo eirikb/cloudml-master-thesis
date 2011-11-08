@@ -6,7 +6,7 @@ Master
 --
 Generated on gh-pages from _doc/master/master.tex_ to:  
 http://eirikb.github.com/cloudml/master.pdf  
-occationaly
+occasionally
 
 Engine/kernel
 --
