@@ -1,3 +1,4 @@
+# Creds: https://github.com/jaskorpe/thegitwayofprocrastination/blob/master/thesis-template/Makefile
 # Makefile for latex and bibtex
 
 # Name of latex "project"
