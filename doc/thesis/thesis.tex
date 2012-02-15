@@ -1,4 +1,8 @@
-\documentclass{article}
+\documentclass[UKenglish]{ifimaster}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc,url}
+\urlstyle{sf}
+\usepackage{babel,textcomp,uiosloforside,varioref,graphicx}
 \usepackage{color}
 \usepackage[usenames,dvipsnames]{xcolor}
 
@@ -6,26 +10,41 @@
 \newcommand{\note}[1]{\textcolor{PineGreen}{\textbf{#1}}}
 \newcommand{\question}[1]{\textcolor{red}{\textbf{#1}}}
 
-\begin{document}
-
 \title{CloudML - A DSL for model-based realization of applications in the cloud}
+\subtitle{Any short subtitle}
+\author{Eirik Brandtzæg}
 \date{Spring 2012}
 
-\maketitle
+\begin{document}
+\uiosloforside[kind={Master thesis}]{}
+
+\frontmatter{}
+\maketitle{}
 \textcolor{red}{\textbf{Built: \today}}
 
-\section*{Abstract}
-\ldots
+\chapter*{Abstract}
 
 \tableofcontents{}
+\listoffigures{}
+\listoftables{}
 
-\input{sections/introduction}
-\input{sections/contribution}
-\input{sections/conclusion}
+\chapter*{Preface}
 
-\section*{Bibliography}
+\mainmatter{}
+\part{Introduction}
 
-\section*{Appendix (CloudMDE)}
-(Maybe)
+\chapter{Background}
 
+\part{The project}
+
+\chapter{Planning the project}
+
+\part{Conclusion}
+
+\chapter{Results}
+
+
+\backmatter{}
+% \bibliography{mybib}
+\bibliographystyle{plain}
 \end{document}
