@@ -78,7 +78,7 @@
 \define@key{uiof@options}{univ}{\def \uiof@univ {#1}}
 \def \uiof@altlogo {}
 \def \uiof@ill {}
-\def \uiof@logo{uiologo-45mm}
+\def \uiof@logo{template/uiologo-45mm}
 \newcommand{\ps@uiosloforside}{%
   \long\def \@evenhead {\hspace*{-\evensidemargin}\hspace*{-1in}%
     \hspace*{2.45cm}\rlap{\raisebox{\uiof@raise}[0pt][0pt]{\vtop to \uiof@ht{\null
@@ -92,7 +92,7 @@
     {\includegraphics[width=7.8cm]{\uiof@altlogo}}}}}%
 \hspace*{9.3cm}\rlap{\raisebox{\the\uiof@raise}[0pt][0pt]{\vtop to \uiof@ht{\null
     \@ifundefined{uiof@boxcol}
-    {\includegraphics{uiof-grey}}
+    {\includegraphics{template/uiof-grey}}
     {{\color{\uiof@boxcol}\rule{7.8cm}{18.8cm}}}\vfill
     \includegraphics[width=7.8cm]{\uiof@logo}}}}%
 \rlap{\hspace*{0.45cm}%
@@ -152,7 +152,7 @@
     {\includegraphics[width=7.8cm]{\uiof@altlogo}}}}}%
 \hspace*{9.3cm}\rlap{\raisebox{\the\uiof@raise}[0pt][0pt]{\vtop to \uiof@ht{\null
     \@ifundefined{uiof@boxcol}
-    {\includegraphics{uiof-grey}}
+    {\includegraphics{template/uiof-grey}}
     {{\color{\uiof@boxcol}\rule{7.8cm}{18.8cm}}}\vfill
     \includegraphics[width=7.8cm]{\uiof@logo}}}}%
 \rlap{\hspace*{0.45cm}%
