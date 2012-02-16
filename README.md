@@ -1,3 +1,7 @@
+Bibliography (citations)
+---
+[articles](https://github.com/eirikb/cloudml/tree/master/doc/articles)
+
 PDFs  
 ---
 [CloudMDE](http://eirikb.github.com/cloudml/doc/cloudmde.pdf)  
