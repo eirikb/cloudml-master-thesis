@@ -46,6 +46,7 @@ ${TARGET}.dvi: $(TARGET).tex $(EPS_FIG) $(REFERENCES) $(TEX_FILES)
 
 
 $(TARGET).pdf: $(TARGET).tex $(PDF_FIG) $(REFERENCES) $(TEX_FILES)
+	node ../articles/build/build.js
 	pdflatex $<
 	bibtex $(TARGET)
 	pdflatex $<
