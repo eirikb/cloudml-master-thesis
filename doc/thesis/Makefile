@@ -5,7 +5,7 @@
 TARGET = thesis
 
 # Name of bibtex references
-REFERENCES = references.bib
+REFERENCES = ../articles/bibliography.bib
 
 # Svg figures to be included in project. Pdf for pdflatex and eps for
 # latex.
