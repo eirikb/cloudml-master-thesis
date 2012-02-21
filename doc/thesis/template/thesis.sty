@@ -1,0 +1,23 @@
+\newcommand{\todo}[1]{\textcolor{blue}{#1}}
+\newcommand{\note}[1]{\textcolor{PineGreen}{\textbf{#1}}}
+\newcommand{\question}[1]{\textcolor{red}{\textbf{#1}}}
+
+\newcounter{iicounter}
+\newenvironment{ii}[0]{\setcounter{iicounter}{0}}{}
+\newcommand{\iitem}[0]{%
+  \addtocounter{iicounter}{1}%
+  \emph{(\roman{iicounter})\xspace}}
+
+\newcommand{\eg}[0]{\emph{e.g.},\xspace}
+\newcommand{\ie}[0]{\emph{i.e.},\xspace}
+\newcommand{\wrt}[0]{\emph{w.r.t.},\xspace}
+
+\newcommand{\citetable}[1]{\textsc{Table.}~\ref{table:#1}}
+\newcommand{\citesec}[1]{\textsc{Sec.}~\ref{sec:#1}}
+\newcommand{\citefig}[1]{\textsc{Fig.}~\ref{fig:#1}}
+\newcommand{\citelist}[1]{\textsc{Listing.}~\ref{list:#1}}
+\newcommand{\mypar}[1]{\paragraph{#1.}}
+
+\newcommand{\mysection}[2]{\section{#2}\label{sec:#1}}
+\newcommand{\mycaption}[2]{\caption{#2}\label{fig:#1}}
+
