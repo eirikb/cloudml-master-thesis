@@ -1,17 +1,5 @@
 \chapter{Background}
 
-Cloud computing is gaining popularity and more companies are starting 
-to explore the possibilities as well as the limitation to the cloud.
-The nist definition of cloud computin (draft)~\cite{nist:mell11}
-define \emph{Infrastrucutre-as-a-Service}~(IaaS) as
-``The capability provided to the consumer is to provision 
-processing, storage, networks, and other fundamental computing resources where the 
-consumer is able to deploy and run arbitrary software, which can include operating 
-systems and applications. The consumer does not manage or control the underlying cloud 
-infrastructure but has control over operating systems, storage, deployed applications, and 
-possibly limited control of select networking components (e.g., host firewalls).``
-
-
 \note{
   Explain some of the topics in my thesis. \\
   Here it is possible to introduce case study (BankManager) to ease writing
@@ -19,14 +7,31 @@ possibly limited control of select networking components (e.g., host firewalls).
 
 \todo {
   \begin{itemize}
-    \item Find a new title, 'Background' is too plain
-    \item What is cloud computing and IaaS
-      \begin{itemize}
-        \item Summarize nist definition of cloud
-        \item Short description of AWS
-        \item Short description of Rackspace
-      \end{itemize}
     \item What is model-based engineering and benefits. \\
         Core concepts
   \end{itemize}
 }
+
+
+Cloud computing is gaining popularity and more companies are starting 
+to explore the possibilities as well as the limitation to the cloud.
+There are three main architectural service layers in cloud computing\cite{introduction:wozniak10}
+namely \emph{Infrastructure-as-a-Service}~(IaaS), \emph{Platform-as-a-Service}~(PaaS)
+and \emph{Software-as-a-Service}~(SaaS).
+With IaaS on lowest vertical integration level closest to physical hardware and SaaS on the highest
+level as runnable applications.
+The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
+Some of providers are visualized in \citetable{providers}.
+
+\input{tables/tabproviders}
+
+The nist definition of cloud computing~\cite{nist:mell11}
+define \emph{Infrastrucutre-as-a-Service}~(IaaS) as
+``The capability provided to the consumer is to provision 
+processing, storage, networks, and other fundamental computing resources where the 
+consumer is able to deploy and run arbitrary software, which can include operating 
+systems and applications.'' 
+And continue to state that `` The consumer does not manage or control the underlying cloud 
+infrastructure but has control over operating systems, storage, deployed applications, and 
+possibly limited control of select networking components (e.g., host firewalls).``
+
