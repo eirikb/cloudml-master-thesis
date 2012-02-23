@@ -18,24 +18,30 @@ to explore the possibilities as well as the limitation to the cloud.
 There are three main architectural service models in cloud computing\cite{introduction:wozniak10}
 namely \emph{Infrastructure-as-a-Service}~(IaaS), \emph{Platform-as-a-Service}~(PaaS)
 and \emph{Software-as-a-Service}~(SaaS).
-With IaaS on lowest vertical integration level closest to physical hardware and SaaS on the highest
+IaaS is on the lowest vertical integration level closest to physical hardware and SaaS on the highest
 level as runnable applications.
-The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
-Some of providers are visualized in \citetable{providerservices}.
-Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
-providers are Heroku and Nodejitsu, this is a tendency with increasing popularity.
-The NIST Definition of Cloud Computing~\cite{nist:mell11} define IaaS as
-``The capability provided to the consumer is to provision 
-processing, storage, networks, and other fundamental computing resources where the 
-consumer is able to deploy and run arbitrary software, which can include operating 
-systems and applications.'' 
-And continue to state that `` The consumer does not manage or control the underlying cloud 
-infrastructure but has control over operating systems, storage, deployed applications, and 
-possibly limited control of select networking components (e.g., host firewalls).``
-The PaaS model is defined as an capability consumers use to deploy onto cloud infrastructure.
-Deploying application that providers fully or partially support. For this kind of deployment
-consumers do not have to manage or control underlying infrastructure capabilities,
-and in some cases not even configuration.
+\begin{itemize}
+  \item \emph{IaaS}: 
+    The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
+    Some of providers are visualized in \citetable{providerservices}.
+    The NIST Definition of Cloud Computing~\cite{nist:mell11} define IaaS as
+    \emph{``The capability provided to the consumer is to provision 
+    processing, storage, networks, and other fundamental computing resources where the 
+    consumer is able to deploy and run arbitrary software, which can include operating 
+    systems and applications.''}
+    And continue to state that \emph{``The consumer does not manage or control the underlying cloud 
+    infrastructure but has control over operating systems, storage, deployed applications, and 
+    possibly limited control of select networking components (\eg, host firewalls).``}
+
+
+    Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
+    providers are Heroku and Nodejitsu, this is a tendency with increasing popularity.
+  \item \emph{PaaS}:
+    The PaaS model is defined as an capability consumers use to deploy onto cloud infrastructure.
+    Deploying application that providers fully or partially support. For this kind of deployment
+    consumers do not have to manage or control underlying infrastructure capabilities,
+    and in some cases not even configuration.
+\end{itemize}
 SaaS has less relevance to this paper, nevertheless the core purpose
 is to provide whole web applications as services, in many cases end products.
 
