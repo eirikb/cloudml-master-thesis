@@ -51,7 +51,7 @@ $(TARGET).pdf: $(TARGET).tex $(PDF_FIG) $(REFERENCES) $(TEX_FILES)
 	bibtex $(TARGET)
 	pdflatex $<
 	pdflatex $<
-	xdotool search --class mupdf key --window %@ r
+	#xdotool search --class mupdf key --window %@ r $<
 
 
 clean:
