@@ -67,3 +67,25 @@ Some of the most essential characteristics of cloud computing~\cite{nist:mell11}
   \item \emph{Measured service}: Monitoring and control of resource usages
 \end{itemize}
 
+There are four different deployment models according to The 
+NIST Definition of Cloud Computing~\cite{nist:mell11}:
+\begin{itemize}
+  \item \emph{Private cloud}: Similar to classical infrastructures where hardware and
+    drifting is owned and controlled by organizations themselves.
+  \item \emph{Community cloud}: When several organizations share the same aspects of
+    a private cloud (such as security requirements, policies, and compliance considerations),
+    and therefore share infrastructure.
+  \item \emph{Public cloud}: Infrastructure is open to the public.
+    Cloud providers own the hardware and rent out IaaS and PaaS solutions to users.
+    Examples of such providers are Amazon with AWS and Google with GAE.
+  \item \emph{Hybrid cloud}: Combining private cloud or community cloud with public cloud.
+    One benefit is to distinguish data from logic for purposes such as security issues,
+    by storing sensitive information in a private cloud while computing with public cloud.
+\end{itemize}
+
+Of these deployment models \emph{public cloud} is the most relevant model for this paper
+since the main purpose is to provision on public providers such as Amazon and Rackspace.
+Beside these models defined by NIST there is another arising model known as 
+\emph{virtual private cloud}, which is similar to \emph{public cloud} 
+but with some security implications such as sandboxed network.
+
