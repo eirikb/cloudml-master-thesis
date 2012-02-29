@@ -1,7 +1,46 @@
-\chapter{Validation on example/experiments - BankManager}
+\mychapter{validation}{Validation \& Experiments}
+% \input{figs/sequencediagram}
 
 \todo{
   \begin{itemize}
     \item How BankManager proves concepts of the templates (subsection 1) with cloudml-engine
   \end{itemize}
 }
+
+
+To validate how CloudML addressed the challenges from~\citetable{challenges}
+we provisioned the \emph{BankManager} application using different topologies in~Fig[\ref{fig:singlenode},~\ref{fig:threenodes}].
+The implementation uses \emph{JavaScript Object Notation}~(JSON) to define templates
+as a human readable serialization mechanism.
+The lexical representation of \citefig{singlenode} can be seen in \citelist{singlenode}. 
+The whole text represents the \texttt{Template} of \citefig{architecture} and consequently 
+``nodes'' is a list of \texttt{Node} from the model.
+The JSON is textual which makes it \emph{shareable} as files.
+We implemented it so once such a file is created it can be reused (\emph{reproducibility}) 
+on any supported provider (\emph{multicloud}).
+
+\begin{lstlisting}[
+  language=javascript,
+  label=list:singlenode,
+  caption=One single node]
+{ "nodes": [ { "name": "testnode" } ] }
+\end{lstlisting}
+
+The topology described in \citefig{threenodes} is represented in \citelist{threenodes},
+the main difference from \citelist{singlenode} is that there are two more nodes and a total of 
+five more properties.
+Characteristics of each node are carefully chosen based on each nodes feature area, for instance 
+front-end nodes have more computation power, while the back-end node will have more disk.
+
+\begin{lstlisting}[
+  language=javascript,
+  label=list:threenodes,
+  caption=Three nodes]
+{
+  "nodes": [ 
+    { "name": "frontend1", "minRam": 512, "minCores": 2 },
+    { "name": "frontend2", "minRam": 512, "minCores": 2 },
+    { "name": "backend", "minDisk": 100 }
+  ]
+}
+\end{lstlisting}

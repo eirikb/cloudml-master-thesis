@@ -6,3 +6,55 @@
     \item Weaknesses
   \end{itemize}
 }
+
+\note{Just added everything here:}
+
+We describe the meta model in~\citefig{architecture} and introduce CloudML by
+using a scenario where ``Alice'' is provisioning the \emph{BankManager} to AWS \emph{Elastic Compute Cloud}~(EC2)
+using the topology shown in~\citefig{threenodes}.
+It is compulsory that she possesses an AWS account in advance of the scenario.
+She will retrieve security credentials for account 
+and associate them with \texttt{Password} in \citefig{architecture}.
+\texttt{Credential} is used to authenticate the user to supported providers through \texttt{Connector}.
+The next step for Alice is to model the appropriate \texttt{Template} consisting
+of three \texttt{Nodes}.
+The characteristics Alice choose for \texttt{Node} \texttt{Properties} are fitted
+for the chosen topology with more computational power for front-end \texttt{Nodes}
+by increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
+All \texttt{Properties} are optional and thus Alice does not have to define them all.
+With this model Alice can initialize provisioning by calling \texttt{build} on \texttt{CloudMLEngine},
+and this will start the asynchronous job of configuring and creating \texttt{Nodes}.
+When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
+be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
+during provisioning according to \emph{models@run.time}~(M@RT) approach.
+\texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
+as \texttt{Properties} from \texttt{Node} still contain valid data.
+When all \texttt{Nodes} are provisioned successfully and sufficient metadata are gathered
+Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
+Alice could later decide to use another provider, either as replacement or complement to her current setup,
+because of availability, financial benefits  or support.
+To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
+this will result in an identical topological setup on a supported provider.
+
+\mypar{Implementation}
+CloudML is implemented as a proof of concept framework~\cite{cloudml-engine}
+(from here known as \emph{cloudml-engine}). 
+Because of Javas popularity cloudml-engine was written in a JVM based language with Maven as build tool.
+Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
+for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
+
+Provisioning nodes is by its nature an asynchronous action that can take minutes to execute,
+therefore CloudML relied on the actors model~\cite{actors:haller07} using Scala actors.
+With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
+We extended the model by adding a callback-based pattern allowing each node to provide 
+information on property and status changes.
+Developers exploring our implementation can then choose to ``listen'' for updating events from each node,
+and do other jobs / idle while the nodes are provisioned with the actors model.
+We have divided the terms of a node before and under provisioning, the essential is to introduce 
+\emph{M@RT} to achieve a logical separation.
+When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
+which can have a different \emph{state} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
+When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, including
+the most necessary metadata, when all nodes reaches this state the task of provisioning is concluded.
+
+Full deployment is planed for next version of CloudML.

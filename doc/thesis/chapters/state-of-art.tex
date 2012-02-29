@@ -10,27 +10,12 @@ Even more examples in mOSAIC articles
   \begin{itemize}
     \item Identify \emph{properties} (problems in reality)
     \item Find more sources
-    \item Model driven
-      \begin{itemize}
-        \item Amazon CloudFormation
-        \item CA Applogic
-      \end{itemize}
-    \item APIs
-      \begin{itemize}
-        \item libcloud
-        \item jclouds
-        \item Deltacloud
-      \end{itemize}
-    \item Deployments
-      \begin{itemize}
-        \item Amazon Beanstalk
-        \item simplifying-solution-deployment-on-a-cloud-through-composite-appliances
-        \item architecture-for-virtual-solution-composition-and-deployment
-      \end{itemize}
   \end{itemize}
 }
 
-\subsection{Amazon AWS CloudFormation}
+\section{Model driven}
+
+\paragraph{Amazon AWS CloudFormation}
 \url{http://aws.amazon.com}
 
 This is a service provided by Amazon from their popular Amazon Web Services. 
@@ -44,7 +29,7 @@ The format that Amazon uses for the templates is a very good format, the syntax 
 but the structure and semantics of the template itself is not used by any other providers or cloud management tooling, 
 so it can not be considered a multicloud solution. Even though JSON is a readable format, does not make it viable as a presentation medium on a business level.
 
-\subsection{CA Applogic}
+\paragraph{CA Applogic}
 \url{http://www.3tera.com/AppLogic/}
 
 Applogic from CA is a proprietary model based web application for management of private clouds. 
@@ -56,7 +41,9 @@ Their solution will also prove beneficial when conducting business level consult
 They also support a version of ADL (Architecture Deployement Language), a good step on its way to standardization. 
 But this solution is only made for private clouds running their own controller, this can prove troublesome for migration, both in to and out of the infrastructure.
 
-\subsection{libcloud and jclouds}
+\section{APIs}
+
+\paragraph{libcloud and jclouds}
 \url{http://libcloud.apache.org/}
 \url{http://www.jclouds.org/}
 
@@ -71,7 +58,7 @@ And links between resources can be hard to see, as the API lacks correlation bet
 Libcloud have solved the multicloud problem in a very detailed manner, but the complexity is therefore even larger. 
 The API is also Python-only and could therefor be considered to have high tool-chain dependency.
 
-\subsection{OPA}
+\paragraph{OPA}
 \url{http://opalang.org/}
 
 OPA is a cloud language aimed at easing development of modern web applications. It is a new language, 
@@ -93,13 +80,13 @@ and so it can also benefit from some cloud based load balancers, even though thi
 The conclusion about OPA is that it is not a language meant for configuration, and could not easily benefit from a model based approach, 
 and it does not intentionally solve multicloud.
 
-\subsection{Whirr}
+\paragraph{Whirr}
 \url{http://whirr.apache.org/}
 
 This is a binary and code-based application for creating and starting short-lived clusters for hadoop instances.
 It support multiple cloud providers. It has a layout for configuration but it is mainly property-based, and aimed at making clusters. 
 
-\subsection{Deltacloud}
+\paragraph{Deltacloud}
 \url{http://incubator.apache.org/deltacloud/}
 
 Deltacloud has a similar procedure as jclouds and libcloud, but with a REST API. 
@@ -109,21 +96,9 @@ As well as having similar problems as other APIs this approach means that every 
 similar to a proxy. This can work with the benefits that many middleware software have, such as cahing, queues, 
 redundancy and transformations, but it also has the disadvantages such as single point of failure and version inconsistencies.
 
-\subsection{Table}
-\begin{table}
-    \caption{Analysis}
-    \begin{tabular}{ | p{2cm} | p{2cm} | p{2.5cm} | p{2cm} | p{2cm} | p{2cm} |}
-      \hline
-      \textbf{Solution} & \textbf{Learning curve} & \textbf{Business level viable} & \textbf{Model driven} & \textbf{Multicloud} \\
-      \hline
-     Amazon CloudFormation & No & Hard & No & No \\ \hline
-     CA Applogic & Yes & Easy & Yes & N  \\ \hline
-     Libcloud & No & Hard & No & Yes \\ \hline
-     jclouds & No & Hard & No & Yes \\ \hline
-     OPA & Yes & Hard & No & No \\ \hline
-     Whirr & No & Hard & No & Yes \\ \hline
-     Deltacloud & No & Hard & No & Yes \\ \hline
-     CloudML & Yes & Easy & Yes & Yes \\ \hline
-    \end{tabular}
-\end{table}
+\section{Deployments}
+
+\paragraph{Amazon Beanstalk}
+\paragraph{simplifying-solution-deployment-on-a-cloud-through-composite-appliances}
+\paragraph{architecture-for-virtual-solution-composition-and-deployment}
 

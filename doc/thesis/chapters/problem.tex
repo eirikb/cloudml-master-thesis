@@ -1,41 +1,71 @@
-\chapter{Problem definition with examples}
+\mychapter{problem}{Challenges in the cloud}
+\input{figs/nodes}
+\input{tables/analysis}
 
+\section{Outlined problem}
+
+To recognize challenges when doing cloud provisioning an example application~\cite{BankManager} was utilized.
+The application (from here known as \emph{BankManager}) is a prototypical bank manager system
+which support creating users and bank accounts and moving money between bank accounts and users.
+\emph{BankManager} is designed but not limited to support distribution between several nodes.
+Some examples of provisioning topology is illustrated in \citefig{BankManager}, each
+example includes a browser to visualize application flow, front-end visualizes executable
+logic and back-end represents database.
+It is possible to have both front-end and back-end on the same node, as shown in \citefig{singlenode}.
+In \citefig{twonodes} front-end is separated from back-end, 
+this introduces the flexibility of increasing computation power on the front-end node while spawning more
+storage on the back-end. 
+For applications performing heavy computations it can be beneficial to distribute the workload between several
+front-end nodes as seen in \citefig{threenodes}, the number of front-ends can be linearly increased 
+$n$ number of times as shown in \citefig{frontends}.
+\emph{BankManager} is not designed to handle several back-ends because of relational model based database,
+this can solved on a database level with master and slaves (\citefig{frontendbackends}).
+We used bash-scripts to prototype full deployments of \emph{BankManager} against \emph{Amazon Web Services}~(AWS)~\cite{aws}
+and Rackspace~\cite{rackspace} with a topology of three nodes as shown in \citefig{threenodes}.
+From this prototype it became clear that there were multiple challenges to address:
+
+\begin{itemize}
+  \item \textbf{Complexity}: The first challenge encountered was to simply
+    authenticate and communicate with the cloud. The two providers 
+    had different approaches, AWS~\cite{aws} had command-line tools built from their Java APIs,
+    while Rackspace~\cite{rackspace} had no tools beside the API language bindings,
+    thus the need of operating both command-line tools as well as public APIs.
+    As this emphasizes the complexity even further it also stresses engineering capabilities
+    of individuals executing the tasks to a higher technical level.
+
+  \item \textbf{Multicloud}: 
+    Once able to provision the correct amount of nodes with desired properties
+    on the first provider it became clear that mirroring the setup to the other provider 
+    was not as convenient as anticipated.
+    There were certain aspects of vendor lock-in, so each script was hand-crafted for specific providers.
+    The lock-in situations can in many cases have financial implications where for example
+    a finished application is locked to one provider and this provider increases tenant costs.
+    Or availability decreases and results in decrease of service uptime damaging revenue.
+
+  \item \textbf{Reproducibility}: The scripts provisioned nodes based on command-line arguments
+    and did not persist the designed topology in any way, this made topologies cumbersome to reproduce.
+
+  \item \textbf{Shareable}: Since the scripts did not remember a given setup it was impossible 
+    to share topologies ``as is'' between coworkers.
+    It is important that topologies can be shared because direct input from individuals
+    with different areas of competence can increase quality.
+
+  \item \textbf{Robustness}: There were several ways the scripts could fail and most errors were ignored.
+    Transactional behaviors were non-existent.
+
+  \item \textbf{Run-time dependency}: The scripts were developed to fulfill a complete deployment,
+    and to do this it proved important to temporally save run-time specific metadata.
+    This was crucial data needed to connect front-end nodes with the back-end node.
+\end{itemize}
+
+
+\section{Why is it important to solve the problems}
 \todo{
   \begin{itemize}
-    \item Outline the problem \\
-      \begin{itemize}
-        \item Information dependency at runtime
-        \item Technical competence/level expectations
-        \item Reproducibility
-        \item Robustness
-        \item Complexity
-        \item Shareable
-      \end{itemize}
-    \item Why is it important to solve the problems
-      \begin{itemize}
-        \item Cloud domain is state of the art
-        \item model driven approach with benefits (no special tooling)
-        \item Easier for businesses (especially SMBs) to reach out to Cloud
-        \item Easier for larger more time-constraint businesses to try out the cloud
-        \item Opening the eyes of big providers for a larger cross-cloud language
-      \end{itemize}
+    \item Cloud domain is state of the art
+    \item model driven approach with benefits (no special tooling)
+    \item Easier for businesses (especially SMBs) to reach out to Cloud
+    \item Easier for larger more time-constraint businesses to try out the cloud
+    \item Opening the eyes of big providers for a larger cross-cloud language
   \end{itemize}
 }
-
-There are many cloud providers on the global market today. These providers support many layers of cloud, 
-such as PaaS (Platform as a Service) and IaaS (Infrastructure as a Service). 
-This vast amount of providers and new technologies and services can be overwhelming for many companies and small and medium businesses. 
-There are no practical introductions to possibilities and limitations to cloud computing, or the differences between different providers and services. 
-Each provider has some kind of management console, usually in form of a web interface and API. 
-But model driven approaches are inadequate in many of these environments. 
-UML diagrams such as deployment diagram and component diagram are used in legacy systems to describe system architectures, 
-but this advantage has yet to hit the mainstream of cloud computing management. 
-It is also difficult to have co-operational interaction on a business level without using the advantage of graphical models.
-The knowledge needed to handle one provider might differ to another, so a multicloud approach might be very resource-heavy on competence in companies. 
-The types of deployment resources are different between the providers, even how to gain access to and handle running instances might be very different. 
-Some larger cloud management application developers are not even providers themselves, but offer tooling for private cloud solutions.
-Some of these providers have implemented different types of web based applications that let end users manage their cloud instances. 
-The main problem with this is that there are no standards defining a cloud instance or links between instances and other services a provider offer.
-If a provider does not offer any management interface and want to implement this as a new feature for customers, 
-a standard format to set the foundation would help them achieve a better product for their end users.
-These are some of the problems with cloud hosting today, and that CloudML will be designed to solve.

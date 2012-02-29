@@ -1,0 +1,27 @@
+\begin{figure}
+  \begin{sequencediagram}
+    \newthread{u}{:User}
+    \newthreadhack{c}{:CloudML}
+    \newinst{r}{:RuntimeInstance}
+    \newthread{a}{:AWS}
+
+    \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{List(\texttt{RuntimeInstance})}
+      \begin{call}{c}{Initialize()}{r}{}
+      \end{call}
+    \end{call}
+    \begin{messcall}{c}{provision node}{a}
+    \end{messcall}
+
+    \begin{call}{u}{getStatus()}{r}{\emph{Building}}
+    \end{call}
+
+    \begin{messcall}{a}{property update}{c}
+    \end{messcall}
+
+    \begin{call}{u}{getStatus()}{r}{\emph{Starting}}
+    \end{call}
+  \end{sequencediagram}
+
+  \caption{Sequence diagram of CloudML.}
+  \label{fig:sequencediagram}
+\end{figure}
