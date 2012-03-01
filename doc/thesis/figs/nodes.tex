@@ -1,107 +1,101 @@
 \begin{figure}
-  \setlength{\unitlength}{1.2mm}
+  \tikzstyle{browser}=[rectangle, dashed, draw=black, rounded corners, fill=white!40, drop shadow,
+  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
+  \tikzstyle{node}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
+  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
 
-  \subfigure[Single node]{
-    \begin{picture}(57.5, 17)
-      \put(0, 5){\dashbox(15, 5){Browser}}
-      \put(20, 2.5){\framebox(37.5, 12)}
-      \put(22.5, 5){\dashbox(15, 5){Front-end}}
-      \put(40, 5){\dashbox(15, 5){Back-end}}
+  \tikzstyle{arrow}=[->, >=open triangle 90]
 
-      \put(15, 7.5){\vector(1, 0){5}}
-      \put(22, 12){Node}
-    \end{picture}
-    \label{fig:singlenode}
-  }
+    \subfigure[Single node]{
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Browser) [browser] { \textbf{Browser} };
+        \node (Node) [node, right=of Browser] { \textbf{Front-end And Back-end} };
 
-  \subfigure[Two nodes]{
-    \begin{picture}(55, 5)
-      \put(0, 0){\dashbox(15, 5){Browser}}
-      \put(20, 0){\framebox(15, 5){Front-end}}
-      \put(40, 0){\framebox(15, 5){Back-end}}
+        \draw[arrow] (Browser.east) -- (Node.west);
+      \end{tikzpicture}
+      \label{fig:singlenode}
+    }
 
-      \put(15, 2.5){\vector(1, 0){5}}
-      \put(35, 2.5){\vector(1, 0){5}}
-    \end{picture}
-    \label{fig:twonodes}
-  }
+    \subfigure[Two nodes]{
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Browser) [browser] { \textbf{Browser} };
+        \node (Frontend) [node, right=of Browser] { \textbf{Front-end} };
+        \node (Backend) [node, right=of Frontend] { \textbf{Back-end} };
 
-  \subfigure[Three nodes]{
-    \begin{picture}(55, 15)
-      \put(0, 5){\dashbox(15, 5){Browser}}
-      \put(20, 0){\framebox(15, 5){Front-end}}
-      \put(20, 10){\framebox(15, 5){Front-end}}
-      \put(40, 5){\framebox(15, 5){Back-end}}
+        \draw[arrow] (Browser.east) -- (Frontend.west);
+        \draw[arrow] (Frontend.east) -- (Backend.west);
+      \end{tikzpicture}
+      \label{fig:twonodes}
+    }
 
-      \put(15, 7.5){\vector(1, 1){5}}
-      \put(15, 7.5){\vector(1, -1){5}}
-      \put(35, 2.5){\vector(1, 1){5}}
-      \put(35, 12.5){\vector(1, -1){5}}
-    \end{picture}
-    \label{fig:threenodes}
-  }
+    \subfigure[Three nodes]{
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Browser) [browser] { \textbf{Browser} };
+        \node (Frontend1) [node, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (Frontend2) [node, below=of Frontend1] { \textbf{Front-end} };
+        \node (Backend) [node, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
-  \subfigure[Several front-ends]{
-    \begin{picture}(55, 20)
-      \put(0, 15){\dashbox(15, 5){Browser}}
-      \put(20, 0){\framebox(15, 5){Front-end}}
-      \put(20, 15){\framebox(15, 5){Front-end}}
-      \put(40, 15){\framebox(15, 5){Back-end}}
+        \draw[arrow] (Browser.east) -- (Frontend1.west);
+        \draw[arrow] (Browser.east) -- (Frontend2.west);
+        \draw[arrow] (Frontend1.east) -- (Backend.west);
+        \draw[arrow] (Frontend2.east) -- (Backend.west);
+      \end{tikzpicture}
+      \label{fig:threenodes}
+    }
 
-      \put(22.5, 12.5){$\circ$}
-      \put(22.5, 10){$\circ$}
-      \put(22.5, 7.5){$\circ$}
+    \subfigure[Several front-ends]{
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Browser) [browser] { \textbf{Browser} };
+        \node (Frontend1) [node, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (Frontend2) [node, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
+        \node (Backend) [node, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
-      \put(15, 17.5){\vector(1, 0){5}}
-      \put(15, 17.5){\vector(1, -3){5}}
-      \put(35, 17.5){\vector(1, 0){5}}
-      \put(35, 2.5){\vector(1, 3){5}}
-    \end{picture}
-    \label{fig:frontends}
-  }
+        \draw[arrow] (Browser.east) -- (Frontend1.west);
+        \draw[arrow] (Browser.east) -- (Frontend2.west);
+        \draw[arrow] (Frontend1.east) -- (Backend.west);
+        \draw[arrow] (Frontend2.east) -- (Backend.west);
 
-  \subfigure[Several front-ends and back-ends (slaves)]{
-    \begin{picture}(75, 20)
-      \put(0, 15){\dashbox(15, 5){Browser}}
-      \put(20, 0){\framebox(15, 5){Front-end}}
-      \put(20, 15){\framebox(15, 5){Front-end}}
-      \put(40, 10){\framebox(15, 10){\minibox{Back-end \\ Master}}}
-      \put(60, 0){\framebox(15, 5){Slave}}
-      \put(60, 15){\framebox(15, 5){Slave}}
+        \draw[loosely dotted, line width=3pt] (Frontend1.south) -- (Frontend2.north);
+      \end{tikzpicture}
+      \label{fig:frontends}
+    }
 
-      \put(22.5, 12.5){$\circ$}
-      \put(22.5, 10){$\circ$}
-      \put(22.5, 7.5){$\circ$}
-      \put(62.5, 12.5){$\circ$}
-      \put(62.5, 10){$\circ$}
-      \put(62.5, 7.5){$\circ$}
+    \subfigure[Several front-ends and back-ends (slaves)]{
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Browser) [browser] { \textbf{Browser} };
+        \node (Frontend1) [node, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (Frontend2) [node, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
+        \node (Backend) [node, right=of Frontend1, yshift=-1cm] { \textbf{Back-end master} };
+        \node (Slave1) [node, right=of Backend, yshift=1cm] { \textbf{Salve} };
+        \node (Slave2) [node, below=of Slave1, yshift=-1cm] { \textbf{Slave} };
 
-      \put(15, 17.5){\vector(1, 0){5}}
-      \put(15, 17.5){\vector(1, -3){5}}
-      \put(35, 17.5){\vector(1, 0){5}}
-      \put(35, 2.5){\vector(1, 3){5}}
-      \put(55, 17.5){\vector(1, 0){5}}
-      \put(55, 17.5){\vector(1, -3){5}}
-    \end{picture}
-    \label{fig:frontendbackends}
-  }
+        \draw[arrow] (Browser.east) -- (Frontend1.west);
+        \draw[arrow] (Browser.east) -- (Frontend2.west);
+        \draw[arrow] (Frontend1.east) -- (Backend.west);
+        \draw[arrow] (Frontend2.east) -- (Backend.west);
+        \draw[arrow] (Backend.east) -- (Slave1.west);
+        \draw[arrow] (Backend.east) -- (Slave2.west);
 
-  \subfigure[Legend]{
-    \begin{picture}(100, 20)
-      \put(0, 5){\dashbox(15, 5){}}
-      \put(0, 0){Non-system interaction}
+        \draw[loosely dotted, line width=3pt] (Frontend1.south) -- (Frontend2.north);
+      \end{tikzpicture}
+      \label{fig:frontendbackends}
+    }
 
-      \put(40, 5){\framebox(15, 5)}
-      \put(40, 0){Node}
+    \subfigure[Legend]{
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Browser) [browser, label=below:Non-system interaction] { Browser };
+        \node (Node) [node, right=of Browser, label=below:Provisioned instance] { Node };
 
-      \put(65, 5){\vector(1, 0){10}}
-      \put(65, 0){Connection flow}
+        \node (AuxNode01) [right=of Node] {};
+        \node (AuxNode02) [right=of AuxNode01] {};
+        \node (AuxNode03) [right=of AuxNode02] {};
+        \node (AuxNode04) [right=of AuxNode03] {};
 
-      \put(95, 5){$\circ$}
-      \put(95, 0){n-times}
-    \end{picture}
-  }
+        \draw[arrow] (AuxNode01) -- node[below] {Connection flow} (AuxNode02);
+        \draw[loosely dotted, line width=3pt] (AuxNode03) -- node[below] {n-times} (AuxNode04);
+      \end{tikzpicture}
+    }
 
-  \caption{Different architectural ways to provision nodes.}
+  \caption{Different architectural ways to provision nodes (topologies).}
   \label{fig:BankManager}
 \end{figure}
