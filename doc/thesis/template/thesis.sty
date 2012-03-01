@@ -72,3 +72,31 @@
 \newcommand{\mychapter}[2]{\chapter{#2}\label{chap:#1}}
 \newcommand{\mycaption}[2]{\caption{#2}\label{fig:#1}}
 
+%% http://tex.stackexchange.com/questions/6985/place-quotation-dictum-in-a-box
+
+\definecolor{quotationcolour}{HTML}{F0F0F0}
+\definecolor{quotationmarkcolour}{HTML}{1F3F81}
+
+% Double-line for start and end of epigraph.
+\newcommand{\epiline}{\hrule \vskip -.2em \hrule}
+% Massively humongous opening quotation mark.
+\newcommand{\hugequote}{%
+  \fontsize{42}{48}\selectfont \color{quotationmarkcolour} \textbf{``}
+  \vskip -.5em
+}
+
+% Beautify quotations.
+\newcommand{\epigraph}[2]{%
+  \bigskip
+  \begin{flushright}
+  \colorbox{quotationcolour}{%
+    \parbox{.90\textwidth}{%
+    \epiline \vskip 1em {\hugequote} \vskip -.5em
+    \parindent 2.2em
+    #1\begin{flushright}\textsc{#2}\end{flushright}
+    \epiline
+    }
+  }
+  \end{flushright}
+  \bigskip
+}
