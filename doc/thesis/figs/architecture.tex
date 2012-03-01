@@ -3,6 +3,8 @@
   text centered, anchor=north, text=black, text width=3.5cm]
   \tikzstyle{m@rt}=[rectangle, draw=black, rounded corners, fill=gray!40, drop shadow,
   text centered, anchor=north, text=black, text width=3.5cm]
+  \tikzstyle{arrow}=[->, >=open triangle 90]
+  \tikzstyle{line}=[-, thick]
 
   \begin{center}
       \begin{tikzpicture}[scale=0.6, transform shape]
@@ -71,7 +73,7 @@
     \node (Property) [class, rectangle, rectangle, below=of Node] {
             \textbf{Property}
         };
-    \node (Location) [class, rectangle split, rectangle split parts=2, below=of Property] {
+    \node (Location) [class, rectangle split, rectangle split parts=2, below=of Property, yshift=-0.25cm] {
             \textbf{Location}
             \nodepart{second}+value: String
         };
@@ -87,6 +89,18 @@
             \textbf{RAM}
             \nodepart{second}+min: String
         };
+
+    \draw[arrow] (Password) -- ++(0, 1.25) -| (Credential);
+    \draw[arrow] (KeyPair) -- ++(0, 1.25) -| (Credential);
+
+    \draw[arrow] (AmazonEC2) -- ++(0, 0.75) -| (Connector);
+    \draw[arrow] (Rackspace) -- ++(0, 0.75) -| (Connector);
+
+    \draw[arrow] (RAM) -- ++(0, 0.9) -| (Property);
+    \draw[arrow] (Core) -- ++(0, 0.9) -| (Property);
+    \draw[arrow] (Disk) -- ++(0, 0.9) -| (Property);
+    \draw[arrow] (Location) -- ++(0, 0.9) -| (Property);
+
     \end{tikzpicture}
   \end{center}
   \caption{Architecture of CloudML}
