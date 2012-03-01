@@ -1,9 +1,15 @@
 \begin{figure}
-  \begin{tikzpicture}
-    \node [rectangle] {Services} 
-    child {node [rectangle] {Services}
-    child {node [rectangle] {Instances}}};
-  \end{tikzpicture}
+  \tikzstyle{layer}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
+  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
+
+  \begin{center}
+    \begin{tikzpicture}[scale=0.7, transform shape]
+      \node (Services) [layer] { \textbf{Services} };
+      \node (Instances) [layer, below=of Services] { \textbf{Instances} };
+
+      \draw (Services) -- (Instances);
+    \end{tikzpicture}
+  \end{center}
   \caption{Cloud layers}
   \label{fig:cloudlayers}
 \end{figure}
