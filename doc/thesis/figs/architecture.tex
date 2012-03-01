@@ -94,17 +94,17 @@
         \draw[aggregate] (UserLibrary) -| (9, -1) -- (9, -5) -| (Template.east);
         \draw[aggregate] (UserLibrary) -| (Account.west);
 
-        \draw[aggregate] (Account) -- ++(0, -1) -| (Credential.north);
+        \draw[aggregate] (Account) -- (Credential.north);
 
         \draw[aggregate] (CloudMLEngine.east) -| (Connector.west);
 
-        \draw[aggregate] (Template) -- ++(0, -1) -| (Node.north);
-        \draw[aggregate] (Node) -- ++(0, -1) -| (Property.north);
+        \draw[aggregate] (Template) -- (Node.north);
+        \draw[aggregate] (Node) --  (Property.north);
 
         \draw[line] (Node.west) -- ++(0, 1) -| (System.east);
         \draw[line] (Template.west) -| (System.east);
 
-        \draw[aggregate] (System) -- ++(0, -1) -| (RuntimeInstance.north);
+        \draw[aggregate] (System) -- (RuntimeInstance.north);
 
         \draw[aggregate] (RuntimeInstance) -| (RuntimeProp.east);
 
