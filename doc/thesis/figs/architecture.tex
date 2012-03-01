@@ -4,102 +4,124 @@
   \tikzstyle{m@rt}=[rectangle, draw=black, rounded corners, fill=gray!40, drop shadow,
   text centered, anchor=north, text=black, text width=3.5cm]
   \tikzstyle{arrow}=[->, >=open triangle 90]
-  \tikzstyle{line}=[-, thick]
+  \tikzstyle{line}=[-]
+  \tikzstyle{aggregate}=[>-, >=diamond]
 
   \begin{center}
       \begin{tikzpicture}[scale=0.6, transform shape]
-      \node (Item) [class, rectangle split, rectangle] {
-        \textbf{UserLibrary}
-      };
-    \node (CloudMLEngine) [class, rectangle, rectangle split parts=3, below=of Item] {
-            \textbf{CloudMLEngine}
-            \nodepart{second}
-            \nodepart{third}+build
-      };
-    \node (AuxNode01) [text width=4cm, below=of CloudMLEngine] {};
 
-    \node (Account) [class, rectangle split, rectangle split parts=2, left=of CloudMLEngine] {
-            \textbf{Account}
-            \nodepart{second}+name: String
-        };
-    \node (Credential) [class, rectangle, rectangle, below=of Account] {
-            \textbf{Credential}
-        };
-    \node (Password) [class, rectangle split, rectangle split parts=2, below=of Credential, xshift=-4cm] {
-            \textbf{Password}
-            \nodepart{second}+identity: String \\ ++credential: String
-        };
-    \node (KeyPair) [class, rectangle split, rectangle split parts=2, below=of Credential] {
-            \textbf{KeyPair}
-            \nodepart{second}+public: String
-        };
+        \node (UserLibrary) [class, rectangle split, rectangle] {
+            \textbf{UserLibrary}
+          };
+        \node (CloudMLEngine) [class, rectangle, rectangle split parts=3, below=of UserLibrary] {
+                \textbf{CloudMLEngine}
+                \nodepart{second}
+                \nodepart{third}+build
+          };
+        \node (AuxNode01) [text width=4cm, below=of CloudMLEngine] {};
 
-    \node (Connector) [class, rectangle, rectangle, right=of CloudMLEngine] {
-            \textbf{Connector}
-        };
-    \node (AmazonEC2) [class, rectangle, rectangle, below=of Connector, xshift=-2cm] {
-            \textbf{AmazonEC2}
-        };
-    \node (Rackspace) [class, rectangle, rectangle, below=of Connector, xshift=2cm] {
-            \textbf{Rackspace}
-        };
+        \node (Account) [class, rectangle split, rectangle split parts=2, left=of CloudMLEngine] {
+                \textbf{Account}
+                \nodepart{second}+name: String
+            };
+        \node (Credential) [class, rectangle, rectangle, below=of Account] {
+                \textbf{Credential}
+            };
+        \node (Password) [class, rectangle split, rectangle split parts=2, below=of Credential, xshift=-4cm] {
+                \textbf{Password}
+                \nodepart{second}+identity: String \\ ++credential: String
+            };
+        \node (KeyPair) [class, rectangle split, rectangle split parts=2, below=of Credential] {
+                \textbf{KeyPair}
+                \nodepart{second}+public: String
+            };
 
-    \node (System) [m@rt, rectangle, rectangle, below=of AuxNode01] {
-            \textbf{System}
-        };
-    \node (RuntimeInstance) [m@rt, rectangle, rectangle, below=of System, yshift=-1cm] {
-            \textbf{RuntimeInstance}
-        };
-    \node (RuntimeProp) [m@rt, rectangle, rectangle, left=of RuntimeInstance] {
-            \textbf{RuntimeProp}
-        };
-    \node (PublicIP) [m@rt, rectangle split, rectangle split parts=2, below=of RuntimeProp, xshift=-2cm] {
-            \textbf{PublicIp}
-            \nodepart{second}+Value: Address
-        };
-    \node (PrivateIP) [m@rt, rectangle split, rectangle split parts=2, below=of RuntimeProp, xshift=2cm] {
-            \textbf{PrivateIp}
-            \nodepart{second}+Value: Address
-        };
+        \node (Connector) [class, rectangle, rectangle, right=of CloudMLEngine] {
+                \textbf{Connector}
+            };
+        \node (AmazonEC2) [class, rectangle, rectangle, below=of Connector, xshift=-2cm] {
+                \textbf{AmazonEC2}
+            };
+        \node (Rackspace) [class, rectangle, rectangle, below=of Connector, xshift=2cm] {
+                \textbf{Rackspace}
+            };
 
-    \node (Template) [class, rectangle split, rectangle split parts=2, right=of System] {
-            \textbf{Template}
-            \nodepart{second}+name: String
-        };
-    \node (Node) [class, rectangle split, rectangle split parts=2, below=of Template] {
-            \textbf{Node}
-            \nodepart{second}+id: String
-        };
-    \node (Property) [class, rectangle, rectangle, below=of Node] {
-            \textbf{Property}
-        };
-    \node (Location) [class, rectangle split, rectangle split parts=2, below=of Property, yshift=-0.25cm] {
-            \textbf{Location}
-            \nodepart{second}+value: String
-        };
-    \node (Disk) [class, rectangle split, rectangle split parts=2, left=of Location] {
-            \textbf{Disk}
-            \nodepart{second}+min: String
-        };
-    \node (Core) [class, rectangle split, rectangle split parts=2, left=of Disk] {
-            \textbf{Core}
-            \nodepart{second}+min: String
-        };
-    \node (RAM) [class, rectangle split, rectangle split parts=2, left=of Core] {
-            \textbf{RAM}
-            \nodepart{second}+min: String
-        };
+        \node (System) [m@rt, rectangle, rectangle, below=of AuxNode01] {
+                \textbf{System}
+            };
+        \node (RuntimeInstance) [m@rt, rectangle, rectangle, below=of System, yshift=-1cm] {
+                \textbf{RuntimeInstance}
+            };
+        \node (RuntimeProp) [m@rt, rectangle, rectangle, left=of RuntimeInstance] {
+                \textbf{RuntimeProp}
+            };
+        \node (PublicIP) [m@rt, rectangle split, rectangle split parts=2, below=of RuntimeProp, xshift=-2cm] {
+                \textbf{PublicIp}
+                \nodepart{second}+Value: Address
+            };
+        \node (PrivateIP) [m@rt, rectangle split, rectangle split parts=2, below=of RuntimeProp, xshift=2cm] {
+                \textbf{PrivateIp}
+                \nodepart{second}+Value: Address
+            };
 
-    \draw[arrow] (Password) -- ++(0, 1.25) -| (Credential);
-    \draw[arrow] (KeyPair) -- ++(0, 1.25) -| (Credential);
+        \node (Template) [class, rectangle split, rectangle split parts=2, right=of System] {
+                \textbf{Template}
+                \nodepart{second}+name: String
+            };
+        \node (Node) [class, rectangle split, rectangle split parts=2, below=of Template] {
+                \textbf{Node}
+                \nodepart{second}+id: String
+            };
+        \node (Property) [class, rectangle, rectangle, below=of Node] {
+                \textbf{Property}
+            };
+        \node (Location) [class, rectangle split, rectangle split parts=2, below=of Property, yshift=-0.25cm] {
+                \textbf{Location}
+                \nodepart{second}+value: String
+            };
+        \node (Disk) [class, rectangle split, rectangle split parts=2, left=of Location] {
+                \textbf{Disk}
+                \nodepart{second}+min: String
+            };
+        \node (Core) [class, rectangle split, rectangle split parts=2, left=of Disk] {
+                \textbf{Core}
+                \nodepart{second}+min: String
+            };
+        \node (RAM) [class, rectangle split, rectangle split parts=2, left=of Core] {
+                \textbf{RAM}
+                \nodepart{second}+min: String
+            };
 
-    \draw[arrow] (AmazonEC2) -- ++(0, 0.75) -| (Connector);
-    \draw[arrow] (Rackspace) -- ++(0, 0.75) -| (Connector);
+        \draw[arrow] (Password) -- ++(0, 1.25) -| (Credential);
+        \draw[arrow] (KeyPair) -- ++(0, 1.25) -| (Credential);
 
-    \draw[arrow] (RAM) -- ++(0, 0.9) -| (Property);
-    \draw[arrow] (Core) -- ++(0, 0.9) -| (Property);
-    \draw[arrow] (Disk) -- ++(0, 0.9) -| (Property);
-    \draw[arrow] (Location) -- ++(0, 0.9) -| (Property);
+        \draw[arrow] (AmazonEC2) -- ++(0, 0.75) -| (Connector);
+        \draw[arrow] (Rackspace) -- ++(0, 0.75) -| (Connector);
+
+        \draw[arrow] (RAM) -- ++(0, 0.9) -| (Property);
+        \draw[arrow] (Core) -- ++(0, 0.9) -| (Property);
+        \draw[arrow] (Disk) -- ++(0, 0.9) -| (Property);
+        \draw[arrow] (Location) -- ++(0, 0.9) -| (Property);
+
+        \draw[arrow] (PublicIP) -- ++(0, 0.9) -| (RuntimeProp);
+        \draw[arrow] (PrivateIP) -- ++(0, 0.9) -| (RuntimeProp);
+
+        \draw[line] (Account) -- ++(0, 1) -| (Connector);
+
+        \draw[aggregate] (UserLibrary) -- ++(0, 1) -| (Account.west);
+        \draw[aggregate] (UserLibrary.east) -| (2.5, -3) -| (System.north);
+
+        \draw[aggregate] (CloudMLEngine.east) -| (Connector.west);
+
+        \draw[aggregate] (Template) -- ++(0, -1) -| (Node.north);
+        \draw[aggregate] (Node) -- ++(0, -1) -| (Property.north);
+
+        \draw[line] (Node.west) -- ++(0, 1) -| (System.east);
+        \draw[line] (Template.west) -| (System.east);
+
+        \draw[aggregate] (System) -- ++(0, -1) -| (RuntimeInstance.north);
+
+        \draw[aggregate] (RuntimeInstance) -| (RuntimeProp.east);
 
     \end{tikzpicture}
   \end{center}
