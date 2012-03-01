@@ -48,7 +48,7 @@ therefore CloudML relied on the actors model~\cite{actors:haller07} using Scala 
 With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
 We extended the model by adding a callback-based pattern allowing each node to provide 
 information on property and status changes.
-Developers exploring our implementation can then choose to ``listen'' for updating events from each node,
+Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
 and do other jobs / idle while the nodes are provisioned with the actors model.
 We have divided the terms of a node before and under provisioning, the essential is to introduce 
 \emph{M@RT} to achieve a logical separation.
