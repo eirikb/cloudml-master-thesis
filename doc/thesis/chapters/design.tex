@@ -9,7 +9,7 @@
 
 \note{Just added everything here:}
 
-We describe the meta model in~\citefig{architecture} and introduce CloudML by
+The meta model described in~\citefig{architecture} and introduce CloudML by
 using a scenario where ``Alice'' is provisioning the \emph{BankManager} to AWS \emph{Elastic Compute Cloud}~(EC2)
 using the topology shown in~\citefig{threenodes}.
 It is compulsory that she possesses an AWS account in advance of the scenario.
@@ -46,11 +46,11 @@ for 24 providers out of the box to minimize \emph{complexity} as well as stabili
 Provisioning nodes is by its nature an asynchronous action that can take minutes to execute,
 therefore CloudML relied on the actors model~\cite{actors:haller07} using Scala actors.
 With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
-We extended the model by adding a callback-based pattern allowing each node to provide 
+The model is extended by adding a callback-based pattern allowing each node to provide 
 information on property and status changes.
 Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
 and do other jobs / idle while the nodes are provisioned with the actors model.
-We have divided the terms of a node before and under provisioning, the essential is to introduce 
+The terms are divided for a node before and under provisioning, the essential is to introduce 
 \emph{M@RT} to achieve a logical separation.
 When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
 which can have a different \emph{state} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.

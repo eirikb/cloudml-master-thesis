@@ -9,14 +9,14 @@
 
 
 To validate how CloudML addressed the challenges from~\citetable{challenges}
-we provisioned the \emph{BankManager} application using different topologies in~Fig[\ref{fig:singlenode},~\ref{fig:threenodes}].
+The \emph{BankManager} application were provisioned using different topologies in~Fig[\ref{fig:singlenode},~\ref{fig:threenodes}].
 The implementation uses \emph{JavaScript Object Notation}~(JSON) to define templates
 as a human readable serialization mechanism.
 The lexical representation of \citefig{singlenode} can be seen in \citelist{singlenode}. 
 The whole text represents the \texttt{Template} of \citefig{architecture} and consequently 
 ``nodes'' is a list of \texttt{Node} from the model.
 The JSON is textual which makes it \emph{shareable} as files.
-We implemented it so once such a file is created it can be reused (\emph{reproducibility}) 
+Once such a file is created it can be reused (\emph{reproducibility}) 
 on any supported provider (\emph{multicloud}).
 
 \begin{lstlisting}[
