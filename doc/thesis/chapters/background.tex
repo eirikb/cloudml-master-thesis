@@ -28,15 +28,16 @@ level as runnable applications.
     The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
     Some of providers are visualized in \citetable{providerservices}.
     The NIST Definition of Cloud Computing~\cite{nist:mell11} define IaaS as
-    \emph{``The capability provided to the consumer is to provision 
-    processing, storage, networks, and other fundamental computing resources where the 
-    consumer is able to deploy and run arbitrary software, which can include operating 
-    systems and applications.''}
-    And continue to state that \emph{``The consumer does not manage or control the underlying cloud 
-    infrastructure but has control over operating systems, storage, deployed applications, and 
-    possibly limited control of select networking components (\eg, host firewalls).``}
+    \epigraph{The capability provided to the consumer is to provision 
+      processing, storage, networks, and other fundamental computing resources where the 
+      consumer is able to deploy and run arbitrary software, which can include operating 
+      systems and applications.}{NIST, 2011}
     These are capabilities found in cloud provider services, 
     such as AWS \emph{Elastic Compute Cloud}~(EC2) and Rackspace CloudServers.
+    NIST continue to state that 
+    \epigraph{The consumer does not manage or control the underlying cloud 
+      infrastructure but has control over operating systems, storage, deployed applications, and 
+      possibly limited control of select networking components (\eg, host firewalls).}{NIST, 2011}
     According to Katarina Stanoevska-Slabeva~\cite{introduction:wozniak10} have 
     \emph{''infrastructure had been available as a service for quite some time``} and this 
     \emph{''has been referred to as utility computing``}, such as Sun Grid Compute Utility.
@@ -92,8 +93,10 @@ but with some security implications such as sandboxed network.
 
 \section{Model-driven architecture approach}
 
-Booch~\cite{unified:booch05} state that 
-\begin{quote}
+By combining the world of cloud computing with modeling one can achieve benefits such as  
+improved communication when designing and understanding of the system.
+The definition of ``modeling'' can be assessed from this study:
+\epigraph{
   ``Modeling is a central
   part of all the activities that lead up to the deployment of good
   software. We build models to communicate the desired structure and
@@ -101,14 +104,14 @@ Booch~\cite{unified:booch05} state that
   system's architecture. We build models to better understand the
   system we are building, often exposing opportunities for
   simplification and reuse. We build models to manage risk.''
-\end{quote}
-Booch contiunes to state that
-\begin{quote}
-  ``\begin{ii}\iitem The choice
+}{Booch, 2005}
+Booch~\cite{unified:booch05} continues to state that
+\epigraph{
+  \begin{ii}\iitem The choice
   of what models to create has a profound influence on how a problem
   is attacked and how a solution is shaped. \iitem Every model may be
   expressed at different levels of precision. \iitem The best models
   are connected to reality. \iitem No single model is
   sufficient. Every nontrivial system is best approached through a
-  small set of nearly independent models.\end{ii}''
-\end{quote}
+  small set of nearly independent models.\end{ii}
+}{Booch, 2005}
