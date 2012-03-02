@@ -1,4 +1,4 @@
-\mychapter{background}{Cloud computing and model-driven artchitecture}
+\mychapter{background}{Cloud computing and Model-Driven Artchitecture}
 \input{tables/tabproviders}
 
 \section{Cloud computing}
@@ -120,3 +120,16 @@ From this it is concludable that several diagrams can be used to describe one or
 There is nor any restraint to only use UML diagrams or even diagrams at all.
 As an example AWS CloudFormation implements a lexical model of their \emph{cloud services},
 while CA AppLogic has a visual and more UML component-based diagram of their capabilities.
+When working with \emph{Model-Driven Architecture}~(MDA) it is normal to first create a
+\emph{Computation Independent Model}~(CIM), then a \emph{Platform-Independent Model}~(PIM) and
+lastly a \emph{Platform-Specific Model}~(PSM). 
+There are five different life as explained by cycles~\cite{model-driven:singh09}:
+\begin{enumerate}
+  \item Create a CIM capturing requirements.
+  \item Develop a PIM.
+  \item Convert the PIM into PSM.
+  \item Generate code form PSM.
+  \item Deploy.
+\end{enumerate}
+It is important to know these aspects as it later in this paper will be explained what cycles are
+specific to CloudML and what is out-scoped.
