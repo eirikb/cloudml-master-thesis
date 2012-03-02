@@ -4,10 +4,10 @@
 
   \begin{center}
     \begin{tikzpicture}[scale=0.7, transform shape]
-      \node (Services) [layer] { \textbf{Services} };
-      \node (Instances) [layer, below=of Services] { \textbf{Instances} };
+      \node (CloudServices) [layer] { \textbf{Cloud Services} };
+      \node (Instances) [layer, below=of CloudServices] { \textbf{Instances} };
 
-      \draw (Services) -- (Instances);
+      \draw (CloudServices) -- (Instances);
     \end{tikzpicture}
   \end{center}
   \caption{Cloud layers}
