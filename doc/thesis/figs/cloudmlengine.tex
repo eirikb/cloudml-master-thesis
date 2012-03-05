@@ -1,0 +1,39 @@
+\begin{figure}
+  \tikzstyle{module}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
+  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
+  \tikzstyle{arrow}=[->, >=triangle 60]
+  \tikzstyle{flow}=[->, >=open triangle 90]
+
+  \begin{center}
+    \begin{tikzpicture}[scale=1, transform shape]
+      \node (AuxNode01) {};
+      \node (Engine) [module, left=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \textbf{Engine} 
+        \nodepart{second}Entrypoint. Orchestration.
+      };
+      \node (AuxNode02) [left=of Engine] {};
+      \node (Kernel) [module, below=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \textbf{Kernel} 
+        \nodepart{second}Node domains. Converts JSON to Node Entities.
+      };
+      \node (Repository) [module, above=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \textbf{Repository} 
+        \nodepart{second}Instance domains. Convert Nodes to Instances.
+      };
+      \node (Cloud-Connector) [module, right=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \textbf{Cloud-Connector} 
+        \nodepart{second}Connects to providers (jclouds).
+      };
+
+      \draw [arrow] (Engine) -- (Kernel);
+      \draw [arrow] (Engine) -- (Cloud-Connector);
+      \draw [arrow] (Engine) -- (Repository);
+      \draw [arrow] (Cloud-Connector) -- (Kernel.east);
+      \draw [arrow] (Cloud-Connector) -- (Repository.east);
+      \draw [arrow] (Repository) -- (Kernel);
+      \draw [flow] (AuxNode02) -- (Engine);
+    \end{tikzpicture}
+  \end{center}
+  \caption{Architecture of cloudml-engine}
+  \label{fig:cloudmlengine}
+\end{figure}
