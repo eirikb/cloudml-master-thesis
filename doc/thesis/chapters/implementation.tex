@@ -8,3 +8,17 @@
     \item Why technologies were chosen
   \end{itemize}
 }
+
+The envisions and designs of CloudML is implemented as a proof-of-concept project
+(from here known as cloudml-engine).
+Cloudml-engine is written in Scala, a multi-paradigm JVM based programming language.
+This language was chosen because JVM is a popular platform, and then especially Java.
+Scala is compatible with Java and Java can interact with libraries written in Scala as well.
+The reason not to use plain Java was because Scala is an appealing state-of-the-art language that emphasizes 
+on functional programming which is leveraged in the implementation.
+Scala also has a built in system for Actors model~\cite{actors:haller07} which is utilized in the implementation.
+For the lexical representation of CloudML \emph{JavaScript Object Notation}~(JSON) was chosen.
+JSON is a web-service friendly, human-readable data interchange format and an alternative to XML.
+This format was chosen because of popularity in the cloud community \todo{source}
+and its usage area as data transmit format between servers and web applications.
+This means cloudml-engine
