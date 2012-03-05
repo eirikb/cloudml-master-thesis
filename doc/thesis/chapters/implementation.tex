@@ -1,5 +1,5 @@
 \mychapter{implementation}{Implementation/realization - cloudml-engine}
-\input{figs/cloudmlengine}
+\input{figs/cloudml-engine}
 
 \todo{
   \begin{itemize}
@@ -9,8 +9,12 @@
   \end{itemize}
 }
 
-The envisions and designs of CloudML is implemented as a proof-of-concept project
-(from here known as cloudml-engine).
+The envisions and designs of CloudML is implemented as a proof-of-concept project \emph{cloudml-engine}.
+The project is split into four different modules~\citefig{cloudml-engine}. 
+Each module serves a logical task of CloudML.
+
+\section{Technologies}
+
 Cloudml-engine is written in Scala, a multi-paradigm JVM based programming language.
 This language was chosen because JVM is a popular platform, and then especially Java.
 Scala is compatible with Java and Java can interact with libraries written in Scala as well.
