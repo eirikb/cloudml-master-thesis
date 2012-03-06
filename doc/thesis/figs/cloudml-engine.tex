@@ -5,12 +5,12 @@
   \tikzstyle{flow}=[->, >=open triangle 90]
 
   \begin{center}
-    \subfigure[Maven modules]{
+    \subfigure[Application modules]{
       \begin{tikzpicture}[scale=0.8, transform shape]
         \node (AuxNode01) [text width=4cm] {};
         \node (Engine) [module, left=of AuxNode01, rectangle split, rectangle split parts=2] { 
           \textbf{Engine} 
-          \nodepart{second}Entrypoint. Orchestration.
+          \nodepart{second}Entry point. Orchestration.
         };
         \node (AuxNode02) [left=of Engine] {};
         \node (Kernel) [module, below=of AuxNode01, rectangle split, rectangle split parts=2] { 
@@ -38,7 +38,7 @@
 
     \subfigure[Legend]{
       \begin{tikzpicture}[scale=0.7, transform shape]
-        \node (Module) [module, label=below:Maven modules] { Module };
+        \node (Module) [module, label=below:Application modules] { Module };
 
         \node (AuxNode01) [right=of Module] {};
         \node (AuxNode02) [right=of AuxNode01] {};

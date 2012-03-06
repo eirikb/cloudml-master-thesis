@@ -15,15 +15,86 @@ Each module serves a logical task of CloudML.
 
 \section{Technologies}
 
+Cloudml-engine is based on state-of-the-art technologies that appeals to the academic community.
+Technologies chosen for cloudml-engine are not of great importance to the concept of CloudML itself,
+but it still important to understand which technologies were chosen, what close alternatives exists
+and why they were chosen.
+
+\paragraph{Language} 
 Cloudml-engine is written in Scala, a multi-paradigm JVM based programming language.
 This language was chosen because JVM is a popular platform, and then especially Java.
 Scala is compatible with Java and Java can interact with libraries written in Scala as well.
 The reason not to use plain Java was because Scala is an appealing state-of-the-art language that emphasizes 
 on functional programming which is leveraged in the implementation.
 Scala also has a built in system for Actors model~\cite{actors:haller07} which is utilized in the implementation.
+
+\paragraph{Lexical format}
 For the lexical representation of CloudML \emph{JavaScript Object Notation}~(JSON) was chosen.
 JSON is a web-service friendly, human-readable data interchange format and an alternative to XML.
 This format was chosen because of popularity in the cloud community \todo{source}
 and its usage area as data transmit format between servers and web applications.
 This means cloudml-engine can be extended to work as a RESTFul web-service server.
-Maven\ldots
+
+The JSON format is parsed in Scala using the lift-json parser which provides implicit
+mapping to Scala case-classes. This library is part of the lift framework,
+but can be included as an external component without additional lift-specific dependencies.
+GSON was considered as an alternative, but mapping to Scala case-classes was not as 
+fluent compared to lift-json.
+
+\paragraph{Automatic build system}
+There are two main methods used to build Scala programs, either using a Scala-specific tool called 
+\emph{Scala Build Tool}~(SBT) or a more general tool called Maven. 
+For cloudml-engine to have an academic appeal it were essential to choose the technology
+with most closeness to Java, hence Maven was chosen.
+Maven support modules which were used to split cloudml-engine into the appropriate 
+modules as shown in~\citefig{cloudml-engine}. 
+The dependency system in Maven between modules is used to match the dependencies outlined in~\citefig{cloudml-engine}.
+
+\paragraph{Cloud connection}
+The bridge between cloudml-engine and cloud providers is an important aspect of the application, and as a requirement
+it was important to use an existing library to achieve this connection.
+Some libraries have already been mentioned in the \emph{APIs} section in~\citechap{state-of-the-art},
+of these only \emph{jclouds} is based on Java-technologies and therefore suites cloudml-engine.
+Jclouds uses Maven for building as well, and is part of Maven central which makes 
+it possible to add jclouds directly as a module dependency.
+Jclouds contains a template system which is used through code directly, this is utilized 
+to map CloudML templates to jclouds templates.
+
+\paragraph{Distribution}
+Cloudml-engine is not just a proof-of-concept for the sake of conceptual assurance, but it is 
+also a running, functional library which can be used by anyone for testing or conjurations.
+Beside the source repository\cite{cloudml-engine} the library is deployed to a remote repository
+\cite{cloudbees-cloudml-engine} as a Maven module.
+This repository is provided by CloudBees.
+
+\section{Modules}
+
+Cloudml-engine is divided into four main modules~\citefig{cloudml-engine}.
+This is to distribute workload and divide cloudml-engine into logical parts for each task.
+
+\texttt{Engine} is the main entry point to the application, this is a Scala Object used to initialize
+provisioning.
+\texttt{Engine} will also do orchestration between the three other modules.
+Since \texttt{Cloud-Connector} is managed by \texttt{Engine} other actions against 
+instances are done through \texttt{Engine}.
+
+\texttt{Kernel} contains CloudML specific entities such as Node and Template.
+The logical task of \texttt{Kernel} is to map JSON formatted strings to Templates including nodes.
+This is some of the core parts of the DSL, hence it is called \emph{Kernel}.
+Accounts are separate parts that are parsed equally as Templates, but by another method call.
+
+\texttt{Repository} has \emph{Instance} entities, these are equivalent to \emph{Nodes} in \texttt{Kernel},
+but are specific for provisioning. Repository will do a mapping from \emph{Nodes} (including \emph{Template})
+to \emph{Instances}. \todo{Future} versions of \texttt{Repository} will also do some logical superficial validation
+against \emph{Node} properties, for instance at the writing moment it is not possible to 
+demand LoadBalancers on Rackspace for specific geographical locations.
+
+\texttt{Cloud-Connector} is the module bridging between cloudml-engine and providers.
+It does not contain any entities, and only does logical code. 
+It is built to support several libraries and interface these. At the moment it only implements the earlier
+mentioned library jclouds.
+
+
+\section{Actors}
+
+Actors are very important
