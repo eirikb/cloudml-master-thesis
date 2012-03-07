@@ -2,6 +2,8 @@
 \input{tables/tabproviders}
 \input{figs/cloud-models}
 
+Text here\ldots
+
 \section{Cloud computing}
 
 Cloud computing is gaining popularity and more companies are starting 
@@ -11,6 +13,9 @@ namely \emph{Infrastructure-as-a-Service}~(IaaS), \emph{Platform-as-a-Service}~(
 and \emph{Software-as-a-Service}~(SaaS).
 IaaS is on the lowest vertical integration level closest to physical hardware and SaaS on the highest
 level as runnable applications.
+Stanoevska-Slabeva~\cite{introduction:wozniak10} emphasizes that
+\emph{''infrastructure had been available as a service for quite some time``} and this 
+\emph{''has been referred to as utility computing``}, such as Sun Grid Compute Utility.
 
 \paragraph{IaaS.}
 The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
@@ -30,11 +35,6 @@ NIST continue to state that
   infrastructure but has control over operating systems, storage, deployed applications, and 
   possibly limited control of select networking components (\eg, host firewalls).
 }{\todo{NIST, 2011}}
-According to Katarina Stanoevska-Slabeva~\cite{introduction:wozniak10} have 
-\emph{''infrastructure had been available as a service for quite some time``} and this 
-\emph{''has been referred to as utility computing``}, such as Sun Grid Compute Utility.
-IaaS is the most relevant cloud architecture layer for this paper, with focus
-on cloud provisioning.
 \paragraph{PaaS.}
 The PaaS model is defined as an capability consumers use to deploy onto cloud infrastructure.
 Deploying application that providers fully or partially support. For this kind of deployment
@@ -45,8 +45,7 @@ the company Heroku with their service with the same name.
 Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
 providers are Heroku Nodester and Nodejitsu, this is a tendency with increasing popularity.
 \paragraph{SaaS.}
-SaaS has less relevance to this paper, nevertheless the core purpose
-is to provide whole web applications as services, in many cases end products.
+The core purpose is to provide whole web applications as services, in many cases end products.
 Google products such as gmail, Google Apps and  Google Calendar are examples of 
 SaaS applications.
 
@@ -76,8 +75,6 @@ NIST Definition of Cloud Computing~\cite{nist:mell11}:
     by storing sensitive information in a private cloud while computing with public cloud.
 \end{itemize}
 
-Of these deployment models \emph{public cloud} is the most relevant model for this paper
-since the main purpose is to provision on public providers such as Amazon and Rackspace.
 Beside these models defined by NIST there is another arising model known as 
 \emph{virtual private cloud}, which is similar to \emph{public cloud} 
 but with some security implications such as sandboxed network.
@@ -101,7 +98,7 @@ When it comes to cloud computing these definitions are even more important
 because of financial aspects since provisioned nodes instantly draw credit.
 The definition of ``modeling'' can be assessed from the previous epigraph, but it is 
 also important to choose correct models for the task.
-Katarina Stanoevska-Slabeva states in one of her studies that grid computing
+Stanoevska-Slabeva emphasizes in one of her studies that grid computing
 ``\emph{is the starting point and basis for Cloud Computing.}''~\cite{introduction:wozniak10}.
 As grid computing bear similarities towards cloud computing in terms of vitalization and utility computing
 it is possible to use the same UML diagrams for IaaS as previously used in grid computing.
