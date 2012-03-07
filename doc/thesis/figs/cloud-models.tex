@@ -1,0 +1,14 @@
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[scale=1.2, transform shape]
+      \node[parallelepiped,draw=black, fill=gray!20, top color=white, bottom color=black!10, 
+        minimum width=1.5cm] (IaaS) {IaaS};
+      \node[parallelepiped,draw=black, fill=gray!20, top color=white, bottom color=black!10, 
+        minimum width=1.5cm, above=of IaaS, yshift=-0.9cm] (PaaS) {PaaS};
+      \node[parallelepiped,draw=black, fill=gray!20, top color=white, bottom color=black!10, 
+        minimum width=1.5cm, above=of PaaS, yshift=-0.9cm] (SaaS) {SaaS};
+    \end{tikzpicture}
+  \end{center}
+  \caption{Cloud architecture service models}
+  \label{fig:cloud-models}
+\end{figure}
