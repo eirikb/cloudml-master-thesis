@@ -1,17 +1,15 @@
 \begin{figure}
   \tikzstyle{browser}=[rectangle, dashed, draw=black, rounded corners, fill=white!40, drop shadow,
   text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
-  \tikzstyle{node}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
-  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
 
-  \tikzstyle{arrow}=[->, >=open triangle 90]
+  \tikzstyle{extend}=[->, >=open triangle 90]
 
     \subfigure[Single node]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Node) [node, right=of Browser] { \textbf{Front-end And Back-end} };
+        \node (Node) [class, right=of Browser] { \textbf{Front-end And Back-end} };
 
-        \draw[arrow] (Browser.east) -- (Node.west);
+        \draw[extend] (Browser.east) -- (Node.west);
       \end{tikzpicture}
       \label{fig:singlenode}
     }
@@ -19,11 +17,11 @@
     \subfigure[Two nodes]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Frontend) [node, right=of Browser] { \textbf{Front-end} };
-        \node (Backend) [node, right=of Frontend] { \textbf{Back-end} };
+        \node (Frontend) [class, right=of Browser] { \textbf{Front-end} };
+        \node (Backend) [class, right=of Frontend] { \textbf{Back-end} };
 
-        \draw[arrow] (Browser.east) -- (Frontend.west);
-        \draw[arrow] (Frontend.east) -- (Backend.west);
+        \draw[extend] (Browser.east) -- (Frontend.west);
+        \draw[extend] (Frontend.east) -- (Backend.west);
       \end{tikzpicture}
       \label{fig:twonodes}
     }
@@ -31,14 +29,14 @@
     \subfigure[Three nodes]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Frontend1) [node, right=of Browser, yshift=1cm] { \textbf{Front-end} };
-        \node (Frontend2) [node, below=of Frontend1] { \textbf{Front-end} };
-        \node (Backend) [node, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
+        \node (Frontend1) [class, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (Frontend2) [class, below=of Frontend1] { \textbf{Front-end} };
+        \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
-        \draw[arrow] (Browser.east) -- (Frontend1.west);
-        \draw[arrow] (Browser.east) -- (Frontend2.west);
-        \draw[arrow] (Frontend1.east) -- (Backend.west);
-        \draw[arrow] (Frontend2.east) -- (Backend.west);
+        \draw[extend] (Browser.east) -- (Frontend1.west);
+        \draw[extend] (Browser.east) -- (Frontend2.west);
+        \draw[extend] (Frontend1.east) -- (Backend.west);
+        \draw[extend] (Frontend2.east) -- (Backend.west);
       \end{tikzpicture}
       \label{fig:threenodes}
     }
@@ -46,14 +44,14 @@
     \subfigure[Several front-ends]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Frontend1) [node, right=of Browser, yshift=1cm] { \textbf{Front-end} };
-        \node (Frontend2) [node, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
-        \node (Backend) [node, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
+        \node (Frontend1) [class, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
+        \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
-        \draw[arrow] (Browser.east) -- (Frontend1.west);
-        \draw[arrow] (Browser.east) -- (Frontend2.west);
-        \draw[arrow] (Frontend1.east) -- (Backend.west);
-        \draw[arrow] (Frontend2.east) -- (Backend.west);
+        \draw[extend] (Browser.east) -- (Frontend1.west);
+        \draw[extend] (Browser.east) -- (Frontend2.west);
+        \draw[extend] (Frontend1.east) -- (Backend.west);
+        \draw[extend] (Frontend2.east) -- (Backend.west);
 
         \draw[loosely dotted, line width=3pt] (Frontend1.south) -- (Frontend2.north);
       \end{tikzpicture}
@@ -63,18 +61,18 @@
     \subfigure[Several front-ends and back-ends (slaves)]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Frontend1) [node, right=of Browser, yshift=1cm] { \textbf{Front-end} };
-        \node (Frontend2) [node, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
-        \node (Backend) [node, right=of Frontend1, yshift=-1cm] { \textbf{Back-end master} };
-        \node (Slave1) [node, right=of Backend, yshift=1cm] { \textbf{Salve} };
-        \node (Slave2) [node, below=of Slave1, yshift=-1cm] { \textbf{Slave} };
+        \node (Frontend1) [class, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
+        \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end master} };
+        \node (Slave1) [class, right=of Backend, yshift=1cm] { \textbf{Salve} };
+        \node (Slave2) [class, below=of Slave1, yshift=-1cm] { \textbf{Slave} };
 
-        \draw[arrow] (Browser.east) -- (Frontend1.west);
-        \draw[arrow] (Browser.east) -- (Frontend2.west);
-        \draw[arrow] (Frontend1.east) -- (Backend.west);
-        \draw[arrow] (Frontend2.east) -- (Backend.west);
-        \draw[arrow] (Backend.east) -- (Slave1.west);
-        \draw[arrow] (Backend.east) -- (Slave2.west);
+        \draw[extend] (Browser.east) -- (Frontend1.west);
+        \draw[extend] (Browser.east) -- (Frontend2.west);
+        \draw[extend] (Frontend1.east) -- (Backend.west);
+        \draw[extend] (Frontend2.east) -- (Backend.west);
+        \draw[extend] (Backend.east) -- (Slave1.west);
+        \draw[extend] (Backend.east) -- (Slave2.west);
 
         \draw[loosely dotted, line width=3pt] (Frontend1.south) -- (Frontend2.north);
       \end{tikzpicture}
@@ -84,14 +82,14 @@
     \subfigure[Legend]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, label=below:Non-system interaction] { Browser };
-        \node (Node) [node, right=of Browser, label=below:Provisioned instance] { Node };
+        \node (Node) [class, right=of Browser, label=below:Provisioned instance] { Node };
 
         \node (AuxNode01) [right=of Node] {};
         \node (AuxNode02) [right=of AuxNode01] {};
         \node (AuxNode03) [right=of AuxNode02] {};
         \node (AuxNode04) [right=of AuxNode03] {};
 
-        \draw[arrow] (AuxNode01) -- node[below] {Connection flow} (AuxNode02);
+        \draw[extend] (AuxNode01) -- node[below] {Connection flow} (AuxNode02);
         \draw[loosely dotted, line width=3pt] (AuxNode03) -- node[below] {n-times} (AuxNode04);
       \end{tikzpicture}
     }

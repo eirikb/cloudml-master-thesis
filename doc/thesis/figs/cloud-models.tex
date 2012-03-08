@@ -1,11 +1,10 @@
 \begin{figure}
   \begin{center}
     \begin{tikzpicture}[scale=1.2, transform shape]
-      \tikzstyle{model}=[parallelepiped,draw=black, fill=gray!20, top color=white, bottom color=black!10, minimum width=1.5cm]
 
-      \node[model] (IaaS) {IaaS};
-      \node[model, above=of IaaS, yshift=-0.9cm] (PaaS) {PaaS};
-      \node[model, above=of PaaS, yshift=-0.9cm] (SaaS) {SaaS};
+      \node[box] (IaaS) {IaaS};
+      \node[box, above=of IaaS, yshift=-0.9cm] (PaaS) {PaaS};
+      \node[box, above=of PaaS, yshift=-0.9cm] (SaaS) {SaaS};
     \end{tikzpicture}
   \end{center}
   \caption{Cloud architecture service models}

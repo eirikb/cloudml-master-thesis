@@ -2,7 +2,7 @@
 
   \begin{center}
     \begin{tikzpicture}
-      \tikzstyle{c}=[cloud, draw, fill=gray!20, top color=white, bottom color=black!10, aspect=2]
+      \tikzstyle{c}=[cloud, draw, fill=gray!20, top color=white, drop shadow, bottom color=black!10, aspect=2]
 
       \node [circle, draw, fill=gray!20, top color=white, bottom color=black!10, minimum width=1cm] (head) at (0,0) {};
       \path (head) ++(0, -2) coordinate (groin);
@@ -17,7 +17,10 @@
       \path[draw] (armcon) -- (rhand);
       \path[draw] (armcon) -- (lhand);
 
-      \node (interwebs) [c, right=of head] {test};
+      \node[parallelepiped,draw=black, fill=gray!20, top color=white, bottom color=black!10, 
+        minimum width=2cm, minimum height=3cm, drop shadow, right=of head] (System) {System};
+
+      \node (interwebs) [c, right=of System] {test};
     \end{tikzpicture}
   \end{center}
   \caption{Usage flow in cloudml-engine}

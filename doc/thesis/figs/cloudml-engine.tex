@@ -1,27 +1,22 @@
 \begin{figure}
-  \tikzstyle{module}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
-  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
-  \tikzstyle{arrow}=[->, >=triangle 60]
-  \tikzstyle{flow}=[->, >=open triangle 90]
-
   \begin{center}
     \subfigure[Application modules]{
       \begin{tikzpicture}[scale=0.8, transform shape]
         \node (AuxNode01) [text width=4cm] {};
-        \node (Engine) [module, left=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \node (Engine) [class, left=of AuxNode01, rectangle split, rectangle split parts=2] { 
           \textbf{Engine} 
           \nodepart{second}Entry point. Orchestration.
         };
         \node (AuxNode02) [left=of Engine] {};
-        \node (Kernel) [module, below=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \node (Kernel) [class, below=of AuxNode01, rectangle split, rectangle split parts=2] { 
           \textbf{Kernel} 
           \nodepart{second}Node domains. Converts JSON to Node Entities.
         };
-        \node (Repository) [module, above=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \node (Repository) [class, above=of AuxNode01, rectangle split, rectangle split parts=2] { 
           \textbf{Repository} 
           \nodepart{second}Instance domains. Convert Nodes to Instances.
         };
-        \node (Cloud-Connector) [module, right=of AuxNode01, rectangle split, rectangle split parts=2] { 
+        \node (Cloud-Connector) [class, right=of AuxNode01, rectangle split, rectangle split parts=2] { 
           \textbf{Cloud-Connector} 
           \nodepart{second}Connects to providers (jclouds).
         };
@@ -32,13 +27,13 @@
         \draw [arrow] (Cloud-Connector) -- (Kernel.east);
         \draw [arrow] (Cloud-Connector) -- (Repository.east);
         \draw [arrow] (Repository) -- (Kernel);
-        \draw [flow] (AuxNode02) -- (Engine);
+        \draw [extend] (AuxNode02) -- (Engine);
       \end{tikzpicture}
     }
 
     \subfigure[Legend]{
       \begin{tikzpicture}[scale=0.7, transform shape]
-        \node (Module) [module, label=below:Application modules] { Module };
+        \node (Module) [class, label=below:Application modules] { Module };
 
         \node (AuxNode01) [right=of Module] {};
         \node (AuxNode02) [right=of AuxNode01] {};
@@ -46,7 +41,7 @@
         \node (AuxNode04) [right=of AuxNode03] {};
 
         \draw[arrow] (AuxNode01) -- node[below] {Dependency} (AuxNode02);
-        \draw[flow] (AuxNode03) -- node[below] {Entry} (AuxNode04);
+        \draw[extend] (AuxNode03) -- node[below] {Entry} (AuxNode04);
       \end{tikzpicture}
     }
   \end{center}
