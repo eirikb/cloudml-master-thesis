@@ -1,11 +1,8 @@
 \begin{figure}
-  \tikzstyle{layer}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
-  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
-
   \begin{center}
     \begin{tikzpicture}[scale=0.7, transform shape]
-      \node (CloudServices) [layer] { \textbf{Cloud Services} };
-      \node (Instances) [layer, below=of CloudServices] { \textbf{Instances} };
+      \node (CloudServices) [class] { \textbf{Cloud Services} };
+      \node (Instances) [class, below=of CloudServices] { \textbf{Instances} };
 
       \draw (CloudServices) -- (Instances);
     \end{tikzpicture}
