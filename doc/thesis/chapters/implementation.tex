@@ -65,6 +65,14 @@ Beside the source repository\cite{cloudml-engine} the library is deployed to a r
 This repository is provided by CloudBees, 
 how to include the library is viewable in~\citefig{pom-example}.
 
+\paragraph{Actors}
+As mentioned earlier \emph{cloudml-engine} utilizes the actors model through Scala,
+this approach is used to achieve asynchronous provisioning.
+This is important as provisioning can consume up to minutes for each instance.
+Beside the standard model provided by Scala \emph{cloudml-engine} uses
+a callback-based pattern to inform users of the library when instance statues
+are updated and properties are added.
+
 \section{Modules and application flow}
 
 \emph{Cloudml-engine} is divided into four main modules~\citefig{cloudml-engine}.
@@ -100,8 +108,3 @@ demand LoadBalancers on Rackspace for specific geographical locations.
 It does not contain any entities, and only does logical code. 
 It is built to support several libraries and interface these. At the moment it only implements the earlier
 mentioned library jclouds.
-
-\section{Actors}
-
-Actors are very important
-
