@@ -2,6 +2,7 @@
 \input{figs/cloudml-engine}
 \input{figs/cloudml-engine-flow}
 \input{figs/pom-example}
+\input{figs/cloudml-engine-usage}
 
 The envision and design of CloudML is implemented as a proof-of-concept project \emph{cloudml-engine}.
 The project is split into four different modules~\citefig{cloudml-engine}. 
@@ -44,6 +45,7 @@ with most closeness to Java, hence Maven was chosen.
 Maven support modules which were used to split cloudml-engine into the appropriate 
 modules as shown in~\citefig{cloudml-engine}. 
 The dependency system in Maven between modules is used to match the dependencies outlined in~\citefig{cloudml-engine}.
+Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example}.
 
 \paragraph{Cloud connection}
 The bridge between cloudml-engine and cloud providers is an important aspect of the application, and as a requirement
