@@ -18,8 +18,8 @@
 
       \node[below of=head, text width=2cm] (Body) {};
 
-      \node[box, right=of head, minimum width=3.8cm, minimum height=3.5cm, xshift=1cm, yshift=-1cm] (System) {};
-      \node[box, right=of head, xshift=2cm, yshift=-0.2cm] (Engine) {Engine};
+      \node[box, right=of head, minimum width=3.8cm, minimum height=3.5cm, xshift=1cm, yshift=-1.5cm] (System) {};
+      \node[box, right=of head, xshift=2cm, yshift=-0.7cm] (Engine) {Engine};
       \node[box, below=of Engine, yshift=0.5cm] (Cloud-Connector) {Cloud-Connector};
       \node[box, below=of Cloud-Connector, yshift=0.5cm] (RuntimeInstance) {RuntimeInstance};
 
@@ -35,8 +35,12 @@
       \draw[arrow] (Cloud-Connector.south) -| (RuntimeInstance.north);
       \draw[arrow] (RuntimeInstance.west) -- (Body.east);
 
+      \node (Label01) [below=of Body, yshift=-1.5cm] {User};
+      \node (Label02) [right=of Label01, xshift=1.2cm] {Cloudml-engine};
+      \node [right=of Label02, xshift=1.2cm] {Cloud providers};
+
     \end{tikzpicture}
   \end{center}
   \caption{Usage flow in cloudml-engine}
-  \label{fig:cloudml-engine}
+  \label{fig:cloudml-engine-flow}
 \end{figure}
