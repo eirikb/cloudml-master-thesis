@@ -1,9 +1,23 @@
 \begin{figure}
-  \tikzstyle{c}=[cloud, draw, fill=gray!20, top color=white, bottom color=black!10, aspect=2]
 
   \begin{center}
     \begin{tikzpicture}
-      \node (interwebs) [c] {test};
+      \tikzstyle{c}=[cloud, draw, fill=gray!20, top color=white, bottom color=black!10, aspect=2]
+
+      \node [circle, draw, fill=gray!20, top color=white, bottom color=black!10, minimum width=1cm] (head) at (0,0) {};
+      \path (head) ++(0, -2) coordinate (groin);
+      \path (head) ++(0, -1) coordinate (armcon);
+      \path (groin) ++(.5, -1.25) coordinate (rfoot);
+      \path (groin) ++(-.5, -1.25) coordinate (lfoot);
+      \path (armcon) ++(1, -.1) coordinate (rhand);
+      \path (armcon) ++(-1, -.1) coordinate (lhand);
+      \path[draw] (head) -- (groin);
+      \path[draw] (groin) -- (rfoot);
+      \path[draw] (groin) -- (lfoot);
+      \path[draw] (armcon) -- (rhand);
+      \path[draw] (armcon) -- (lhand);
+
+      \node (interwebs) [c, right=of head] {test};
     \end{tikzpicture}
   \end{center}
   \caption{Usage flow in cloudml-engine}
