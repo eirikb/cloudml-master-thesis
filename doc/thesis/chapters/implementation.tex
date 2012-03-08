@@ -1,8 +1,9 @@
 \mychapter{implementation}{Implementation/realization - cloudml-engine}
 \input{figs/cloudml-engine}
 \input{figs/cloudml-engine-flow}
+\input{figs/pom-example}
 
-The envisions and designs of CloudML is implemented as a proof-of-concept project \emph{cloudml-engine}.
+The envision and design of CloudML is implemented as a proof-of-concept project \emph{cloudml-engine}.
 The project is split into four different modules~\citefig{cloudml-engine}. 
 Each module serves a logical task of CloudML.
 This chapter will go into depths of technologies and structures of the implementation.
@@ -59,9 +60,10 @@ Cloudml-engine is not just a proof-of-concept for the sake of conceptual assuran
 also a running, functional library which can be used by anyone for testing or conjurations.
 Beside the source repository\cite{cloudml-engine} the library is deployed to a remote repository
 \cite{cloudbees-cloudml-engine} as a Maven module.
-This repository is provided by CloudBees.
+This repository is provided by CloudBees, 
+how to include the library is viewable in~\citefig{pom-example}.
 
-\section{Modules}
+\section{Modules and application flow}
 
 Cloudml-engine is divided into four main modules~\citefig{cloudml-engine}.
 This is to distribute workload and divide cloudml-engine into logical parts for each task.
@@ -79,7 +81,7 @@ Accounts are separate parts that are parsed equally as Templates, but by another
 
 \texttt{Repository} has \emph{Instance} entities, these are equivalent to \emph{Nodes} in \texttt{Kernel},
 but are specific for provisioning. Repository will do a mapping from \emph{Nodes} (including \emph{Template})
-to \emph{Instances}. \todo{Future} versions of \texttt{Repository} will also do some logical superficial validation
+to \emph{Instances}. Future versions of \texttt{Repository} will also do some logical superficial validation
 against \emph{Node} properties, for instance at the writing moment it is not possible to 
 demand LoadBalancers on Rackspace for specific geographical locations.
 
@@ -91,3 +93,4 @@ mentioned library jclouds.
 \section{Actors}
 
 Actors are very important
+
