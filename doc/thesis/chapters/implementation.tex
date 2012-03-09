@@ -27,7 +27,7 @@ Scala also has a built in system for Actors model~\cite{actors:haller07} which i
 \paragraph{Lexical format.}
 For the lexical representation of CloudML \emph{JavaScript Object Notation}~(JSON) was chosen.
 JSON is a web-service friendly, human-readable data interchange format and an alternative to XML.
-This format was chosen because of popularity in the cloud community \todo{source}
+This format was chosen because of popularity in the cloud community \todo{source?}
 and its usage area as data transmit format between servers and web applications.
 This means \emph{cloudml-engine} can be extended to work as a RESTFul web-service server.
 
@@ -45,7 +45,9 @@ with most closeness to Java, hence Maven was chosen.
 Maven support modules which were used to split \emph{cloudml-engine} into the appropriate 
 modules as shown in~\citefig{cloudml-engine}. 
 The dependency system in Maven between modules is used to match the dependencies outlined in~\citefig{cloudml-engine}.
-Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example}.
+Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example},
+although this is not dependency management in between \emph{cloudml-engine} modules but rather
+how to add \emph{cloudml-engine} as a dependency itself.
 
 \paragraph{Cloud connection.}
 The bridge between \emph{cloudml-engine} and cloud providers is an important aspect of the application, and as a requirement
@@ -75,7 +77,7 @@ are updated and properties are added.
 
 \section{Modules and application flow}
 
-\emph{Cloudml-engine} is divided into four main modules~\citefig{cloudml-engine}.
+\emph{Cloudml-engine} is divided into four main modules~(\citefig{cloudml-engine}).
 This is to distribute workload and divide \emph{cloudml-engine} into logical parts for each task.
 
 \paragraph{Engine.} The main entry point to the application, this is a Scala Object used to initialize
