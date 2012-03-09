@@ -47,10 +47,10 @@ ${TARGET}.dvi: $(TARGET).tex $(EPS_FIG) $(REFERENCES) $(TEX_FILES)
 
 $(TARGET).pdf: $(TARGET).tex $(PDF_FIG) $(REFERENCES) $(TEX_FILES)
 	node ../articles/build/build.js
-	pdflatex $<
+	pdflatex -shell-escape $<
 	bibtex $(TARGET)
-	pdflatex $<
-	pdflatex $<
+	pdflatex -shell-escape $<
+	pdflatex -shell-escape $<
 	#xdotool search --class mupdf key --window %@ r $<
 
 
