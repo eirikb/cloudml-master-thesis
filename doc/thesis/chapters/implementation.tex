@@ -5,18 +5,18 @@
 \input{figs/cloudml-engine-usage}
 
 The envision and design of CloudML is implemented as a proof-of-concept project \emph{cloudml-engine}.
-The project is split into four different modules~\citefig{cloudml-engine}. 
+The project is split into four different modules~(\citefig{cloudml-engine}). 
 Each module serves a logical task of CloudML.
 This chapter will go into depths of technologies and structures of the implementation.
 
 \section{Technologies}
 
-\emph{Cloudml-engine} is based on state-of-the-art technologies that appeals to the academic community.
+\emph{Cloudml-engine} is based on state-of-the-art technologies that appeal to the academic community.
 Technologies chosen for \emph{cloudml-engine} are not of great importance to the concept of CloudML itself,
 but it still important to understand which technologies were chosen, what close alternatives exists
 and why they were chosen.
 
-\paragraph{Language} 
+\paragraph{Language.} 
 \emph{Cloudml-engine} is written in Scala, a multi-paradigm JVM based programming language.
 This language was chosen because JVM is a popular platform, and then especially Java.
 Scala is compatible with Java and Java can interact with libraries written in Scala as well.
@@ -24,7 +24,7 @@ The reason not to use plain Java was because Scala is an appealing state-of-the-
 on functional programming which is leveraged in the implementation.
 Scala also has a built in system for Actors model~\cite{actors:haller07} which is utilized in the implementation.
 
-\paragraph{Lexical format}
+\paragraph{Lexical format.}
 For the lexical representation of CloudML \emph{JavaScript Object Notation}~(JSON) was chosen.
 JSON is a web-service friendly, human-readable data interchange format and an alternative to XML.
 This format was chosen because of popularity in the cloud community \todo{source}
@@ -37,7 +37,7 @@ but can be included as an external component without additional lift-specific de
 GSON was considered as an alternative, but mapping to Scala case-classes was not as 
 fluent compared to lift-json.
 
-\paragraph{Automatic build system}
+\paragraph{Automatic build system.}
 There are two main methods used to build Scala programs, either using a Scala-specific tool called 
 \emph{Scala Build Tool}~(SBT) or a more general tool called Maven. 
 For \emph{cloudml-engine} to have an academic appeal it were essential to choose the technology
@@ -47,7 +47,7 @@ modules as shown in~\citefig{cloudml-engine}.
 The dependency system in Maven between modules is used to match the dependencies outlined in~\citefig{cloudml-engine}.
 Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example}.
 
-\paragraph{Cloud connection}
+\paragraph{Cloud connection.}
 The bridge between \emph{cloudml-engine} and cloud providers is an important aspect of the application, and as a requirement
 it was important to use an existing library to achieve this connection.
 Some libraries have already been mentioned in the \emph{APIs} section in~\citechap{state-of-the-art},
@@ -57,7 +57,7 @@ it possible to add jclouds directly as a module dependency.
 Jclouds contains a template system which is used through code directly, this is utilized 
 to map CloudML templates to jclouds templates.
 
-\paragraph{Distribution}
+\paragraph{Distribution.}
 \emph{Cloudml-engine} is not just a proof-of-concept for the sake of conceptual assurance, but it is 
 also a running, functional library which can be used by anyone for testing or considerations.
 Beside the source repository\cite{cloudml-engine} the library is deployed to a remote repository
@@ -65,7 +65,7 @@ Beside the source repository\cite{cloudml-engine} the library is deployed to a r
 This repository is provided by CloudBees, 
 how to include the library is viewable in~\citefig{pom-example}.
 
-\paragraph{Actors}
+\paragraph{Actors.}
 As mentioned earlier \emph{cloudml-engine} utilizes the actors model through Scala,
 this approach is used to achieve asynchronous provisioning.
 This is important as provisioning can consume up to minutes for each instance.
@@ -90,7 +90,7 @@ The first versions of \emph{cloudml-engine} did not use \texttt{Engine} as orche
 instead relied on each module to be a sequential step, this proved to be harder to maintain
 and also introduced cyclic dependencies.
 
-\paragraph{Kernel} \texttt{Kernel} contains CloudML specific entities such as Node and Template.
+\paragraph{Kernel.} \texttt{Kernel} contains CloudML specific entities such as Node and Template.
 The logical task of \texttt{Kernel} is to map JSON formatted strings to \texttt{Templates} including \texttt{Nodes}.
 This is some of the core parts of the DSL, hence it is called \emph{\texttt{Kernel}}.
 \texttt{Accounts} are separate parts that are parsed equally as \texttt{Templates},
