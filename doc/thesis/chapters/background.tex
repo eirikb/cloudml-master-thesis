@@ -13,11 +13,18 @@ Some of the most essential characteristics of cloud computing~\cite{nist:mell11}
 \begin{itemize}
   \item \emph{On-demand self-service}: 
     Consumers can do provisioning without any human interaction.
-  \item \emph{Broad network access}: Capabilities available over standard network mechanisms
+    On-demand means dynamic scalability and elasticity of resource allocation,
+    self-service means that users does not need to manually do these allocations themselves.
+  \item \emph{Broad network access}: Capabilities available over standard network mechanisms.
+    Supporting familiar protocols such as HTTP/HTTPS and SSH.
   \item \emph{Resource pooling}: Physical and virtual resources are dynamically assigned
-    and reassigned according to consumer demand
-  \item \emph{Rapid elasticity}: Automatic capability scaling
-  \item \emph{Measured service}: Monitoring and control of resource usages
+    and reassigned according to consumer demand.
+    This means users do not need to be troubled with scalability as this is handled automatically.
+  \item \emph{Rapid elasticity}: Automatic capability scaling.
+    Already allocated resources can expand to meet new demands.
+  \item \emph{Measured service}: Monitoring and control of resource usages.
+    Can be used for statistics for users but also for cloud services to do
+    on-demand self-service, resource pooling and rapid elasticity.
 \end{itemize}
 
 There are three main architectural service models in cloud computing\cite{nist:mell11}
