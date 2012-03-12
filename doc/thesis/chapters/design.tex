@@ -1,23 +1,33 @@
 \mychapter{design}{Analysis and design - CloudML}
 \input{figs/architecture}
+\input{figs/scenario1}
+\input{figs/sequencediagram}
 
-\todo{
-  \begin{itemize}
-    \item Copy chap 3 from CloudMDE
-    \item Weaknesses
-  \end{itemize}
-}
+\section{Meta model.}
 
-The meta model for CloudML is described in~\citefig{architecture}. 
-CloudML is introduced by using a scenario where ``Alice'' is provisioning the 
+The meta model for CloudML is visualized in~\citefig{architecture}. 
+\texttt{CloudMLEngine} is the main entry point, it has the method \texttt{build}
+which is used to initialize provisioning.
+\texttt{Property} have four children but is designed to be expandable in case
+new types of properties should be included. The same design principle
+is applied to \texttt{RuntimeProp}.
+\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
+physical parts maintainable by the user.
+
+\paragraph{Alice}
+CloudML is introduced by using two scenarios where ``Alice'' is provisioning the 
 \emph{BankManager} from \citechap{problem} to AWS \emph{Elastic Compute Cloud}~(EC2)
-using the topology shown in~\citefig{threenodes}.
+using the topology shown in~\cite{singlenode} and~\citefig{threenodes}.
+
 It is compulsory that she possesses an AWS account in advance of the scenario.
 She will retrieve security credentials for account 
 and associate them with \texttt{Password} in \citefig{architecture}.
 \texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
 The next step for Alice is to model the appropriate \texttt{Template} consisting
 of three \texttt{Nodes}.
+
+
+\paragraph{Scenario 1}
 The characteristics Alice choose for \texttt{Node} \texttt{Properties} are fitted
 for the chosen topology with more computational power for front-end \texttt{Nodes}
 by increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
@@ -36,8 +46,13 @@ because of availability, financial benefits  or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
 this will result in an identical topological setup on a supported provider.
 
+\paragraph{Scenario 2}
+
+\paragraph{And we saw?}
+
+\section{Actors model}
 Provisioning nodes is by its nature an asynchronous action that can take minutes to execute,
-therefore CloudML relied on the actors model~\cite{actors:haller07} using Scala actors.
+therefore CloudML relied on the actors model~\cite{actors:haller07}.
 With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
 The model is extended by adding a callback-based pattern allowing each node to provide 
 information on property and status changes.
@@ -46,8 +61,8 @@ and do other jobs / idle while the nodes are provisioned with the actors model.
 The terms are divided for a node before and under provisioning, the essential is to introduce 
 \emph{M@RT} to achieve a logical separation.
 When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
-which can have a different \emph{state} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
+which can have a different \emph{states} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
 When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, including
 the most necessary metadata, when all nodes reaches this state the task of provisioning is concluded.
 
-Full deployment is planed for next version of CloudML.
+\note{Full deployment is planed for next version of CloudML.}
