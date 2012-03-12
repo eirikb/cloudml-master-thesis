@@ -8,15 +8,14 @@
   \end{itemize}
 }
 
-\note{Just added everything here:}
-
-The meta model described in~\citefig{architecture} and introduce CloudML by
-using a scenario where ``Alice'' is provisioning the \emph{BankManager} to AWS \emph{Elastic Compute Cloud}~(EC2)
+The meta model for CloudML is described in~\citefig{architecture}. 
+CloudML is introduced by using a scenario where ``Alice'' is provisioning the 
+\emph{BankManager} from \citechap{problem} to AWS \emph{Elastic Compute Cloud}~(EC2)
 using the topology shown in~\citefig{threenodes}.
 It is compulsory that she possesses an AWS account in advance of the scenario.
 She will retrieve security credentials for account 
 and associate them with \texttt{Password} in \citefig{architecture}.
-\texttt{Credential} is used to authenticate the user to supported providers through \texttt{Connector}.
+\texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
 The next step for Alice is to model the appropriate \texttt{Template} consisting
 of three \texttt{Nodes}.
 The characteristics Alice choose for \texttt{Node} \texttt{Properties} are fitted
@@ -36,13 +35,6 @@ Alice could later decide to use another provider, either as replacement or compl
 because of availability, financial benefits  or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
 this will result in an identical topological setup on a supported provider.
-
-\mypar{Implementation}
-CloudML is implemented as a proof of concept framework~\cite{cloudml-engine}
-(from here known as \emph{cloudml-engine}). 
-Because of Javas popularity cloudml-engine was written in a JVM based language with Maven as build tool.
-Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
-for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
 
 Provisioning nodes is by its nature an asynchronous action that can take minutes to execute,
 therefore CloudML relied on the actors model~\cite{actors:haller07} using Scala actors.

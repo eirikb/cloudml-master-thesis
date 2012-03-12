@@ -9,6 +9,14 @@ The project is split into four different modules~(\citefig{cloudml-engine}).
 Each module serves a logical task of CloudML.
 This chapter will go into depths of technologies and structures of the implementation.
 
+\mypar{Implementation}
+CloudML is implemented as a proof of concept framework~\cite{cloudml-engine}
+(from here known as \emph{cloudml-engine}). 
+Because of Javas popularity cloudml-engine was written in a JVM based language with Maven as build tool.
+Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
+for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
+
+
 \section{Technologies}
 
 \emph{Cloudml-engine} is based on state-of-the-art technologies that appeal to the academic community.
