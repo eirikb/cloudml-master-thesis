@@ -2,7 +2,8 @@
 \input{tables/tabproviders}
 \input{figs/cloud-models}
 
-\todo{Text here\ldots}
+In this chapter the essential topics for this thesis is introduced,
+cloud computing and Model-Driven architecture.
 
 \section{Cloud computing}
 
@@ -11,12 +12,20 @@ to explore the possibilities as well as the limitation to the cloud.
 
 Some of the most essential characteristics of cloud computing~\cite{nist:mell11} are:
 \begin{itemize}
-  \item \emph{On-demand self-service}: Consumers can do provisioning without any human interaction
-  \item \emph{Broad network access}: Capabilities available over standard network mechanisms
+  \item \emph{On-demand self-service}: 
+    Consumers can do provisioning without any human interaction.
+    On-demand means dynamic scalability and elasticity of resource allocation,
+    self-service means that users does not need to manually do these allocations themselves.
+  \item \emph{Broad network access}: Capabilities available over standard network mechanisms.
+    Supporting familiar protocols such as HTTP/HTTPS and SSH.
   \item \emph{Resource pooling}: Physical and virtual resources are dynamically assigned
-    and reassigned according to consumer demand
-  \item \emph{Rapid elasticity}: Automatic capability scaling
-  \item \emph{Measured service}: Monitoring and control of resource usages
+    and reassigned according to consumer demand.
+    This means users do not need to be troubled with scalability as this is handled automatically.
+  \item \emph{Rapid elasticity}: Automatic capability scaling.
+    Already allocated resources can expand to meet new demands.
+  \item \emph{Measured service}: Monitoring and control of resource usages.
+    Can be used for statistics for users but also for cloud services to do
+    on-demand self-service, resource pooling and rapid elasticity.
 \end{itemize}
 
 There are three main architectural service models in cloud computing\cite{nist:mell11}
@@ -64,14 +73,20 @@ SaaS applications.
 There are four different deployment models according to The 
 NIST Definition of Cloud Computing~\cite{nist:mell11}:
 \begin{itemize}
-  \item \emph{Private cloud}: Similar to classical infrastructures where hardware and
-    drifting is owned and controlled by organizations themselves.
-  \item \emph{Community cloud}: When several organizations share the same aspects of
-    a private cloud (such as security requirements, policies, and compliance considerations),
-    and therefore share infrastructure.
   \item \emph{Public cloud}: Infrastructure is open to the public.
     Cloud providers own the hardware and rent out IaaS and PaaS solutions to users.
     Examples of such providers are Amazon with AWS and Google with GAE.
+  \item \emph{Private cloud}: Similar to classical infrastructures where hardware and
+    operation is owned and controlled by organizations themselves.
+    This deployment model has arisen because of security issues regarding storage 
+    of data in public clouds. With \emph{private cloud} organization can provide 
+    data security in forms such as geographical location and existing domain specific firewalls,
+    and help complying requirements set by the government or other offices.
+  \item \emph{Community cloud}: Similar as \emph{private clouds} but run as a
+    coalition between several organizations.
+    When several organizations share the same aspects of
+    a private cloud (such as security requirements, policies, and compliance considerations),
+    and therefore share infrastructure. 
   \item \emph{Hybrid cloud}: Combining private cloud or community cloud with public cloud.
     One benefit is to distinguish data from logic for purposes such as security issues,
     by storing sensitive information in a private cloud while computing with public cloud.

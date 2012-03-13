@@ -1,5 +1,4 @@
 \mychapter{validation}{Validation \& Experiments}
-\input{figs/sequencediagram}
 
 \todo{
   \begin{itemize}
@@ -19,12 +18,12 @@ The JSON is textual which makes it \emph{shareable} as files.
 Once such a file is created it can be reused (\emph{reproducibility}) 
 on any supported provider (\emph{multicloud}).
 
-\begin{lstlisting}[
-  language=javascript,
-  label=list:singlenode,
-  caption=One single node]
-{ "nodes": [ { "name": "testnode" } ] }
-\end{lstlisting}
+%\begin{lstlisting}[
+  %language=javascript,
+  %label=list:singlenode,
+  %caption=One single node]
+%{ "nodes": [ { "name": "testnode" } ] }
+%\end{lstlisting}
 
 The topology described in \citefig{threenodes} is represented in \citelist{threenodes},
 the main difference from \citelist{singlenode} is that there are two more nodes and a total of 
@@ -32,15 +31,15 @@ five more properties.
 Characteristics of each node are carefully chosen based on each nodes feature area, for instance 
 front-end nodes have more computation power, while the back-end node will have more disk.
 
-\begin{lstlisting}[
-  language=javascript,
-  label=list:threenodes,
-  caption=Three nodes]
-{
-  "nodes": [ 
-    { "name": "frontend1", "minRam": 512, "minCores": 2 },
-    { "name": "frontend2", "minRam": 512, "minCores": 2 },
-    { "name": "backend", "minDisk": 100 }
-  ]
-}
-\end{lstlisting}
+%\begin{lstlisting}[
+  %language=javascript,
+  %label=list:threenodes,
+  %caption=Three nodes]
+%{
+  %"nodes": [ 
+    %{ "name": "frontend1", "minRam": 512, "minCores": 2 },
+    %{ "name": "frontend2", "minRam": 512, "minCores": 2 },
+    %{ "name": "backend", "minDisk": 100 }
+  %]
+%}
+%\end{lstlisting}

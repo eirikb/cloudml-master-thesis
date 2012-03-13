@@ -7,7 +7,7 @@
         \node (CloudMLEngine) [class, rectangle split, rectangle split parts=3, below=of UserLibrary] {
                 \textbf{CloudMLEngine}
                 \nodepart{second}
-                \nodepart{third}+build
+                \nodepart{third}+build(Acc,Li(Templ))
           };
         \node (AuxNode01) [text width=4cm, below=of CloudMLEngine] {};
 
@@ -29,8 +29,11 @@
         \node (AmazonEC2) [class, below=of Connector, xshift=-2cm] { \textbf{AmazonEC2} };
         \node (Rackspace) [class, below=of Connector, xshift=2cm] { \textbf{Rackspace} };
 
-        \node (System) [darkclass, below=of AuxNode01] { \textbf{System} };
-        \node (RuntimeInstance) [darkclass, below=of System, yshift=-1cm, label=67.5:*] { \textbf{RuntimeInstance} };
+        \node (Instance) [class, rectangle split, rectangle split parts=2, below=of AuxNode01] { 
+          \textbf{Instance} 
+          \nodepart{second}templateName: String
+        };
+        \node (RuntimeInstance) [darkclass, below=of Instance, yshift=-1cm, label=67.5:*] { \textbf{RuntimeInstance} };
         \node (RuntimeProp) [darkclass, left=of RuntimeInstance, label=5:*] { \textbf{RuntimeProp} };
         \node (PublicIP) [darkclass, rectangle split, rectangle split parts=2, below=of RuntimeProp, xshift=-2cm] {
                 \textbf{PublicIP}
@@ -41,7 +44,7 @@
                 \nodepart{second}+Value: Address
           };
 
-        \node (Template) [class, rectangle split, rectangle split parts=2, right=of System, label=-5:*] {
+        \node (Template) [class, rectangle split, rectangle split parts=2, right=of Instance, label=-5:*] {
                 \textbf{Template}
                 \nodepart{second}+name: String
           };
@@ -93,10 +96,10 @@
         \draw[aggregate] (Template) -- (Node.north);
         \draw[aggregate] (Node) --  (Property.north);
 
-        \draw[line] (Node.west) -- ++(0, 1) -| (System.east);
-        \draw[line] (Template.west) -| (System.east);
+        \draw[line] (Node.west) -- ++(0, 1) -| (Instance.east);
+        \draw[line] (Instance.east) -| ++(0.5, -2) -- ++(0, -2) -| (Property.west);
 
-        \draw[aggregate] (System) -- (RuntimeInstance.north);
+        \draw[aggregate] (Instance) -- (RuntimeInstance.north);
 
         \draw[aggregate] (RuntimeInstance) -| (RuntimeProp.east);
 

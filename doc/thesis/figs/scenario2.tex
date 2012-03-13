@@ -1,0 +1,50 @@
+\begin{figure}
+  \begin{center}
+    \subfigure[Template with nodes] {
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Template) [class, rectangle split, rectangle split parts=2] {
+          \textbf{:Instance}
+          \nodepart{second}name=``template1''
+        };
+        \node (Node02) [class, rectangle split, rectangle split parts=2, right=of Template] {
+          \textbf{:Node}
+          \nodepart{second}name=``node2'' \\ cores=2
+        };
+        \node (Node01) [class, rectangle split, rectangle split parts=2, above=of Node02] {
+          \textbf{:Node}
+          \nodepart{second}name=``node1'' \\ cores=2
+        };
+        \node (Node03) [class, rectangle split, rectangle split parts=2, below=of Node02] {
+          \textbf{test1:Node}
+          \nodepart{second}name=``node3'' \\ disk=2000
+        };
+
+        \draw[line] (Template) -- (Node01);
+        \draw[line] (Template) -- (Node02);
+        \draw[line] (Template) -- (Node03);
+      \end{tikzpicture}
+      \label{fig:scenario1-1}
+    }
+
+    \subfigure[Instance] {
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Instance01) [class, text width=4.5cm, rectangle split, rectangle split parts=2] {
+          \textbf{:Instance}
+          \nodepart{second}name=``node1'' \\ cores=2 \\ templateName=``template1''
+        };
+        \node (Instance02) [class, text width=4.5cm, rectangle split, rectangle split parts=2, right=of Instance01] {
+          \textbf{:Instance}
+          \nodepart{second}name=``node2'' \\ cores=2 \\ templateName=``template1''
+        };
+        \node (Instance03) [class, text width=4.5cm, rectangle split, rectangle split parts=2, right=of Instance02] {
+          \textbf{:Instance}
+          \nodepart{second}name=``node4'' \\ disk=2000 \\ templateName=``template1''
+        };
+      \end{tikzpicture}
+      \label{fig:scenario1-1}
+    }
+  \end{center}
+  \caption{Scenario1}
+  \label{fig:scenario1}
+\end{figure}
+

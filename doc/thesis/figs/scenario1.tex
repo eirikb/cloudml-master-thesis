@@ -1,0 +1,32 @@
+\begin{figure}
+  \begin{center}
+    \subfigure[Template with nodes] {
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Template) [class, rectangle split, rectangle split parts=2] {
+          \textbf{:Template}
+          \nodepart{second}name=``template1''
+        };
+        \node (Node) [class, rectangle split, rectangle split parts=2, right=of Template] {
+          \textbf{:Node}
+          \nodepart{second}name=``node1'' \\ cores=2 \\ disk=2000
+        };
+
+        \draw[line] (Template) -- (Node);
+      \end{tikzpicture}
+      \label{fig:scenario1-1}
+    }
+    
+    \subfigure[Instance] {
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Instance) [class, rectangle split, rectangle split parts=2] {
+          \textbf{:Instance}
+          \nodepart{second}name=``node1'' \\ cores=2 \\ disk=2000 \\ templateName=``template1''
+        };
+      \end{tikzpicture}
+      \label{fig:scenario1-1}
+    }
+  \end{center}
+  \caption{Object diagram of scenario with one node}
+  \label{fig:scenario1}
+\end{figure}
+
