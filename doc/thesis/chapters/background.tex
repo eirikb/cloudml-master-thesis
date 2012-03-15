@@ -1,9 +1,9 @@
-\mychapter{background}{Cloud computing and Model-Driven Artchitecture}
+\mychapter{background}{Background: Cloud computing and Model-Driven Engineering}
 \input{tables/tabproviders}
 \input{figs/cloud-models}
 
-In this chapter the essential topics for this thesis is introduced,
-cloud computing and Model-Driven architecture.
+In this chapter the essential background topics for this thesis is introduced,
+that is cloud computing and Model-Driven architecture.
 
 \section{Cloud computing}
 
@@ -16,6 +16,15 @@ Some of the most essential characteristics of cloud computing~\cite{nist:mell11}
     Consumers can do provisioning without any human interaction.
     On-demand means dynamic scalability and elasticity of resource allocation,
     self-service means that users does not need to manually do these allocations themselves.
+    Consider an online election system, for most of the year it will most likely have very
+    low usage demands, but before and under election days it will have to serve
+    a much larger amount of requests. With on-demand self-service the online election system
+    could automatically be given more resources such as memory, computation power or even
+    increase the number for instances to handle peak loads.
+    The previous example has planned (or known) peak intervals, so even though automatic handling
+    is appealing it could be solved by good planning. 
+    But sometimes predicting load peaks can be difficult, such as when a product suddenly
+    gets more popular.
   \item \emph{Broad network access}: Capabilities available over standard network mechanisms.
     Supporting familiar protocols such as HTTP/HTTPS and SSH.
   \item \emph{Resource pooling}: Physical and virtual resources are dynamically assigned
