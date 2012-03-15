@@ -1,6 +1,6 @@
 \mychapter{background}{Background: Cloud computing and Model-Driven Engineering}
 \input{tables/tabproviders}
-\input{figs/cloud-models}
+\input{figs/cloudlayers}
 
 In this chapter the essential background topics for this thesis is introduced,
 that is cloud computing and Model-Driven architecture.
@@ -9,8 +9,12 @@ that is cloud computing and Model-Driven architecture.
 
 Cloud computing is gaining popularity and more companies are starting 
 to explore the possibilities as well as the limitation to the cloud.
+The definitins under are mainly based on definitions by 
+the \emph{National Institute of Standards and Technology}~(NIST) which is one of 
+the leaders in cloud computing standardization.
 
 \subsection{Characteristics}
+
 Many characteristics of cloud computing is based on the ability to scale, both upwards and inwards.
 Some of the most essential characteristics of cloud computing~\cite{nist:mell11} are:
 \begin{itemize}
@@ -57,20 +61,24 @@ Some of the most essential characteristics of cloud computing~\cite{nist:mell11}
     charge by resource load and not only amount of resources allocated.
 \end{itemize}
 
+\subsection{Service models}
+
+\emph{Service models} are definitions of different layers in cloud computing.
+The layers represent the amount of abstraction developers get from each \emph{service model}.
 There are three main architectural service models in cloud computing\cite{nist:mell11}
 namely \emph{Infrastructure-as-a-Service}~(IaaS), \emph{Platform-as-a-Service}~(PaaS)
 and \emph{Software-as-a-Service}~(SaaS).
-IaaS is on the lowest vertical integration level closest to physical hardware and SaaS on the highest
+As seen in \citefig{cloudlayers} there are three vertical integraion levels.
+IaaS is on the lowest closest to physical hardware and SaaS on the highest
 level as runnable applications.
-Stanoevska-Slabeva~\cite{introduction:wozniak10} emphasizes that
-\emph{''infrastructure had been available as a service for quite some time``} and this 
-\emph{''has been referred to as utility computing``}, such as Sun Grid Compute Utility.
 
 \paragraph{IaaS.}
-The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
-A non-exhaustive list of common providers are visualized in \citetable{providerservices}.
-The \emph{National Institute of Standards and Technology}~(NIST) is one of 
-the leaders in cloud computing standardization.
+
+This layer is similar to more standard solutions such as \emph{Virtual Private Servers}~(VPS),
+and is therefore the \emph{service model} closest to standard hosting solutions.
+Stanoevska-Slabeva~\cite{introduction:wozniak10} emphasizes that
+\emph{''infrastructure had been available as a service for quite some time``} and this 
+\emph{''has been referred to as utility computing, such as Sun Grid Compute Utility``}.
 The NIST Definition of Cloud Computing~\cite{nist:mell11} define IaaS as
 \epigraph{The capability provided to the consumer is to provision 
   processing, storage, networks, and other fundamental computing resources where the 
@@ -84,7 +92,11 @@ NIST continue to state that
   infrastructure but has control over operating systems, storage, deployed applications, and 
   possibly limited control of select networking components (\eg, host firewalls).
 }{\todo{NIST, 2011}}
+The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
+A non-exhaustive list of common providers are visualized in \citetable{providerservices}.
+
 \paragraph{PaaS.}
+
 The PaaS model is defined as an capability consumers use to deploy applications onto cloud infrastructure
 that provide fully partially support.
 For this kind of deployment
@@ -94,7 +106,9 @@ Examples of PaaS providers are Google with \emph{Google App Engine}~(GAE) and
 the company Heroku with their service with the same name.
 Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
 providers are Heroku Nodester and Nodejitsu, this is a tendency with increasing popularity.
+
 \paragraph{SaaS.}
+
 The core purpose is to provide whole web applications as services, in many cases end products.
 Google products such as gmail, Google Apps and  Google Calendar are examples of 
 SaaS applications.

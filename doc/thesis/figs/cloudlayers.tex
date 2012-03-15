@@ -1,13 +1,11 @@
 \begin{figure}
   \begin{center}
-    \begin{tikzpicture}[scale=0.7, transform shape]
-      \node (CloudServices) [class] { \textbf{Cloud Services} };
-      \node (Instances) [class, below=of CloudServices] { \textbf{Instances} };
-
-      \draw (CloudServices) -- (Instances);
+    \begin{tikzpicture}[scale=1.2, transform shape]
+      \node[box] (IaaS) {IaaS};
+      \node[box, above=of IaaS, yshift=-0.9cm] (PaaS) {PaaS};
+      \node[box, above=of PaaS, yshift=-0.9cm] (SaaS) {SaaS};
     \end{tikzpicture}
   \end{center}
-  \caption{Cloud layers}
+  \caption{Cloud architecture service models}
   \label{fig:cloudlayers}
 \end{figure}
-
