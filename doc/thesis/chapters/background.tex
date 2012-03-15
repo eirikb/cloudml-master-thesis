@@ -10,6 +10,8 @@ that is cloud computing and Model-Driven architecture.
 Cloud computing is gaining popularity and more companies are starting 
 to explore the possibilities as well as the limitation to the cloud.
 
+\subsection{Characteristics}
+Many characteristics of cloud computing is based on the ability to scale, both upwards and inwards.
 Some of the most essential characteristics of cloud computing~\cite{nist:mell11} are:
 \begin{itemize}
   \item \emph{On-demand self-service}: 
@@ -27,14 +29,29 @@ Some of the most essential characteristics of cloud computing~\cite{nist:mell11}
     gets more popular.
   \item \emph{Broad network access}: Capabilities available over standard network mechanisms.
     Supporting familiar protocols such as HTTP/HTTPS and SSH.
-  \item \emph{Resource pooling}: Physical and virtual resources are dynamically assigned
-    and reassigned according to consumer demand.
+    This means that users can utilize tools and software they are most likely already possesses
+    or will have little difficulty gaining, such as web browsers.
+    Most cloud providers also provide web based consoles/interfaces that users can use
+    to create, delete and manage their resources.
+  \item \emph{Resource pooling}: Physical and virtual resources are pooled so they can be 
+    dynamically assigned and reassigned according to consumer demand.
     This means users do not need to be troubled with scalability as this is handled automatically.
+    This is a provider side characteristic which directly influence \emph{on-demand self-service}.
+    There is also a sense of location independence, which means users do not have specific geographical
+    information about where resources are hosted from, only on higher levels of abstraction (country, state).
   \item \emph{Rapid elasticity}: Automatic capability scaling.
     Already allocated resources can expand to meet new demands.
+    Towards the characteristic of \emph{on-demand self-service} this means that allocation
+    can happen instantly, which means on unexpected peak loads the pressure will be
+    instantly handled by scaling upwards.
+    It is important to underline that such features can be cost heavy if not limited,
+    because costs reflect resource allocation.
   \item \emph{Measured service}: Monitoring and control of resource usages.
-    Can be used for statistics for users but also for cloud services to do
-    on-demand self-service, resource pooling and rapid elasticity.
+    Can be used for statistics for users, for instance to do analytical research on product popularity
+    or determine user groups based on geographical data or browser usage.
+    
+    but also for cloud services to do
+    \emph{on-demand self-service}, resource pooling and rapid elasticity.
 \end{itemize}
 
 There are three main architectural service models in cloud computing\cite{nist:mell11}
