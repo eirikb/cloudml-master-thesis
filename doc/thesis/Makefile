@@ -24,7 +24,7 @@ LATEX_WORK_FILES = $(TARGET).aux $(TARGET).bbl $(TARGET).blg \
 
 .PHONY : all clean realclean $(SVG_FIGS) pdf fig
 
-all: pdf
+all: realclean pdf
 
 pdf: $(TARGET).pdf
 
