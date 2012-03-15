@@ -49,9 +49,12 @@ Some of the most essential characteristics of cloud computing~\cite{nist:mell11}
   \item \emph{Measured service}: Monitoring and control of resource usages.
     Can be used for statistics for users, for instance to do analytical research on product popularity
     or determine user groups based on geographical data or browser usage.
-    
-    but also for cloud services to do
-    \emph{on-demand self-service}, resource pooling and rapid elasticity.
+    The providers themselves use this information to handle \emph{on-demand services},
+    if they notice that an instance has a peak in load or has a noticeable increase 
+    in requests they can automatically allocate more resources or capabilities 
+    to leave pressure.
+    \emph{Measuring} can also help providers with billing, if they for instance
+    charge by resource load and not only amount of resources allocated.
 \end{itemize}
 
 There are three main architectural service models in cloud computing\cite{nist:mell11}
