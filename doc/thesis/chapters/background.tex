@@ -116,11 +116,25 @@ Examples of providers of IaaS are AWS \emph{Elastic Compute Cloud}~(EC2) and Rac
 
 \paragraph{PaaS.}
 
-The PaaS model is defined as an capability consumers use to deploy applications onto cloud infrastructure
-that provide fully partially support.
-For this kind of deployment
-consumers do not have to manage or control underlying infrastructure capabilities,
-and in some cases not even configuration.
+Cloud computing is built to guide and assist developers through abstractions, and the next
+layer in the \emph{service model} is designed to aid developers by detaching them
+from configuration of operating system and frameworks.
+NIST state that developers will can \emph{``applications created using programming languages, 
+libraries, services, and tools supported by the provider''}~\cite{nist:mell11}.
+This means that developers are limited to these capabilities the provider support,
+such as programming languages (Java, C\#), environments (JVM, .NET, Node.js), 
+storage systems (flat files, NoSQL databases, RDBMS).
+For example the first versions of \emph{Google App Engine}~(GAE) did only support
+an internal key-value based database called BigTable, this is still their main database.
+This database is transparently interfaced using their API, but also support technologies such as JPA and JDO,
+this means users are bound to Java and these frameworks, and even limitations to the frameworks
+as they have specific handlers for RDBMS.
+
+PaaS providers support deployments through online APIs, in many cases by providing 
+specific tools such as command line interfaces or plugins to IDEs like Eclipse.
+It is common for the API to have client built on technologies related to the technology supported by the PaaS,
+for instance Heroku has a Ruby-based client and Nodejitsu has an executable Node.js-module as client.
+
 Examples of PaaS providers are Google with \emph{Google App Engine}~(GAE) and
 the company Heroku with their service with the same name.
 Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
@@ -128,9 +142,20 @@ providers are Heroku Nodester and Nodejitsu, this is a tendency with increasing 
 
 \paragraph{SaaS.}
 
-The core purpose is to provide whole web applications as services, in many cases end products.
+The highest layer of the \emph{service models} farthest away from physical hardware
+and with highest level of abstraction.
+NIST describe SaaS as
+\epigraph{The capability provided to the consumer is to use the provider's 
+  applications running on a cloud infrastructure.
+}{\todo{NIST, 2011}}
+
+The core purpose is to provide whole applications as services, in many cases end products.
 Google products such as gmail, Google Apps and  Google Calendar are examples of 
 SaaS applications.
+It is not imposed that SaaS deployments are web applications, they can also consist of
+RESTful APIs or SOAP services, but it most common to utilize the HTTP protocol.
+
+\subsection{Deployment models}
 
 There are four different deployment models according to The 
 NIST Definition of Cloud Computing~\cite{nist:mell11}:
