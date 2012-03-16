@@ -20,49 +20,60 @@ A non-exhaustive list of common providers are visualized in \citetable{providers
 
 Many characteristics of cloud computing is based on the ability to scale, both upwards and inwards.
 Some of the most essential characteristics of cloud computing~\cite{nist:mell11} are:
-\begin{itemize}
-  \item \emph{On-demand self-service}: 
-    Consumers can do provisioning without any human interaction.
-    On-demand means dynamic scalability and elasticity of resource allocation,
-    self-service means that users does not need to manually do these allocations themselves.
-    Consider an online election system, for most of the year it will most likely have very
-    low usage demands, but before and under election days it will have to serve
-    a much larger amount of requests. With on-demand self-service the online election system
-    could automatically be given more resources such as memory, computation power or even
-    increase the number for instances to handle peak loads.
-    The previous example has planned (or known) peak intervals, so even though automatic handling
-    is appealing it could be solved by good planning. 
-    But sometimes predicting load peaks can be difficult, such as when a product suddenly
-    gets more popular.
-  \item \emph{Broad network access}: Capabilities available over standard network mechanisms.
-    Supporting familiar protocols such as HTTP/HTTPS and SSH.
-    This means that users can utilize tools and software they are most likely already possesses
-    or will have little difficulty gaining, such as web browsers.
-    Most cloud providers also provide web based consoles/interfaces that users can use
-    to create, delete and manage their resources.
-  \item \emph{Resource pooling}: Physical and virtual resources are pooled so they can be 
-    dynamically assigned and reassigned according to consumer demand.
-    This means users do not need to be troubled with scalability as this is handled automatically.
-    This is a provider side characteristic which directly influence \emph{on-demand self-service}.
-    There is also a sense of location independence, which means users do not have specific geographical
-    information about where resources are hosted from, only on higher levels of abstraction (country, state).
-  \item \emph{Rapid elasticity}: Automatic capability scaling.
-    Already allocated resources can expand to meet new demands.
-    Towards the characteristic of \emph{on-demand self-service} this means that allocation
-    can happen instantly, which means on unexpected peak loads the pressure will be
-    instantly handled by scaling upwards.
-    It is important to underline that such features can be cost heavy if not limited,
-    because costs reflect resource allocation.
-  \item \emph{Measured service}: Monitoring and control of resource usages.
-    Can be used for statistics for users, for instance to do analytical research on product popularity
-    or determine user groups based on geographical data or browser usage.
-    The providers themselves use this information to handle \emph{on-demand services},
-    if they notice that an instance has a peak in load or has a noticeable increase 
-    in requests they can automatically allocate more resources or capabilities 
-    to leave pressure.
-    \emph{Measuring} can also help providers with billing, if they for instance
-    charge by resource load and not only amount of resources allocated.
-\end{itemize}
+
+\paragraph{On-demand self-service.} 
+
+Consumers can do provisioning without any human interaction.
+On-demand means dynamic scalability and elasticity of resource allocation,
+self-service means that users does not need to manually do these allocations themselves.
+Consider an online election system, for most of the year it will most likely have very
+low usage demands, but before and under election days it will have to serve
+a much larger amount of requests. With on-demand self-service the online election system
+could automatically be given more resources such as memory, computation power or even
+increase the number for instances to handle peak loads.
+The previous example has planned (or known) peak intervals, so even though automatic handling
+is appealing it could be solved by good planning. 
+But sometimes predicting load peaks can be difficult, such as when a product suddenly
+gets more popular.
+
+\paragraph{Broad network access.}
+
+Capabilities available over standard network mechanisms.
+Supporting familiar protocols such as HTTP/HTTPS and SSH.
+This means that users can utilize tools and software they are most likely already possesses
+or will have little difficulty gaining, such as web browsers.
+Most cloud providers also provide web based consoles/interfaces that users can use
+to create, delete and manage their resources.
+
+\paragraph{Resource pooling.}
+
+Physical and virtual resources are pooled so they can be 
+dynamically assigned and reassigned according to consumer demand.
+This means users do not need to be troubled with scalability as this is handled automatically.
+This is a provider side characteristic which directly influence \emph{on-demand self-service}.
+There is also a sense of location independence, which means users do not have specific geographical
+information about where resources are hosted from, only on higher levels of abstraction (country, state).
+
+\paragraph{Rapid elasticity.}
+
+Automatic capability scaling.
+Already allocated resources can expand to meet new demands.
+Towards the characteristic of \emph{on-demand self-service} this means that allocation
+can happen instantly, which means on unexpected peak loads the pressure will be
+instantly handled by scaling upwards.
+It is important to underline that such features can be cost heavy if not limited,
+because costs reflect resource allocation.
+\paragraph{Measured service.}
+
+Monitoring and control of resource usages.
+Can be used for statistics for users, for instance to do analytical research on product popularity
+or determine user groups based on geographical data or browser usage.
+The providers themselves use this information to handle \emph{on-demand services},
+if they notice that an instance has a peak in load or has a noticeable increase 
+in requests they can automatically allocate more resources or capabilities 
+to leave pressure.
+\emph{Measuring} can also help providers with billing, if they for instance
+charge by resource load and not only amount of resources allocated.
 
 \subsection{Service models}
 
@@ -79,7 +90,7 @@ and \emph{Software-as-a-Service}~(SaaS).
 IaaS is on the lowest closest to physical hardware and SaaS on the highest
 level as runnable applications.
 
-\paragraph{IaaS.}
+  \paragraph{IaaS.}
 
 This layer is similar to more standard solutions such as \emph{Virtual Private Servers}~(VPS),
 and is therefore the \emph{service model} closest to standard hosting solutions.
@@ -137,6 +148,8 @@ for instance Heroku has a Ruby-based client and Nodejitsu has an executable Node
 
 Examples of PaaS providers are Google with \emph{Google App Engine}~(GAE) and
 the company Heroku with their service with the same name.
+Amazon also entered the PaaS market with their service named Elastic Beanstalk,
+which is an abstraction over EC2 as IaaS underneath.
 Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
 providers are Heroku Nodester and Nodejitsu, this is a tendency with increasing popularity.
 
@@ -167,27 +180,43 @@ these users as well, such as \emph{Single Sign-on}.
 
 \subsection{Deployment models}
 
-There are four different deployment models according to The 
+\emph{Deployment models} define where and how applications are deployed in a cloud environment,
+such as publicly with a global provider or private in local data centers.
+
+There are four different \emph{deployment models} according to The 
 NIST Definition of Cloud Computing~\cite{nist:mell11}:
-\begin{itemize}
-  \item \emph{Public cloud}: Infrastructure is open to the public.
-    Cloud providers own the hardware and rent out IaaS and PaaS solutions to users.
-    Examples of such providers are Amazon with AWS and Google with GAE.
-  \item \emph{Private cloud}: Similar to classical infrastructures where hardware and
-    operation is owned and controlled by organizations themselves.
-    This deployment model has arisen because of security issues regarding storage 
-    of data in public clouds. With \emph{private cloud} organization can provide 
-    data security in forms such as geographical location and existing domain specific firewalls,
-    and help complying requirements set by the government or other offices.
-  \item \emph{Community cloud}: Similar as \emph{private clouds} but run as a
-    coalition between several organizations.
-    When several organizations share the same aspects of
-    a private cloud (such as security requirements, policies, and compliance considerations),
-    and therefore share infrastructure. 
-  \item \emph{Hybrid cloud}: Combining private cloud or community cloud with public cloud.
-    One benefit is to distinguish data from logic for purposes such as security issues,
-    by storing sensitive information in a private cloud while computing with public cloud.
-\end{itemize}
+
+\paragraph{Public cloud.}
+
+In this \emph{deployment model} infrastructure is open to the public,
+so companies can rent services from cloud providers.
+The benefit of this model is that companies can save costs as 
+they do not need to purchase physical hardware or manpower to build and maintain such hardware.
+
+Cloud providers own the hardware and rent out IaaS and PaaS solutions to users.
+Examples of such providers are Amazon with AWS and Google with GAE.
+
+\paragraph{Private cloud.}
+
+Similar to classical infrastructures where hardware and
+operation is owned and controlled by organizations themselves.
+This deployment model has arisen because of security issues regarding storage 
+of data in public clouds. With \emph{private cloud} organization can provide 
+data security in forms such as geographical location and existing domain specific firewalls,
+and help complying requirements set by the government or other offices.
+\paragraph{Community cloud.}
+
+Similar as \emph{private clouds} but run as a
+coalition between several organizations.
+When several organizations share the same aspects of
+a private cloud (such as security requirements, policies, and compliance considerations),
+and therefore share infrastructure. 
+
+\paragraph{Hybrid cloud.}
+
+Combining private cloud or community cloud with public cloud.
+One benefit is to distinguish data from logic for purposes such as security issues,
+by storing sensitive information in a private cloud while computing with public cloud.
 
 Beside these models defined by NIST there is another arising model known as 
 \emph{virtual private cloud}, which is similar to \emph{public cloud} 
