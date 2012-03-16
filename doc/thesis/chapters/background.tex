@@ -12,6 +12,9 @@ to explore the possibilities as well as the limitation to the cloud.
 The definitins under are mainly based on definitions by 
 the \emph{National Institute of Standards and Technology}~(NIST) which is one of 
 the leaders in cloud computing standardization.
+The main providers of cloud computing at writing moment 
+are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft \todo{source?}.
+A non-exhaustive list of common providers are visualized in \citetable{providerservices}.
 
 \subsection{Characteristics}
 
@@ -65,10 +68,14 @@ Some of the most essential characteristics of cloud computing~\cite{nist:mell11}
 
 \emph{Service models} are definitions of different layers in cloud computing.
 The layers represent the amount of abstraction developers get from each \emph{service model}.
+Higher layers have more abstraction, but can be more limited, while lower levels 
+have less abstraction and are more customizable.
+Limitations could be in many different forms, such as bound to a specific operating system,
+programming language or framework.
 There are three main architectural service models in cloud computing\cite{nist:mell11}
+as seen as vertical integration levels in \citefig{cloudlayers},
 namely \emph{Infrastructure-as-a-Service}~(IaaS), \emph{Platform-as-a-Service}~(PaaS)
 and \emph{Software-as-a-Service}~(SaaS).
-As seen in \citefig{cloudlayers} there are three vertical integraion levels.
 IaaS is on the lowest closest to physical hardware and SaaS on the highest
 level as runnable applications.
 
@@ -79,21 +86,33 @@ and is therefore the \emph{service model} closest to standard hosting solutions.
 Stanoevska-Slabeva~\cite{introduction:wozniak10} emphasizes that
 \emph{''infrastructure had been available as a service for quite some time``} and this 
 \emph{''has been referred to as utility computing, such as Sun Grid Compute Utility``}.
+Which means IaaS can also be compared to grid computing, 
+a well known term in the academic world.
 The NIST Definition of Cloud Computing~\cite{nist:mell11} define IaaS as
 \epigraph{The capability provided to the consumer is to provision 
   processing, storage, networks, and other fundamental computing resources where the 
   consumer is able to deploy and run arbitrary software, which can include operating 
   systems and applications.
 }{\todo{NIST, 2011}}
-These are capabilities found in cloud provider services, 
-such as AWS \emph{Elastic Compute Cloud}~(EC2) and Rackspace CloudServers.
+This underline the liberty this \emph{service model} provide users, but this also means
+that developers need to handle software and tools them selves, from operating system and
+up to their application. In some cases this is wanted, for instance when deploying 
+native libraries and tools that applications rely on such as tools to convert and edit
+images or video files. But in other cases this is not necessary and choosing this \emph{service model}
+can be manpower in-effective for companies as developers must focus on meta tasks.
 NIST continue to state that 
 \epigraph{The consumer does not manage or control the underlying cloud 
   infrastructure but has control over operating systems, storage, deployed applications, and 
   possibly limited control of select networking components (\eg, host firewalls).
 }{\todo{NIST, 2011}}
-The main providers are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
-A non-exhaustive list of common providers are visualized in \citetable{providerservices}.
+This means users have control over which operating system they want, in some cases users
+can only pick from a set of pre-configured operating systems.
+It is common for providers to include both Linux and Windows in their selections.
+Some providers such as Amazon let users upload their own disk images.
+A similarity to VPS is that operating systems are not manually installed,
+when selecting an operating system this is copied directly into the instance pre-installed
+and will therefore be instantly ready for usage.
+Examples of providers of IaaS are AWS \emph{Elastic Compute Cloud}~(EC2) and Rackspace CloudServers.
 
 \paragraph{PaaS.}
 
