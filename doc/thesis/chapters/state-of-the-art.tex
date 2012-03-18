@@ -50,10 +50,9 @@ challenges it is appropriate to utilize them.
 Cloudml-engine leverages on jclouds in its implementation to support multicloud provisioning,
 and future versions can utilize it for full deployments.
 
-\section{Model driven}
+\section{Model-Driven Approaches}
 
-\paragraph{Amazon AWS CloudFormation}
-\url{http://aws.amazon.com}
+\paragraph{Amazon AWS CloudFormation}~\cite{aws}
 
 This is a service provided by Amazon from their popular Amazon Web Services. 
 It give users the ability to create template files in form of JSON, which they can load into AWS to create stacks of resources. 
@@ -66,8 +65,7 @@ The format that Amazon uses for the templates is a very good format, the syntax 
 but the structure and semantics of the template itself is not used by any other providers or cloud management tooling, 
 so it can not be considered a multicloud solution. Even though JSON is a readable format, does not make it viable as a presentation medium on a business level.
 
-\paragraph{CA Applogic}
-\url{http://www.3tera.com/AppLogic/}
+\paragraph{CA Applogic}~\cite{applogic}
 
 Applogic from CA is a proprietary model based web application for management of private clouds. 
 This interface let users configure their deployments through a diagram with familiarities to component diagrams with interfaces and assembly connectors. 
@@ -80,9 +78,7 @@ But this solution is only made for private clouds running their own controller, 
 
 \section{APIs}
 
-\paragraph{libcloud and jclouds}
-\url{http://libcloud.apache.org/}
-\url{http://www.jclouds.org/}
+\paragraph{libcloud and jclouds}~\cite{libcloud, jclouds}
 
 Libcloud is a API that aims to support the largest cloud providers through a common API. 
 The classes are based around "Drivers" that extends from a common ontology, then provider-specific attributes and logic is added to the implementation.
@@ -95,8 +91,7 @@ And links between resources can be hard to see, as the API lacks correlation bet
 Libcloud have solved the multicloud problem in a very detailed manner, but the complexity is therefore even larger. 
 The API is also Python-only and could therefor be considered to have high tool-chain dependency.
 
-\paragraph{OPA}
-\url{http://opalang.org/}
+\paragraph{OPA}~\cite{opa}
 
 OPA is a cloud language aimed at easing development of modern web applications. It is a new language, 
 with its own syntax, which is aimed directly at the web. The language will build into executable files that will handle load balancing and scalability, 
@@ -117,14 +112,12 @@ and so it can also benefit from some cloud based load balancers, even though thi
 The conclusion about OPA is that it is not a language meant for configuration, and could not easily benefit from a model based approach, 
 and it does not intentionally solve multicloud.
 
-\paragraph{Whirr}
-\url{http://whirr.apache.org/}
+\paragraph{Whirr}~\cite{whirr}
 
 This is a binary and code-based application for creating and starting short-lived clusters for hadoop instances.
 It support multiple cloud providers. It has a layout for configuration but it is mainly property-based, and aimed at making clusters. 
 
-\paragraph{Deltacloud}
-\url{http://incubator.apache.org/deltacloud/}
+\paragraph{Deltacloud}~\cite{deltacloud}
 
 Deltacloud has a similar procedure as jclouds and libcloud, but with a REST API. 
 So they also work on the term "driver", but instead of having a library to a programming language the users are presented with an API they can call, 
