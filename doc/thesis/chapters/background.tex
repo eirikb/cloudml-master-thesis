@@ -3,13 +3,13 @@
 \input{figs/cloudlayers}
 
 In this chapter the essential background topics for this thesis is introduced,
-that is cloud computing and Model-Driven architecture.
+that is cloud computing and Model-Driven engineering.
 
 \section{Cloud computing}
 
 Cloud computing is gaining popularity and more companies are starting 
 to explore the possibilities as well as the limitation to the cloud.
-The definitins under are mainly based on definitions by 
+The definitions under are mainly based on definitions by 
 the \emph{National Institute of Standards and Technology}~(NIST) which is one of 
 the leaders in cloud computing standardization.
 The main providers of cloud computing at writing moment 
@@ -190,11 +190,12 @@ NIST Definition of Cloud Computing~\cite{nist:mell11}:
 
 In this \emph{deployment model} infrastructure is open to the public,
 so companies can rent services from cloud providers.
-The benefit of this model is that companies can save costs as 
-they do not need to purchase physical hardware or manpower to build and maintain such hardware.
-
 Cloud providers own the hardware and rent out IaaS and PaaS solutions to users.
 Examples of such providers are Amazon with AWS and Google with GAE.
+The benefit of this model is that companies can save costs as 
+they do not need to purchase physical hardware or manpower to build and maintain such hardware.
+It also means that a company can scale their infrastructure without having to
+physically expand their data center.
 
 \paragraph{Private cloud.}
 
@@ -204,10 +205,10 @@ This deployment model has arisen because of security issues regarding storage
 of data in public clouds. With \emph{private cloud} organization can provide 
 data security in forms such as geographical location and existing domain specific firewalls,
 and help complying requirements set by the government or other offices.
+
 \paragraph{Community cloud.}
 
-Similar as \emph{private clouds} but run as a
-coalition between several organizations.
+Similar as \emph{private clouds} but run as a coalition between several organizations.
 When several organizations share the same aspects of
 a private cloud (such as security requirements, policies, and compliance considerations),
 and therefore share infrastructure. 
@@ -222,20 +223,20 @@ Beside these models defined by NIST there is another arising model known as
 \emph{virtual private cloud}, which is similar to \emph{public cloud} 
 but with some security implications such as sandboxed network.
 
-\section{Model-Driven Architecture approach}
+\section{Model-Driven Engineering}
 
 By combining the world of cloud computing with the one of modeling 
 it is possible to achieve benefits such as improved communication when designing 
 a system and better understanding of the system itself.
-This statement is emphasized by Booch \etal in one of his studies:
+This statement is emphasized by Booch \etal his study about UML:
 \epigraph{
-  ``Modeling is a central
+  Modeling is a central
   part of all the activities that lead up to the deployment of good
   software. We build models to communicate the desired structure and
   behavior of our system. We build models to visualize and control the
   system's architecture. We build models to better understand the
   system we are building, often exposing opportunities for
-  simplification and reuse. We build models to manage risk.''
+  simplification and reuse. We build models to manage risk.
 }{\todo{Booch, 2005}}
 When it comes to cloud computing these definitions are even more important
 because of financial aspects since provisioned nodes instantly draw credit.
@@ -243,9 +244,11 @@ The definition of ``modeling'' can be assessed from the previous epigraph, but i
 also important to choose correct models for the task.
 Stanoevska-Slabeva emphasizes in one of her studies that grid computing
 ``\emph{is the starting point and basis for Cloud Computing.}''~\cite{introduction:wozniak10}.
-As grid computing bear similarities towards cloud computing in terms of vitalization and utility computing
+As grid computing bear similarities towards cloud computing in terms of virtualization 
+and utility computing
 it is possible to use the same UML diagrams for IaaS as previously used in grid computing.
-The importance of this re-usability of models is based on the origination of grid computing, \emph{eScience},
+The importance of this re-usability of models is based on the origin of grid computing, 
+\emph{eScience},
 and the popularity of modeling in this research area.
 The importance of choosing correct models is emphasized by Booch~\cite{unified:booch05}:
 \epigraph{
@@ -264,16 +267,49 @@ Nor are there any restraints to only use UML diagrams or even models at all.
 As an example AWS CloudFormation implements a lexical model of their \emph{cloud services},
 while CA AppLogic has a visual and more UML component-based diagram of their capabilities.
 
-\paragraph{Model-Driven Architexture.}
+\paragraph{Model-Driven Architecture.}
 When working with \emph{Model-Driven Architecture}~(MDA) it is common to first create a
 \emph{Computation Independent Model}~(CIM), then a \emph{Platform-Independent Model}~(PIM) and
 lastly a \emph{Platform-Specific Model}~(PSM). There are other models and steps in between these,
 but they render the essentials.
 There are five different life cycles as explained by Singh~\cite{model-driven:singh09}:
 \begin{enumerate}
-  \item Create a CIM capturing requirements.
-  \item Develop a PIM.
-  \item Convert the PIM into PSM.
-  \item Generate code form PSM.
-  \item Deploy.
+  \item \emph{Create a CIM}.
+    This is done to capture requirements and describe the domain.
+    To do this the MDA developer must familiarize with the business organization
+    and the requirements of this domain. This should be done without any specific technology.
+    The physical appearance of CIM models can be compared to Use Case diagrams in UML,
+    where developers can model actors and actions (use cases) based on a specific domain.
+  \item \emph{Develop a PIM.}
+    The next life cycle aims at using descriptions and requirements from the CIM
+    using specific technologies, such as OMG standard for MDA use UML models,
+    while other tools or practices might select different technologies.
+    Example of such \emph{Platform Independent Models} can be class diagrams in UML
+    used to describe a domain on a technical level.
+  \item \emph{Convert the PIM into PSM.}
+    The next step is to convert the models into something more concrete
+    and specific to a platform. Several PSM and be used to represent one PIM.
+    Examples of such models can be to add language specific details to PIM class
+    diagram such as types (String, Integer) for variables, access levels (private, public),
+    method return types and argument types.
+    Kent, Stuart emphasizes the importance of this mapping in one of his studies:
+    \epigraph{
+      A PSM is not a PIM, but is also not an implementation. \\
+      \ldots \\
+      In MDA, the main mapping is between PIM
+      and PSM, and this is often associated with code generation. 
+      However, this is not the only kind of mapping required.
+    }{\todo{kent}}
+    From this we see that a PSM is more specific to a platform then PIM, such as 
+    programming language or environment.
+  \item \emph{Generate code form PSM.}
+    A PSM should be specific enough that code can be generated from the models.
+    For instance can class diagrams be generated into entities, and additional
+    code for managing the entities can be added as well.
+    Some diagrams such as BPMN can generate BPEL which again can generate executable logic.
+  \item \emph{Deploy.}
+    The final life cycle is based on deploying the PSM, which concludes the five steps from
+    loosely descriptions of a domain to a running product.
+    Different environmental configurations can be applied in step $4$ to assure deployments
+    on different systems, this without changing the PSM from step $3$.
 \end{enumerate}
