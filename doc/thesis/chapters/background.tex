@@ -272,7 +272,7 @@ while CA AppLogic has a visual and more UML component-based diagram of their cap
 When working with \emph{Model-Driven Architecture}~(MDA) it is common to first create a
 \emph{Computation Independent Model}~(CIM), then a \emph{Platform-Independent Model}~(PIM) and
 lastly a \emph{Platform-Specific Model}~(PSM). There are other models and steps in between these,
-but they render the essentials.
+but they render the essentials, as seen in \citefig{mda}.
 There are five different life cycles as explained by Singh~\cite{model-driven:singh09}:
 \begin{enumerate}
   \item \emph{Create a CIM}.
@@ -289,7 +289,7 @@ There are five different life cycles as explained by Singh~\cite{model-driven:si
     used to describe a domain on a technical level.
   \item \emph{Convert the PIM into PSM.}
     The next step is to convert the models into something more concrete
-    and specific to a platform. Several PSM and be used to represent one PIM.
+    and specific to a platform. Several PSM and be used to represent one PIM as seen in \citefig{mda}.
     Examples of such models can be to add language specific details to PIM class
     diagram such as types (String, Integer) for variables, access levels (private, public),
     method return types and argument types.
@@ -313,5 +313,5 @@ There are five different life cycles as explained by Singh~\cite{model-driven:si
     The final life cycle is based on deploying the PSM, which concludes the five steps from
     loosely descriptions of a domain to a running product.
     Different environmental configurations can be applied in step $4$ to assure deployments
-    on different systems, this without changing the PSM from step $3$.
+    on different systems, this without changing the PSM from life cycle in step $3$.
 \end{enumerate}
