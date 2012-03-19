@@ -1,8 +1,12 @@
 \mychapter{background}{Background: Cloud computing and Model-Driven Engineering}
 \input{tables/tabproviders}
 \input{figs/cloudlayers}
-In this chapter the essential background topics for this thesis is introduced,
-that is cloud computing and Model-Driven engineering.
+
+In this chapter the essential background topics for this thesis are introduced.
+The first topic is cloud computing, a way of providing computing power as a service
+instead of being a product.
+The second topic is about Model-Driven Engineering and Model-Driven Architecture
+and these in some relation to cloud computing.
 
 \section{Cloud computing}
 
@@ -12,34 +16,39 @@ The definitions under are mainly based on definitions by
 the \emph{National Institute of Standards and Technology}~(NIST) which is one of 
 the leaders in cloud computing standardization.
 The main providers of cloud computing at writing moment 
-are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft \todo{source?}.
+are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
 A non-exhaustive list of common providers are visualized in \citetable{providerservices}.
 
 \subsection{Characteristics}
 
-Many characteristics of cloud computing is based on the ability to scale, both upwards and inwards.
-Some of the most essential characteristics of cloud computing~\cite{nist:mell11} are:
+Cloud computing is about providing computation as services\cite{nist:mell11}, 
+such as virtual instances and file storage, rather than products. 
+Cloud characteristics are what defines
+the difference between what is normal hosting and what is computing as a service.
 
 \paragraph{On-demand self-service.} 
 
-Consumers can do provisioning without any human interaction.
+With \emph{on-demand self-service} consumers can achieve provisioning without any human interaction.
 On-demand means dynamic scalability and elasticity of resource allocation,
-self-service means that users does not need to manually do these allocations themselves.
-Consider an online election system, for most of the year it will most likely have very
+self-service means that users do not need to manually do these allocations themselves.
+Consider an online election system, for most of the year it will have 
 low usage demands, but before and under election days it will have to serve
-a much larger amount of requests. With on-demand self-service the online election system
+a much larger amount of requests. With \emph{on-demand self-service} the online election system
 could automatically be given more resources such as memory, computation power or even
-increase the number for instances to handle peak loads.
+increase the number of instances to handle peak loads.
 The previous example has planned (or known) peak intervals, so even though automatic handling
 is appealing it could be solved by good planning. 
-But sometimes predicting load peaks can be difficult, such as when a product suddenly
-gets more popular.
+But sometimes predicting peak loads can be difficult, such as when a product suddenly
+becomes more popular than first anticipated. 
+With \emph{on-demand self-service} this is a trivial issue as resource allocation
+will automatically scale upwards as popularity increases and downwards as
+resources become superfluous.
 
 \paragraph{Broad network access.}
 
-Capabilities available over standard network mechanisms.
-Supporting familiar protocols such as HTTP/HTTPS and \emph{Secure Shell}~(SSH).
-This means that users can utilize tools and software they are most likely already possesses
+This means that cloud capabilities are available over standard network mechanisms,
+supporting familiar protocols such as HTTP/HTTPS and \emph{Secure Shell}~(SSH).
+This means that users can utilize tools and software they already possesses
 or will have little difficulty gaining, such as web browsers.
 Most cloud providers also provide web based consoles/interfaces that users can use
 to create, delete and manage their resources.
@@ -55,12 +64,12 @@ information about where resources are hosted from, only on higher levels of abst
 
 \paragraph{Rapid elasticity.}
 
-Automatic capability scaling.
+Automatic scaling of capabilities.
 Already allocated resources can expand to meet new demands.
 Towards the characteristic of \emph{on-demand self-service} this means that allocation
 can happen instantly, which means on unexpected peak loads the pressure will be
 instantly handled by scaling upwards.
-It is important to underline that such features can be cost heavy if not limited,
+It is important to underline that such features can be financially cost heavy if not limited,
 because costs reflect resource allocation.
 \paragraph{Measured service.}
 
@@ -105,8 +114,8 @@ The NIST Definition of Cloud Computing~\cite{nist:mell11} define IaaS as
   systems and applications.
 }{\todo{NIST, 2011}}
 This underline the liberty this \emph{service model} provide users, but this also means
-that developers need to handle software and tools them selves, from operating system and
-up to their application. In some cases this is wanted, for instance when deploying 
+that developers need to handle software and tools themselves, from operating system and
+up to their application. In some cases this is advantageous, for instance when deploying 
 native libraries and tools that applications rely on such as tools to convert and edit
 images or video files. But in other cases this is not necessary and choosing this \emph{service model}
 can be manpower in-effective for companies as developers must focus on meta tasks.
@@ -129,13 +138,14 @@ Examples of providers of IaaS are AWS \emph{Elastic Compute Cloud}~(EC2) and Rac
 Cloud computing is built to guide and assist developers through abstractions, and the next
 layer in the \emph{service model} is designed to aid developers by detaching them
 from configuration of operating system and frameworks.
-NIST state that developers will can \emph{``applications created using programming languages, 
+NIST state that for developers are limited to making 
+\emph{``applications created using programming languages, 
 libraries, services, and tools supported by the provider''}~\cite{nist:mell11}.
-This means that developers are limited to these capabilities the provider support,
+This means that developers are limited to capabilities the provider support,
 such as programming languages (Java, C\#), environments (JVM, .NET, Node.js), 
 storage systems (flat files, NoSQL databases, RDBMS).
 For example the first versions of \emph{Google App Engine}~(GAE) did only support
-an internal key-value based database called BigTable, this is still their main database.
+an internal key-value based database called BigTable, which is still their main database.
 This database is transparently interfaced using their API, but also support technologies such as JPA and JDO,
 this means users are bound to Java and these frameworks, and even limitations to the frameworks
 as they have specific handlers for RDBMS.
@@ -150,7 +160,7 @@ the company Heroku with their service with the same name.
 Amazon also entered the PaaS market with their service named Elastic Beanstalk,
 which is an abstraction over EC2 as IaaS underneath.
 Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
-providers are Heroku Nodester and Nodejitsu, this is a tendency with increasing popularity.
+providers are Heroku, Nodester and Nodejitsu, this is a tendency with increasing popularity.
 
 \paragraph{SaaS.}
 
@@ -164,12 +174,13 @@ NIST describe SaaS as
 The core purpose is to provide whole applications as services, in many cases end products.
 Google products such as gmail, Google Apps and  Google Calendar are examples of 
 SaaS applications.
-What separates SaaS applications from other applications is the underlying cloud infrastructure,
+What separates SaaS applications from other applications are the underlying cloud infrastructure,
 by utilizing the five characteristics of cloud computing SaaS applications achieve 
 cloud computing advantages.
 
 It is not imposed that SaaS deployments are web applications, they can also consist of
-different technologies such as RESTful APIs or SOAP services, but it most common to utilize the HTTP protocol.
+different technologies such as RESTful APIs or SOAP services, but in any case it is 
+most common to utilize the HTTP protocol.
 In SaaS applications end users are most likely not the companies renting from providers, 
 but instead the companies customers.
 This means that the abstraction layer covers most of all aspects around an application,
@@ -203,12 +214,12 @@ operation is owned and controlled by organizations themselves.
 This deployment model has arisen because of security issues regarding storage 
 of data in public clouds. With \emph{private cloud} organization can provide 
 data security in forms such as geographical location and existing domain specific firewalls,
-and help complying requirements set by the government or other offices.
+and help comply requirements set by the government or other offices.
 
 \paragraph{Community cloud.}
 
 Similar as \emph{private clouds} but run as a coalition between several organizations.
-When several organizations share the same aspects of
+Several organizations share the same aspects of
 a private cloud (such as security requirements, policies, and compliance considerations),
 and therefore share infrastructure. 
 
@@ -217,6 +228,8 @@ and therefore share infrastructure.
 Combining private cloud or community cloud with public cloud.
 One benefit is to distinguish data from logic for purposes such as security issues,
 by storing sensitive information in a private cloud while computing with public cloud.
+
+\paragraph{Virtual private cloud.}
 
 Beside these models defined by NIST there is another arising model known as 
 \emph{virtual private cloud}, which is similar to \emph{public cloud} 
@@ -227,7 +240,7 @@ but with some security implications such as sandboxed network.
 By combining the world of cloud computing with the one of modeling 
 it is possible to achieve benefits such as improved communication when designing 
 a system and better understanding of the system itself.
-This statement is emphasized by Booch \etal his study about UML:
+This statement is emphasized by Booch \etal in his study about UML:
 \epigraph{
   Modeling is a central
   part of all the activities that lead up to the deployment of good
@@ -262,28 +275,29 @@ The importance of choosing correct models is emphasized by Booch~\cite{unified:b
 These definition precepts state that several models (precept \iii{4}) on different levels (precept \iii{2}) 
 of precision should be used to model the same system.
 From this it is concludable that several models can be used to describe one or several cloud computing perspectives.
-Nor are there any restraints to only use UML diagrams or even models at all.
+Nor are there any restraints to only use UML diagrams or even diagrams at all.
 As an example AWS CloudFormation implements a lexical model of their \emph{cloud services},
 while CA AppLogic has a visual and more UML component-based diagram of their capabilities.
 
 \paragraph{Model-Driven Architecture.}
 \input{figs/mda}
 
-When working with \emph{Model-Driven Architecture}~(MDA) it is common to first create a
+\emph{Model-Driven Architecture}~(MDA) is a way of designing software with modeling in mind.
+When working with MDA it is common to first create a
 \emph{Computation Independent Model}~(CIM), then a \emph{Platform-Independent Model}~(PIM) and
-lastly a \emph{Platform-Specific Model}~(PSM). There are other models and steps in between these,
-but they render the essentials, as seen in \citefig{mda}.
-There are five different life cycles as explained by Singh~\cite{model-driven:singh09}:
+lastly a \emph{Platform-Specific Model}~(PSM) as seen in~\citefig{mda}. There are other models and steps in between these,
+but they render the essentials.
+Beside the models there are five different life cycles as explained by Singh~\cite{model-driven:singh09}:
 \begin{enumerate}
   \item \emph{Create a CIM}.
     This is done to capture requirements and describe the domain.
     To do this the MDA developer must familiarize with the business organization
     and the requirements of this domain. This should be done without any specific technology.
-    The physical appearance of CIM models can be compared to Use Case diagrams in UML,
+    The physical appearance of CIM models can be compared to \emph{use case} diagrams in UML,
     where developers can model actors and actions (use cases) based on a specific domain.
   \item \emph{Develop a PIM.}
     The next life cycle aims at using descriptions and requirements from the CIM
-    using specific technologies, such as OMG standard for MDA use UML models,
+    with specific technologies. OMG standard for MDA use UML models,
     while other tools or practices might select different technologies.
     Example of such \emph{Platform Independent Models} can be class diagrams in UML
     used to describe a domain on a technical level.
@@ -302,7 +316,7 @@ There are five different life cycles as explained by Singh~\cite{model-driven:si
       and PSM, and this is often associated with code generation. 
       However, this is not the only kind of mapping required.
     }{\todo{kent}}
-    From this we see that a PSM is more specific to a platform then PIM, such as 
+    From this it is possible to determine that a PSM is more specific to a platform then PIM, such as 
     programming language or environment.
   \item \emph{Generate code form PSM.}
     A PSM should be specific enough that code can be generated from the models.
