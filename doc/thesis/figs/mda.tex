@@ -1,12 +1,21 @@
 \begin{figure}
   \begin{center}
     \begin{tikzpicture}[scale=1, transform shape]
-      \node[box] (Code) {Code};
-      \node[box, above=of Code, yshift=-0.9cm] (PSM) {PSM};
-      \node[box, above=of PSM, yshift=-0.9cm] (PIM) {PIM};
-      \node[box, above=of PIM, yshift=-0.9cm] (CIM) {CIM};
+      \node[box] (CIM) {CIM};
+      \node[box, below=of CIM] (PIM) {PIM};
+      \node (AuxNode01) [below=of PIM] {};
+      \node[box, left=of AuxNode01] (PSM1) {PSM};
+      \node[box, right=of AuxNode01] (PSM2) {PSM};
+      \node[box, below=of PSM1] (Code1) {Code};
+      \node[box, below=of PSM2] (Code2) {Code};
+
+      \draw [arrow] (CIM) -- (PIM);
+      \draw [arrow] (PIM) -- (PSM1);
+      \draw [arrow] (PIM) -- (PSM2);
+      \draw [arrow] (PSM1) -- (Code1);
+      \draw [arrow] (PSM2) -- (Code2);
     \end{tikzpicture}
   \end{center}
-  \caption{Model-Driven Architecture life cycles}
+  \caption{Model-Driven Architecture life cycles.}
   \label{fig:mda}
 \end{figure}
