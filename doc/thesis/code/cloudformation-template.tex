@@ -1,0 +1,39 @@
+\begin{figure}
+  \begin{center}
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{json}
+{
+  "Description": "Create an EC2 instance",
+  "Parameters": {
+    "KeyPair": {
+      "Description": "For SSH access",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "Ec2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "KeyName": { "Ref": "KeyPair" },
+        "ImageId": "ami-1234abcd" 
+      }
+    }
+  },
+  "Outputs" : {
+    "InstanceId": {
+     "Description": "Instace ID of created instance",
+     "Value": { "Ref": "Ec2Instance" }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}
+    \end{minted}
+  \end{center}
+  \caption{AWS CloudFormation template}
+  \label{fig:cloudformation-template}
+\end{figure}
+
