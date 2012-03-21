@@ -112,7 +112,7 @@ A web-based interface would prove beneficial for quickly displaying the simple c
 In this era of cloud computing and cloud technologies a user should not need to abandon his or hers browser to explore the functionality of CloudML.
 Cloud providers are most likely to give customers access to customize their cloud services through web-based interfaces, 
 and if customers are to take advantage of CloudML, the language should be graphically integrated into existing tool chains. 
-Providers would probably find it pleasing if a example GUI wauld be run on most cloud providers instances, 
+Providers would probably find it pleasing if a example GUI would be run on most cloud providers instances, 
 and so it can also benefit from some cloud based load balancers, even though this is part of the language. 
 The conclusion about OPA is that it is not a language meant for configuration, and could not easily benefit from a model based approach, 
 and it does not intentionally solve multicloud.
@@ -130,12 +130,21 @@ Deltacloud has a similar procedure as jclouds and libcloud, but with a REST API.
 So they also work on the term \emph{driver}, but instead of having a library to a programming language the users are presented with an API they can call, 
 on Deltacloud servers. This means users can write in any language they may choose. 
 As well as having similar problems as other APIs this approach means that every call has to go through their servers, 
-similar to a proxy. This can work with the benefits that many middleware software have, such as cahing, queues, 
+similar to a proxy. This can work with the benefits that many middleware software have, such as caching, queues, 
 redundancy and transformations, but it also has the disadvantages such as single point of failure and version inconsistencies.
 
 \section{Deployment frameworks}
 
 \paragraph{Amazon Beanstalk}
+
+Amazon has been known for providing IaaS solutions (EC2) and services complementing 
+either their IaaS or the \emph{Storage as a Service}~(SaaS) solution S3.
+Unlike some providers such as Microsoft and Google they had yet to introduce
+a PaaS based solution, until they created Beanstalk.
+This is the Amazon answer to PaaS, it is based on pre-configuring 
+a stack of existing services such as EC2 for computing, \emph{Elastic Block Storage}~(EBS)
+for storage and ELB for load balancing.
+
 \paragraph{simplifying-solution-deployment-on-a-cloud-through-composite-appliances}
 \paragraph{architecture-for-virtual-solution-composition-and-deployment}
 
