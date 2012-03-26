@@ -45,6 +45,11 @@
 \newcommand{\mychapter}[2]{\chapter{#2}\label{chap:#1}}
 \newcommand{\mycaption}[2]{\caption{#2}\label{fig:#1}}
 
+%% Acro definitions
+
+\newcommand{\myacdef}[2]{\acrodef{ac:#1}[#1]{\emph{#2}}}
+\newcommand{\myac}[1]{\ac{ac:#1}}
+
 %% http://tex.stackexchange.com/questions/6985/place-quotation-dictum-in-a-box
 
 \definecolor{quotationcolour}{HTML}{F0F0F0}
@@ -134,4 +139,3 @@
 \tikzstyle{arrow}=[->, >=triangle 60]
 \tikzstyle{line}=[-]
 \tikzstyle{aggregate}=[>-, >=diamond]
-

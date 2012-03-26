@@ -13,11 +13,15 @@ and these in some relation to cloud computing.
 Cloud computing is gaining popularity and more companies are starting 
 to explore the possibilities as well as the limitation to the cloud.
 The definitions under are mainly based on definitions by 
-the \emph{National Institute of Standards and Technology}~(NIST) which is one of 
-the leaders in cloud computing standardization.
+the \myac{NIST} which is one of the leaders in cloud computing standardization.
 The main providers of cloud computing at writing moment 
-are Google, Amazon with \emph{Amazon Web Service}~(AWS)~\cite{aws} and Microsoft.
-A non-exhaustive list of common providers are visualized in \citetable{providerservices}.
+are Google, Amazon with \myac{AWS}~\cite{aws} and Microsoft.
+A non-exhaustive list of common providers is reproduced \citetable{providerservices}.
+A good example of cloud adaptation in a large scale scenario is when
+the White House moved their Revocery.gov~\cite{recovery} operation to
+a cloud infrastructure, this was estimated to save them \$750,000
+at the current time, and even more on a long-term basis.
+This section is based on the \myac{NIST} standard.
 
 \subsection{Characteristics}
 
@@ -30,7 +34,7 @@ the difference between what is normal hosting and what is computing as a service
 
 With \emph{on-demand self-service} consumers can achieve provisioning without any human interaction.
 On-demand means dynamic scalability and elasticity of resource allocation,
-self-service means that users do not need to manually do these allocations themselves.
+self-service so that users do not need to manually do these allocations themselves.
 Consider an online election system, for most of the year it will have 
 low usage demands, but before and under election days it will have to serve
 a much larger amount of requests. With \emph{on-demand self-service} the online election system
@@ -39,17 +43,27 @@ increase the number of instances to handle peak loads.
 The previous example has planned (or known) peak intervals, so even though automatic handling
 is appealing it could be solved by good planning. 
 But sometimes predicting peak loads can be difficult, such as when a product suddenly
-becomes more popular than first anticipated. 
-With \emph{on-demand self-service} this is a trivial issue as resource allocation
-will automatically scale upwards as popularity increases and downwards as
-resources become superfluous.
+becomes more popular than first anticipated.
+Twitter is a good example of a service that can have difficulties estimating amount user demand 
+and total amount of incoming requests.
+For instance in the year $2011$ they achieved a record in \myac{TPS} of
+$25,088$, each ``tweet'' essentially becomes at least one request to Twitter services.
+On a normal basis the service does not have to cope with this amount of requests, so
+this event was a strong and unpredicted fluctuation in day-to-day operations,
+and this is the kind of scenarios that cloud computing can help to tackle with
+characteristics such as \emph{on-demand self-service}.
+With \emph{on-demand self-service} allocation will automatically scale upwards as popularity increases 
+and downwards as resources become superfluous.
 
 \paragraph{Broad network access.}
 
-This means that cloud capabilities are available over standard network mechanisms,
-supporting familiar protocols such as HTTP/HTTPS and \emph{Secure Shell}~(SSH).
-This means that users can utilize tools and software they already possesses
+When working against cloud solutions, in form of management, monitoring or other 
+interactions it is important that capabilities are available over standard network mechanisms,
+supporting familiar protocols such as HTTP/HTTPS and \myac{SSH}.
+So users can utilize tools and software they already possesses
 or will have little difficulty gaining, such as web browsers.
+This is what the characteristic \emph{broad network access} is all about,
+ensuring familiar mechanisms for communicating with a cloud service.
 Most cloud providers also provide web based consoles/interfaces that users can use
 to create, delete and manage their resources.
 
@@ -57,20 +71,26 @@ to create, delete and manage their resources.
 
 Physical and virtual resources are pooled so they can be 
 dynamically assigned and reassigned according to consumer demand.
-This means users do not need to be troubled with scalability as this is handled automatically.
+Users do not need to be troubled with scalability as this is handled automatically.
 This is a provider side characteristic which directly influence \emph{on-demand self-service}.
-There is also a sense of location independence, which means users do not have specific geographical
-information about where resources are hosted from, only on higher levels of abstraction (country, state).
+There is also a sense of location independence, users can choose geographical locations
+on higher abstracted levels such as country or sate, but not always as detailed or specific as city.
+It is important that users can choose at least country as geographical location
+for their product deployments for instance to reduce latency between product and customers
+based on customer location or data storing rules set by government.
 
 \paragraph{Rapid elasticity.}
 
 Automatic scaling of capabilities.
-Already allocated resources can expand to meet new demands.
-Towards the characteristic of \emph{on-demand self-service} this means that allocation
+Already allocated resources can expand vertically to meet new demands,
+so instead of provisioning more instances (horizontal scaling) existing
+instances are given more resources such as RAM and CPU.
+Towards the characteristic of \emph{on-demand self-service} allocation
 can happen instantly, which means on unexpected peak loads the pressure will be
 instantly handled by scaling upwards.
 It is important to underline that such features can be financially cost heavy if not limited,
 because costs reflect resource allocation.
+
 \paragraph{Measured service.}
 
 Monitoring and control of resource usages.
@@ -86,6 +106,9 @@ charge by resource load and not only amount of resources allocated.
 \subsection{Service models}
 
 \emph{Service models} are definitions of different layers in cloud computing.
+The different models 
+The layers refer to different levels of abstractions
+ways of 
 The layers represent the amount of abstraction developers get from each \emph{service model}.
 Higher layers have more abstraction, but can be more limited, while lower levels 
 have less abstraction and are more customizable.
@@ -93,21 +116,19 @@ Limitations could be in many different forms, such as bound to a specific operat
 programming language or framework.
 There are three main architectural service models in cloud computing\cite{nist:mell11}
 as seen as vertical integration levels in \citefig{cloudlayers},
-namely \emph{Infrastructure-as-a-Service}~(IaaS), \emph{Platform-as-a-Service}~(PaaS)
-and \emph{Software-as-a-Service}~(SaaS).
+namely \myac{IaaS}, \myac{PaaS} and \myac{SaaS}.
 IaaS is on the lowest closest to physical hardware and SaaS on the highest
 level as runnable applications.
 
-  \paragraph{IaaS.}
+\paragraph{IaaS.}
 
-This layer is similar to more standard solutions such as \emph{Virtual Private Servers}~(VPS),
+This layer is similar to more standard solutions such as \myac{VPS},
 and is therefore the \emph{service model} closest to standard hosting solutions.
 Stanoevska-Slabeva~\cite{introduction:wozniak10} emphasizes that
 \emph{''infrastructure had been available as a service for quite some time``} and this 
 \emph{''has been referred to as utility computing, such as Sun Grid Compute Utility``}.
 Which means IaaS can also be compared to grid computing, 
 a well known term in the academic world.
-The NIST Definition of Cloud Computing~\cite{nist:mell11} define IaaS as
 \epigraph{The capability provided to the consumer is to provision 
   processing, storage, networks, and other fundamental computing resources where the 
   consumer is able to deploy and run arbitrary software, which can include operating 
@@ -119,43 +140,49 @@ up to their application. In some cases this is advantageous, for instance when d
 native libraries and tools that applications rely on such as tools to convert and edit
 images or video files. But in other cases this is not necessary and choosing this \emph{service model}
 can be manpower in-effective for companies as developers must focus on meta tasks.
-NIST continue to state that 
 \epigraph{The consumer does not manage or control the underlying cloud 
   infrastructure but has control over operating systems, storage, deployed applications, and 
   possibly limited control of select networking components (\eg, host firewalls).
 }{\todo{NIST, 2011}}
-This means users have control over which operating system they want, in some cases users
+Users have control over which operating system they want, in some cases users
 can only pick from a set of pre-configured operating systems.
 It is common for providers to include both Linux and Windows in their selections.
 Some providers such as Amazon let users upload their own disk images.
 A similarity to VPS is that operating systems are not manually installed,
 when selecting an operating system this is copied directly into the instance pre-installed
 and will therefore be instantly ready for usage.
-Examples of providers of IaaS are AWS \emph{Elastic Compute Cloud}~(EC2) and Rackspace CloudServers.
+Examples of providers of IaaS are AWS \myac{EC2} and Rackspace CloudServers.
 
 \paragraph{PaaS.}
 
 Cloud computing is built to guide and assist developers through abstractions, and the next
 layer in the \emph{service model} is designed to aid developers by detaching them
 from configuration of operating system and frameworks.
-NIST state that for developers are limited to making 
-\emph{``applications created using programming languages, 
-libraries, services, and tools supported by the provider''}~\cite{nist:mell11}.
-This means that developers are limited to capabilities the provider support,
-such as programming languages (Java, C\#), environments (JVM, .NET, Node.js), 
-storage systems (flat files, NoSQL databases, RDBMS).
-For example the first versions of \emph{Google App Engine}~(GAE) did only support
+Developers are limited to capabilities the provider support,
+such as programming languages (Java, C\#), environments (\myac{JVM}, .NET, Node.js), 
+storage systems (flat files, NoSQL databases, RDBMS),
+services (load balancers, backup, content delivery)
+and tools (plugin for Eclipse, command line tools)~\cite{nist:mell11}.
+For example the first versions of \myac{GAE} did only support
 an internal key-value based database called BigTable, which is still their main database.
-This database is transparently interfaced using their API, but also support technologies such as JPA and JDO,
-this means users are bound to Java and these frameworks, and even limitations to the frameworks
+This database is transparently interfaced using their API, 
+but also support technologies such as JPA and JDO,
+users are bound to Java and these frameworks, and even limitations to the frameworks
 as they have specific handlers for RDBMS.
+The disconnection from operating system is the strength of \myac{PaaS} solutions,
+on one hand developers are restricted, but they are also freed from
+configuration, installments and maintaining deployments.
+Some \myac{PaaS} providers support additional convenient capabilities such as
+test utilities for deployed applications and translucent scaling.
+In the end developers can put all focus on developing applications 
+instead of spending time and resources on unrelated tasks.
 
 PaaS providers support deployments through online APIs, in many cases by providing 
 specific tools such as command line interfaces or plugins to IDEs like Eclipse.
 It is common for the API to have client built on technologies related to the technology supported by the PaaS,
 for instance Heroku has a Ruby-based client and Nodejitsu has an executable Node.js-module as client.
 
-Examples of PaaS providers are Google with \emph{Google App Engine}~(GAE) and
+Examples of PaaS providers are Google with \myac{GAE} and
 the company Heroku with their service with the same name.
 Amazon also entered the PaaS market with their service named Elastic Beanstalk,
 which is an abstraction over EC2 as IaaS underneath.
@@ -166,12 +193,11 @@ providers are Heroku, Nodester and Nodejitsu, this is a tendency with increasing
 
 The highest layer of the \emph{service models} farthest away from physical hardware
 and with highest level of abstraction.
-NIST describe SaaS as
 \epigraph{The capability provided to the consumer is to use the provider's 
   applications running on a cloud infrastructure.
 }{\todo{NIST, 2011}}
 
-The core purpose is to provide whole applications as services, in many cases end products.
+The core purpose is to provide complete applications as services, in many cases end products.
 Google products such as gmail, Google Apps and  Google Calendar are examples of 
 SaaS applications.
 What separates SaaS applications from other applications are the underlying cloud infrastructure,
@@ -183,7 +209,7 @@ different technologies such as RESTful APIs or SOAP services, but in any case it
 most common to utilize the HTTP protocol.
 In SaaS applications end users are most likely not the companies renting from providers, 
 but instead the companies customers.
-This means that the abstraction layer covers most of all aspects around an application,
+The abstraction layer covers most of all aspects around an application,
 the only exception could be customizations and settings that end users can do albeit 
 this can be application specific. In some cases providers have services that affect
 these users as well, such as \emph{Single Sign-on}.
@@ -192,9 +218,7 @@ these users as well, such as \emph{Single Sign-on}.
 
 \emph{Deployment models} define where and how applications are deployed in a cloud environment,
 such as publicly with a global provider or private in local data centers.
-
-There are four different \emph{deployment models} according to The 
-NIST Definition of Cloud Computing~\cite{nist:mell11}:
+There are four main \emph{deployment models}.
 
 \paragraph{Public cloud.}
 
@@ -215,6 +239,14 @@ This deployment model has arisen because of security issues regarding storage
 of data in public clouds. With \emph{private cloud} organization can provide 
 data security in forms such as geographical location and existing domain specific firewalls,
 and help comply requirements set by the government or other offices.
+Beside these models defined by \myac{NIST} there is another arising model known as 
+\myac{VPC}, which is similar to \emph{public cloud} 
+but with some security implications such as sandboxed network.
+With this solution companies can deploy cluster application and enhance 
+or ensure security within the cluster, for example by disabling remote access
+to certain parts of a cluster and routing all data through safe gateways or firewalls.
+In \emph{public clouds} it can be possible to reach other instances on a local network,
+also between cloud customers.
 
 \paragraph{Community cloud.}
 
@@ -222,25 +254,28 @@ Similar as \emph{private clouds} but run as a coalition between several organiza
 Several organizations share the same aspects of
 a private cloud (such as security requirements, policies, and compliance considerations),
 and therefore share infrastructure. 
+This type of \emph{deployment model} can be found in universities where resources 
+can be shared between other universities.
 
 \paragraph{Hybrid cloud.}
 
 Combining private cloud or community cloud with public cloud.
 One benefit is to distinguish data from logic for purposes such as security issues,
 by storing sensitive information in a private cloud while computing with public cloud.
-
-\paragraph{Virtual private cloud.}
-
-Beside these models defined by NIST there is another arising model known as 
-\emph{virtual private cloud}, which is similar to \emph{public cloud} 
-but with some security implications such as sandboxed network.
+For instance a government can establish by law how and where some types of informations 
+must be stored, such as privacy law. 
+To sustain such laws a company could store data on their own \emph{private cloud}
+while doing computation on a \emph{public cloud}.
+In some cases such laws relates only to geographical location of stored data,
+making it possible to take advantage of \emph{public clouds} that can guarantee
+geographical deployment within a given country.
 
 \section{Model-Driven Engineering}
 
 By combining the world of cloud computing with the one of modeling 
 it is possible to achieve benefits such as improved communication when designing 
 a system and better understanding of the system itself.
-This statement is emphasized by Booch \etal in his study about UML:
+This statement is emphasized by Booch \etal in the UML:
 \epigraph{
   Modeling is a central
   part of all the activities that lead up to the deployment of good
@@ -249,7 +284,7 @@ This statement is emphasized by Booch \etal in his study about UML:
   system's architecture. We build models to better understand the
   system we are building, often exposing opportunities for
   simplification and reuse. We build models to manage risk.
-}{\todo{Booch, 2005}}
+}{\todo{Booch \etal, 2005}}
 When it comes to cloud computing these definitions are even more important
 because of financial aspects since provisioned nodes instantly draw credit.
 The definition of ``modeling'' can be assessed from the previous epigraph, but it is 
@@ -271,7 +306,7 @@ The importance of choosing correct models is emphasized by Booch~\cite{unified:b
   are connected to reality. \iitem No single model is
   sufficient. Every nontrivial system is best approached through a
   small set of nearly independent models.\end{ii}
-}{\todo{Booch, 2005}}
+}{\todo{Booch \etal, 2005}}
 These definition precepts state that several models (precept \iii{4}) on different levels (precept \iii{2}) 
 of precision should be used to model the same system.
 From this it is concludable that several models can be used to describe one or several cloud computing perspectives.
@@ -282,10 +317,9 @@ while CA AppLogic has a visual and more UML component-based diagram of their cap
 \paragraph{Model-Driven Architecture.}
 \input{figs/mda}
 
-\emph{Model-Driven Architecture}~(MDA) is a way of designing software with modeling in mind.
-When working with MDA it is common to first create a
-\emph{Computation Independent Model}~(CIM), then a \emph{Platform-Independent Model}~(PIM) and
-lastly a \emph{Platform-Specific Model}~(PSM) as seen in~\citefig{mda}. There are other models and steps in between these,
+\myac{MDA} is a way of designing software with modeling in mind provided by \myac{OMG}.
+When working with MDA it is common to first create a \myac{CIM}, then a \myac{PIM} and
+lastly a \myac{PSM} as seen in~\citefig{mda}. There are other models and steps in between these,
 but they render the essentials.
 Beside the models there are five different life cycles as explained by Singh~\cite{model-driven:singh09}:
 \begin{enumerate}
@@ -310,8 +344,7 @@ Beside the models there are five different life cycles as explained by Singh~\ci
     Kent, Stuart~\cite{modeldriven:kent02} emphasizes the importance 
     of this mapping in one of his studies:
     \epigraph{
-      A PSM is not a PIM, but is also not an implementation. \\
-      \ldots \\
+      A PSM is not a PIM, but is also not an implementation. [\ldots]
       In MDA, the main mapping is between PIM
       and PSM, and this is often associated with code generation. 
       However, this is not the only kind of mapping required.
