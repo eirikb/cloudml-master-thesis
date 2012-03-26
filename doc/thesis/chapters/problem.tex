@@ -15,37 +15,80 @@ Then challenges identified from the research will be presented.
 
 \section{Scenario}
 
-\input{figs/nodes}
+The following scenario was chosen because of how much it resembles actual solutions
+used in industry today.
+It uses a featureless example application meant to fit into scenario topologies
+without having too much complexity.
+Challenges should not be affected from errors or problems with the example application.
+The application will be provisioned to a defined set of providers with a defined set of different topologies.
+
+\paragraph{BankManager.}
 
 To recognize challenges when doing cloud provisioning an example application~\cite{BankManager} was utilized.
 The application (from here known as \emph{BankManager}) is a prototypical bank manager system
-wich support creating users and bank accounts and moving money between bank accounts and users.
+which support creating users and bank accounts and moving money between bank accounts and users.
 The application is based on a three-tier architecture with 
 \begin{ii} 
   \iitem presentation tier with a web-based interface,
   \iitem logic tier with controllers and services and
   \iitem database tier with models and entities.
 \end{ii}
-It is designed but not limited to support distribution between several nodes.
-Some examples of provisioning topologies is illustrated in \citefig{BankManager}, each
-example includes a browser to visualize application flow, front-end visualizes executable
-logic and back-end represents database.
-It is possible to have both front-end and back-end on the same node, as shown in \citefig{singlenode}.
-In \citefig{twonodes} front-end is separated from back-end, 
-this introduces the flexibility of increasing computation power on the front-end node while spawning more
-storage on the back-end. 
+Three or more tiers in a web application is a common solution, even more so for applications 
+based on the \myac{MVC} architectural pattern.
+The advantage with this architecture is that the lowest tier (database) can be physically
+detached from the tiers above, the application can then be distributed between several nodes.
+It is also possible to have more tiers, for instance by adding a \emph{service} 
+layer to handle re-usable logic.
+Having more tiers and distributing these over several nodes is an architecture often
+found in \myac{SOA} solutions.
+
+\paragraph{Topologies.}
+
+\input{figs/nodes}
+
+Some examples of provisioning topologies are illustrated in \citefig{BankManager},
+each example includes a \texttt{browser} to visualize application flow,
+\texttt{front-end} visualizes executable logic and \texttt{back-end} represents database.
+It is possible to have both \texttt{front-end} and \texttt{back-end} on the same node, 
+as shown in \citefig{singlenode}.
+When the topology have several \texttt{front-ends} a \texttt{load balancer} is used
+to direct traffic between \texttt{browser} and \texttt{front-end}.
+The \texttt{load balancer} could be a node like the rest, but in this cloud-based scenario
+it is actually a cloud service, which is also why it is graphically different.
+In \citefig{twonodes} \texttt{front-end} is separated from \texttt{back-end},
+this introduces the flexibility of increasing computation power on the \texttt{front-end} node while spawning more
+storage on the \texttt{back-end}.
 For applications performing heavy computations it can be beneficial to distribute the workload between several
-front-end nodes as seen in \citefig{threenodes}, the number of front-ends can be linearly increased 
+\texttt{front-end} nodes as seen in \citefig{threenodes}, the number of \texttt{front-ends} can be linearly increased
 $n$ number of times as shown in \citefig{frontends}.
-\emph{BankManager} is not designed to handle several back-ends because of \myac{RDBMS},
+\emph{BankManager} is not designed to handle several \texttt{back-ends} because of \myac{RDBMS},
 this can solved on a database level with master and slaves (\citefig{frontendbackends}).
+
+\paragraph{Execution.}
+
+The main goal of the scenario was to successfully deploy \emph{BankManager}
+on a given set of providers with a given set of topologies.
+And to achieve such deployment it was crucial to perform cloud provisioning.
+The providers chosen were 
+\begin{ii}
+  \iitem \myac{AWS}~\cite{aws} and
+  \iitem Rackspace~\cite{rackspace}.
+\end{ii}
+These are strong providers with a respectable amount of customers, as two of the leaders in cloud computing
+[\todo{source}].
+They also have different graphical interfaces, APIs and toolchains which makes them suitable
+for a scenario researching multicloud challenges.
+
+To perform the actual provisioning a set of primitive Bash-scripts were developed.
+These scripts 
+
 Bash-scripts were used to prototype full deployments of \emph{BankManager} against 
-\myac{AWS}~\cite{aws}
-and Rackspace~\cite{rackspace} with a topology of three nodes as shown in \citefig{threenodes}.
+and 
+with a topology of three nodes as shown in \citefig{threenodes}.
 
 \section{challenges}
 
-From this prototype it became clear that there were multiple challenges to address
+From this research it became clear that there were multiple challenges to address.
 
 \paragraph{Complexity.} 
 
