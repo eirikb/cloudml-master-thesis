@@ -27,12 +27,14 @@
     \subfigure[Three nodes]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Frontend1) [class, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load Balancer} };
+        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
         \node (Frontend2) [class, below=of Frontend1] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
-        \draw[extend] (Browser.east) -- (Frontend1.west);
-        \draw[extend] (Browser.east) -- (Frontend2.west);
+        \draw[extend] (Browser.east) -- (LoadBalancer.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend1.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend2.west);
         \draw[extend] (Frontend1.east) -- (Backend.west);
         \draw[extend] (Frontend2.east) -- (Backend.west);
       \end{tikzpicture}
@@ -42,12 +44,14 @@
     \subfigure[Several front-ends]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Frontend1) [class, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load Balancer} };
+        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
         \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
-        \draw[extend] (Browser.east) -- (Frontend1.west);
-        \draw[extend] (Browser.east) -- (Frontend2.west);
+        \draw[extend] (Browser.east) -- (LoadBalancer.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend1.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend2.west);
         \draw[extend] (Frontend1.east) -- (Backend.west);
         \draw[extend] (Frontend2.east) -- (Backend.west);
 
@@ -59,14 +63,16 @@
     \subfigure[Several front-ends and back-ends (slaves)]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser] { \textbf{Browser} };
-        \node (Frontend1) [class, right=of Browser, yshift=1cm] { \textbf{Front-end} };
+        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load Balancer} };
+        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
         \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end master} };
         \node (Slave1) [class, right=of Backend, yshift=1cm] { \textbf{Salve} };
         \node (Slave2) [class, below=of Slave1, yshift=-1cm] { \textbf{Slave} };
 
-        \draw[extend] (Browser.east) -- (Frontend1.west);
-        \draw[extend] (Browser.east) -- (Frontend2.west);
+        \draw[extend] (Browser.east) -- (LoadBalancer.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend1.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend2.west);
         \draw[extend] (Frontend1.east) -- (Backend.west);
         \draw[extend] (Frontend2.east) -- (Backend.west);
         \draw[extend] (Backend.east) -- (Slave1.west);
