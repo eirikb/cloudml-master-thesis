@@ -4,7 +4,7 @@
 
     \subfigure[Single node]{
       \begin{tikzpicture}[scale=0.7, transform shape]
-        \node (Browser) [browser] { \textbf{Browser} };
+        \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (Node) [class, right=of Browser] { \textbf{Front-end And Back-end} };
 
         \draw[extend] (Browser.east) -- (Node.west);
@@ -14,7 +14,7 @@
 
     \subfigure[Two nodes]{
       \begin{tikzpicture}[scale=0.7, transform shape]
-        \node (Browser) [browser] { \textbf{Browser} };
+        \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (Frontend) [class, right=of Browser] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend] { \textbf{Back-end} };
 
@@ -26,8 +26,8 @@
 
     \subfigure[Three nodes]{
       \begin{tikzpicture}[scale=0.7, transform shape]
-        \node (Browser) [browser] { \textbf{Browser} };
-        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load Balancer} };
+        \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
+        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
         \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
         \node (Frontend2) [class, below=of Frontend1] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
@@ -43,8 +43,8 @@
 
     \subfigure[Several front-ends]{
       \begin{tikzpicture}[scale=0.7, transform shape]
-        \node (Browser) [browser] { \textbf{Browser} };
-        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load Balancer} };
+        \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
+        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
         \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
         \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
@@ -62,8 +62,8 @@
 
     \subfigure[Several front-ends and back-ends (slaves)]{
       \begin{tikzpicture}[scale=0.7, transform shape]
-        \node (Browser) [browser] { \textbf{Browser} };
-        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load Balancer} };
+        \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
+        \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
         \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
         \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end master} };
@@ -87,8 +87,9 @@
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, label=below:Non-system interaction] { Browser };
         \node (Node) [class, right=of Browser, label=below:Provisioned instance] { Node };
+        \node (LoadBalancer) [tdiamond, right=of Node, label=below:Load balancer as a service] { Load balancer};
 
-        \node (AuxNode01) [right=of Node] {};
+        \node (AuxNode01) [right=of LoadBalancer] {};
         \node (AuxNode02) [right=of AuxNode01] {};
         \node (AuxNode03) [right=of AuxNode02] {};
         \node (AuxNode04) [right=of AuxNode03] {};
