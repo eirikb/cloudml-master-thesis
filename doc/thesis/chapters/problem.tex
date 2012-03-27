@@ -121,8 +121,11 @@ authenticate and communicate with the cloud.
 The two providers had different approaches, \myac{AWS}~\cite{aws} 
 had command-line tools built from their Java APIs,
 while Rackspace~\cite{rackspace} had no tools beside the API language bindings.
-So for \myac{AWS} the Bash-scripts could do callouts to the command-line interface properties
-but for Rackspace the public \myac{REST} API had to be utilized.
+So for \myac{AWS} the Bash-scripts could do callouts to the command-line interface 
+while for Rackspace the public \myac{REST} API had to be utilized.
+This emphasized the inconsistencies between providers, 
+and resulted in an additional tool being introduced to handle callouts.
+
 As this emphasizes the complexity even further it also stresses engineering capabilities
 of individuals executing the tasks to a higher technical level.
 
