@@ -79,24 +79,50 @@ These are strong providers with a respectable amount of customers, as two of the
 They also have different graphical interfaces, APIs and toolchains which makes them suitable
 for a scenario researching multicloud challenges.
 
-To perform the actual provisioning a set of primitive Bash-scripts were developed.
-These scripts 
+The topology chosen for this scenario was that of three nodes\citefig{threenodes}.
+This topology is advance enough that it needs a \texttt{load balancer} in front of two
+\texttt{front-end} nodes, and yet the simplest topology of the ones that benefits from a \texttt{load balancer}.
+It is important to include most of the technologies and services that needs testing.
 
-Bash-scripts were used to prototype full deployments of \emph{BankManager} against 
-and 
-with a topology of three nodes as shown in \citefig{threenodes}.
+To perform the actual provisioning a set of primitive Bash-scripts were developed.
+These scripts were designed to automate a full deployment on a two-step basis.
+First step was to provision instances:
+\begin{itemize}
+  \item Authenticate against provider.
+  \item Create instances.
+  \item Manually write down IP addresses of created instances.
+\end{itemize}
+The second step was deployment:
+\begin{itemize}
+  \item Configure \emph{BankManager} to use one of provisioned instances IP address for database.
+  \item Build \emph{BankManager} into a \myac{WAR}-file.
+  \item Authenticate to instance using \myac{SSH}.
+  \item Remotely execute commands to install required third party software such as Java and PostgreSQL.
+  \item Remotely configure third party software.
+  \item Inject \myac{WAR}-file into instances using \myac{SFTP}.
+  \item Remotely start \emph{BankManager}.
+\end{itemize}
+The scripts were provider-specific so one set of scripts had to be made for each provider.
+Rackspace had at that moment no command-line tools, so a \myac{REST} client had to be constructed.
 
 \section{challenges}
 
-From this research it became clear that there were multiple challenges to address.
+From this research it became clear that there were multiple challenges to address
+when deploying applications to cloud infrastructure.
+This thesis is scoped to cloud provisioning, but the goal of this provisioning is to 
+enable a successful deployment. 
+It was therefore crucial to involve a full deployment in the scenario to discover
+important challenges.
 
 \paragraph{Complexity.} 
 
-The first challenge encountered was to simply
-authenticate and communicate with the cloud. The two providers 
-had different approaches, AWS~\cite{aws} had command-line tools built from their Java APIs,
-while Rackspace~\cite{rackspace} had no tools beside the API language bindings,
-thus the need of operating both command-line tools as well as public APIs.
+The first challenge encountered was to simply 
+authenticate and communicate with the cloud. 
+The two providers had different approaches, \myac{AWS}~\cite{aws} 
+had command-line tools built from their Java APIs,
+while Rackspace~\cite{rackspace} had no tools beside the API language bindings.
+So for \myac{AWS} the Bash-scripts could do callouts to the command-line interface properties
+but for Rackspace the public \myac{REST} API had to be utilized.
 As this emphasizes the complexity even further it also stresses engineering capabilities
 of individuals executing the tasks to a higher technical level.
 
