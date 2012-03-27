@@ -85,7 +85,7 @@ Much of this work is in form of APIs, mostly in two different forms.
 Either as programming libraries that can be utilized directly from a given 
 programming language or environment such as Java or Python.
 The other common solution is to have an online facade against public providers,
-in this solution the APIs are mostly in RESTful form.
+in this solution the APIs are mostly in \myac{REST} form.
 APIs can be considered modeling approaches based on the fact they have a topology 
 and hierarchical structure, 
 but it is not a distinct modeling. 
@@ -102,7 +102,7 @@ Many of the API solutions use the term ``\emph{driver}'', it represents
 a module or component that fit into existing software and extend the support
 of external connections without changing the interface.
 A cloud \emph{driver} connects a given software to an existing cloud provider
-through this providers web based API (REST), illustrated in \citefig{drivers}.
+through this providers web based API (\myac{REST}), illustrated in \citefig{drivers}.
 
 \paragraph{jclouds.}~\cite{jclouds}
 
@@ -129,7 +129,7 @@ The API is Python-only and could therefor be considered to have high tool-chain 
 
 \paragraph{Deltacloud.}~\cite{deltacloud}
 
-Deltacloud has a similar procedure as jclouds and libcloud, but with a REST API. 
+Deltacloud has a similar procedure as jclouds and libcloud, but with a \myac{REST} API. 
 So they also work on the term \emph{driver}, but instead of having a library to a 
 programming language the users are presented with an web-based API they can call
 on Deltacloud servers. 
@@ -139,7 +139,7 @@ This can work with the benefits that many middleware softwares have, such as cac
 redundancy and transformations.
 The main disadvantages are single point of failure and version inconsistencies.
 Deltacloud provide two sets of native libraries, one in Ruby and another in C, which
-makes it easier to communicate with the REST API.
+makes it easier to communicate with the \myac{REST} API.
 Previously discussed \emph{jclouds} also support Deltacloud, as it would interface this
 with a \emph{driver} as any other web-based API.
 
