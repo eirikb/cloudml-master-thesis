@@ -46,8 +46,8 @@ found in \myac{SOA} solutions.
 
 \input{figs/nodes}
 
-Some examples of provisioning topologies are illustrated in \citefig{BankManager},
-each example includes a \texttt{browser} to visualize application flow,
+Some examples of provisioning topologies are illustrated in \citefig{BankManager}.
+Each example includes a \texttt{browser} to visualize application flow,
 \texttt{front-end} visualizes executable logic and \texttt{back-end} represents database.
 It is possible to have both \texttt{front-end} and \texttt{back-end} on the same node, 
 as shown in \citefig{singlenode}.
@@ -62,7 +62,7 @@ For applications performing heavy computations it can be beneficial to distribut
 \texttt{front-end} nodes as seen in \citefig{threenodes}, the number of \texttt{front-ends} can be linearly increased
 $n$ number of times as shown in \citefig{frontends}.
 \emph{BankManager} is not designed to handle several \texttt{back-ends} because of \myac{RDBMS},
-this can solved on a database level with master and slaves (\citefig{frontendbackends}).
+this can be solved at the database level with master and slaves (\citefig{frontendbackends}).
 
 \paragraph{Execution.}
 
@@ -124,10 +124,17 @@ while Rackspace~\cite{rackspace} had no tools beside the API language bindings.
 So for \myac{AWS} the Bash-scripts could do callouts to the command-line interface 
 while for Rackspace the public \myac{REST} API had to be utilized.
 This emphasized the inconsistencies between providers, 
-and resulted in an additional tool being introduced to handle callouts.
+and resulted in an additional tool being introduced to handle requests.
 
-As this emphasizes the complexity even further it also stresses engineering capabilities
-of individuals executing the tasks to a higher technical level.
+As this emphasizes the complexity even further it also stresses engineering 
+capabilities of individuals.
+It would be difficult for non-technical participants to fully understand and give comments
+or feedback on the topology chosen since important information got hidden behind
+complex commands.
+
+Debugging the scripts were also a challenging task, since they fit together by
+sequential calls and printed information based on Linux and Bash commands such as \emph{grep} and \emph{echo}.
+Error messages from both command-line and \myac{REST} interfaces were essentially muted away.
 
 \paragraph{Multicloud.}
 

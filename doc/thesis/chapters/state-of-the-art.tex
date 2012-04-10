@@ -27,12 +27,12 @@ modeling that can relate to Model-Driven Engineering.
 This is a service provided by Amazon from their popular \myac{AWS}.
 It give users the ability to create template files in form of 
 \myac{JSON} as seen in ~\citefig{cloudformation-template}, 
-which they can load into AWS to create stacks of resources. 
+which they can load into \myac{AWS} to create stacks of resources. 
 A \emph{stack} is a defined set of resources in different amount and sizes, 
 such as numerous instances,
 one or more databases and a load balancer, although what types and sizes of resources is ambiguous.
-To provision a stack with CloudFormation the template file (in JSON format) is first uploaded to
-AWS which makes it accessible from AWS Management Console.
+To provision a stack with CloudFormation the template file (in \myac{JSON} format) is first uploaded to
+AWS which makes it accessible from \myac{AWS} Management Console.
 
 The template consist of three main sections, 
 \begin{ii}\iitem \emph{Parameters}, \iitem \emph{Resources} and \iitem \emph{Outputs}.\end{ii}
@@ -55,14 +55,14 @@ For a company that is fresh in the world of cloud computing this service
 could be considered too advance. 
 This is mainly meant for users that want to replicate a certain stack, 
 with the ability to provide custom parameters. 
-Once a stack is deployed it is only maintainable through the AWS Management Console, 
+Once a stack is deployed it is only maintainable through the \myac{AWS} Management Console, 
 and not through template files. 
 The format that Amazon uses for the templates is a good format, 
-the syntax is in form of JSON which is readable and easy to use, 
+the syntax is in form of \myac{JSON} which is readable and easy to use, 
 but the structure and semantics of the template itself is not used by any 
 other providers or cloud management tooling, 
 so it can not be considered a multicloud solution. 
-Even though JSON is a readable format, 
+Even though \myac{JSON} is a readable format, 
 does not make it viable as a presentation medium on a business level.
 
 \paragraph{CA Applogic.}~\cite{applogic}
@@ -118,17 +118,17 @@ but it is not a distinct modeling.
 A modeling language could overlay the code and help providing a clear overview, 
 but the language directly would not provide a good overview of deployment. 
 And links between resources can be hard to see, 
-as the API lacks correlation between resources and method calls. 
+as the \myac{API} lacks correlation between resources and method calls. 
 
 \input{figs/drivers}
 
 \infobox{
   \subparagraph{Driver.}
-  any of the API solutions use the term ``\emph{driver}'', it represents
+  any of the \myac{API} solutions use the term ``\emph{driver}'', it represents
   a module or component that fit into existing software and extend the support
   of external connections without changing the interface.
   A cloud \emph{driver} connects a given software to an existing cloud provider
-  through this providers web based API (\myac{REST}), illustrated in \citefig{drivers}.
+  through this providers web based \myac{API} (\myac{REST}), illustrated in \citefig{drivers}.
 }
 
 \paragraph{jclouds.}~\cite{jclouds}
@@ -147,17 +147,17 @@ connections, the library enhance this by providing a stub aimed at testing.
 
 \paragraph{libcloud.}~\cite{libcloud}
 
-Libcloud is an API that aims to support the largest cloud providers through a common API. 
+Libcloud is an \myac{API} that aims to support the largest cloud providers through a common API. 
 The classes are based around \emph{drivers} that extends from a common ontology, 
 then provider-specific attributes and logic is added to the implementation.
-Libcoud is very similar to jclouds but the API code base is written in Python. 
-The API is Python-only and could therefor be considered to have high tool-chain dependency.
+Libcoud is very similar to jclouds but the \myac{API} code base is written in Python. 
+The \myac{API} is Python-only and could therefor be considered to have high tool-chain dependency.
 
 \paragraph{Deltacloud.}~\cite{deltacloud}
 
 Deltacloud has a similar procedure as jclouds and libcloud, but with a \myac{REST} API. 
 So they also work on the term \emph{driver}, but instead of having a library to a 
-programming language the users are presented with an web-based API they can call
+programming language the users are presented with an web-based \myac{API} they can call
 on Deltacloud servers. 
 As well as having similar problems as other APIs this approach means 
 that every call has to go through their servers, similar to a proxy. 
