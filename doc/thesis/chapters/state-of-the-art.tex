@@ -1,12 +1,12 @@
 \mychapter{state-of-the-art}{State of the Art in Provisioning}
 
-There already exists scientific research projects, APIs, frameworks 
+There already exists scientific research projects, \myac{API}s, frameworks 
 and other technologies which aim at consolidating, interfacing and utilizing cloud technologies.
 This chapter introduces some of these concepts, and does this by dividing the chapter into four parts.
 \begin{ii}
   \iitem Model-Driven Approaches which aims presenting frameworks and projects that utilize
   models on a larger scale.
-  \iitem APIs are about frameworks that connects to cloud providers, often with multicloud support,
+  \iitem \myac{API}s are about frameworks that connects to cloud providers, often with multicloud support,
   these projects can be used as middleware for other systems.
   \iitem Deployments are about projects that do full deployment of applications, inclusing provisioning.
   These are often more academic.
@@ -32,7 +32,7 @@ A \emph{stack} is a defined set of resources in different amount and sizes,
 such as numerous instances,
 one or more databases and a load balancer, although what types and sizes of resources is ambiguous.
 To provision a stack with CloudFormation the template file (in \myac{JSON} format) is first uploaded to
-AWS which makes it accessible from \myac{AWS} Management Console.
+\myac{AWS} which makes it accessible from \myac{AWS} Management Console.
 
 The template consist of three main sections, 
 \begin{ii}\iitem \emph{Parameters}, \iitem \emph{Resources} and \iitem \emph{Outputs}.\end{ii}
@@ -75,7 +75,7 @@ It also has a web based interface which let users manage their cloud resources
 as shown in~\citefig{applogic} which use and benefit from a model based approach.
 It is based on graphical models which support interactive ``drag and drop'' functionalities.
 This interface let users configure their deployments through a diagram with familiarities to 
-UML component diagrams with interfaces and assembly connectors. 
+\myac{UML} component diagrams with interfaces and assembly connectors. 
 They let users configure a selection of third party applications, 
 such as Apache and MySQL, as well as network security, instances and monitoring. 
 What CA has created is both an easy way into the cloud and it utilizes 
@@ -104,15 +104,15 @@ so end users don't have to bother with IP addresses.
 
 Extensive work have been done towards simplifying and combining cloud technologies through
 abstractions, interfaces and integrations.
-Much of this work is in form of APIs, mostly in two different forms.
+Much of this work is in form of \myac{API}s, mostly in two different forms.
 Either as programming libraries that can be utilized directly from a given 
 programming language or environment such as Java or Python.
 The other common solution is to have an online facade against public providers,
 in this solution the APIs are mostly in \myac{REST} form.
 \myac{REST}~\cite{rest:fielding00} is a software architecture for management of web resources
-on a service. It uses the HTTP protocol and consecutive methods such as GET, POST, PUT and DELETE
+on a service. It uses the \myac{HTTP} and consecutive methods such as GET, POST, PUT and DELETE
 to do tasks such as retrieve lists, items and create items.
-APIs can be considered modeling approaches based on the fact they have a topology 
+\myac{API}s can be considered modeling approaches based on the fact they have a topology 
 and hierarchical structure, 
 but it is not a distinct modeling. 
 A modeling language could overlay the code and help providing a clear overview, 
@@ -147,7 +147,7 @@ connections, the library enhance this by providing a stub aimed at testing.
 
 \paragraph{libcloud.}~\cite{libcloud}
 
-Libcloud is an \myac{API} that aims to support the largest cloud providers through a common API. 
+Libcloud is an \myac{API} that aims to support the largest cloud providers through a common \myac{API}. 
 The classes are based around \emph{drivers} that extends from a common ontology, 
 then provider-specific attributes and logic is added to the implementation.
 Libcoud is very similar to jclouds but the \myac{API} code base is written in Python. 
@@ -155,19 +155,19 @@ The \myac{API} is Python-only and could therefor be considered to have high tool
 
 \paragraph{Deltacloud.}~\cite{deltacloud}
 
-Deltacloud has a similar procedure as jclouds and libcloud, but with a \myac{REST} API. 
+Deltacloud has a similar procedure as jclouds and libcloud, but with a \myac{REST} \myac{API}. 
 So they also work on the term \emph{driver}, but instead of having a library to a 
 programming language the users are presented with an web-based \myac{API} they can call
 on Deltacloud servers. 
-As well as having similar problems as other APIs this approach means 
+As well as having similar problems as other \myac{API}s this approach means 
 that every call has to go through their servers, similar to a proxy. 
 This can work with the benefits that many middleware softwares have, such as caching, queues, 
 redundancy and transformations.
 The main disadvantages are single point of failure and version inconsistencies.
 Deltacloud provide two sets of native libraries, one in Ruby and another in C, which
-makes it easier to communicate with the \myac{REST} API.
+makes it easier to communicate with the \myac{REST} \myac{API}.
 Previously discussed \emph{jclouds} also support Deltacloud, as it would interface this
-with a \emph{driver} as any other web-based API.
+with a \emph{driver} as any other web-based \myac{API}.
 
 \section{Deployments}
 

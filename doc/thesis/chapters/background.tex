@@ -59,7 +59,7 @@ and downwards as resources become superfluous.
 
 When working against cloud solutions, in form of management, monitoring or other 
 interactions it is important that capabilities are available over standard network mechanisms,
-supporting familiar protocols such as HTTP/HTTPS and \myac{SSH}.
+supporting familiar protocols such as \myac{HTTP}/HTTPS and \myac{SSH}.
 So users can utilize tools and software they already possesses
 or will have little difficulty gaining, such as web browsers.
 This is what the characteristic \emph{broad network access} is all about,
@@ -160,15 +160,15 @@ layer in the \emph{service model} is designed to aid developers by detaching the
 from configuration of operating system and frameworks.
 Developers are limited to capabilities the provider support,
 such as programming languages (Java, C\#), environments (\myac{JVM}, .NET, Node.js), 
-storage systems (flat files, NoSQL databases, RDBMS),
+storage systems (flat files, NoSQL databases, \myac{RDBMS}),
 services (load balancers, backup, content delivery)
 and tools (plugin for Eclipse, command line tools)~\cite{nist:mell11}.
 For example the first versions of \myac{GAE} did only support
 an internal key-value based database called BigTable, which is still their main database.
 This database is transparently interfaced using their \myac{API}, 
-but also support technologies such as JPA and JDO,
+but also support technologies such as \myac{JPA} and \myac{JDO},
 users are bound to Java and these frameworks, and even limitations to the frameworks
-as they have specific handlers for RDBMS.
+as they have specific handlers for \myac{RDBMS}.
 The disconnection from operating system is the strength of \myac{PaaS} solutions,
 on one hand developers are restricted, but they are also freed from
 configuration, installments and maintaining deployments.
@@ -178,15 +178,15 @@ In the end developers can put all focus on developing applications
 instead of spending time and resources on unrelated tasks.
 
 PaaS providers support deployments through online \myac{API}s, in many cases by providing 
-specific tools such as command line interfaces or plugins to IDEs like Eclipse.
+specific tools such as command line interfaces or plugins to \myac{IDE}s like Eclipse.
 It is common for the \myac{API} to have client built on technologies related to the technology supported by the PaaS,
 for instance Heroku has a Ruby-based client and Nodejitsu has an executable Node.js-module as client.
 
 Examples of PaaS providers are Google with \myac{GAE} and
 the company Heroku with their service with the same name.
 Amazon also entered the PaaS market with their service named Elastic Beanstalk,
-which is an abstraction over EC2 as IaaS underneath.
-Multiple PaaS providers utilize EC2 as underlying infrastructure, examples of such
+which is an abstraction over \myac{EC2} as IaaS underneath.
+Multiple PaaS providers utilize \myac{EC2} as underlying infrastructure, examples of such
 providers are Heroku and Nodester, this is a tendency with increasing popularity.
 
 \paragraph{SaaS.}
@@ -206,7 +206,7 @@ cloud computing advantages.
 
 It is not imposed that SaaS deployments are web applications, they can also consist of
 different technologies such as \myac{REST} \myac{API}s or SOAP services, but in any case it is 
-most common to utilize the HTTP protocol.
+most common to utilize the \myac{HTTP}.
 In SaaS applications end users are most likely not the companies renting from providers, 
 but instead the companies customers.
 The abstraction layer covers most of all aspects around an application,
@@ -225,7 +225,7 @@ There are four main \emph{deployment models}.
 In this \emph{deployment model} infrastructure is open to the public,
 so companies can rent services from cloud providers.
 Cloud providers own the hardware and rent out IaaS and PaaS solutions to users.
-Examples of such providers are Amazon with AWS and Google with GAE.
+Examples of such providers are Amazon with \myac{AWS} and Google with \myac{GAE}.
 The benefit of this model is that companies can save costs as 
 they do not need to purchase physical hardware or manpower to build and maintain such hardware.
 It also means that a company can scale their infrastructure without having to
@@ -293,7 +293,7 @@ Stanoevska-Slabeva emphasizes in one of her studies that grid computing
 ``\emph{is the starting point and basis for Cloud Computing.}''~\cite{introduction:wozniak10}.
 As grid computing bear similarities towards cloud computing in terms of virtualization 
 and utility computing
-it is possible to use the same UML diagrams for IaaS as previously used in grid computing.
+it is possible to use the same \myac{UML} diagrams for IaaS as previously used in grid computing.
 The importance of this re-usability of models is based on the origin of grid computing, 
 \emph{eScience},
 and the popularity of modeling in this research area.
@@ -310,55 +310,55 @@ The importance of choosing correct models is emphasized by Booch~\cite{unified:b
 These definition precepts state that several models (precept \iii{4}) on different levels (precept \iii{2}) 
 of precision should be used to model the same system.
 From this it is concludable that several models can be used to describe one or several cloud computing perspectives.
-Nor are there any restraints to only use UML diagrams or even diagrams at all.
-As an example AWS CloudFormation implements a lexical model of their \emph{cloud services},
-while CA AppLogic has a visual and more UML component-based diagram of their capabilities.
+Nor are there any restraints to only use \myac{UML} diagrams or even diagrams at all.
+As an example \myac{AWS} CloudFormation implements a lexical model of their \emph{cloud services},
+while CA AppLogic has a visual and more \myac{UML} component-based diagram of their capabilities.
 
 \paragraph{Model-Driven Architecture.}
 \input{figs/mda}
 
 \myac{MDA} is a way of designing software with modeling in mind provided by \myac{OMG}.
-When working with MDA it is common to first create a \myac{CIM}, then a \myac{PIM} and
+When working with \myac{MDA} it is common to first create a \myac{CIM}, then a \myac{PIM} and
 lastly a \myac{PSM} as seen in~\citefig{mda}. There are other models and steps in between these,
 but they render the essentials.
 Beside the models there are five different life cycles as explained by Singh~\cite{model-driven:singh09}:
 \begin{enumerate}
-  \item \emph{Create a CIM}.
+  \item \emph{Create a \myac{CIM}}.
     This is done to capture requirements and describe the domain.
-    To do this the MDA developer must familiarize with the business organization
+    To do this the \myac{MDA} developer must familiarize with the business organization
     and the requirements of this domain. This should be done without any specific technology.
-    The physical appearance of CIM models can be compared to \emph{use case} diagrams in UML,
+    The physical appearance of \myac{CIM} models can be compared to \emph{use case} diagrams in \myac{UML},
     where developers can model actors and actions (use cases) based on a specific domain.
-  \item \emph{Develop a PIM.}
-    The next life cycle aims at using descriptions and requirements from the CIM
-    with specific technologies. OMG standard for MDA use UML models,
+  \item \emph{Develop a \myac{PIM}.}
+    The next life cycle aims at using descriptions and requirements from the \myac{CIM}
+    with specific technologies. \myac{OMG} standard for \myac{MDA} use \myac{UML} models,
     while other tools or practices might select different technologies.
-    Example of such \emph{Platform Independent Models} can be class diagrams in UML
+    Example of such \emph{Platform Independent Models} can be class diagrams in \myac{UML}
     used to describe a domain on a technical level.
-  \item \emph{Convert the PIM into PSM.}
+  \item \emph{Convert the \myac{PIM} into \myac{PSM}.}
     The next step is to convert the models into something more concrete
-    and specific to a platform. Several PSM and be used to represent one PIM as seen in \citefig{mda}.
-    Examples of such models can be to add language specific details to PIM class
+    and specific to a platform. Several \myac{PSM} and be used to represent one \myac{PIM} as seen in \citefig{mda}.
+    Examples of such models can be to add language specific details to \myac{PIM} class
     diagram such as types (String, Integer) for variables, access levels (private, public),
     method return types and argument types.
     Kent, Stuart~\cite{modeldriven:kent02} emphasizes the importance 
     of this mapping in one of his studies:
     \epigraph{
-      A PSM is not a PIM, but is also not an implementation. [\ldots]
-      In MDA, the main mapping is between PIM
-      and PSM, and this is often associated with code generation. 
+      A \myac{PSM} is not a \myac{PIM}, but is also not an implementation. [\ldots]
+      In \myac{MDA}, the main mapping is between \myac{PIM}
+      and \myac{PSM}, and this is often associated with code generation. 
       However, this is not the only kind of mapping required.
     }{\todo{kent}}
-    From this it is possible to determine that a PSM is more specific to a platform then PIM, such as 
+    From this it is possible to determine that a \myac{PSM} is more specific to a platform then \myac{PIM}, such as 
     programming language or environment.
-  \item \emph{Generate code form PSM.}
-    A PSM should be specific enough that code can be generated from the models.
+  \item \emph{Generate code form \myac{PSM}.}
+    A \myac{PSM} should be specific enough that code can be generated from the models.
     For instance can class diagrams be generated into entities, and additional
     code for managing the entities can be added as well.
-    Some diagrams such as BPMN can generate BPEL which again can generate executable logic.
+    Some diagrams such as \myac{BPMN} can generate \myac{BPEL} which again can generate executable logic.
   \item \emph{Deploy.}
-    The final life cycle is based on deploying the PSM, which concludes the five steps from
+    The final life cycle is based on deploying the \myac{PSM}, which concludes the five steps from
     loosely descriptions of a domain to a running product.
     Different environmental configurations can be applied in step $4$ to assure deployments
-    on different systems, this without changing the PSM from life cycle in step $3$.
+    on different systems, this without changing the \myac{PSM} from life cycle in step $3$.
 \end{enumerate}
