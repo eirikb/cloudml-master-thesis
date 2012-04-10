@@ -20,6 +20,8 @@
 \usepackage{times}
 \usepackage{template/thesis}
 \usepackage{minted}
+\usepackage{acronym}
+\usepackage{framed}
 \usetikzlibrary{positioning,shapes,shadows,arrows}
 
 \title{CloudML}
@@ -34,11 +36,19 @@
 \maketitle{}
 \textcolor{red}{\textbf{Built: \today}}
 
+%% TODO: REMOVE **************************
+\todo{\chapter{Junk}
+  \input{tables/analysis}
+}
+%% **************************
+
 \chapter*{Abstract}
 
 \tableofcontents{}
 \listoffigures{}
 \listoftables{}
+
+\input{acronyms}
 
 \chapter*{Preface}
 
@@ -48,7 +58,7 @@
 \input{chapters/introduction}
 \input{chapters/background}
 \input{chapters/state-of-the-art}
-\input{chapters/problem}
+\input{chapters/challenges}
 \input{chapters/requirements}
 
 \part{Contribution}

@@ -2,9 +2,17 @@
 
 There already exists scientific research projects, APIs, frameworks 
 and other technologies which aim at consolidating, interfacing and utilizing cloud technologies.
-This chapter introduces some of these concepts.
-First scientific research projects will be presented with their solutions, 
-then pure technological approaches will be introduced.
+This chapter introduces some of these concepts, and does this by dividing the chapter into four parts.
+\begin{ii}
+  \iitem Model-Driven Approaches which aims presenting frameworks and projects that utilize
+  models on a larger scale.
+  \iitem APIs are about frameworks that connects to cloud providers, often with multicloud support,
+  these projects can be used as middleware for other systems.
+  \iitem Deployments are about projects that do full deployment of applications, inclusing provisioning.
+  These are often more academic.
+  Lastly the chapter will discuss \iitem Example of cloud surveys, some real-world examples
+  that might not be directly related to provisioning but are important and interesting regardless.
+\end{ii}
 
 \section{Model-Driven Approaches}
 
@@ -12,15 +20,16 @@ The following technologies are in some way model based.
 That means they either use concrete diagrams or any other means of
 modeling that can relate to Model-Driven Engineering.
 
-\paragraph{Amazon AWS CloudFormation}~\cite{aws}
+\paragraph{Amazon AWS CloudFormation.}~\cite{aws}
 
 \input{code/cloudformation-template}
 
-This is a service provided by Amazon from their popular \emph{Amazon Web Services}~(AWS).
+This is a service provided by Amazon from their popular \myac{AWS}.
 It give users the ability to create template files in form of 
-\emph{JavaScript Object Notation}~(JSON) as seen in ~\citefig{cloudformation-template}, 
+\myac{JSON} as seen in ~\citefig{cloudformation-template}, 
 which they can load into AWS to create stacks of resources. 
-A \emph{stack} is a defined set of resources in different amount and sizes, such as numerous instances,
+A \emph{stack} is a defined set of resources in different amount and sizes, 
+such as numerous instances,
 one or more databases and a load balancer, although what types and sizes of resources is ambiguous.
 To provision a stack with CloudFormation the template file (in JSON format) is first uploaded to
 AWS which makes it accessible from AWS Management Console.
@@ -28,8 +37,9 @@ AWS which makes it accessible from AWS Management Console.
 The template consist of three main sections, 
 \begin{ii}\iitem \emph{Parameters}, \iitem \emph{Resources} and \iitem \emph{Outputs}.\end{ii}
 The \emph{Parameters} section makes it possible to send parameters into the template, 
-with this the template becomes a macro language by replacing references in the \emph{Resources} section 
-with inputs from users. Input to the parameters are given inside the management console when 
+with this the template becomes a macro language by replacing 
+references in the \emph{Resources} section with inputs from users. 
+Input to the parameters are given inside the management console when 
 provisioning a stack with a given template.
 The \emph{Resource} section define types of resources that should be provisioned, the \emph{Type}
 property is based on a set of predefined resource types such as \emph{AWS::EC2::Instance}
@@ -39,19 +49,28 @@ here it is possible for users to pick from a set of variables to get the informa
 
 This template system makes it easier for users to duplicate a setup many times, 
 and as the templates support parameters this process can be as dynamic as the user design it to be. 
-This is a model in form or lexical syntax, both the template itself and the resources that can be used.
-For a company that is fresh in the world of cloud computing this service could be considered too advance. 
-This is mainly meant for users that want to replicate a certain stack, with the ability to provide custom parameters. 
-Once a stack is deployed it is only maintainable through the AWS Management Console, and not through template files. 
-The format that Amazon uses for the templates is a good format, the syntax is in form of JSON which is readable and easy to use, 
-but the structure and semantics of the template itself is not used by any other providers or cloud management tooling, 
-so it can not be considered a multicloud solution. Even though JSON is a readable format, does not make it viable as a presentation medium on a business level.
+This is a model in form or lexical syntax, both the template itself 
+and the resources that can be used.
+For a company that is fresh in the world of cloud computing this service 
+could be considered too advance. 
+This is mainly meant for users that want to replicate a certain stack, 
+with the ability to provide custom parameters. 
+Once a stack is deployed it is only maintainable through the AWS Management Console, 
+and not through template files. 
+The format that Amazon uses for the templates is a good format, 
+the syntax is in form of JSON which is readable and easy to use, 
+but the structure and semantics of the template itself is not used by any 
+other providers or cloud management tooling, 
+so it can not be considered a multicloud solution. 
+Even though JSON is a readable format, 
+does not make it viable as a presentation medium on a business level.
 
-\paragraph{CA Applogic}~\cite{applogic}
+\paragraph{CA Applogic.}~\cite{applogic}
 
 \input{figs/applogic}
 
-The Applogic platform is designed to manage CAs private cloud infrastructure~\cite{introducing-cloud-services}.
+The Applogic platform is designed to manage CAs private cloud 
+infrastructure~\cite{introducing-cloud-services}.
 It also has a web based interface which let users manage their cloud resources 
 as shown in~\citefig{applogic} which use and benefit from a model based approach.
 It is based on graphical models which support interactive ``drag and drop'' functionalities.
@@ -59,11 +78,27 @@ This interface let users configure their deployments through a diagram with fami
 UML component diagrams with interfaces and assembly connectors. 
 They let users configure a selection of third party applications, 
 such as Apache and MySQL, as well as network security, instances and monitoring. 
-What CA has created is both an easy way into the cloud and it utilizes the advantages of model realizations. 
+What CA has created is both an easy way into the cloud and it utilizes 
+the advantages of model realizations. 
 Their solution will also prove beneficial when conducting business level consulting
 as it visualizes the structural layout of an application.
 But this solution is only made for private clouds running their own controller, 
 this can prove troublesome for migration, both in to and out of the infrastructure.
+
+\paragraph{Madeira Cloud.}~\cite{madeiracloud}
+
+\input{figs/madeira}
+
+Madeira have created a tool which is similar to CA Applogic, but instead of focusing
+on a private cloud solution they have created a tool specifically for \myac{AWS} \myac{EC2}.
+Users can create \emph{stacks} with the available services in \myac{AWS} through 
+dynamic diagrams.
+These \emph{stacks} are live representations of the architecture and can be found 
+and managed in the \myac{AWS} console as other \myac{AWS} services.
+They also support storing running systems into template files which can be used
+to redeploy identical copies and it should also handle configuration conflicts.
+For identifying servers they use hostnames, which are bound to specific instances 
+so end users don't have to bother with IP addresses.
 
 \section{APIs}
 
@@ -73,95 +108,164 @@ Much of this work is in form of APIs, mostly in two different forms.
 Either as programming libraries that can be utilized directly from a given 
 programming language or environment such as Java or Python.
 The other common solution is to have an online facade against public providers,
-in this solution the APIs are mostly in RESTful form.
+in this solution the APIs are mostly in \myac{REST} form.
+\myac{REST}~\cite{rest:fielding00} is a software architecture for management of web resources
+on a service. It uses the HTTP protocol and consecutive methods such as GET, POST, PUT and DELETE
+to do tasks such as retrieve lists, items and create items.
+APIs can be considered modeling approaches based on the fact they have a topology 
+and hierarchical structure, 
+but it is not a distinct modeling. 
+A modeling language could overlay the code and help providing a clear overview, 
+but the language directly would not provide a good overview of deployment. 
+And links between resources can be hard to see, 
+as the API lacks correlation between resources and method calls. 
 
-\subparagraph{Driver.}
+\input{figs/drivers}
 
-Many of the API solutions use the term ``\emph{driver}'', it represents
-a module or component that fit into existing software and extend the support
-of external connections without changing the interface.
-A cloud \emph{driver} connects a given software to an existing cloud provider
-through this providers web based API (REST).
+\infobox{
+  \subparagraph{Driver.}
+  any of the API solutions use the term ``\emph{driver}'', it represents
+  a module or component that fit into existing software and extend the support
+  of external connections without changing the interface.
+  A cloud \emph{driver} connects a given software to an existing cloud provider
+  through this providers web based API (\myac{REST}), illustrated in \citefig{drivers}.
+}
 
-\paragraph{libcloud and jclouds}~\cite{libcloud, jclouds}
+\paragraph{jclouds.}~\cite{jclouds}
+
+This is a library written in Java and can be used from any \myac{JVM}-based language.
+Provider support is implemented in \emph{drivers}, and they even support deployments
+to some \myac{PaaS} solutions such as \myac{GAE}.
+\emph{jclouds} divide their library in two different parts, one for computing powers 
+such as \myac{EC2} and one for blob storage like S3. 
+Some blob storage services are accessible on the compute side of the library such
+as \myac{EBS}.
+They support ``dry runs'' so a stack can be deployed as a simulation, not 
+actually deploying it to a public cloud.
+This is beneficial for testing deployments, and writing unit tests without initializing
+connections, the library enhance this by providing a stub aimed at testing.
+
+\paragraph{libcloud.}~\cite{libcloud}
 
 Libcloud is an API that aims to support the largest cloud providers through a common API. 
-The classes are based around \emph{drivers} that extends from a common ontology, then provider-specific attributes and logic is added to the implementation.
-jclouds is very similar to libcloud but the API code base is written in Java and Clojure. 
-This library also have \emph{drivers} for different providers, but they also support some PaaS solutions such as Google App Engine.
-APIs can be considered modelling approaches based on the fact they have a topology and hierarchical structure, 
-but it is not a distinct modelling. A modelling language could overlay the code and help providing a clear overview, 
-but the language directly would not provide a good overview of deployment. 
-And links between resources can be hard to see, as the API lacks correlation between resources and method calls. 
-Libcloud have solved the multicloud problem in a very detailed manner, but the complexity is therefore even larger. 
-The API is also Python-only and could therefor be considered to have high tool-chain dependency.
+The classes are based around \emph{drivers} that extends from a common ontology, 
+then provider-specific attributes and logic is added to the implementation.
+Libcoud is very similar to jclouds but the API code base is written in Python. 
+The API is Python-only and could therefor be considered to have high tool-chain dependency.
 
-\paragraph{OPA}~\cite{opa}
+\paragraph{Deltacloud.}~\cite{deltacloud}
 
-OPA is a cloud language aimed at easing development of modern web applications. It is a new language, 
-with its own syntax, which is aimed directly at the web. The language will build into executable files that will handle load balancing and scalability, 
-this is to to make this a part of the language and compilation.
-OPA is a new language, so it might be difficult to migrate legacy systems into this lanugage. 
-There are no deployment configurations, as this is built into the language. The compiler will generate an executable that coWeb-based vs native application
+Deltacloud has a similar procedure as jclouds and libcloud, but with a \myac{REST} API. 
+So they also work on the term \emph{driver}, but instead of having a library to a 
+programming language the users are presented with an web-based API they can call
+on Deltacloud servers. 
+As well as having similar problems as other APIs this approach means 
+that every call has to go through their servers, similar to a proxy. 
+This can work with the benefits that many middleware softwares have, such as caching, queues, 
+redundancy and transformations.
+The main disadvantages are single point of failure and version inconsistencies.
+Deltacloud provide two sets of native libraries, one in Ruby and another in C, which
+makes it easier to communicate with the \myac{REST} API.
+Previously discussed \emph{jclouds} also support Deltacloud, as it would interface this
+with a \emph{driver} as any other web-based API.
 
-In public cloud enviromants managing, monitoring, payment and other administrative 
-tasks can be done through web interfaces or APIs. 
-Web applications are becoming more popular by the day, with HTML5, EcmaScript 5 and CSS3. 
-The user experience in web applications today can in many cases match native applications, with additional benefits such as availability and ease of use.
-A web-based interface would prove beneficial for quickly displaying the simple core functionality of the language. 
-In this era of cloud computing and cloud technologies a user should not need to abandon his or hers browser to explore the functionality of CloudML.
-Cloud providers are most likely to give customers access to customize their cloud services through web-based interfaces, 
-and if customers are to take advantage of CloudML, the language should be graphically integrated into existing tool chains. 
-Providers would probably find it pleasing if a example GUI wauld be run on most cloud providers instances, 
-and so it can also benefit from some cloud based load balancers, even though this is part of the language. 
-The conclusion about OPA is that it is not a language meant for configuration, and could not easily benefit from a model based approach, 
-and it does not intentionally solve multicloud.
+\section{Deployments}
 
-\paragraph{Whirr}~\cite{whirr}
+There are also some solutions that specifically aim at full deployments,
+contra provisioning single instances or services these solutions
+provision everything needed to fully deploy an application with a given ontology.
 
-\todo{Fill this one out}
+\paragraph{mOSAIC.}~\cite{portable:petcu12} 
 
-This is a binary and code-based application for creating and starting short-lived clusters for hadoop instances.
-It support multiple cloud providers. It has a layout for configuration but it is mainly property-based, and aimed at making clusters. 
-
-\paragraph{Deltacloud}~\cite{deltacloud}
-
-Deltacloud has a similar procedure as jclouds and libcloud, but with a REST API. 
-So they also work on the term \emph{driver}, but instead of having a library to a programming language the users are presented with an API they can call, 
-on Deltacloud servers. This means users can write in any language they may choose. 
-As well as having similar problems as other APIs this approach means that every call has to go through their servers, 
-similar to a proxy. This can work with the benefits that many middleware software have, such as cahing, queues, 
-redundancy and transformations, but it also has the disadvantages such as single point of failure and version inconsistencies.
-
-\section{Deployment frameworks}
-
-\paragraph{Amazon Beanstalk}
-\paragraph{simplifying-solution-deployment-on-a-cloud-through-composite-appliances}
-\paragraph{architecture-for-virtual-solution-composition-and-deployment}
-
-\paragraph{mOSAIC}
-
-mOSAIC~\cite{portable:petcu12} aims at not only provisioning in the cloud, but deployment as well.
+Aims at not only provisioning in the cloud, but deployment as well.
 They focus on abstractions for application developers and state they can easily enable users to
 \emph{``obtain the desired application characteristics (like
 scalability, fault-tolerance, QoS, \etc.)''}~\cite{architecturing:petcu11}.
-The strongest similarities to CloudML are 
-\begin{ii}\iitem multicloud with their API~\cite{architecturing:petcu11},
-\iitem metadata dependencies since they support full deployment and
-\iitem robustness through fault-tolerance.
-What mOSAIC is lacking compared to CloudML is model-based approach including \emph{M@RT}.
+There are two abstraction layers, one for cloud provisioning 
+and one for application-logic.
+mOSAIC will select a proper cloud based on how developers describe their application,
+several clouds can be selected based on their properties.
+mOSAIC will use the \myac{IaaS} solutions of cloud providers to deploy users application,
+then communication between these clouds will be done using 
+``cloud based message queues technologies''.
 
-\paragraph{reservoir}
+\paragraph{RESERVOIR.}~\cite{reservoir:rochweger09}
 
-Reservoir~\cite{reservoir:rochweger09} is another project that also aim at
-\iitem multicloud. The other goals of this project is to leverage 
-scalability in single providers and support built-in \emph{Business Service Management}~(BSM),
-important topics but not directly related to the goals of CloudML.
-CloudML stands out from Reservoir in the same way as mOSAIC.
+\myac{RESERVOIR} is a European Union FP7 project, 
+aiming at \emph{cloud federation} between private and 
+hybrid clouds. With this a deployed application can distribute workload 
+seamlessly between private and public clouds based on the applications requirements.
+This is done by creating \emph{Reservoir sites}, one for each provider.
+Each site is independent and run a \myac{VEE} which is managed by a \myac{VEEM}. 
+The \myac{VEEM} communicate with other \myac{VEEM} and are able to do
+federation between clouds. Each site must have the Reservoir software components 
+installed, which makes it self-maintainable and self-monitoring.
 
-\paragraph{Vega}
-Vega framework~\cite{simplifying:chieu10} is a deployment framework aiming 
-at full cloud deployments of multi-tier topologies, they also follow a \iitem model-based 
-approach\end{ii}. The main difference between CloudML and Vega are support of multicloud provisioning.
+\paragraph{Vega.}~\cite{simplifying:chieu10} 
 
+Vega framework is a deployment framework aiming 
+at full cloud deployments of multi-tier topologies, 
+they also follow a model-based approach. 
+The description of a given topology is done by using \myac{XML} files, with these files
+developers can replicate a \emph{stack}.
+The \myac{XML} contain information about the instances, such as \emph{ostype} for Operating System
+and \emph{image-description} to describe properties of an instance such as amount of 
+memory (\emph{req\_memory}).
+They also allow small scripts to be written directly into the \myac{XML} through a node
+\emph{runoncescript} which can do some additional configuration on a propagated node.
+A resource manager keep track of resources in a system, grouping instances after their attributes.
+
+\section{Example of cloud surveys}
+
+In this section real-world examples are presented, such as popular IaaS and PaaS solutions
+and other technologies which are widely used today.
+Some solutions bear strong similarities to others, such as \myac{EC2} and Rackspace cloudservers,
+for these only one solution will be discussed.
+
+\paragraph{EC2.}
+
+A central part of \myac{AWS}, it was Amazons initial step into the world of cloud computing when
+they released \myac{EC2} as a service as public beta in $2006$.
+This service is known to be the most basic service that cloud providers offer and is 
+what makes Amazon an \myac{IaaS} provider.
+When users rent \myac{EC2} services they are actually renting \myac{VPS} 
+instances virtualized by Xen.
+Although the instance itself can be considered a \myac{VPS} there are other factors 
+that define it as a cloud service.
+For instance cost calculations, monitoring and tightly coupled services surrounding \myac{EC2}.
+Examples of these services are \myac{EBS} for block storage, 
+\myac{ELB} for load balancing and \emph{Elastic IP} 
+for dynamically assigning static IP addresses to instances.
+
+Some of \myac{AWS} other services rely on \myac{EC2} such as \myac{AWS} Elastic Beanstalk 
+and \emph{Elastic MapReduce}.
+When purchasing these services it is possible to manage the \myac{EC2} instances 
+through the \myac{EC2}-tab in \myac{AWS} console, but this is not mandatory
+as they will be automatically managed through the original purchased service.
+As mentioned earlier other \myac{PaaS} solutions delivered by independent companies
+are using \myac{EC2} or other \myac{AWS} solutions.
+Examples of these are Heroku, Nodester, DotCloud and Engine Yard which uses \myac{EC2}.
+Example of companies using other \myac{AWS} services is Dropbox which uses S3j
+
+\myac{EC2} is similar to services offered by other providers, 
+such as Rackspace cloudservers, GoGrid cloud servers
+and Linode Cloud.
+Some of the additional services such as \myac{ELB} can also be found in other providers
+which also offer these capabilities as services.
+
+\paragraph{Amazon Beanstalk.}
+
+Amazon has been known for providing IaaS solutions (\myac{EC2}) and services complementing 
+either their IaaS or the \emph{Storage as a Service} solution S3.
+Unlike some providers such as Microsoft and Google they had yet to introduce
+a PaaS based solution, until they created Beanstalk.
+This is the Amazon answer to PaaS, it is based on pre-configuring 
+a stack of existing services such as \myac{EC2} for computing, 
+\myac{EBS} for storage and \myac{ELB} for load balancing.
+At the writing moment they support Java with Tomcat and PHP deployments.
+The Java solution is based on uploading war-files to Beanstalk, then 
+the service will handle the rest of the deployment.
+For PHP the deployment is based on Git repositories, when pushing
+code to a given repository Beanstalk will automatically deploy the new code
+to an Apache httpd instance.
 

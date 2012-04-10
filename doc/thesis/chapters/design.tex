@@ -17,7 +17,7 @@ physical parts maintainable by the user.
 
 \paragraph{Scenario introduction.}
 CloudML is introduced by using two scenarios where ``Alice'' is provisioning the 
-\emph{BankManager} from \citechap{problem} to AWS \emph{Elastic Compute Cloud}~(EC2)
+\emph{BankManager} from \citechap{challenges} to AWS \emph{Elastic Compute Cloud}~(EC2)
 using the topology shown in~\citefig{singlenode} and~\citefig{threenodes}.
 It is compulsory that she possesses an AWS account in advance of the scenario.
 She will retrieve security credentials for account 
@@ -71,5 +71,3 @@ When a node is being propagated it changes type to \texttt{RuntimeInstance},
 which can have a different \emph{states} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
 When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, including
 the most necessary metadata, when all nodes reaches this state the task of provisioning is concluded.
-
-\note{Full deployment is planed for next version of CloudML.}

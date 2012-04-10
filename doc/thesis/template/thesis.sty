@@ -45,6 +45,11 @@
 \newcommand{\mychapter}[2]{\chapter{#2}\label{chap:#1}}
 \newcommand{\mycaption}[2]{\caption{#2}\label{fig:#1}}
 
+%% Acro definitions
+
+\newcommand{\myacdef}[2]{\acrodef{ac:#1}[#1]{\emph{#2}}}
+\newcommand{\myac}[1]{\ac{ac:#1}}
+
 %% http://tex.stackexchange.com/questions/6985/place-quotation-dictum-in-a-box
 
 \definecolor{quotationcolour}{HTML}{F0F0F0}
@@ -72,6 +77,17 @@
   }
   \end{flushright}
   \bigskip
+}
+
+\newcommand{\infobox}[1]{
+  \bigskip
+  \framebox{ 
+    \colorbox{quotationcolour}{
+      \parbox{.9\textwidth}{
+        #1
+      }
+    }
+  }
 }
 
 %% http://tex.stackexchange.com/questions/12020/what-is-the-easiest-way-to-draw-3d-cube-with-tikz
@@ -126,6 +142,7 @@
 % My tikz styles
 \tikzstyle{box}=[parallelepiped,draw=black, drop shadow, fill=gray!20, top color=white, bottom color=black!10, minimum width=1.5cm]
 \tikzstyle{tcloud}=[cloud, draw, fill=gray!20, top color=white, drop shadow, bottom color=black!10, aspect=2]
+\tikzstyle{tdiamond}=[diamond, aspect=2, draw, top color=white, rounded corners, fill=white!40, drop shadow, bottom color=black!10]
 \tikzstyle{class}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
   text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
 \tikzstyle{darkclass}=[rectangle, draw=black, rounded corners, fill=gray, drop shadow,
@@ -135,3 +152,18 @@
 \tikzstyle{line}=[-]
 \tikzstyle{aggregate}=[>-, >=diamond]
 
+\newcommand{\stickman}[1] {
+      \node [circle, draw, fill=gray!20, top color=white, bottom color=black!10, minimum width=1cm] 
+        (#1) at (0,0) {};
+      \path (#1) ++(0, -2) coordinate (groin);
+      \path (#1) ++(0, -1) coordinate (armcon);
+      \path (groin) ++(.5, -1.25) coordinate (rfoot);
+      \path (groin) ++(-.5, -1.25) coordinate (lfoot);
+      \path (armcon) ++(1, -.1) coordinate (rhand);
+      \path (armcon) ++(-1, -.1) coordinate (lhand);
+      \path[draw, thick] (#1) -- (groin);
+      \path[draw, thick] (groin) -- (rfoot);
+      \path[draw, thick] (groin) -- (lfoot);
+      \path[draw, thick] (armcon) -- (rhand);
+      \path[draw, thick] (armcon) -- (lhand);
+}
