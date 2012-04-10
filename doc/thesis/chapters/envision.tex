@@ -2,7 +2,82 @@
 %\input{figs/bigpicture}
 
 In this chapter the core approach and steps on the research to implementing CloudML will be described.
+In the previous chapters, \citechap{challenges} and \citechap{requirements}, 
+challenges and requirements were identified and described.
+In this part of the thesis (\emph{contribution}) the challenges will be resolved
+by applying requirements.
 
+\section{Requirement dependencies}
+\input{figs/requirement-dependencies}
+
+Some of the requirements have depend on each other, for instance \emph{software reuse} is about finding
+and utilizing an existing library or framework, but this will also directly affect or be affected by
+programming language or application environment chosen in \emph{solid underlying technology} requirement.
+There are three requirements, 
+\begin{ii}
+  \iitem Models@run.time,
+  \iitem Software reuse and
+  \iitem lexical template,
+\end{ii}
+where all have a two-way dependency to the \emph{solid underlying technology} requirement.
+These dependencies are illustrated in \citefig{requirement-dependencies}.
+
+\section{Requirements step by step}
+
+In this section each of the requirements from \citechap{requirements} will be presented 
+with a description overview of how to proceed to achieve them.
+
+\paragraph{Solid underlying technologies.}
+This will be the foundation of the solution, so finding good technologies has a high priority.
+To find good technologies they have to be considered by several aspects, such as
+\begin{ii}
+  \iitem ease of use,
+  \iitem community size,
+  \iitem closed/open source,
+  \iitem business viability,
+  \iitem modernity and 
+  \iitem matureness.
+\end{ii}
+Another important aspect is based on library or framework chosen for the \emph{software reuse} requirement,
+as the library will directly affect some technologies such as programming language.
+Different technologies have to be researched and to some degree physically tried out to identify
+which aspects they fulfill.
+
+Types of technologies are undefined but some are mandatory such as 
+\begin{ii}
+  \iitem programming language (Java, C\#) and 
+  \iitem application environment (JDK, .NET).
+\end{ii}
+Beside this it is also important to state which type of application the solution should be, 
+\begin{ii}
+  \iitem GUI application,
+  \iitem \myac{API} in form of public Web Service or
+  \iitem \myac{API} in form of native library.
+\end{ii}
+The amount of different technologies is overwhelming so looking into all of them would be impossible,
+therefore they must be narrowed down based on aspects such as popularity.
+
+\paragraph{Software reuse.}
+The \myac{API}s described in \citechap{state-of-the-art} are worthy candidates to meet this requirement.
+Some research have already been done to indicate what their purpose is, 
+how they operate and to some extent how to use them.
+The approach here is to select libraries or framework that could match well with a chosen
+\emph{solid underlying technology} or help fulfill this requirement.
+Then the chosen \myac{API}s must be narrowed down to one single \myac{API} which will be
+used in the solution application.
+
+\paragraph{Model-driven approach.}
+\ldots
+\paragraph{Lexical templates.}
+\paragraph{Models@run.time.}
+
+\begin{center}
+\line(1,0){250}
+\end{center}
+
+Battle plan, strategy?
+How to attack the problem?
+What is the problem, officer? -> Challenges, Requirements.
 
 The core envision is to solve requirements from~\citechap{requirements} by applying a 
 model-driven approach supported by modern technologies.

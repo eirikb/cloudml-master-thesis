@@ -1,0 +1,37 @@
+\begin{figure}
+  \begin{center}
+    \subfigure[Requirement dependencies]{
+      \begin{tikzpicture}[scale=0.8, transform shape]
+        \node (SUT) [class] { 
+          \textbf{Solid underlying technology} 
+        };
+        \node (LT) [class, below=of SUT] { 
+          \textbf{Lexical template} 
+        };
+        \node (SR) [class, right=of SUT] { 
+          \textbf{Software reuse} 
+        };
+        \node (M@RT) [class, above=of SUT] { 
+          \textbf{Models@run.time} 
+        };
+
+        \draw [line] (SUT) -- (LT);
+        \draw [line] (SUT) -- (SR);
+        \draw [line] (SUT) -- (M@RT);
+      \end{tikzpicture}
+    }
+
+    \subfigure[Legend]{
+      \begin{tikzpicture}[scale=0.7, transform shape]
+        \node (Requirement) [class, label=below:Application modules] { Requirement };
+
+        \node (AuxNode01) [text width=3cm, right=of Requirement] {};
+        \node (AuxNode02) [right=of AuxNode01] {};
+
+        \draw[line] (AuxNode01) -- node[below] {Dependency, both ways} (AuxNode02);
+      \end{tikzpicture}
+    }
+  \end{center}
+  \caption{Requirement dependencies}
+  \label{fig:requirement-dependencies}
+\end{figure}
