@@ -1,0 +1,178 @@
+\mychapter{problem}{Challenges in the cloud}
+
+As cloud computing is growing in popularity it is also growing in complexity.
+More and more providers are entering the market and different types of solutions are made.
+There are few physical restrictions on how a provider should let their users do provisioning,
+and little limitations in technological solutions.  
+The result can be a complex and struggling introduction to cloud computing for users,
+and provisioning procedure can alternate between providers.
+
+This chapter will outline research on which has been conducted by
+physical provisioning of an example application.
+First the scenario will be introduced, describing the example application
+and different means of provisioning in form of topologies.
+Then challenges identified from the research will be presented.
+
+\section{Scenario}
+
+The following scenario was chosen because of how much it resembles actual solutions
+used in industry today.
+It uses a featureless example application meant to fit into scenario topologies
+without having too much complexity.
+Challenges should not be affected from errors or problems with the example application.
+The application will be provisioned to a defined set of providers with a defined set of different topologies.
+
+\paragraph{BankManager.}
+
+To recognize challenges when doing cloud provisioning an example application~\cite{BankManager} was utilized.
+The application (from here known as \emph{BankManager}) is a prototypical bank manager system
+which support creating users and bank accounts and moving money between bank accounts and users.
+The application is based on a three-tier architecture with 
+\begin{ii} 
+  \iitem presentation tier with a web-based interface,
+  \iitem logic tier with controllers and services and
+  \iitem database tier with models and entities.
+\end{ii}
+Three or more tiers in a web application is a common solution, even more so for applications 
+based on the \myac{MVC} architectural pattern.
+The advantage with this architecture is that the lowest tier (database) can be physically
+detached from the tiers above, the application can then be distributed between several nodes.
+It is also possible to have more tiers, for instance by adding a \emph{service} 
+layer to handle re-usable logic.
+Having more tiers and distributing these over several nodes is an architecture often
+found in \myac{SOA} solutions.
+
+\paragraph{Topologies.}
+
+\input{figs/nodes}
+
+Some examples of provisioning topologies are illustrated in \citefig{BankManager},
+each example includes a \texttt{browser} to visualize application flow,
+\texttt{front-end} visualizes executable logic and \texttt{back-end} represents database.
+It is possible to have both \texttt{front-end} and \texttt{back-end} on the same node, 
+as shown in \citefig{singlenode}.
+When the topology have several \texttt{front-ends} a \texttt{load balancer} is used
+to direct traffic between \texttt{browser} and \texttt{front-end}.
+The \texttt{load balancer} could be a node like the rest, but in this cloud-based scenario
+it is actually a cloud service, which is also why it is graphically different.
+In \citefig{twonodes} \texttt{front-end} is separated from \texttt{back-end},
+this introduces the flexibility of increasing computation power on the \texttt{front-end} node while spawning more
+storage on the \texttt{back-end}.
+For applications performing heavy computations it can be beneficial to distribute the workload between several
+\texttt{front-end} nodes as seen in \citefig{threenodes}, the number of \texttt{front-ends} can be linearly increased
+$n$ number of times as shown in \citefig{frontends}.
+\emph{BankManager} is not designed to handle several \texttt{back-ends} because of \myac{RDBMS},
+this can solved on a database level with master and slaves (\citefig{frontendbackends}).
+
+\paragraph{Execution.}
+
+The main goal of the scenario was to successfully deploy \emph{BankManager}
+on a given set of providers with a given set of topologies.
+And to achieve such deployment it was crucial to perform cloud provisioning.
+The providers chosen were 
+\begin{ii}
+  \iitem \myac{AWS}~\cite{aws} and
+  \iitem Rackspace~\cite{rackspace}.
+\end{ii}
+These are strong providers with a respectable amount of customers, as two of the leaders in cloud computing
+[\todo{source}].
+They also have different graphical interfaces, APIs and toolchains which makes them suitable
+for a scenario researching multicloud challenges.
+
+The topology chosen for this scenario was that of three nodes\citefig{threenodes}.
+This topology is advance enough that it needs a \texttt{load balancer} in front of two
+\texttt{front-end} nodes, and yet the simplest topology of the ones that benefits from a \texttt{load balancer}.
+It is important to include most of the technologies and services that needs testing.
+
+To perform the actual provisioning a set of primitive Bash-scripts were developed.
+These scripts were designed to automate a full deployment on a two-step basis.
+First step was to provision instances:
+\begin{itemize}
+  \item Authenticate against provider.
+  \item Create instances.
+  \item Manually write down IP addresses of created instances.
+\end{itemize}
+The second step was deployment:
+\begin{itemize}
+  \item Configure \emph{BankManager} to use one of provisioned instances IP address for database.
+  \item Build \emph{BankManager} into a \myac{WAR}-file.
+  \item Authenticate to instance using \myac{SSH}.
+  \item Remotely execute commands to install required third party software such as Java and PostgreSQL.
+  \item Remotely configure third party software.
+  \item Inject \myac{WAR}-file into instances using \myac{SFTP}.
+  \item Remotely start \emph{BankManager}.
+\end{itemize}
+The scripts were provider-specific so one set of scripts had to be made for each provider.
+Rackspace had at that moment no command-line tools, so a \myac{REST} client had to be constructed.
+
+\section{challenges}
+
+From this research it became clear that there were multiple challenges to address
+when deploying applications to cloud infrastructure.
+This thesis is scoped to cloud provisioning, but the goal of this provisioning is to 
+enable a successful deployment. 
+It was therefore crucial to involve a full deployment in the scenario to discover
+important challenges.
+
+\paragraph{Complexity.} 
+
+The first challenge encountered was to simply 
+authenticate and communicate with the cloud. 
+The two providers had different approaches, \myac{AWS}~\cite{aws} 
+had command-line tools built from their Java APIs,
+while Rackspace~\cite{rackspace} had no tools beside the API language bindings.
+So for \myac{AWS} the Bash-scripts could do callouts to the command-line interface 
+while for Rackspace the public \myac{REST} API had to be utilized.
+This emphasized the inconsistencies between providers, 
+and resulted in an additional tool being introduced to handle callouts.
+
+As this emphasizes the complexity even further it also stresses engineering capabilities
+of individuals executing the tasks to a higher technical level.
+
+\paragraph{Multicloud.}
+
+Once able to provision the correct amount of nodes with desired properties
+on the first provider it became clear that mirroring the setup to the other provider 
+was not as convenient as anticipated.
+There were certain aspects of vendor lock-in, so each script was hand-crafted for specific providers.
+The lock-in situations can in many cases have financial implications where for example
+a finished application is locked to one provider and this provider increases tenant costs.
+Or availability decreases and results in decrease of service uptime damaging revenue.
+
+\paragraph{Reproducibility.}
+
+The scripts provisioned nodes based on command-line arguments
+and did not persist the designed topology in any way, this made topologies cumbersome to reproduce.
+
+\paragraph{Shareable.}
+
+Since the scripts did not remember a given setup it was impossible 
+to share topologies ``as is'' between coworkers.
+It is important that topologies can be shared because direct input from individuals
+with different areas of competence can increase quality.
+
+\paragraph{Robustness.}
+
+There were several ways the scripts could fail and most errors were ignored.
+Transactional behaviors were non-existent.
+
+\paragraph{Run-time dependency.}
+
+The scripts were developed to fulfill a complete deployment,
+and to do this it proved important to temporally save run-time specific metadata.
+This was crucial data needed to connect front-end nodes with the back-end node.
+
+
+\section{Why is it important to solve the problems}
+
+\input{tables/analysis}
+
+\todo{
+  \begin{itemize}
+    \item Cloud domain is state of the art
+    \item model driven approach with benefits (no special tooling)
+    \item Easier for businesses (especially SMBs) to reach out to Cloud
+    \item Easier for larger more time-constraint businesses to try out the cloud
+    \item Opening the eyes of big providers for a larger cross-cloud language
+  \end{itemize}
+}

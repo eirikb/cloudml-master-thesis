@@ -1,0 +1,35 @@
+\begin{figure}
+
+  \begin{tikzpicture}[scale=1, transform shape]
+    \node (Framework) [box, minimum width=8cm, minimum height=4.5cm] { };
+
+    \node (Interface) [class, text width=2cm, yshift=0.5cm, xshift=-2.5cm] { 
+      \textbf{Common  \\ interface} 
+    };
+
+    \node (Driver-EC2) [class, right=of Interface] { 
+      \textbf{Driver - EC2} 
+    };
+    \node (Driver-Rackspace) [class, above=of Driver-EC2] { 
+      \textbf{Driver - Rackspace} 
+    };
+    \node (Driver-Azure) [class, below=of Driver-EC2] { 
+      \textbf{Driver - Azure} 
+    };
+
+    \node (EC2) [tcloud, xshift=1cm, right=of Driver-EC2] { \textbf{EC2} };
+    \node (Rackspace) [tcloud, xshift=1cm, right=of Driver-Rackspace] { \textbf{Rackspace} };
+    \node (Azure) [tcloud, xshift=1cm, right=of Driver-Azure] { \textbf{Azure} };
+
+    \draw[arrow] (Interface) -- (Driver-EC2.west);
+    \draw[arrow] (Interface) -- (Driver-Rackspace.west);
+    \draw[arrow] (Interface) -- (Driver-Azure.west);
+
+    \draw[arrow] (Driver-EC2) -- (EC2);
+    \draw[arrow] (Driver-Rackspace) -- (Rackspace);
+    \draw[arrow] (Driver-Azure) -- (Azure);
+  \end{tikzpicture}
+
+  \caption{Cloud drivers}
+  \label{fig:drivers}
+\end{figure}
