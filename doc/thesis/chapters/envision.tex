@@ -5,7 +5,7 @@ In this chapter the core approach and steps on the research to implementing Clou
 In the previous chapters, \citechap{challenges} and \citechap{requirements}, 
 challenges and requirements were identified and described.
 In this part of the thesis (\emph{contribution}) the challenges will be resolved
-by applying requirements.
+by applying and implementing the requirements.
 
 \section{Requirement dependencies}
 \input{figs/requirement-dependencies}
@@ -18,9 +18,15 @@ There are three requirements,
   \iitem Models@run.time,
   \iitem Software reuse and
   \iitem lexical template,
+    where all have a two-way dependency to the 
+  \iitem solid underlying technology requirement,
 \end{ii}
-where all have a two-way dependency to the \emph{solid underlying technology} requirement.
-These dependencies are illustrated in \citefig{requirement-dependencies}.
+as illustrated in \citefig{requirement-dependencies}.
+These dependency links will affect the end result of all the four previous mentioned requirements.
+For example a library chosen in precept \iii{2} would affect \iii{4}, which again would affect
+how precept \iii{1} will be solved. 
+It could also affect precept \iii{3} as different textual solutions can function better in
+different environments.
 
 \section{Requirements step by step}
 
@@ -74,10 +80,6 @@ used in the solution application.
 \begin{center}
 \line(1,0){250}
 \end{center}
-
-Battle plan, strategy?
-How to attack the problem?
-What is the problem, officer? -> Challenges, Requirements.
 
 The core envision is to solve requirements from~\citechap{requirements} by applying a 
 model-driven approach supported by modern technologies.
