@@ -2,6 +2,7 @@
   \tikzstyle{browser}=[rectangle, dashed, draw=black, rounded corners, fill=white!40, drop shadow,
   text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
 
+  \begin{center}
     \subfigure[Single node]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
@@ -61,7 +62,7 @@
     }
 
     \subfigure[Several front-ends and back-ends (slaves)]{
-      \begin{tikzpicture}[scale=0.7, transform shape]
+      \begin{tikzpicture}[scale=0.6, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
         \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
@@ -98,6 +99,7 @@
         \draw[loosely dotted, line width=3pt] (AuxNode03) -- node[below] {n-times} (AuxNode04);
       \end{tikzpicture}
     }
+  \end{center}
 
   \caption{Different architectural ways to provision nodes (topologies).}
   \label{fig:BankManager}

@@ -2,7 +2,7 @@
 
 There already exists scientific research projects, \myac{API}s, frameworks 
 and other technologies which aim at consolidating, interfacing and utilizing cloud technologies.
-This chapter introduces some of these concepts, and does this by dividing the chapter into four parts.
+This chapter introduces some of these concepts, and does this by dividing the chapter into four parts:
 \begin{ii}
   \iitem Model-Driven Approaches which aims presenting frameworks and projects that utilize
   models on a larger scale.
@@ -15,10 +15,6 @@ This chapter introduces some of these concepts, and does this by dividing the ch
 \end{ii}
 
 \section{Model-Driven Approaches}
-
-The following technologies are in some way model based.
-That means they either use concrete diagrams or any other means of
-modeling that can relate to Model-Driven Engineering.
 
 \paragraph{Amazon AWS CloudFormation.}~\cite{aws}
 
@@ -93,6 +89,10 @@ Madeira have created a tool which is similar to CA Applogic, but instead of focu
 on a private cloud solution they have created a tool specifically for \myac{AWS} \myac{EC2}.
 Users can create \emph{stacks} with the available services in \myac{AWS} through 
 dynamic diagrams.
+Like CA Applogic their tool is also proprietary, but on the other hand they support
+a free account which can be used to test their service out.
+One would also need a \myac{AWS} account as an addition.
+
 These \emph{stacks} are live representations of the architecture and can be found 
 and managed in the \myac{AWS} console as other \myac{AWS} services.
 They also support storing running systems into template files which can be used
@@ -137,7 +137,7 @@ This is a library written in Java and can be used from any \myac{JVM}-based lang
 Provider support is implemented in \emph{drivers}, and they even support deployments
 to some \myac{PaaS} solutions such as \myac{GAE}.
 \emph{jclouds} divide their library in two different parts, one for computing powers 
-such as \myac{EC2} and one for blob storage like S3. 
+such as \myac{EC2} and one for \emph{blob} storage like S3. 
 Some blob storage services are accessible on the compute side of the library such
 as \myac{EBS}.
 They support ``dry runs'' so a stack can be deployed as a simulation, not 
@@ -245,7 +245,7 @@ as they will be automatically managed through the original purchased service.
 As mentioned earlier other \myac{PaaS} solutions delivered by independent companies
 are using \myac{EC2} or other \myac{AWS} solutions.
 Examples of these are Heroku, Nodester, DotCloud and Engine Yard which uses \myac{EC2}.
-Example of companies using other \myac{AWS} services is Dropbox which uses S3j
+Example of companies using other \myac{AWS} services is Dropbox which uses S3.
 
 \myac{EC2} is similar to services offered by other providers, 
 such as Rackspace cloudservers, GoGrid cloud servers
