@@ -9,21 +9,6 @@ A table overview will display consecutive challenges and requirements.
 This table is angled to the challenges point of view to clarify requirements relation to challenges,
 and one requirement can try to solve several challenges.
 
-\req{strong-technological-foundation}{Strong technological foundation}{
-  Beside the benefits of \emph{software reuse} there could be even additional gain by choosing
-  a solid technology underneath the library, meaning \emph{programming language},
-  \emph{application environment}, \emph{common libraries}, \emph{distribution technologies} \etc.
-  The core of this requirement is to find, test and experiment with technologies that can solve
-  challenges and even give additional benefits.
-  Such technologies could be anything from Java for enterprise support to open source repository
-  sites to support software distribution.
-  It is also important that such technologies operate flawlessly with libraries or frameworks
-  found and chosen from the requirement of \emph{software reuse}.
-  The technology chosen should benefit the challenge of \texttt{robustness}.
-  It could also help to solve other challenges such as \texttt{metadata dependency} by introducing
-  functionality through \emph{common libraries} or some built in mechanism.
-}
-
 \req{software-reuse}{Software reuse}{
   There were several technological difficulties with the scripts from the scenario in 
   \citechap{challenges}.
@@ -35,25 +20,40 @@ and one requirement can try to solve several challenges.
   were described, such as \emph{libcloud} and \emph{jclouds}.
   The core of this requirement is to find and experiment with different APIs to find one
   that suite the needs to solve some of the challenges from \citechap{challenges}.
-  One of these challenges would be \texttt{complexity} where such software utilization
+  One of these challenges would be \emph{complexity} where such software utilization
   could help to authenticate to providers and leverage understanding of the technology.
-  Such library could also help with \texttt{feedback} in case an exception should occur, on one
+  Such library could also help with \emph{feedback} in case an exception should occur, on one
   side because the error handling would be more thoroughly tested and used,
-  and another side because the library would be more tightly bounded with \textbf{R1}.
-  And for the same reasons such framework could make the whole application more \texttt{robust}.
-  All of the libraries from \citechap{state-of-the-art} support \texttt{multicloud} so they can
+  and another side because the library would be more tightly bounded with \citereq{strong-technological-foundation}.
+  And for the same reasons such framework could make the whole application more \emph{robust}.
+  All of the libraries from \citechap{state-of-the-art} support \emph{multicloud} so they can
   interact with several providers over a common interface, this would be a mandatory challenge
   to overcome by this requirement.
+}
+
+\req{strong-technological-foundation}{Strong technological foundation}{
+  Beside the benefits of \citereq{software-reuse} there could be even additional gain by choosing
+  a solid technology underneath the library, \eg. \emph{programming language},
+  \emph{application environment}, \emph{common libraries}, \emph{distribution technologies}.
+  The core of this requirement is to find, test and experiment with technologies that can solve
+  challenges and even give additional benefits.
+  Such technologies could be anything from Java for enterprise support to open source repository
+  sites to support software distribution.
+  It is also important that such technologies operate flawlessly with libraries or frameworks
+  found and chosen from the requirement of \citereq{software-reuse}.
+  The technology chosen should benefit the challenge of \emph{robustness}.
+  It could also help to solve other challenges such as \emph{metadata dependency} by introducing
+  functionality through \emph{common libraries} or some built in mechanism.
 }
 
 \req{mda}{Model-Driven approach}{
   Models can be reused to multiply a setup without former knowledge of the system.
   They can also be used to discuss, edit and design topologies for propagation. 
-  These are important aspects that can help to leverage the challenge of \texttt{complexity}.
+  These are important aspects that can help to leverage the challenge of \emph{complexity}.
 }
 
 \req{lexical-template}{Lexical template}{
-  This requirement is tightly coupled with that of \emph{Model-driven approach} but narrowed 
+  This requirement is tightly coupled with that of \citereq{mda} but narrowed 
   even further to state the importance of model type in regard to the model-driven approach.
   When approaching a global audience consisting of both academics groups and commercial
   providers it is important to create a solid foundation, 
