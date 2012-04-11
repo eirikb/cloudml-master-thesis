@@ -4,6 +4,49 @@
 \input{figs/scenario2}
 \input{figs/sequencediagram}
 
+In the previous chapter, \citechap{vision}, procedure of requirements analyzing
+were described.
+In this chapter these procedures will be described including their results.
+The meta model for CloudML will also be presented, through a specific scenario.
+
+\section{Analysis of requirements}
+
+Here the analysis procedure for each of the requirements 
+that needed analysis according to \citechap{vision} will be described.
+
+\subparagraph{Dependencies.}
+
+As stated in \citechap{vision} the dependency between four of the requirements
+are strong, this is considered for each of the following requirements.
+Since \texttt{underlying technology} is a central dependency (\citefig{requirement-dependencies})
+this requirements is weighted more than the others.
+
+\paragraph{Underlying technology.}
+
+For \emph{programming language} and \emph{application environment} the following were considered.
+\begin{ii}
+  \iitem JavaScript (Node.js) [\todo{Need source? Got 2 articles}],
+  \iitem Java (JDK),
+  \iitem Scala (JDK),
+  \todo{
+    \iitem Python and
+    \iitem C\# (.NET).
+  }
+\end{ii}
+Preceding \iii{2} to \iii{5} are well-known languages and environments recognized by both the enterprise world as well as the academic world.
+Preceding \iii{1} is a newer and more unknown type of technology which has yet to 
+make a large footprint in the two worlds. 
+It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follow a 
+CommonJS-based module pattern over an event-driven architecture.
+Preceding \iii{1} were brought in as an consideration because of the abilities to operate
+with \myac{JSON}, its aim at web development on the cloud and the modernity.
+
+\paragraph{Model-driven approach.}
+
+\paragraph{Lexical templates.}
+
+\paragraph{Models@run.time.}
+
 \section{Meta model.}
 
 The meta model for CloudML is visualized in~\citefig{architecture}. 
