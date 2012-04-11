@@ -169,9 +169,9 @@
 }
 
 \newcounter{reqcounter}
-\newcommand{\req}[3]{
+\newcommand{\req}[2]{
   \bigskip
-  \refstepcounter{reqcounter} \label{req:#1} $ \leadsto R_{\thereqcounter} $ : \textbf{#2.}#3
+  \refstepcounter{reqcounter} \label{req:#1} $ \leadsto R_{\thereqcounter} $ : \textbf{#2.}
 }
 \newcommand{\citereq}[1]{
   $R_{\ref{req:#1}}$
