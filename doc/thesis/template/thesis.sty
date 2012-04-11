@@ -167,3 +167,12 @@
       \path[draw, thick] (armcon) -- (rhand);
       \path[draw, thick] (armcon) -- (lhand);
 }
+
+\newcounter{reqcounter}
+\newcommand{\req}[3]{
+  \bigskip
+  \refstepcounter{reqcounter} \label{req:#1} $ \leadsto R_{\thereqcounter} $ : \textbf{#2.}#3
+}
+\newcommand{\citereq}[1]{
+  $R_{\ref{req:#1}}$
+}

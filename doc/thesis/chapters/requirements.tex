@@ -1,94 +1,97 @@
 \mychapter{requirements}{Requirements}
 \input{tables/requirements}
 
+
+In \citechap{challenges} challenges were identified, in this chapter those challenges
+will be addressed and tackled through requirements.
 The requirements are descriptions of important aspects and needs derived from the previous chapter, 
-\citechap{challenges} where challenges were identified.
-In this chapter the requirements will be listed and described. A table overview will display
-consecutive challenges and requirements. 
+A table overview will display consecutive challenges and requirements. 
 This table is angled to the challenges point of view to clarify requirements relation to challenges,
 and one requirement can try to solve several challenges.
 
-\paragraph{Underlying technologies.}
+\req{strong-technological-foundation}{Strong technological foundation}{
+  Beside the benefits of \emph{software reuse} there could be even additional gain by choosing
+  a solid technology underneath the library, meaning \emph{programming language},
+  \emph{application environment}, \emph{common libraries}, \emph{distribution technologies} \etc.
+  The core of this requirement is to find, test and experiment with technologies that can solve
+  challenges and even give additional benefits.
+  Such technologies could be anything from Java for enterprise support to open source repository
+  sites to support software distribution.
+  It is also important that such technologies operate flawlessly with libraries or frameworks
+  found and chosen from the requirement of \emph{software reuse}.
+  The technology chosen should benefit the challenge of \texttt{robustness}.
+  It could also help to solve other challenges such as \texttt{metadata dependency} by introducing
+  functionality through \emph{common libraries} or some built in mechanism.
+}
 
-Beside the benefits of \emph{software reuse} there could be even additional gain by choosing
-a solid technology underneath the library, meaning \emph{programming language},
-\emph{application environment}, \emph{common libraries}, \emph{distribution technologies} \etc.
-The core of this requirement is to find, test and experiment with technologies that can solve
-challenges and even give additional benefits.
-Such technologies could be anything from Java for enterprise support to open source repository
-sites to support software distribution.
-It is also important that such technologies operate flawlessly with libraries or frameworks
-found and chosen from the requirement of \emph{software reuse}.
-The technology chosen should benefit the challenge of \texttt{robustness}.
-It could also help to solve other challenges such as \texttt{metadata dependency} by introducing
-functionality through \emph{common libraries} or some built in mechanism.
+\req{software-reuse}{Software reuse}{
+  There were several technological difficulties with the scripts from the scenario in 
+  \citechap{challenges}.
+  And one requirement that could leverage several of the challenges
+  originating from these particular issues would be to utilize an existing framework or library.
+  If possible it would be beneficial to not \emph{"Reinvent the wheel"} and rather use work
+  that others have done that solve the same problems.
+  In the chapter \citechap{state-of-the-art} multicloud \myac{API}s 
+  were described, such as \emph{libcloud} and \emph{jclouds}.
+  The core of this requirement is to find and experiment with different APIs to find one
+  that suite the needs to solve some of the challenges from \citechap{challenges}.
+  One of these challenges would be \texttt{complexity} where such software utilization
+  could help to authenticate to providers and leverage understanding of the technology.
+  Such library could also help with \texttt{feedback} in case an exception should occur, on one
+  side because the error handling would be more thoroughly tested and used,
+  and another side because the library would be more tightly bounded with \textbf{R1}.
+  And for the same reasons such framework could make the whole application more \texttt{robust}.
+  All of the libraries from \citechap{state-of-the-art} support \texttt{multicloud} so they can
+  interact with several providers over a common interface, this would be a mandatory challenge
+  to overcome by this requirement.
+}
 
-\paragraph{Software reuse.}
+\req{mda}{Model-Driven approach}{
+  Models can be reused to multiply a setup without former knowledge of the system.
+  They can also be used to discuss, edit and design topologies for propagation. 
+  These are important aspects that can help to leverage the challenge of \texttt{complexity}.
+}
 
-There were several technological difficulties with the scripts from the scenario in 
-\citechap{challenges}.
-And one requirement that could leverage several of the challenges
-originating from these particular issues would be to utilize an existing framework or library.
-If possible it would be beneficial to not \emph{"Reinvent the wheel"} and rather use work
-that others have done that solve the same problems.
-In the chapter \citechap{state-of-the-art} multicloud \myac{API}s 
-were described, such as \emph{libcloud} and \emph{jclouds}.
-The core of this requirement is to find and experiment with different APIs to find one
-that suite the needs to solve some of the challenges from \citechap{challenges}.
-One of these challenges would be \texttt{complexity} where such software utilization
-could help to authenticate to providers and leverage understanding of the technology.
-Such library could also help with \texttt{feedback} in case an exception should occur, on one
-side because the error handling would be more thoroughly tested and used,
-and another side because the library would be more tightly bounded with underlying technology.
-And for the same reasons such framework could make the whole application more \texttt{robust}.
-All of the libraries from \citechap{state-of-the-art} support \texttt{multicloud} so they can
-interact with several providers over a common interface, this would be a mandatory challenge
-to overcome by this requirement.
+\req{lexical-template}{Lexical template}{
+  This requirement is tightly coupled with that of \emph{Model-driven approach} but narrowed 
+  even further to state the importance of model type in regard to the model-driven approach.
+  When approaching a global audience consisting of both academics groups and commercial
+  providers it is important to create a solid foundation, 
+  which also should be concrete and easy to both use and implement.
+  The best approach would be to support both graphical and lexical models, 
+  but a graphical annotation would not suffice when promising simplicity and ease in implementation. 
+  Graphical model could also be much more complex to design, 
+  while a lexical model can define a concrete model on a lower level.
+  Since the language will be a simple way to template configuration, 
+  a well known data markup language would be sufficient for the core syntax, such as 
+  \myac{JSON} or \myac{XML}.
 
-\paragraph{Model-Driven approach.}
+  Textual templates that can be shared through mediums such as e-mail or 
+  \myac{VCS} such as Subversion or Git.
+  This is important for end users to be able to maintain templates that defines the stacks they have built, 
+  for future reuse.
+}
 
-Models can be reused to multiply a setup without former knowledge of the system.
-They can also be used to discuss, edit and design topologies for propagation. 
-These are important aspects that can help to leverage the challenge of \texttt{complexity}.
+\req{m@rt}{Models@run.time}{
+  Models that reflect the provisioning models and updates asynchronously. 
+  As identified by the scenario in \citechap{challenges} metadata from provisioning is crucial to perform
+  a proper deployment in steps after the provisioning is complete.
+  One way to solve this issue is by utilizing \emph{models@run.time}, which is the most obvious choice in a
+  model-driven approach.
+  Models will apply to several parts of the application, such as for topology designing and for the actual propagation.
+}
 
-\paragraph{Lexical template.}
-
-This requirement is tightly coupled with that of \emph{Model-driven approach} but narrowed 
-even further to state the importance of model type in regard to the model-driven approach.
-When approaching a global audience consisting of both academics groups and commercial
-providers it is important to create a solid foundation, 
-which also should be concrete and easy to both use and implement.
-The best approach would be to support both graphical and lexical models, 
-but a graphical annotation would not suffice when promising simplicity and ease in implementation. 
-Graphical model could also be much more complex to design, 
-while a lexical model can define a concrete model on a lower level.
-Since the language will be a simple way to template configuration, 
-a well known data markup language would be sufficient for the core syntax, such as 
-\myac{JSON} or \myac{XML}.
-
-Textual templates that can be shared through mediums such as e-mail or 
-\myac{VCS} such as Subversion or Git.
-This is important for end users to be able to maintain templates that defines the stacks they have built, for future reuse.
-
-\paragraph{Models@run.time.}
-
-Models that reflect the provisioning models and updates asynchronously. 
-As identified by the scenario in \citechap{challenges} metadata from provisioning was crucial to perform
-a proper deployment in steps after the provisioning was complete.
-One way to solve this issue is by utilizing \emph{models@run.time}, which is the most obvious choice in a
-model-driven approach.
-Models will apply to several parts of the application, such as for topology designing and for the actual propagation.
-
-\paragraph{Multicloud.}
-
-One of the biggest problems with the cloud today is the vast amount of different providers. 
-There are usually few reasons for large commercial delegates to have support for contestants. 
-Some smaller businesses could on the other hand benefit greatly of a standard and union 
-between providers.
-The effort needed to construct a reliable, stable and scaling computer park or data center will 
-withhold commitment to affiliations. 
-Cloud computing users are concerned with the ability to easily swap between different providers, 
-this because of security, 
-independence and flexibility. 
-CloudML and its engine need to apply to several providers with different set of systems, 
-features, \myac{API}s, payment methods and services. This requirement anticipate support for at least two different providers such as \myac{AWS} and Rackspace.
+\req{multicloud}{Multicloud}{
+  One of the biggest problems with the cloud today is the vast amount of different providers. 
+  There are usually few reasons for large commercial delegates to have support for contestants. 
+  Some smaller businesses could on the other hand benefit greatly of a standard and union 
+  between providers.
+  The effort needed to construct a reliable, stable and scaling computer park or data center will 
+  withhold commitment to affiliations. 
+  Cloud computing users are concerned with the ability to easily swap between different providers, 
+  this because of security, 
+  independence and flexibility. 
+  CloudML and its engine need to apply to several providers with different set of systems, 
+  features, \myac{API}s, payment methods and services. 
+  This requirement anticipate support for at least two different providers such as \myac{AWS} and Rackspace.
+}
