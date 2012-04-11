@@ -15,7 +15,7 @@ Then the challenges identified from the research will be presented.
 
 \section{Scenario}
 
-The following scenario was chosen because of how much it resembles actual solutions
+The following scenario is chosen because of how much it resembles actual solutions
 used in industry today.
 It uses a featureless example application meant to fit into scenario topologies
 without having too much complexity.
@@ -24,7 +24,7 @@ The application will be provisioned to a defined set of providers with a defined
 
 \paragraph{BankManager.}
 
-To recognize challenges when doing cloud provisioning an example application~\cite{BankManager} was utilized.
+To recognize challenges when doing cloud provisioning an example application~\cite{BankManager} is utilized.
 The application (from here known as \emph{BankManager}) is a prototypical bank manager system
 which support creating users and bank accounts and moving money between bank accounts and users.
 The application is based on a three-tier architecture with 
@@ -66,10 +66,10 @@ this can be solved at the database level with master and slaves (\citefig{fronte
 
 \paragraph{Execution.}
 
-The main goal of the scenario was to successfully deploy \emph{BankManager}
+The main goal of the scenario is to successfully deploy \emph{BankManager}
 on a given set of providers with a given set of topologies.
-And to achieve such deployment it was crucial to perform cloud provisioning.
-The providers chosen were 
+And to achieve such deployment it is crucial to perform cloud provisioning.
+The providers chosen are
 \begin{ii}
   \iitem \myac{AWS}~\cite{aws} and
   \iitem Rackspace~\cite{rackspace}.
@@ -79,20 +79,20 @@ These are strong providers with a respectable amount of customers, as two of the
 They also have different graphical interfaces, APIs and toolchains which makes them suitable
 for a scenario researching multicloud challenges.
 
-The topology chosen for this scenario was that of three nodes\citefig{threenodes}.
+The topology chosen for this scenario is that of three nodes\citefig{threenodes}.
 This topology is advance enough that it needs a \texttt{load balancer} in front of two
 \texttt{front-end} nodes, and yet the simplest topology of the ones that benefits from a \texttt{load balancer}.
 It is important to include most of the technologies and services that needs testing.
 
-To perform the actual provisioning a set of primitive Bash-scripts were developed.
-These scripts were designed to automate a full deployment on a two-step basis.
-First step was to provision instances:
+To perform the actual provisioning a set of primitive Bash-scripts are developed.
+These scripts are designed to automate a full deployment on a two-step basis.
+First step is to provision instances:
 \begin{itemize}
   \item Authenticate against provider.
   \item Create instances.
   \item Manually write down IP addresses of created instances.
 \end{itemize}
-The second step was deployment:
+The second step is deployment:
 \begin{itemize}
   \item Configure \emph{BankManager} to use one of provisioned instances IP address for database.
   \item Build \emph{BankManager} into a \myac{WAR}-file.
@@ -102,7 +102,7 @@ The second step was deployment:
   \item Inject \myac{WAR}-file into instances using \myac{SFTP}.
   \item Remotely start \emph{BankManager}.
 \end{itemize}
-The scripts were provider-specific so one set of scripts had to be made for each provider.
+The scripts are provider-specific so one set of scripts had to be made for each provider.
 Rackspace had at that moment no command-line tools, so a \myac{REST} client had to be constructed.
 
 \section{Challenges}
@@ -111,12 +111,12 @@ From this example it became clear that there were multiple challenges to address
 when deploying applications to cloud infrastructure.
 This thesis is scoped to cloud provisioning, but the goal of this provisioning step is to 
 enable a successful deployment, see \citechap{perspectives}. 
-It was therefore crucial to involve a full deployment in the scenario to discover
+It is therefore crucial to involve a full deployment in the scenario to discover
 important challenges.
 
 \paragraph{Complexity.} 
 
-The first challenge encountered was to simply 
+The first challenge encountered is to simply 
 authenticate and communicate with the cloud. 
 The two providers had different approaches, \myac{AWS}~\cite{aws} 
 had command-line tools built from their Java APIs,
@@ -133,11 +133,11 @@ or feedback on the topology chosen since important information got hidden behind
 complex commands.
 
 \paragraph{Feedback on failure.}
-Debugging the scripts were also a challenging task, since they fit together by
+Debugging the scripts is also a challenging task, since they fit together by
 sequential calls and printed information based on Linux and Bash commands such as 
 \emph{grep} and \emph{echo}.
-Error messages from both command-line and \myac{REST} interfaces were essentially muted away.
-If one specific script should fail it was difficult to know 
+Error messages from both command-line and \myac{REST} interfaces are essentially muted away.
+If one specific script should fail it would be difficult to know 
 \begin{ii}
   \iitem which script failed, 
   \iitem at what step it was failing and 
@@ -148,8 +148,8 @@ If one specific script should fail it was difficult to know
 
 Once able to provision the correct amount of nodes with desired properties
 on the first provider it became clear that mirroring the setup to the other provider 
-was not as convenient as anticipated.
-There were certain aspects of vendor lock-in, so each script was hand-crafted for specific providers.
+is not as convenient as anticipated.
+There are certain aspects of vendor lock-in, so each script is hand-crafted for specific providers.
 The most noticeable differences would be
 \begin{ii}
   \iitem different ways of defining instance sizes,
@@ -173,7 +173,7 @@ between providers.
 
 \paragraph{Shareable.}
 
-Since the scripts did not remember a given setup it was impossible 
+Since the scripts did not remember a given setup it is impossible 
 to share topologies ``as is'' between coworkers.
 It is important that topologies can be shared because direct input from individuals
 with different areas of competence can increase quality.
@@ -182,9 +182,9 @@ and loaded into different tools to help visualizing and editing.
 
 \paragraph{Robustness.}
 
-There were several ways the scripts could fail and most errors were ignored.
-They were made to search for specific lines in strings returned by the APIs,
-if these strings were non-existent the scripts would just continue regardless
+There are several ways the scripts could fail and most errors are ignored.
+They are made to search for specific lines in strings returned by the APIs,
+if these strings are non-existent the scripts would just continue regardless
 of complete dependency to information within the strings.
 A preferable solution to this could be transactional behavior with rollback functionality
 in case an error should occur, or simply stop the propagation
@@ -203,7 +203,7 @@ including
 \end{ii}.
 In this thesis the focus is aimed at provisioning, but it proved important to temporally 
 save run-time specific metadata to successfully deploy the application.
-In the \emph{BankManager} example the crucial metadata was information needed to connect 
+In the \emph{BankManager} example the crucial metadata is information needed to connect 
 front-end nodes with the back-end node, but other deployments is likely to need the same 
 or different metadata for other tasks.
 This metadata is collected in \iii{1}, and used in \iii{3} and \iii{4}.
