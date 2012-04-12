@@ -19,7 +19,7 @@ an overview of the procedure flow in and around CloudML.
 Inside \citefig{big-picture} there is an area pointed out as \emph{CloudML},
 this area contain components necessary to implement in order to fulfill
 the vision as a whole.
-Every part within the designated area will have some physical aspect in the 
+Every part within the designated area is some physical aspect in the 
 implementation, and therefore core parts of the contribution.
 
 \paragraph{The actors.}
@@ -32,7 +32,7 @@ In \citefig{big-picture} there are three actors,
   \iitem cloud expert has a greater knowledge of the cloud domain \eg Cloud providers,
     services these offer, limitations, API support and prices.
     The last actor,
-  \iitem user is a person which directly will utilize CloudML to do provisioning.
+  \iitem user is a person which directly utilize CloudML to do provisioning.
     This physical person may or may not have the role of cloud expert, hence 
     the actor extends from cloud expert.
 \end{ii}
@@ -43,7 +43,7 @@ The business person is in charge of the application, he or she has a need
 for an application that can fulfill certain tasks, and to do handle these 
 tasks reflecting demands are made.
 The cloud expert use the requirements sketched by the business person to 
-define and design node topologies which will tackle the application demands.
+define and design node topologies which tackles the application demands.
 A topology is a map of nodes connected together in a specific pattern, 
 defined by the cloud expert.
 In a topology there is also information about node attributes 
@@ -59,3 +59,22 @@ information such as node names and template labeling.
 It is also possible to define more than one topology within a single template,
 but for the sake of tidiness, clarity and technical limitations it 
 should not be possible to define cross-provider (\emph{multicloud}) nodes in a single topology.
+This itself does not mean CloudML will not support multicloud provisioning,
+instead such functionality is achieved by utilizing more than one template,
+which will not retain a full multicloud deployment.
+
+\paragraph{Engine.}
+
+When the cloud expert have designed and created the necessary templates the next actor, 
+user, will continue the procedure.
+The user select the templates and feed them into the engine.
+The engine is the core of the implementation handling several steps and executing
+most of the CloudML logic.
+The engine operates in five different steps, \
+\begin{ii}
+  \iitem convert the template files into a native format for later use, 
+  \iitem convert pure nodes into instances ready for provisioning, 
+  \iitem connect to all the desired providers and 
+  \iitem propagate these. Lastly it will produce
+  \iitem models@run.time of the nodes being propagated.
+\end{ii}
