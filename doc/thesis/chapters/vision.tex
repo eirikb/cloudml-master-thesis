@@ -14,6 +14,14 @@ of instances in the cloud.
 The vision of CloudML is reflected through \citefig{big-picture} which gives
 an overview of the procedure flow in and around CloudML.
 
+\paragraph{Domain of CloudML.}
+
+Inside \citefig{big-picture} there is an area pointed out as \emph{CloudML},
+this area contain components necessary to implement in order to fulfill
+the vision as a whole.
+Every part within the designated area will have some physical aspect in the 
+implementation, and therefore core parts of the contribution.
+
 \paragraph{The actors.}
 
 In \citefig{big-picture} there are three actors,
@@ -42,5 +50,12 @@ In a topology there is also information about node attributes
 \eg \myac{CPU} power and \myac{RAM} sizes.
 He or she might create several topologies to fulfill the application demands.
 
-\paragraph{Domain of CloudML.}
+\paragraph{Templates.}
 
+The next step is to create templates based on the topologies, this is done by
+the cloud expert.
+A template is a digital reflection of a topology including the attributes and some additional 
+information such as node names and template labeling.
+It is also possible to define more than one topology within a single template,
+but for the sake of tidiness, clarity and technical limitations it 
+should not be possible to define cross-provider (\emph{multicloud}) nodes in a single topology.
