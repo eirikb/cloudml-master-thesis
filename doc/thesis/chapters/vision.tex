@@ -2,12 +2,13 @@
 \input{figs/big-picture}
 
 In this chapter the core idea of CloudML will be presented,
-how a procedure of node provisioning is conducted in the perspective of different actors.
+such as how a procedure of node provisioning is conducted in the 
+perspective of different actors.
 
 The concept and principle of CloudML is to be an easier and more reliable
 path into cloud computing for IT-driven businesses of variable sizes.
 The tool is visioned to parse and execute template files representing topologies
-of instances in the cloud. 
+and provision these as instances to the cloud. 
 
 \section{The ``big picture''}
 
@@ -26,10 +27,10 @@ implementation, and therefore core parts of the contribution.
 
 In \citefig{big-picture} there are three actors,
 \begin{ii}
-  \iitem business person representing someone with administrative or manager position which
+  \iitem business person representing someone with administration- or manager position which
     defines and controls demands for application functionality and capabilities.
     The next actor,
-  \iitem cloud expert has a greater knowledge of the cloud domain \eg Cloud providers,
+  \iitem cloud expert has a greater knowledge of the cloud domain \eg, cloud providers,
     services these offer, limitations, API support and prices.
     The last actor,
   \iitem user is a person which directly utilize CloudML to do provisioning.
@@ -40,14 +41,14 @@ In \citefig{big-picture} there are three actors,
 \paragraph{Application and topologies.}
 
 The business person is in charge of the application, he or she has a need
-for an application that can fulfill certain tasks, and to do handle these 
-tasks reflecting demands are made.
+for an application that can fulfill certain tasks, and to handle these 
+tasks application demands are made.
 The cloud expert use the requirements sketched by the business person to 
 define and design node topologies which tackles the application demands.
 A topology is a map of nodes connected together in a specific pattern, 
 defined by the cloud expert.
 In a topology there is also information about node attributes 
-\eg \myac{CPU} power and \myac{RAM} sizes.
+\eg, \myac{CPU} power and \myac{RAM} sizes.
 He or she might create several topologies to fulfill the application demands.
 
 \paragraph{Templates.}
@@ -70,14 +71,14 @@ user, will continue the procedure.
 The user select the templates and feed them into the engine.
 The engine is the core of the implementation handling several steps and executing
 most of the CloudML logic.
-The engine operates in five different steps, \
-\begin{ii}
-  \iitem convert the template files into a native format for later use, 
-  \iitem convert pure nodes into instances ready for provisioning, 
-  \iitem connect to all the desired providers and 
-  \iitem propagate these. Lastly it will produce
-  \iitem models@run.time of the nodes being propagated.
-\end{ii}
+The engine operates in five different steps:
+\begin{enumerate}
+  \item Convert the template files into a native format for later use.
+  \item Convert pure nodes into instances ready for provisioning.
+  \item Connect to all the desired providers.
+  \item Propagate the instances.
+  \item Produce models@run.time of the instances being propagated.
+\end{enumerate}
 
 \paragraph{Providers.}
 
@@ -86,15 +87,16 @@ The engine interacts with the providers, in \citefig{big-picture}
 cloud provider that will be supported by CloudML can be utilized.
 As discussed in \citechap{state-of-the-art} and \citechap{challenges}
 different providers implement different solutions for communication
-\eg for provisioning nodes, managing nodes and services or terminating instances.
-For engine to interact with a set of different provider some tools, libraries
-or framework is needed.
+\eg, for provisioning nodes, managing nodes and services or terminating instances.
+For engine to interact with a set of different providers some tool, library
+or framework is needed that can connect to the different providers through
+a common interface.
 
 \paragraph{Models@run.time.}
 
-The last part of this implementation of CloudML (see \citechap{perspectives} is to
+The last part of this implementation of CloudML (see \citechap{perspectives}) is to
 reflect provisioned instances with models@run.time.
-These models are returned to the user when provisioning starts, when
-attributes and statuses about instances are updated the user can be 
+These models are returned to the user when provisioning starts, 
+and when attributes and statuses about instances are updated the user is 
 notified about these updates through the models.
 In the implementation the models can extend from or aggregate \emph{instances}.
