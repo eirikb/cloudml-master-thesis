@@ -1,5 +1,4 @@
 \mychapter{requirements}{Requirements}
-\input{tables/requirements}
 
 In \citechap{challenges} challenges were identified, in this chapter those challenges
 will be addressed and tackled through requirements.
@@ -196,6 +195,18 @@ in regards to
   \iitem sustain constraints in regard of dependencies as seen in \citefig{requirement-dependencies}, and
   \iitem identify approaches that can be combined and what benefits this would give.
 \end{ii} 
+
+\section{Comparison}
+\input{tables/requirements}
+
+The requirements defined in this chapter are designed to tackle one or more of the challenges
+described in \citechap{challenges}.
+All of the challenges are associated with requirements, as seen in \citetable{requirements}.
+Three of the challenges are tackled by more than one requirement, and three other requirements
+tackle more than one challenge.
+\eg, \citereq{software-reuse} tackle four different challenges including \emph{complexity},
+while the challenge \emph{complexity} is tackled by both 
+\citereq{software-reuse} and \citereq{mda}.
 
 \section{Requirement dependencies}
 \input{figs/requirement-dependencies}
