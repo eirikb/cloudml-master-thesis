@@ -29,6 +29,15 @@ All of the libraries from \citechap{state-of-the-art} support \emph{multicloud} 
 interact with several providers over a common interface, this would be a mandatory challenge
 to overcome by this requirement.
 
+\todo{read over}
+The \myac{API}s described in \citechap{state-of-the-art} are worthy candidates to meet this requirement.
+Some research have already been done to indicate what their purpose is, 
+how they operate and to some extent how to use them.
+The approach here is to select libraries or framework that could match well with a chosen
+\citereq{strong-technological-foundation} or help fulfill this requirement.
+Then the chosen \myac{API}s must be narrowed down to one single \myac{API} which will be
+used in the solution application.
+
 \req{strong-technological-foundation}{Strong technological foundation}
 Beside the benefits of \citereq{software-reuse} there could be even additional gain by choosing
 a solid technology underneath the library, \eg. \emph{programming language},
@@ -43,10 +52,56 @@ The technology chosen should benefit the challenge of \emph{robustness}.
 It could also help to solve other challenges such as \emph{metadata dependency} by introducing
 functionality through \emph{common libraries} or some built in mechanism.
 
+\todo{read over} \\
+This will be the foundation of the solution, so finding good technologies has a high priority.
+To find good technologies they have to be considered by several aspects, such as
+\begin{ii}
+  \iitem ease of use,
+  \iitem community size,
+  \iitem closed/open source,
+  \iitem business viability,
+  \iitem modernity and 
+  \iitem matureness.
+\end{ii}
+Another important aspect is based on library or framework chosen for the \citereq{software-reuse} requirement,
+as the library will directly affect some technologies such as programming language.
+Different technologies have to be researched and to some degree physically tried out to identify
+which aspects they fulfill.
+
+Types of technologies are undefined but some are mandatory such as 
+\begin{ii}
+  \iitem programming language (Java, C\#) and 
+  \iitem application environment (JDK, .NET).
+\end{ii}
+Beside this it is also important to state which type of application the solution should be, 
+\begin{ii}
+  \iitem GUI application,
+  \iitem \myac{API} in form of public Web Service or
+  \iitem \myac{API} in form of native library.
+\end{ii}
+The amount of different technologies is overwhelming so looking into all of them would be impossible,
+therefore they must be narrowed down based on aspects such as popularity.
+
 \req{mda}{Model-Driven approach}
 Models can be reused to multiply a setup without former knowledge of the system.
 They can also be used to discuss, edit and design topologies for propagation. 
 These are important aspects that can help to leverage the challenge of \emph{complexity}.
+
+\todo{read over} \\
+Unlike the other requirements this is a non-physical need, 
+and as seen in \citefig{requirement-dependencies}
+there are no dependencies from or to this requirement.
+But other requirements such as \texttt{lexical template} are directly based on this one.
+
+In the implementation there will be four different models.
+\begin{enumerate}
+  \item The lexical template.
+  \item Nodes from the template represented in the implementation.
+  \item Nodes converted into \emph{instances} for provisioning.
+  \item Instances in form of runtime instances (\emph{models@run.time}).
+\end{enumerate}
+Of these the first is influenced by the \texttt{lexical template} requirement and
+the last by the \texttt{models@run.time} requirement.
 
 \req{lexical-template}{Lexical template}
 This requirement is tightly coupled with that of \citereq{mda} but narrowed 
@@ -88,3 +143,25 @@ independence and flexibility.
 CloudML and its engine need to apply to several providers with different set of systems, 
 features, \myac{API}s, payment methods and services. 
 This requirement anticipate support for at least two different providers such as \myac{AWS} and Rackspace.
+
+\section{Requirement dependencies}
+\input{figs/requirement-dependencies}
+
+Some of the requirements have depend on each other, for instance \citereq{software-reuse} is about finding
+and utilizing an existing library or framework, but this will also directly affect or be affected by
+programming language or application environment chosen in \citereq{strong-technological-foundation} requirement.
+There are three requirements, 
+\begin{ii}
+  \iitem \citereq{m@rt},
+  \iitem \citereq{software-reuse} and
+  \iitem \citereq{lexical-template},
+    where all have a two-way dependency to the 
+  \iitem \citereq{strong-technological-foundation} requirement,
+\end{ii}
+as illustrated in \citefig{requirement-dependencies}.
+These dependency links will affect the end result of all the four previous mentioned requirements.
+For example a library chosen in precept \iii{2} would affect precept \iii{4}, which again would affect
+how precept \iii{1} will be solved. 
+It could also affect precept \iii{3} as different textual solutions can function better in
+different environments.
+
