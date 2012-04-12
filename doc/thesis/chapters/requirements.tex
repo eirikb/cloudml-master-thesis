@@ -23,22 +23,22 @@ One of these challenges would be \emph{complexity} where such software utilizati
 could help to authenticate to providers and leverage understanding of the technology.
 Such library could also help with \emph{feedback} in case an exception should occur, on one
 side because the error handling would be more thoroughly tested and used,
-and another side because the library would be more tightly bounded with \citereq{strong-technological-foundation}.
+and another side because the library would be more tightly bounded with \citereq{foundation}.
 And for the same reasons such framework could make the whole application more \emph{robust}.
 All of the libraries from \citechap{state-of-the-art} support \emph{multicloud} so they can
 interact with several providers over a common interface, this would be a mandatory challenge
 to overcome by this requirement.
 
-\todo{read over}
+\todo{read over} \\
 The \myac{API}s described in \citechap{state-of-the-art} are worthy candidates to meet this requirement.
 Some research have already been done to indicate what their purpose is, 
 how they operate and to some extent how to use them.
 The approach here is to select libraries or framework that could match well with a chosen
-\citereq{strong-technological-foundation} or help fulfill this requirement.
+\citereq{foundation} or help fulfill this requirement.
 Then the chosen \myac{API}s must be narrowed down to one single \myac{API} which will be
 used in the solution application.
 
-\req{strong-technological-foundation}{Strong technological foundation}
+\req{foundation}{Strong technological foundation}
 Beside the benefits of \citereq{software-reuse} there could be even additional gain by choosing
 a solid technology underneath the library, \eg. \emph{programming language},
 \emph{application environment}, \emph{common libraries}, \emph{distribution technologies}.
@@ -91,7 +91,7 @@ These are important aspects that can help to leverage the challenge of \emph{com
 Unlike the other requirements this is a non-physical need, 
 and as seen in \citefig{requirement-dependencies}
 there are no dependencies from or to this requirement.
-But other requirements such as \texttt{lexical template} are directly based on this one.
+But other requirements such as \citereq{lexical-template} are directly based on this one.
 
 In the implementation there will be four different models.
 \begin{enumerate}
@@ -100,8 +100,8 @@ In the implementation there will be four different models.
   \item Nodes converted into \emph{instances} for provisioning.
   \item Instances in form of runtime instances (\emph{models@run.time}).
 \end{enumerate}
-Of these the first is influenced by the \texttt{lexical template} requirement and
-the last by the \texttt{models@run.time} requirement.
+Of these the first is influenced by the \citereq{lexical-template} requirement and
+the last by the \citereq{models@run.time} requirement.
 
 \req{lexical-template}{Lexical template}
 This requirement is tightly coupled with that of \citereq{mda} but narrowed 
@@ -121,6 +121,34 @@ Textual templates that can be shared through mediums such as e-mail or
 \myac{VCS} such as Subversion or Git.
 This is important for end users to be able to maintain templates that defines the stacks they have built, 
 for future reuse.
+
+\todo{read over} \\
+Main objective is to create a common model for nodes as a platform-independent 
+model~\cite{agile:cuong10} to justify \emph{multicloud} differences and 
+at the same time base this on a human readable lexical format to address \emph{reproducibility} and
+make it \emph{shareable}.
+
+The type of direct model representation of topologies will have great impact 
+on the solution application.
+As described in \citechap{requirements} this representation should be lexical,
+but there are several different styles and languages to achieve this.
+Some examples of these languages are 
+\begin{ii}
+  \iitem \myac{XML},
+  \iitem \myac{JSON},
+  \iitem YAML,
+  \iitem \myac{SDL} or
+  \iitem \myac{OGDL}.
+\end{ii}
+As shown in \citefig{requirement-dependencies} there is a two-way dependency between 
+this requirement and \citereq{solid-technological-foundation} requirement.
+This dependency can have impact both ways, but unlike the other dependencies in
+\citefig{requirement-dependencies} there exist bindings all the four precedings in
+most languages and systems.
+Templates could even be stored as any binary type of serialization, 
+but this might not be as sufficient as lexical types, more on this
+in \citechap{design}.
+
 
 \req{m@rt}{Models@run.time}
 Models that reflect the provisioning models and updates asynchronously. 
@@ -144,19 +172,44 @@ CloudML and its engine need to apply to several providers with different set of 
 features, \myac{API}s, payment methods and services. 
 This requirement anticipate support for at least two different providers such as \myac{AWS} and Rackspace.
 
+\todo{read over} \\
+The models@run.time are meant to support any deployment system which should
+be run sequentially after a complete provisioning.
+For such deployment to be successful metadata from the provisioning could be needed,
+so the core idea is to fetch this kind of data directly from models@run.time.
+
+The approach for this requirement is to find sufficient solutions for such models,
+and at the same time keep in mind the dependency towards \citereq{foundation}.
+There are several different approaches that could be made when implementing 
+these models, such as using
+\begin{ii}
+  \iitem standard Java classes and expect users to do \emph{short polling} \todo{[need source?]},
+  \iitem \emph{command pattern} to send events on node updates,
+  \iitem \emph{aspect-oriented programming} to enhance asynchronous support and modularity or
+  \iitem \emph{publish subscribe pattern} to let users subscribe to events of updating instances.
+\end{ii}
+It is also possible to combine one or several of these approaches.
+What needs to be done here is to identify which approaches that are most sufficient 
+in regards to 
+\begin{ii} 
+  \iitem finding an approach that solved the requirement,
+  \iitem sustain constraints in regard of dependencies as seen in \citefig{requirement-dependencies}, and
+  \iitem identify approaches that can be combined and what benefits this would give.
+\end{ii} 
+
 \section{Requirement dependencies}
 \input{figs/requirement-dependencies}
 
 Some of the requirements have depend on each other, for instance \citereq{software-reuse} is about finding
 and utilizing an existing library or framework, but this will also directly affect or be affected by
-programming language or application environment chosen in \citereq{strong-technological-foundation} requirement.
+programming language or application environment chosen in \citereq{foundation} requirement.
 There are three requirements, 
 \begin{ii}
   \iitem \citereq{m@rt},
   \iitem \citereq{software-reuse} and
   \iitem \citereq{lexical-template},
     where all have a two-way dependency to the 
-  \iitem \citereq{strong-technological-foundation} requirement,
+  \iitem \citereq{foundation} requirement,
 \end{ii}
 as illustrated in \citefig{requirement-dependencies}.
 These dependency links will affect the end result of all the four previous mentioned requirements.
