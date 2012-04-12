@@ -78,3 +78,23 @@ The engine operates in five different steps, \
   \iitem propagate these. Lastly it will produce
   \iitem models@run.time of the nodes being propagated.
 \end{ii}
+
+\paragraph{Providers.}
+
+The engine interacts with the providers, in \citefig{big-picture} 
+\myac{EC2} and Rackspace are selected as examples, but any
+cloud provider that will be supported by CloudML can be utilized.
+As discussed in \citechap{state-of-the-art} and \citechap{challenges}
+different providers implement different solutions for communication
+\eg for provisioning nodes, managing nodes and services or terminating instances.
+For engine to interact with a set of different provider some tools, libraries
+or framework is needed.
+
+\paragraph{Models@run.time.}
+
+The last part of this implementation of CloudML (see \citechap{perspectives} is to
+reflect provisioned instances with models@run.time.
+These models are returned to the user when provisioning starts, when
+attributes and statuses about instances are updated the user can be 
+notified about these updates through the models.
+In the implementation the models can extend from or aggregate \emph{instances}.
