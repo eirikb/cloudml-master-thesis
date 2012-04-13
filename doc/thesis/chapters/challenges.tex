@@ -13,34 +13,6 @@ First the scenario will be introduced, describing the example application
 and different means of provisioning in form of topologies.
 Then the challenges identified from the research will be presented.
 
-\todo{read over} \\ 
-There are many cloud providers on the global market today. 
-These providers support many layers of cloud, such as \myac{PaaS} and \myac{IaaS}.
-This vast amount of providers and new technologies and services can be overwhelming 
-for many companies and small and medium businesses. 
-There are no practical introductions to possibilities and limitations to cloud computing, 
-or the differences between different providers and services. 
-Each provider has some kind of management console, usually in form of a web interface and API. 
-But model driven approaches are inadequate in many of these environments. 
-\myac{UML} diagrams such as deployment diagram and component diagram are used in legacy systems 
-to describe system architectures, 
-but this advantage has yet to hit the mainstream of cloud computing management. 
-It is also difficult to have co-operational interaction on a business level without 
-using the advantage of graphical models.
-The knowledge needed to handle one provider might differ to another, 
-so a multicloud approach might be very resource-heavy on competence in companies. 
-The types of deployment resources are different between the providers, 
-even how to gain access to and handle running instances might be very different. 
-Some larger cloud management application developers are not even providers themselves, 
-but offer tooling for private cloud solutions.
-Some of these providers have implemented different types of web based applications 
-that let end users manage their cloud instances. 
-The main problem with this is that there are no standards defining a 
-cloud instance or links between instances and other services a provider offer.
-If a provider does not offer any management interface and want to implement this as a new feature for customers, 
-a standard format to set the foundation would help them achieve a better product for their end users.
-These are some of the problems with cloud hosting today, and that CloudML will be designed to solve.
-
 \section{Scenario}
 
 The following scenario is chosen because of how much it resembles actual solutions
@@ -235,3 +207,31 @@ In the \emph{BankManager} example the crucial metadata is information needed to 
 front-end nodes with the back-end node, but other deployments is likely to need the same 
 or different metadata for other tasks.
 This metadata is collected in \iii{1}, and used in \iii{3} and \iii{4}.
+
+\section{Summary}
+
+There are many cloud providers on the global market today. 
+These providers support many layers of cloud, such as \myac{PaaS} and \myac{IaaS}.
+This vast amount of providers and new technologies and services can be overwhelming 
+for many companies and small and medium businesses. 
+There are no practical introductions to possibilities and limitations to cloud computing, 
+or the differences between different providers and services. 
+Each provider has some kind of management console, usually in form of a web interface and API. 
+But model driven approaches are inadequate in many of these environments. 
+\myac{UML} diagrams such as deployment diagram and component diagram are used in legacy systems 
+to describe system architectures, 
+but this advantage has yet to hit the mainstream of cloud computing management. 
+It is also difficult to have co-operational interaction on a business level without 
+using the advantage of graphical models.
+The knowledge needed to handle one provider might differ to another, 
+so a multicloud approach might be very resource-heavy on competence in companies. 
+The types of deployment resources are different between the providers, 
+even how to gain access to and handle running instances might be very different. 
+Some larger cloud management application developers are not even providers themselves, 
+but offer tooling for private cloud solutions.
+Some of these providers have implemented different types of web based applications 
+that let end users manage their cloud instances. 
+The main problem with this is that there are no standards defining a 
+cloud instance or links between instances and other services a provider offer.
+If a provider does not offer any management interface and want to implement this as a new feature for customers, 
+a standard format to set the foundation would help them achieve a better product for their end users.
