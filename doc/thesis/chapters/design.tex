@@ -1,8 +1,145 @@
 \mychapter{design}{Analysis and design - CloudML}
+
+In the previous chapter, \citechap{vision}, the core vision of CloudML was presented,
+including descriptions of surrounding elements \ie actors and topologies.
+In this chapter the focus is narrowed down to the design of the implementation which
+consitutes CloudML.
+
+\section{Meta model}
 \input{figs/architecture}
+
+In this section the meta model from CloudML will be presented.
+The model is visualized in \citefig{architecture}, and will be described through a specific scenario.
+
+\todo{
+\texttt{CloudMLEngine} is the main entry point, it has the method \texttt{build}
+which is used to initialize provisioning.
+\texttt{Property} have four children but is designed to be extendable in case
+new types of properties should be included. The same design principle
+is applied to \texttt{RuntimeProp}.
+\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
+physical parts maintainable by the user.
+}
+
+\paragraph{Scenario introduction.}
+
+CloudML is introduced by using two scenarios where ``Alice'' is provisioning the 
+\emph{BankManager} application from \citechap{challenges} to \myac{AWS}
+using the topology shown in~\citefig{singlenode} and~\citefig{threenodes}.
+The first topology introduces a single node which will host every tier of an application.
+This topology is not uncommon, but it is also not scalable and does not benefit
+from cloud advantages.
+The second topology Alice will use is more advanced and utilizes the cloud on a higher level.
+It has three nodes, two for the application logic (front-end) and one for the database.
+In front it has a \emph{load balancer} which is a cloud service.
+
+It is compulsory that she possesses an \myac{AWS} account in advance of the scenario.
+She will retrieve security credentials for account 
+and associate them with \texttt{Password} in \citefig{architecture}.
+\texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
+\texttt{Credential} is in the form of an \emph{access key} (random GUID) or a username.
+The characteristics Alice choose for her \texttt{Nodes} and \texttt{Properties} are fitted
+for the chosen topology \eg, more computation power for \texttt{front-end} nodes and more disk for \texttt{back-end} nodes.
+All \texttt{Properties} are optional and thus Alice does not have to define them all.
+
+\paragraph{Scenario with one single node.}
+
+The first scenario Alice want to establish is a single node based one~(\citefig{singlenode}).
+Since this single node will handle both computation and storage Alice decides to 
+increase capabilities of both processing (number of \texttt{Cores}) and 
+\texttt{Disk} size on the \texttt{Node}.
+Both these attributes are incremented because the instance will eventually host the main
+application as well as the database.
+
+The approach of using one single node is good in terms of simplicity since all important
+components of the application is located in one single place.
+Other advantages can distinguish themselves as well, such as network connections where
+the address of other components are determined to be localhost (\emph{this computer}).
+But for scalability and modularity the \emph{single-node} approach is restraining.
+For instance if the database should eventually consume more space than the node can provide
+For instance if the application consumes too much \myac{CPU} power slows the application
+totality down and decrease usability.
+Measures must be set to support distributing work load, and for an initial setup this might not have been
+included in application design and deployment considerations.
+
+\paragraph{Scenario with three nodes.}
+
+The second scenario is based on~\citefig{threenodes} with two more nodes than in the first scenario.
+Alice models the appropriate \texttt{Template} consisting
+of three \texttt{Nodes}.
+By increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
+
+The benefits of a topology where the application is distributed over several nodes 
+is the scalability and modularity which were lacking in the \emph{single-node} topology.
+\eg, if the user demand should rapidly increase Alice could change her topology to
+provision more front-end nodes as seen in \citefig{frontends}.
+This could be done presumably without greater changes to origin application.
+
+\paragraph{Provisioning.}
+
+With these models Alice can initialize provisioning by calling 
+\texttt{build} on \texttt{CloudMLEngine},
+and this will start the asynchronous job of configuring and creating \texttt{Nodes}.
+When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
+be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
+during provisioning according to \emph{models@run.time}~(M@RT) approach.
+\texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
+as \texttt{Properties} from \texttt{Node} still contain valid data.
+When all \texttt{Nodes} are provisioned successfully and sufficient metadata are gathered
+Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
+Alice could later decide to use another provider, either as replacement or complement to her current setup,
+because of availability, financial benefits or support.
+To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
+this will result in an identical topological setup on a supported provider.
+
+\paragraph{And we saw?}
+
+The mist during daytime.
+
+\section{Scenario played out}
 \input{figs/scenario1}
 \input{figs/scenario2}
 \input{figs/sequencediagram}
+
+
+\section{Technological assessments}
+
+\paragraph{Programming language and .}
+
+For \emph{programming language} and \emph{application environment} the following were considered.
+\begin{ii}
+  \iitem JavaScript (Node.js) [\todo{Need source? Got 2 articles}],
+  \iitem Java (JDK),
+  \iitem Scala (JDK),
+  \todo{
+    \iitem Python and
+    \iitem C\# (.NET).
+  }
+\end{ii}
+Preceding \iii{2} to \iii{5} are well-known languages and environments recognized by both the enterprise world as well as the academic world.
+Preceding \iii{1} is a newer and more unknown type of technology which has yet to 
+make a large footprint in the two worlds. 
+It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follow a 
+CommonJS-based module pattern over an event-driven architecture.
+Preceding \iii{1} were brought in as an consideration because of the abilities to operate
+with \myac{JSON}, its aim at web development on the cloud and the modernity.
+
+\section{Actors model}
+Provisioning nodes is by its nature an asynchronous action that can take minutes to execute,
+therefore CloudML relied on the actors model~\cite{actors:haller07}.
+With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
+The model is extended by adding a callback-based pattern allowing each node to provide 
+information on property and status changes.
+Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
+and do other jobs / idle while the nodes are provisioned with the actors model.
+The terms are divided for a node before and under provisioning, the essential is to introduce 
+\emph{M@RT} to achieve a logical separation.
+When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
+which can have a different \emph{states} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
+When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, including
+the most necessary metadata, when all nodes reaches this state the task of provisioning is concluded.
+
+\hr 
 
 \todo{Read over, copied from old vision} \\
 In this chapter the core approach and steps on the research to implementing CloudML will be described.
@@ -31,116 +168,3 @@ should not be possible to define cross-provider (\emph{multicloud}) nodes in a s
 This itself does not mean CloudML will not support multicloud provisioning,
 instead such functionality is achieved by utilizing more than one template,
 which will not retain a full multicloud deployment.
-
-\hr
-
-In the previous chapter, \citechap{vision}, procedure of requirements analyzing
-were described.
-In this chapter these procedures will be described including their results.
-The meta model for CloudML will also be presented, through a specific scenario.
-
-\section{Analysis of requirements}
-
-Here the analysis procedure for each of the requirements 
-that needed analysis according to \citechap{vision} will be described.
-
-\subparagraph{Dependencies.}
-
-As stated in \citechap{vision} the dependency between four of the requirements
-are strong, this is considered for each of the following requirements.
-Since \texttt{underlying technology} is a central dependency (\citefig{requirement-dependencies})
-this requirements is weighted more than the others.
-
-\paragraph{Underlying technology.}
-
-For \emph{programming language} and \emph{application environment} the following were considered.
-\begin{ii}
-  \iitem JavaScript (Node.js) [\todo{Need source? Got 2 articles}],
-  \iitem Java (JDK),
-  \iitem Scala (JDK),
-  \todo{
-    \iitem Python and
-    \iitem C\# (.NET).
-  }
-\end{ii}
-Preceding \iii{2} to \iii{5} are well-known languages and environments recognized by both the enterprise world as well as the academic world.
-Preceding \iii{1} is a newer and more unknown type of technology which has yet to 
-make a large footprint in the two worlds. 
-It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follow a 
-CommonJS-based module pattern over an event-driven architecture.
-Preceding \iii{1} were brought in as an consideration because of the abilities to operate
-with \myac{JSON}, its aim at web development on the cloud and the modernity.
-
-\paragraph{Model-driven approach.}
-
-\paragraph{Lexical templates.}
-
-\paragraph{Models@run.time.}
-
-\section{Meta model.}
-
-The meta model for CloudML is visualized in~\citefig{architecture}. 
-\texttt{CloudMLEngine} is the main entry point, it has the method \texttt{build}
-which is used to initialize provisioning.
-\texttt{Property} have four children but is designed to be extendable in case
-new types of properties should be included. The same design principle
-is applied to \texttt{RuntimeProp}.
-\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
-physical parts maintainable by the user.
-
-\paragraph{Scenario introduction.}
-CloudML is introduced by using two scenarios where ``Alice'' is provisioning the 
-\emph{BankManager} from \citechap{challenges} to AWS \emph{Elastic Compute Cloud}~(EC2)
-using the topology shown in~\citefig{singlenode} and~\citefig{threenodes}.
-It is compulsory that she possesses an AWS account in advance of the scenario.
-She will retrieve security credentials for account 
-and associate them with \texttt{Password} in \citefig{architecture}.
-\texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
-The characteristics Alice choose for her \texttt{Nodes} and \texttt{Properties} are fitted
-for the chosen topology.
-All \texttt{Properties} are optional and thus Alice does not have to define them all.
-
-\paragraph{Scenario with one single node.}
-The first scenario Alice want to establish is a single node based one~(\citefig{singlenode}).
-Since this single node will handle both computation and storage Alice decides to 
-increase capabilities of both processing (number of \texttt{Cores}) and 
-\texttt{Disk} size on the \texttt{Node}.
-
-\paragraph{Scenario with three nodes.}
-The second scenario is based on~\citefig{threenodes} with two more nodes than in the first scenario.
-Alice models the appropriate \texttt{Template} consisting
-of three \texttt{Nodes}.
-by increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
-
-\paragraph{Provisioning.}
-With these models Alice can initialize provisioning by calling 
-\texttt{build} on \texttt{CloudMLEngine},
-and this will start the asynchronous job of configuring and creating \texttt{Nodes}.
-When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
-be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
-during provisioning according to \emph{models@run.time}~(M@RT) approach.
-\texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
-as \texttt{Properties} from \texttt{Node} still contain valid data.
-When all \texttt{Nodes} are provisioned successfully and sufficient metadata are gathered
-Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
-Alice could later decide to use another provider, either as replacement or complement to her current setup,
-because of availability, financial benefits or support.
-To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
-this will result in an identical topological setup on a supported provider.
-
-\paragraph{And we saw?}
-
-\section{Actors model}
-Provisioning nodes is by its nature an asynchronous action that can take minutes to execute,
-therefore CloudML relied on the actors model~\cite{actors:haller07}.
-With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
-The model is extended by adding a callback-based pattern allowing each node to provide 
-information on property and status changes.
-Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
-and do other jobs / idle while the nodes are provisioned with the actors model.
-The terms are divided for a node before and under provisioning, the essential is to introduce 
-\emph{M@RT} to achieve a logical separation.
-When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
-which can have a different \emph{states} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
-When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, including
-the most necessary metadata, when all nodes reaches this state the task of provisioning is concluded.
