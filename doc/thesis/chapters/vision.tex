@@ -1,16 +1,11 @@
 \mychapter{vision}{Vision, concepts and principles}
 \input{figs/big-picture}
 
-In this chapter the core idea of CloudML will be presented,
-such as how a procedure of node provisioning is conducted in the 
-perspective of different actors.
-
+In this chapter the core idea of CloudML will be presented.
 The concept and principle of CloudML is to be an easier and more reliable
 path into cloud computing for IT-driven businesses of variable sizes.
 The tool is visioned to parse and execute template files representing topologies
-and provision these as instances to the cloud. 
-
-\section{The ``big picture''}
+and provision these as instances available in the cloud. 
 
 The vision of CloudML is reflected through \citefig{big-picture} which gives
 an overview of the procedure flow in and around CloudML.
@@ -34,13 +29,13 @@ In \citefig{big-picture} there are three actors,
     services these offer, limitations, API support and prices.
     The last actor,
   \iitem user is a person which directly utilize CloudML to do provisioning.
-    This physical person may or may not have the role of cloud expert, hence 
-    the actor extends from cloud expert.
+    This physical person may or may not have the role of cloud expert, 
+    hence the the cloud expert extends from the user actor.
 \end{ii}
 
 \paragraph{Application and topologies.}
 
-The business person is in charge of the application, he or she has a need
+The business person is in charge of the application, he/she has a need
 for an application that can fulfill certain tasks, and to handle these 
 tasks application demands are made.
 The cloud expert use the requirements sketched by the business person to 
@@ -49,7 +44,7 @@ A topology is a map of nodes connected together in a specific pattern,
 defined by the cloud expert.
 In a topology there is also information about node attributes 
 \eg, \myac{CPU} power and \myac{RAM} sizes.
-He or she might create several topologies to fulfill the application demands.
+He/she might create several topologies to fulfill the application demands.
 
 \paragraph{Templates.}
 
@@ -57,21 +52,16 @@ The next step is to create templates based on the topologies, this is done by
 the cloud expert.
 A template is a digital reflection of a topology including the attributes and some additional 
 information such as node names and template labeling.
-It is also possible to define more than one topology within a single template,
-but for the sake of tidiness, clarity and technical limitations it 
-should not be possible to define cross-provider (\emph{multicloud}) nodes in a single topology.
-This itself does not mean CloudML will not support multicloud provisioning,
-instead such functionality is achieved by utilizing more than one template,
-which will not retain a full multicloud deployment.
+It is also possible to define more than one topology within a single template.
 
 \paragraph{Engine.}
 
 When the cloud expert have designed and created the necessary templates the next actor, 
 user, will continue the procedure.
-The user select the templates and feed them into the engine.
-The engine is the core of the implementation handling several steps and executing
+The user selects the template and feeds them into the engine.
+The engine is the core of the implementation, handling several steps and executing
 most of the CloudML logic.
-The engine operates in five different steps:
+The engine operates according to five different steps:
 \begin{enumerate}
   \item Convert the template files into a native format for later use.
   \item Convert pure nodes into instances ready for provisioning.
@@ -88,9 +78,9 @@ cloud provider that will be supported by CloudML can be utilized.
 As discussed in \citechap{state-of-the-art} and \citechap{challenges}
 different providers implement different solutions for communication
 \eg, for provisioning nodes, managing nodes and services or terminating instances.
-For engine to interact with a set of different providers some tool, library
-or framework is needed that can connect to the different providers through
-a common interface.
+For the engine to interact with a set of different providers, 
+some tools (library or framework) are needed.
+These tools can connect to the different providers through a common interface.
 
 \paragraph{Models@run.time.}
 

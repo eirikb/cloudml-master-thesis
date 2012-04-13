@@ -160,7 +160,8 @@ and at the same time keep in mind the dependency towards \citereq{foundation}.
 There are several different approaches that could be made when implementing 
 these models, such as using
 \begin{ii}
-  \iitem standard Java classes and expect users to do \emph{short polling} \todo{[need source?]},
+  \iitem standard Java classes and expect users to do \emph{short polling} (client 
+  must poll for updates at a set interval, \eg, every 5 seconds),
   \iitem \emph{command pattern} to send events on node updates,
   \iitem \emph{aspect-oriented programming} to enhance asynchronous support and modularity or
   \iitem \emph{publish subscribe pattern} to let users subscribe to events of updating instances.
