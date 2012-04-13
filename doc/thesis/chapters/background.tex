@@ -131,7 +131,7 @@ a well known computing model in the academic world.
   processing, storage, networks, and other fundamental computing resources where the 
   consumer is able to deploy and run arbitrary software, which can include operating 
   systems and applications.
-}{\citet*{nist:mell11}\todo{NIST, 2011}}
+}{\citet{nist:mell11}}
 This underline the liberty this \emph{service model} provides to users, but this also means
 that developers need to handle software and tools themselves, from operating system and
 up to their application. In some cases this is advantageous, for instance when deploying 
@@ -141,7 +141,7 @@ can be manpower in-effective for companies as developers must focus on meta task
 \epigraph{The consumer does not manage or control the underlying cloud 
   infrastructure but has control over operating systems, storage, deployed applications, and 
   possibly limited control of select networking components (\eg, host firewalls).
-}{\todo{NIST, 2011}}
+}{\citet{nist:mell11}}
 Users have control over which operating system they want, in some cases users
 can only pick from a set of pre-configured operating systems.
 It is common for providers to include both Linux and Windows in their selections.
@@ -193,7 +193,7 @@ The highest layer of the \emph{service models} farthest away from physical hardw
 and with highest level of abstraction.
 \epigraph{The capability provided to the consumer is to use the provider's 
   applications running on a cloud infrastructure.
-}{\todo{NIST, 2011}}
+}{\citet{nist:mell11}}
 
 The core purpose is to provide complete applications as services, in many cases end products.
 Google products such as Gmail, Google Apps and  Google Calendar are examples of 
@@ -281,7 +281,7 @@ This statement is emphasized by Booch \etal in the UML:
   system's architecture. We build models to better understand the
   system we are building, often exposing opportunities for
   simplification and reuse. We build models to manage risk.
-}{\todo{Booch \etal, 2005}}
+}{\cite{unified:booch05}}
 When it comes to cloud computing these definitions are even more important
 because of financial aspects since provisioned nodes instantly draw credit.
 The definition of ``modeling'' can be assessed from the previous epigraph, but it is 
@@ -294,7 +294,7 @@ it is possible to use the same \myac{UML} diagrams for IaaS as previously used i
 The importance of this re-usability of models is based on the origin of grid computing, 
 \emph{eScience},
 and the popularity of modeling in this research area.
-The importance of choosing correct models is emphasized by Booch~\cite{unified:booch05}:
+The importance of choosing correct models is emphasized by~\cite{unified:booch05}:
 \epigraph{
   \begin{ii}\iitem The choice
   of what models to create has a profound influence on how a problem
@@ -303,7 +303,7 @@ The importance of choosing correct models is emphasized by Booch~\cite{unified:b
   are connected to reality. \iitem No single model is
   sufficient. Every nontrivial system is best approached through a
   small set of nearly independent models.\end{ii}
-}{\todo{Booch \etal, 2005}}
+}{\cite{unified:booch05}}
 These definition precepts state that several models (precept \iii{4}) on different levels (precept \iii{2}) 
 of precision should be used to model the same system.
 From this it is concludable that several models can be used to describe one or several cloud computing perspectives.
@@ -345,7 +345,7 @@ Beside the models there are five different steps as explained by Singh~\cite{mod
       In \myac{MDA}, the main mapping is between \myac{PIM}
       and \myac{PSM}, and this is often associated with code generation. 
       However, this is not the only kind of mapping required.
-    }{\todo{kent}}
+    }{\citet{modeldriven:kent02}}
     From this it is possible to determine that a \myac{PSM} is more specific to a platform then \myac{PIM}, such as 
     programming language or environment.
   \item \emph{Generate code form \myac{PSM}.}
