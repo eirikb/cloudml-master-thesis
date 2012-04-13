@@ -4,6 +4,19 @@
 \input{figs/pom-example}
 \input{figs/cloudml-engine-usage}
 
+\todo{Read over, copied from design, actors model}
+
+~\cite{actors:haller07}.
+With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
+The model is extended by adding a callback-based pattern allowing each node to provide 
+information on property and status changes.
+Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
+and do other jobs / idle while the nodes are provisioned with the actors model.
+The terms are divided for a node before and under provisioning, the essential is to introduce 
+\emph{M@RT} to achieve a logical separation.
+
+\hr
+
 \todo{Maven dependency graph}
 
 The envision and design of CloudML is implemented as a proof-of-concept project \emph{cloudml-engine}.

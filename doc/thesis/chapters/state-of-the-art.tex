@@ -3,16 +3,16 @@
 There already exists scientific research projects, \myac{API}s, frameworks 
 and other technologies which aim at consolidating, interfacing and utilizing cloud technologies.
 This chapter introduces some of these concepts, and does this by dividing the chapter into four parts:
-\begin{ii}
-  \iitem Model-Driven Approaches which aims presenting frameworks and projects that utilize
+\begin{enumerate}
+  \item Model-Driven Approaches which aims presenting frameworks and projects that utilize
   models on a larger scale.
-  \iitem \myac{API}s are about frameworks that connects to cloud providers, often with multicloud support,
+  \item \myac{API}s are about frameworks that connects to cloud providers, often with multicloud support,
   these projects can be used as middleware for other systems.
-  \iitem Deployments are about projects that do full deployment of applications, inclusing provisioning.
+  \item Deployments are about projects that do full deployment of applications, inclusing provisioning.
   These are often more academic.
   Lastly the chapter will discuss \iitem Example of cloud surveys, some real-world examples
   that might not be directly related to provisioning but are important and interesting regardless.
-\end{ii}
+\end{enumerate}
 
 \section{Model-Driven Approaches}
 
@@ -31,7 +31,11 @@ To provision a stack with CloudFormation the template file (in \myac{JSON} forma
 \myac{AWS} which makes it accessible from \myac{AWS} Management Console.
 
 The template consist of three main sections, 
-\begin{ii}\iitem \emph{Parameters}, \iitem \emph{Resources} and \iitem \emph{Outputs}.\end{ii}
+\begin{ii}
+  \iitem \emph{Parameters}, 
+  \iitem \emph{Resources} and 
+  \iitem \emph{Outputs}.
+\end{ii}
 The \emph{Parameters} section makes it possible to send parameters into the template, 
 with this the template becomes a macro language by replacing 
 references in the \emph{Resources} section with inputs from users. 

@@ -158,14 +158,14 @@ so the core idea is to fetch this kind of data directly from models@run.time.
 The approach for this requirement is to find sufficient solutions for such models,
 and at the same time keep in mind the dependency towards \citereq{foundation}.
 There are several different approaches that could be made when implementing 
-these models, such as using
-\begin{ii}
-  \iitem standard Java classes and expect users to do \emph{short polling} (client 
-  must poll for updates at a set interval, \eg, every 5 seconds),
-  \iitem \emph{command pattern} to send events on node updates,
-  \iitem \emph{aspect-oriented programming} to enhance asynchronous support and modularity or
-  \iitem \emph{publish subscribe pattern} to let users subscribe to events of updating instances.
-\end{ii}
+these models, such as using:
+\begin{enumerate}
+  \item Standard Java classes and expect users to do \emph{short polling} (client 
+  must poll for updates at a set interval, \eg, every 5 seconds).
+  \item \emph{Command pattern} to send events on node updates.
+  \item \emph{Aspect-oriented programming} to enhance asynchronous support and modularity.
+  \item \emph{Publish subscribe pattern} to let users subscribe to events of updating instances.
+\end{enumerate}
 It is also possible to combine one or several of these approaches.
 What needs to be done here is to identify which approaches that are most sufficient 
 in regards to 
