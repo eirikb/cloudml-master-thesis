@@ -11,16 +11,6 @@ consitutes CloudML.
 In this section the meta model from CloudML will be presented.
 The model is visualized in \citefig{architecture}, and will be described through a specific scenario.
 
-\todo{
-\texttt{CloudMLEngine} is the main entry point, it has the method \texttt{build}
-which is used to initialize provisioning.
-\texttt{Property} have four children but is designed to be extendable in case
-new types of properties should be included. The same design principle
-is applied to \texttt{RuntimeProp}.
-\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
-physical parts maintainable by the user.
-}
-
 \paragraph{Scenario introduction.}
 
 CloudML is introduced by using two scenarios where ``Alice'' is provisioning the 
@@ -37,6 +27,8 @@ It is compulsory that she possesses an \myac{AWS} account in advance of the scen
 She will retrieve security credentials for account 
 and associate them with \texttt{Password} in \citefig{architecture}.
 \texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
+\texttt{Connector} is a common interface against supported providers.
+This component of CloudML is directly associated with \citereq{multicloud}.
 \texttt{Credential} is in the form of an \emph{access key} (random GUID) or a username.
 The characteristics Alice choose for her \texttt{Nodes} and \texttt{Properties} are fitted
 for the chosen topology \eg, more computation power for \texttt{front-end} nodes and more disk for \texttt{back-end} nodes.
@@ -97,6 +89,15 @@ this will result in an identical topological setup on a supported provider.
 The mist during daytime.
 
 \section{Scenario played out}
+
+\texttt{CloudMLEngine} is the main entry point, it has the method \texttt{build}
+which is used to initialize provisioning.
+\texttt{Property} have four children but is designed to be extendable in case
+new types of properties should be included. The same design principle
+is applied to \texttt{RuntimeProp}.
+\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
+physical parts maintainable by the user.
+
 \input{figs/scenario1}
 \input{figs/scenario2}
 \input{figs/sequencediagram}
@@ -124,16 +125,13 @@ CommonJS-based module pattern over an event-driven architecture.
 Preceding \iii{1} were brought in as an consideration because of the abilities to operate
 with \myac{JSON}, its aim at web development on the cloud and the modernity.
 
-\section{Actors model}
-Provisioning nodes is by its nature an asynchronous action that can take minutes to execute,
-therefore CloudML relied on the actors model~\cite{actors:haller07}.
-With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
-The model is extended by adding a callback-based pattern allowing each node to provide 
-information on property and status changes.
-Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
-and do other jobs / idle while the nodes are provisioned with the actors model.
-The terms are divided for a node before and under provisioning, the essential is to introduce 
-\emph{M@RT} to achieve a logical separation.
+\section{Asynchronous information harvesting}
+
+Provisioning nodes is by its nature an asynchronous action that can take minutes to execute.
+For CloudML to achieve this asynchronous behavior several approaches could be made,
+as mentioned in \citechap{requirements}, \eg, command pattern, aspect-oriented programming,
+or publish-subscribe pattern.
+
 When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
 which can have a different \emph{states} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
 When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, including
