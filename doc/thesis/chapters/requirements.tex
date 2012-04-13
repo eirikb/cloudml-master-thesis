@@ -24,12 +24,10 @@ Such library could also help with \emph{feedback} in case an exception should oc
 side because the error handling would be more thoroughly tested and used,
 and another side because the library would be more tightly bounded with \citereq{foundation}.
 And for the same reasons such framework could make the whole application more \emph{robust}.
-All of the libraries from \citechap{state-of-the-art} support \emph{multicloud} so they can
+
+All of the API libraries from \citechap{state-of-the-art} support \emph{multicloud} so they can
 interact with several providers over a common interface, this would be a mandatory challenge
 to overcome by this requirement.
-
-\todo{read over} \\
-The \myac{API}s described in \citechap{state-of-the-art} are worthy candidates to meet this requirement.
 Some research have already been done to indicate what their purpose is, 
 how they operate and to some extent how to use them.
 The approach here is to select libraries or framework that could match well with a chosen
@@ -51,9 +49,7 @@ The technology chosen should benefit the challenge of \emph{robustness}.
 It could also help to solve other challenges such as \emph{metadata dependency} by introducing
 functionality through \emph{common libraries} or some built in mechanism.
 
-\todo{read over} \\
-This will be the foundation of the solution, so finding good technologies has a high priority.
-To find good technologies they have to be considered by several aspects, such as
+Solid technologies have to be considered by several aspects, such as
 \begin{ii}
   \iitem ease of use,
   \iitem community size,
@@ -86,13 +82,17 @@ Models can be reused to multiply a setup without former knowledge of the system.
 They can also be used to discuss, edit and design topologies for propagation. 
 These are important aspects that can help to leverage the challenge of \emph{complexity}.
 
-\todo{read over} \\
+Main objective is to create a common model for nodes as a platform-independent 
+model~\cite{agile:cuong10} to justify \emph{multicloud} differences and 
+at the same time base this on a human readable lexical format to address \emph{reproducibility} and
+make it \emph{shareable}.
+
 Unlike the other requirements this is a non-physical need, 
 and as seen in \citefig{requirement-dependencies}
 there are no dependencies from or to this requirement.
 But other requirements such as \citereq{lexical-template} are directly based on this one.
 
-In the implementation there will be four different models.
+In the implementation there will be four different models:
 \begin{enumerate}
   \item The lexical template.
   \item Nodes from the template represented in the implementation.
@@ -121,12 +121,6 @@ Textual templates that can be shared through mediums such as e-mail or
 This is important for end users to be able to maintain templates that defines the stacks they have built, 
 for future reuse.
 
-\todo{read over} \\
-Main objective is to create a common model for nodes as a platform-independent 
-model~\cite{agile:cuong10} to justify \emph{multicloud} differences and 
-at the same time base this on a human readable lexical format to address \emph{reproducibility} and
-make it \emph{shareable}.
-
 The type of direct model representation of topologies will have great impact 
 on the solution application.
 As described in \citechap{requirements} this representation should be lexical,
@@ -140,14 +134,13 @@ Some examples of these languages are
   \iitem \myac{OGDL}.
 \end{ii}
 As shown in \citefig{requirement-dependencies} there is a two-way dependency between 
-this requirement and \citereq{solid-technological-foundation} requirement.
+this requirement and \citereq{foundation} requirement.
 This dependency can have impact both ways, but unlike the other dependencies in
 \citefig{requirement-dependencies} there exist bindings all the four precedings in
 most languages and systems.
 Templates could even be stored as any binary type of serialization, 
 but this might not be as sufficient as lexical types, more on this
 in \citechap{design}.
-
 
 \req{m@rt}{Models@run.time}
 Models that reflect the provisioning models and updates asynchronously. 
@@ -157,21 +150,6 @@ One way to solve this issue is by utilizing \emph{models@run.time}, which is the
 model-driven approach.
 Models will apply to several parts of the application, such as for topology designing and for the actual propagation.
 
-\req{multicloud}{Multicloud}
-One of the biggest problems with the cloud today is the vast amount of different providers. 
-There are usually few reasons for large commercial delegates to have support for contestants. 
-Some smaller businesses could on the other hand benefit greatly of a standard and union 
-between providers.
-The effort needed to construct a reliable, stable and scaling computer park or data center will 
-withhold commitment to affiliations. 
-Cloud computing users are concerned with the ability to easily swap between different providers, 
-this because of security, 
-independence and flexibility. 
-CloudML and its engine need to apply to several providers with different set of systems, 
-features, \myac{API}s, payment methods and services. 
-This requirement anticipate support for at least two different providers such as \myac{AWS} and Rackspace.
-
-\todo{read over} \\
 The models@run.time are meant to support any deployment system which should
 be run sequentially after a complete provisioning.
 For such deployment to be successful metadata from the provisioning could be needed,
@@ -195,6 +173,20 @@ in regards to
   \iitem sustain constraints in regard of dependencies as seen in \citefig{requirement-dependencies}, and
   \iitem identify approaches that can be combined and what benefits this would give.
 \end{ii} 
+
+\req{multicloud}{Multicloud}
+One of the biggest problems with the cloud today is the vast amount of different providers. 
+There are usually few reasons for large commercial delegates to have support for contestants. 
+Some smaller businesses could on the other hand benefit greatly of a standard and union 
+between providers.
+The effort needed to construct a reliable, stable and scaling computer park or data center will 
+withhold commitment to affiliations. 
+Cloud computing users are concerned with the ability to easily swap between different providers, 
+this because of security, 
+independence and flexibility. 
+CloudML and its engine need to apply to several providers with different set of systems, 
+features, \myac{API}s, payment methods and services. 
+This requirement anticipate support for at least two different providers such as \myac{AWS} and Rackspace.
 
 \section{Comparison}
 \input{tables/requirements}
