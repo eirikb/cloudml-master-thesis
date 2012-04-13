@@ -47,21 +47,21 @@ found in \myac{SOA} solutions.
 \input{figs/nodes}
 
 Some examples of provisioning topologies are illustrated in \citefig{BankManager}.
-Each example includes a \emph{browser} to visualize application flow,
-\emph{front-end} visualizes executable logic and \emph{back-end} represents database.
-It is possible to have both \emph{front-end} and \emph{back-end} on the same node, 
+Each example includes a \texttt{browser} to visualize application flow,
+\texttt{front-end} visualizes executable logic and \texttt{back-end} represents database.
+It is possible to have both \texttt{front-end} and \texttt{back-end} on the same node, 
 as shown in \citefig{singlenode}.
-When the topology have several \emph{front-ends} a \emph{load balancer} is used
-to direct traffic between \emph{browser} and \emph{front-end}.
-The \emph{load balancer} could be a node like the rest, but in this cloud-based scenario
+When the topology have several \texttt{front-ends} a \texttt{load balancer} is used
+to direct traffic between \texttt{browser} and \texttt{front-end}.
+The \texttt{load balancer} could be a node like the rest, but in this cloud-based scenario
 it is actually a cloud service, which is also why it is graphically different.
-In \citefig{twonodes} \emph{front-end} is separated from \emph{back-end},
-this introduces the flexibility of increasing computation power on the \emph{front-end} node while spawning more
-storage on the \emph{back-end}.
+In \citefig{twonodes} \texttt{front-end} is separated from \texttt{back-end},
+this introduces the flexibility of increasing computation power on the \texttt{front-end} node while spawning more
+storage on the \texttt{back-end}.
 For applications performing heavy computations it can be beneficial to distribute the workload between several
-\emph{front-end} nodes as seen in \citefig{threenodes}, the number of \emph{front-ends} can be linearly increased
+\texttt{front-end} nodes as seen in \citefig{threenodes}, the number of \texttt{front-ends} can be linearly increased
 $n$ number of times as shown in \citefig{frontends}.
-\emph{BankManager} is not designed to handle several \emph{back-ends} because of \myac{RDBMS},
+\emph{BankManager} is not designed to handle several \texttt{back-ends} because of \myac{RDBMS},
 this can be solved at the database level with master and slaves (\citefig{frontendbackends}).
 
 \paragraph{Execution.}
@@ -79,8 +79,8 @@ They also have different graphical interfaces, APIs and toolchains which makes t
 for a scenario researching multicloud challenges.
 
 The topology chosen for this scenario is that of three nodes\citefig{threenodes}.
-This topology is advance enough that it needs a \emph{load balancer} in front of two
-\emph{front-end} nodes, and yet the simplest topology of the ones that benefits from a \emph{load balancer}.
+This topology is advance enough that it needs a \texttt{load balancer} in front of two
+\texttt{front-end} nodes, and yet the simplest topology of the ones that benefits from a \texttt{load balancer}.
 It is important to include most of the technologies and services that needs testing.
 
 To perform the actual provisioning a set of primitive Bash-scripts are developed.
