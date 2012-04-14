@@ -99,12 +99,12 @@
         \draw[line] (Node.west) -- ++(0, 1) -| (Instance.east);
         \draw[line] (Instance.east) -| ++(0.5, -2) -- ++(0, -2) -| (Property.west);
 
-        \draw[aggregate] (Instance) -- (RuntimeInstance.north);
+        \draw[aggregate] (RuntimeInstance.north) -- (Instance);
 
         \draw[aggregate] (RuntimeInstance) -| (RuntimeProp.east);
 
     \end{tikzpicture}
   \end{center}
-  \caption{Meta model of CloudML}
+  \caption{Meta model of CloudML.}
   \label{fig:meta-model}
 \end{figure}

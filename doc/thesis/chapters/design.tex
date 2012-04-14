@@ -52,7 +52,8 @@ increase capabilities of both processing (number of \texttt{Cores}) and
 Both these attributes are incremented because the instance hosts
 the main application as well as the database.
 The characteristics Alice choose for her \texttt{Nodes} and \texttt{Properties} are fitted
-for the chosen topology \eg, more computation power for \texttt{front-end} nodes and more disk for \texttt{back-end} nodes.
+for the chosen topology \eg, more computation power for 
+\emph{front-end} nodes and more disk for \emph{back-end} nodes.
 All \texttt{Properties} are optional and thus Alice does not have to define them all.
 
 The approach of using one single node is good in terms of simplicity since all important
@@ -86,28 +87,47 @@ This starts the asynchronous job of configuring and creating
 \texttt{Instances} based on \texttt{Nodes}.
 In \citefig{scenario1-1} an object diagram describe the initial configuration at runtime,
 after CloudML has interpreted the template files.
-As mentioned the node has increased two important attributes to support both higher computation 
-demand and storage capabilities, \ie, $2$ cores and $2000$ in disk size (\myac{GB} respectively).
+As mentioned, the node has increased two important attributes to support both higher computation 
+demand and storage capabilities. \ie, $2$ cores and $2000$ in disk size 
+(\myac{GB} respectively, but measurement can change depending on implementation of \citereq{software-reuse}).
 The Instance produced by the template and node is in the form of a single object,
 as represented by the object diagram in \citefig{scenario1-2}.
 Noticeable, \texttt{Instance} only refer to template by a \emph{String}, \texttt{templateName}.
 This is semantically correct because the template is a transparent entity
 in the context of provisioning, and is only used as a reference.
 
-The \texttt{build} method support provisioning several templates to one account (same provider),
+The \texttt{build} method support provisioning of several templates to one account (same provider),
 but in this scenario that is not utilized.
-There is also a constraint that a set of templates can not be simultaneously 
-cross-deployed to different providers. They can, however, be re-provisioned sequentially
+There is also a constraint/limitation, a set of templates can not be simultaneously 
+cross-deployed to different providers. 
+They can, however, be re-provisioned sequentially
 to different providers.
 
 \texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
 as \texttt{Properties} from \texttt{Node} still contain valid data.
+When \texttt{CloudMLEngine} start provisioning a set of \texttt{RuntimeInstances} are created immediately 
+and returned to Alice.
+These are models@run.time within CloudML, designed to provide asynchronous provisioning,
+which will treat with \citereq{m@rt}.
+They are reflections of \texttt{Instance}, and they aggregate instances.
+
 When all \texttt{Nodes} are provisioned successfully and sufficient meta-data are gathered
 Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
 Alice could later decide to use another provider, either as replacement or complement to her current setup,
 because of availability, financial benefits or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
 this will result in an identical topological setup on a supported provider.
+
+\paragraph{Unanticipated scalability needs.}
+
+In the described scenario Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
+In many cases this setup is sufficient, but major advantages
+could be gained by having the opportunity to scale horizontally (\emph{scale out}).
+There can be many benefits, \eg, if Alice had deployed an application which should suddenly, 
+rapidly and unexpectedly gain popularity
+her current setup (one single node) might not be sufficient.
+In case of such event Alice should change her topology from the one seen in \citefig{singlenode}
+to that of \citefig{frontends}.
 
 \hr
 
