@@ -29,7 +29,7 @@ she must also have \emph{security credentials},
 The roles, or actors, which Alice assumes in this scenario, regarding \citefig{big-picture},
 are both \emph{cloud expert} and \emph{user}.
 She will define the topologies, create the templates and use CloudML to provision her models.
-in addition to these roles she is also partly \emph{application designer/developer}
+In addition to these roles she is also partly \emph{application designer/developer}
 because of tight coupling between running instances and application deployment.
 
 \paragraph{Authentication.}
@@ -43,7 +43,7 @@ This component of CloudML is directly associated with \citereq{multicloud}.
 but with other providers it might be in another form, \eg, a username for Rackspace.
 Although the form is different, the physical object type (String) is the same.
 
-\paragraph{From topology to nodes.}
+\paragraph{Topology considerations.}
 
 Alice establishes a \emph{single-node} based topology, as seen in~(\citefig{singlenode}).
 Since this single node handles both computation and storage Alice decides to 
@@ -67,9 +67,19 @@ scalability some measurements must be manually developed into \emph{BankManager}
 So the initial application code includes support for work load distribution through 
 application design and deployment considerations.
 
-\paragraph{General provisioning.}
+\paragraph{From templates to nodes.}
 
-With these models Alice can initializes provisioning by calling 
+In the end Alice insert all data about topologies into a \emph{textual file} which describes the topology.
+This file is a \texttt{Template}, and is referred to by \texttt{name}.
+The template file include physical descriptions of \texttt{Node},
+and a list of the type \texttt{Property} for each node.
+Every \texttt{Node} has a \texttt{name} used to reference the node under provisioning.
+The properties a node can have are configurations of attributes on a set of given capabilities.
+These configurations are what define what type of tasks a node is suitable for.
+
+\paragraph{Provisioning.}
+
+With these models Alice initializes provisioning by calling 
 \texttt{build} on \texttt{CloudMLEngine},
 and this starts the asynchronous job of configuring and creating \texttt{Nodes}.
 When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
@@ -77,7 +87,7 @@ be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve fr
 during provisioning according to \emph{models@run.time}~(M@RT) approach.
 \texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
 as \texttt{Properties} from \texttt{Node} still contain valid data.
-When all \texttt{Nodes} are provisioned successfully and sufficient metadata are gathered
+When all \texttt{Nodes} are provisioned successfully and sufficient meta-data are gathered
 Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
 Alice could later decide to use another provider, either as replacement or complement to her current setup,
 because of availability, financial benefits or support.
