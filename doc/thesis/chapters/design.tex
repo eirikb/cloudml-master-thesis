@@ -6,60 +6,87 @@ In this chapter the focus is narrowed down to the design of the implementation w
 consitutes CloudML.
 
 \section{Meta model}
-\input{figs/architecture}
+\input{figs/meta-model}
 In this section the meta model from CloudML will be presented.
-The model is visualized in \citefig{architecture}, and will be described through a specific scenario.
+The model is visualized in \citefig{meta-model}, and will be described through a specific scenario.
+The scenario also describes the implementation design through how it is used.
 
 \paragraph{Scenario introduction.}
 
 CloudML is introduced by using a scenarios where ``Alice'' is provisioning the 
 \emph{BankManager} application from \citechap{challenges} to \myac{AWS},
 initially using the topology shown in~\citefig{singlenode}.
-This topology introduces a single node which will host every tier of the application.
+This topology introduces a single node which hosts every tier of the application.
 This topology is not uncommon, but it does not scale very well, 
 and does not benefit from cloud advantages.
 
 It is compulsory that she possesses an \myac{AWS} account in advance of the scenario.
 This is essential information needed for the scenario to be successful,
-and since she will be indirectly using \myac{AWS} \myac{API}s 
+and since she is indirectly using \myac{AWS} \myac{API}s 
 she must also have \emph{security credentials},
-\ie Access Key ID and Secret Access Key.
+\ie, \emph{Access Key ID} and \emph{Secret Access Key}.
+
+The roles, or actors, which Alice assumes in this scenario, regarding \citefig{big-picture},
+are both \emph{cloud expert} and \emph{user}.
+She will define the topologies, create the templates and use CloudML to provision her models.
+in addition to these roles she is also partly \emph{application designer/developer}
+because of tight coupling between running instances and application deployment.
 
 \paragraph{Authentication.}
 
-She associate \emph{Access Key ID} and \emph{Secret Access Key} with 
-\texttt{Credential} and \texttt{Password} in \citefig{architecture}.
+She associate Access Key ID and Secret Access Key with 
+\texttt{Credential} and \texttt{Password} in \citefig{meta-model}.
 \texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
-\texttt{Connector} is a common interface against supported providers.
+The \texttt{Connector} is a common interface against supported providers.
 This component of CloudML is directly associated with \citereq{multicloud}.
-\texttt{Credential} is in the form of an \emph{access key} (random GUID) or a username.
+\texttt{Credential} is in this case in the form of an Access Key ID (random GUID),
+but with other providers it might be in another form, \eg, a username for Rackspace.
+Although the form is different, the physical object type (String) is the same.
+
+\paragraph{From topology to nodes.}
+
+Alice establishes a \emph{single-node} based topology, as seen in~(\citefig{singlenode}).
+Since this single node handles both computation and storage Alice decides to 
+increase capabilities of both processing (number of \texttt{Cores}) and 
+\texttt{Disk} size on the \texttt{Node}.
+Both these attributes are incremented because the instance hosts
+the main application as well as the database.
 The characteristics Alice choose for her \texttt{Nodes} and \texttt{Properties} are fitted
 for the chosen topology \eg, more computation power for \texttt{front-end} nodes and more disk for \texttt{back-end} nodes.
 All \texttt{Properties} are optional and thus Alice does not have to define them all.
-
-\paragraph{Scenario with one single node.}
-
-The first scenario Alice want to establish is a single node based one~(\citefig{singlenode}).
-Since this single node will handle both computation and storage Alice decides to 
-increase capabilities of both processing (number of \texttt{Cores}) and 
-\texttt{Disk} size on the \texttt{Node}.
-Both these attributes are incremented because the instance will eventually host the main
-application as well as the database.
 
 The approach of using one single node is good in terms of simplicity since all important
 components of the application is located in one single place.
 Other advantages can distinguish themselves as well, such as network connections where
 the address of other components are determined to be localhost (\emph{this computer}).
 But for scalability and modularity the \emph{single-node} approach is restraining.
-For instance if the database should eventually consume more space than the node can provide.
 \eg, if the application consumes too much \myac{CPU} power, 
-this will slow the application totality down and decrease usability.
-Measures must be set to support distributing work load, and for an initial setup this might not have been
-included in application design and deployment considerations.
+this slows the application totality down and decrease usability.
+There is no strong link between CloudML and the application, but to maintain
+scalability some measurements must be manually developed into \emph{BankManager}.
+So the initial application code includes support for work load distribution through 
+application design and deployment considerations.
 
-\paragraph{Scenario with three nodes.}
+\paragraph{General provisioning.}
+
+With these models Alice can initializes provisioning by calling 
+\texttt{build} on \texttt{CloudMLEngine},
+and this starts the asynchronous job of configuring and creating \texttt{Nodes}.
+When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
+be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
+during provisioning according to \emph{models@run.time}~(M@RT) approach.
+\texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
+as \texttt{Properties} from \texttt{Node} still contain valid data.
+When all \texttt{Nodes} are provisioned successfully and sufficient metadata are gathered
+Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
+Alice could later decide to use another provider, either as replacement or complement to her current setup,
+because of availability, financial benefits or support.
+To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
+this will result in an identical topological setup on a supported provider.
 
 \hr
+
+\paragraph{Scenario with three nodes.}
 The second topology Alice will use is more advanced and utilizes the cloud on a higher level.
 It has three nodes, two for the application logic (front-end) and one for the database.
 In front it has a \emph{load balancer} which is a cloud service.
@@ -80,22 +107,6 @@ provision more front-end nodes as seen in \citefig{frontends}.
 This could be done presumably without greater changes to origin application,
 since the application is initially designed for such a distributed topology.
 
-\paragraph{General provisioning.}
-
-With these models Alice can initialize provisioning by calling 
-\texttt{build} on \texttt{CloudMLEngine},
-and this will start the asynchronous job of configuring and creating \texttt{Nodes}.
-When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
-be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
-during provisioning according to \emph{models@run.time}~(M@RT) approach.
-\texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
-as \texttt{Properties} from \texttt{Node} still contain valid data.
-When all \texttt{Nodes} are provisioned successfully and sufficient metadata are gathered
-Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
-Alice could later decide to use another provider, either as replacement or complement to her current setup,
-because of availability, financial benefits or support.
-To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
-this will result in an identical topological setup on a supported provider.
 
 \paragraph{Scenario played out.}
 \input{figs/scenario1}
