@@ -48,9 +48,9 @@ components of the application is located in one single place.
 Other advantages can distinguish themselves as well, such as network connections where
 the address of other components are determined to be localhost (\emph{this computer}).
 But for scalability and modularity the \emph{single-node} approach is restraining.
-For instance if the database should eventually consume more space than the node can provide
-For instance if the application consumes too much \myac{CPU} power slows the application
-totality down and decrease usability.
+For instance if the database should eventually consume more space than the node can provide.
+\eg, if the application consumes too much \myac{CPU} power, 
+this will slow the application totality down and decrease usability.
 Measures must be set to support distributing work load, and for an initial setup this might not have been
 included in application design and deployment considerations.
 
@@ -60,12 +60,16 @@ The second scenario is based on~\citefig{threenodes} with two more nodes than in
 Alice models the appropriate \texttt{Template} consisting
 of three \texttt{Nodes}.
 By increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
+By not altering any other attributes on the respective nodes they will be set to default values.
+This is an positive expectation, since the nodes will handle specific tasks which does not 
+demand enhancing of other attributes.
 
 The benefits of a topology where the application is distributed over several nodes 
 is the scalability and modularity which were lacking in the \emph{single-node} topology.
 \eg, if the user demand should rapidly increase Alice could change her topology to
 provision more front-end nodes as seen in \citefig{frontends}.
-This could be done presumably without greater changes to origin application.
+This could be done presumably without greater changes to origin application,
+since the application is initially designed for such a distributed topology.
 
 \paragraph{Provisioning.}
 
