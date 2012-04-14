@@ -1,31 +1,34 @@
 \mychapter{design}{Analysis and design - CloudML}
 
 In the previous chapter, \citechap{vision}, the core vision of CloudML was presented,
-including descriptions of surrounding elements \ie actors and topologies.
+including descriptions of surrounding elements \ie, actors and topologies.
 In this chapter the focus is narrowed down to the design of the implementation which
 consitutes CloudML.
 
 \section{Meta model}
 \input{figs/architecture}
-
 In this section the meta model from CloudML will be presented.
 The model is visualized in \citefig{architecture}, and will be described through a specific scenario.
 
 \paragraph{Scenario introduction.}
 
-CloudML is introduced by using two scenarios where ``Alice'' is provisioning the 
-\emph{BankManager} application from \citechap{challenges} to \myac{AWS}
-using the topology shown in~\citefig{singlenode} and~\citefig{threenodes}.
-The first topology introduces a single node which will host every tier of an application.
-This topology is not uncommon, but it is also not scalable and does not benefit
-from cloud advantages.
-The second topology Alice will use is more advanced and utilizes the cloud on a higher level.
-It has three nodes, two for the application logic (front-end) and one for the database.
-In front it has a \emph{load balancer} which is a cloud service.
+CloudML is introduced by using a scenarios where ``Alice'' is provisioning the 
+\emph{BankManager} application from \citechap{challenges} to \myac{AWS},
+initially using the topology shown in~\citefig{singlenode}.
+This topology introduces a single node which will host every tier of the application.
+This topology is not uncommon, but it does not scale very well, 
+and does not benefit from cloud advantages.
 
 It is compulsory that she possesses an \myac{AWS} account in advance of the scenario.
-She will retrieve security credentials for account 
-and associate them with \texttt{Password} in \citefig{architecture}.
+This is essential information needed for the scenario to be successful,
+and since she will be indirectly using \myac{AWS} \myac{API}s 
+she must also have \emph{security credentials},
+\ie Access Key ID and Secret Access Key.
+
+\paragraph{Authentication.}
+
+She associate \emph{Access Key ID} and \emph{Secret Access Key} with 
+\texttt{Credential} and \texttt{Password} in \citefig{architecture}.
 \texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
 \texttt{Connector} is a common interface against supported providers.
 This component of CloudML is directly associated with \citereq{multicloud}.
@@ -56,6 +59,12 @@ included in application design and deployment considerations.
 
 \paragraph{Scenario with three nodes.}
 
+\hr
+The second topology Alice will use is more advanced and utilizes the cloud on a higher level.
+It has three nodes, two for the application logic (front-end) and one for the database.
+In front it has a \emph{load balancer} which is a cloud service.
+\hr
+
 The second scenario is based on~\citefig{threenodes} with two more nodes than in the first scenario.
 Alice models the appropriate \texttt{Template} consisting
 of three \texttt{Nodes}.
@@ -71,7 +80,7 @@ provision more front-end nodes as seen in \citefig{frontends}.
 This could be done presumably without greater changes to origin application,
 since the application is initially designed for such a distributed topology.
 
-\paragraph{Provisioning.}
+\paragraph{General provisioning.}
 
 With these models Alice can initialize provisioning by calling 
 \texttt{build} on \texttt{CloudMLEngine},
@@ -88,11 +97,9 @@ because of availability, financial benefits or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
 this will result in an identical topological setup on a supported provider.
 
-\paragraph{And we saw?}
-
-The mist during daytime.
-
-\section{Scenario played out}
+\paragraph{Scenario played out.}
+\input{figs/scenario1}
+\input{figs/scenario2}
 
 \texttt{CloudMLEngine} is the main entry point, it has the method \texttt{build}
 which is used to initialize provisioning.
@@ -102,10 +109,11 @@ is applied to \texttt{RuntimeProp}.
 \texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
 physical parts maintainable by the user.
 
-\input{figs/scenario1}
-\input{figs/scenario2}
-\input{figs/sequencediagram}
+\paragraph{And we saw?}
 
+The mist during daytime.
+
+\input{figs/sequencediagram}
 
 \section{Technological assessments}
 
