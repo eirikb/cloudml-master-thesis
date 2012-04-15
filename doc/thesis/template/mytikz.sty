@@ -49,31 +49,43 @@
 
 % My tikz styles
 \tikzstyle{box}=[parallelepiped,draw=black, drop shadow, fill=gray!20, top color=white, bottom color=black!10, minimum width=1.5cm]
+
 \tikzstyle{tcloud}=[cloud, draw, fill=gray!20, top color=white, drop shadow, bottom color=black!10, aspect=2]
+
 \tikzstyle{tdiamond}=[diamond, aspect=2, draw, top color=white, rounded corners, fill=white!40, drop shadow, bottom color=black!10]
+
+\tikzstyle{tdocument}=[tape, tape bend top=none, draw=black, fill=white!40, drop shadow,
+  text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
+
 \tikzstyle{class}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
   text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
+
 \tikzstyle{darkclass}=[rectangle, draw=black, rounded corners, fill=gray, drop shadow,
   text centered, anchor=north, text=white, text width=3.5cm]
+
 \tikzstyle{extend}=[->, >=open triangle 90]
+
 \tikzstyle{arrow}=[->, >=triangle 60]
+
 \tikzstyle{line}=[-]
+
 \tikzstyle{aggregate}=[>-, >=diamond]
 
-\newcommand{\stickman}[2][]{
-      \node [dashed, minimum height=3cm, minimum width=3cm, #1](#2){};
-      \node [circle, above of=#2, draw, fill=gray!20, top color=white, bottom color=black!10, minimum width=1cm] 
-        (#2-head) at (0,0) {};
-      \path (#2-head) ++(0, -2) coordinate (#2-groin);
-      \path (#2-head) ++(0, -1) coordinate (#2-armcon);
-      \path (#2-groin) ++(.5, -1.25) coordinate (#2-rfoot);
-      \path (#2-groin) ++(-.5, -1.25) coordinate (#2-lfoot);
-      \path (#2-armcon) ++(1, -.1) coordinate (#2-rhand);
-      \path (#2-armcon) ++(-1, -.1) coordinate (#2-lhand);
-      \path[draw, thick] (#2-head) -- (#2-groin);
-      \path[draw, thick] (#2-groin) -- (#2-rfoot);
-      \path[draw, thick] (#2-groin) -- (#2-lfoot);
-      \path[draw, thick] (#2-armcon) -- (#2-rhand);
-      \path[draw, thick] (#2-armcon) -- (#2-lhand);
+\newcommand{\stickman}[3][]{
+  \node (#2-head) [circle, draw, fill=gray!20, top color=white, bottom color=black!10, 
+    minimum width=0.75cm, #1] {};
+  \node (#2) [below of=#2-head, text width=2cm] {};
+  \path (#2-head) ++(0, -1.5) coordinate (#2-groin);
+  \path (#2-head) ++(0, -.75) coordinate (#2-armcon);
+  \path (#2-groin) ++(.5, -1) coordinate (#2-rfoot);
+  \path (#2-groin) ++(-.5, -1) coordinate (#2-lfoot);
+  \path (#2-groin) ++(0, -1.5) node (#2-label) {#3};
+  \path (#2-armcon) ++(.75, -.1) coordinate (#2-rhand);
+  \path (#2-armcon) ++(-.75, -.1) coordinate (#2-lhand);
+  \path[draw, thick] (#2-head) -- (#2-groin);
+  \path[draw, thick] (#2-groin) -- (#2-rfoot);
+  \path[draw, thick] (#2-groin) -- (#2-lfoot);
+  \path[draw, thick] (#2-armcon) -- (#2-rhand);
+  \path[draw, thick] (#2-armcon) -- (#2-lhand);
 }
 
