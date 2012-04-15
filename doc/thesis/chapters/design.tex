@@ -90,6 +90,9 @@ after CloudML has interpreted the template files.
 As mentioned, the node has increased two important attributes to support both higher computation 
 demand and storage capabilities. \ie, $2$ cores and $2000$ in disk size 
 (\myac{GB} respectively, but measurement can change depending on implementation of \citereq{software-reuse}).
+By not altering any other attributes on the respective nodes they will be set to default values.
+This is an positive expectation, since the nodes will handle specific tasks which does not 
+demand enhancing of other attributes.
 The Instance produced by the template and node is in the form of a single object,
 as represented by the object diagram in \citefig{scenario1-2}.
 Noticeable, \texttt{Instance} only refer to template by a \emph{String}, \texttt{templateName}.
@@ -117,37 +120,41 @@ Alice could later decide to use another provider, either as replacement or compl
 because of availability, financial benefits or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
 this will result in an identical topological setup on a supported provider.
+\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
+physical parts maintainable by the user.
 
 \paragraph{Unanticipated scalability needs.}
 
 In the described scenario Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
 In many cases this setup is sufficient, but major advantages
-could be gained by having the opportunity to scale horizontally (\emph{scale out}).
-There can be many benefits, \eg, if Alice had deployed an application which should suddenly, 
-rapidly and unexpectedly gain popularity
-her current setup (one single node) might not be sufficient.
-In case of such event Alice should change her topology from the one seen in \citefig{singlenode}
-to that of \citefig{frontends}.
+could be gained through the opportunity of horizontal scalability (\emph{scale out}).
+There are many benefits to this, 
+\eg, if Alice deployed an application which should suddenly, 
+rapidly and unexpectedly gain popularity her current setup (one single node) might not be sufficient.
+In case of such event Alice should change her topology from the one seen in 
+\citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes,
+or even \citefig{frontends} with ``unlimied'' amount of nodes.
+This topology is more advanced and utilizes the cloud on a higher level.
+It has three nodes, two for the application logic (front-end) and one for the database (back-end).
+In front it has a \emph{load balancer} which is a cloud service ensuring that requests
+are spread between front-end nodes based on predefined rules.
 
-\hr
+Alice changes her topology by editing her existing \texttt{Template} files 
+to contain three nodes instead of one. 
+She also changes the node attributes to suite their new needs better,
+\ie, increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
+Then she executes \texttt{build} on \texttt{CloudMLEngine} again,
+which will provision the new nodes for her.
+She will get three new nodes, and the previous provisioned nodes must be manually terminated.
 
-\paragraph{Scenario with three nodes.}
 When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
 be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
 during provisioning according to \emph{models@run.time}~(M@RT) approach.
-\hr
-The second topology Alice will use is more advanced and utilizes the cloud on a higher level.
-It has three nodes, two for the application logic (front-end) and one for the database.
-In front it has a \emph{load balancer} which is a cloud service.
-\hr
+This was not necessary for the initial scenario setup, but could still be applied
+as good practice.
 
-The second scenario is based on~\citefig{threenodes} with two more nodes than in the first scenario.
-Alice models the appropriate \texttt{Template} consisting
-of three \texttt{Nodes}.
-By increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
-By not altering any other attributes on the respective nodes they will be set to default values.
-This is an positive expectation, since the nodes will handle specific tasks which does not 
-demand enhancing of other attributes.
+\paragraph{Three nodes summary.}
+\input{figs/scenario2}
 
 The benefits of a topology where the application is distributed over several nodes 
 is the scalability and modularity which were lacking in the \emph{single-node} topology.
@@ -156,25 +163,23 @@ provision more front-end nodes as seen in \citefig{frontends}.
 This could be done presumably without greater changes to origin application,
 since the application is initially designed for such a distributed topology.
 
+An object diagram of the topology is shown in \citefig{scenario2-1}.
+It is similar to the object diagram from \citefig{scenario1-1},
+but there are three nodes instead of one, and the attributes are divided between them.
+There is nothing which concretely separate front-end nodes from back-end nodes,
+this can only be determined from node \texttt{name} or what attributes are altered.
+The separation is completely up to Alice when doing the deployment,
+\ie, nothing in CloudML will restrain or limit Alice 
+when it comes to work distribution between nodes.
 
-\paragraph{Scenario played out.}
-\input{figs/scenario2}
-
-\texttt{CloudMLEngine} is the main entry point, it has the method \texttt{build}
-which is used to initialize provisioning.
-\texttt{Property} have four children but is designed to be extendable in case
-new types of properties should be included. The same design principle
-is applied to \texttt{RuntimeProp}.
-\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
-physical parts maintainable by the user.
-
-\paragraph{And we saw?}
-
-The mist during daytime.
-
-\input{figs/sequencediagram}
+As with the instances in \citefig{scenario1-2} the instances in \citefig{scenario2-2}
+are reflections of the nodes (and template) in \citefig{scenario2-1}.
+The template name is referenced within each \texttt{Instance} 
+for the reasons mentioned earlier.
 
 \section{Technological assessments}
+
+\input{figs/sequencediagram}
 
 \paragraph{Programming language and .}
 
