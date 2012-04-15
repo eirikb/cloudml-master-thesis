@@ -1,6 +1,57 @@
 \begin{figure}
   \begin{center}
-    \centerline{\includegraphics[width=1.5\linewidth]{img/big-picture.png}}
+    \begin{tikzpicture}[scale=.9, transform shape]
+
+      \stickman{Business-Person}{Business person};
+      \stickman[below of=Business-Person-label]{Cloud-Expert}{Cloud Expert};
+      \stickman[below of=Cloud-Expert-label, yshift=-2cm]{User}{User};
+
+      \node (Application) [class, minimum height=1.5cm, right=of Business-Person, xshift=2cm] {Application};
+
+      \node (Topology-1) [class, text width=2cm, below=of Application, xshift=-2cm, yshift=-1.2cm] {Topology 1};
+      \node (Topology-2) [class, text width=2cm, right=of Topology-1] {Topology 2};
+      \node (Topology-n) [class, right=of Topology-2, text width=2cm, xshift=1cm] { Tn };
+
+      \node (CloudML) [rectangle, draw, rounded corners, below of=Topology-1, minimum width=11cm, minimum height=7cm,
+        xshift=3.5cm, yshift=-5cm] {};
+
+      \node (Template-1) [tdocument, below=of Topology-1, text width=2cm, yshift=-1cm] {Template 1};
+      \node (Template-2) [tdocument, right=of Template-1, text width=2cm] {Template 2};
+      \node (Template-n) [tdocument, right=of Template-2, xshift=1cm, text width=2cm] { Template n };
+
+      \node (Engine) [box, below of=Template-1, minimum width=3cm, minimum height=1.5cm, xshift=2cm, yshift=-2cm] {Engine};
+
+      \node (EC2) [tcloud, right=of Engine, xshift=6cm, yshift=1cm] {EC2};
+      \node (Rackspace) [tcloud, below=of EC2] {Rackspace};
+
+      \node (M@RT) [class, below of=Engine, minimum height=1cm, yshift=-1.5cm] {Models@run.time};
+
+      
+      \draw[extend] (Cloud-Expert-label) -- (User-head.north);
+
+      \draw[arrow] (Business-Person) -- node[above] {In charge of} (Application);
+      \draw[arrow] (Cloud-Expert.east) -- node[above, sloped] {Defines} (Topology-1);
+      \draw[arrow] (Cloud-Expert.east) -- node[above, sloped] {Writes} (Template-1);
+      \draw[arrow] ($(User.east) + (0,.3cm)$) -- node[sloped, above] {Selects} (Template-1);
+      \draw[arrow] ($(User.east) + (0,.3cm)$) -- (Engine);
+      \draw[arrow] (M@RT) -- node[sloped, above] {Returns} ($(User.east) - (0,.3cm)$);
+
+      \draw[arrow] (Application.south) -- node[midway, sloped, above] {Deployed on} (Topology-1);
+      \draw[arrow] (Application.south) -- (Topology-2);
+      \draw[arrow] (Application.south) -- (Topology-n);
+
+      \draw[arrow] (Topology-1) -- node[right] {Modeled as} (Template-1);
+      \draw[arrow] (Topology-2) -- (Template-2);
+      \draw[arrow] (Topology-n) -- (Template-n);
+
+      \draw[arrow] ($(Engine.north) + (0, 1.5cm) $) -- node[right] {Feeds} ($ (Engine.north) + (0, .1cm) $);
+
+      \draw[arrow] ($(Engine.east) + (.1cm,0)$) -- node[sloped, above] {Interacts with} (EC2);
+      \draw[arrow] ($(Engine.east) + (.1cm,0)$) -- (Rackspace);
+
+      \draw[arrow] (Engine) -- node[right] {Yields} (M@RT);
+
+    \end{tikzpicture}
     \caption{``Big picture'', overview of CloudML procedure flow.}
     \label{fig:big-picture}
   \end{center}

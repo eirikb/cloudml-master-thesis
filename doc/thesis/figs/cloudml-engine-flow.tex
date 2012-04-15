@@ -2,28 +2,26 @@
 
   \begin{center}
     \begin{tikzpicture}
-      \stickman{head}
-      \node[below of=head, text width=2cm] (Body) {};
+      \stickman{User}{User}
 
-      \node[box, right=of head, minimum width=3.8cm, minimum height=3.5cm, xshift=1cm, yshift=-1.5cm] (System) {};
-      \node[box, right=of head, xshift=2cm, yshift=-0.7cm] (Engine) {Engine};
+      \node[box, right=of User, minimum width=3.8cm, minimum height=3.5cm, xshift=1cm, yshift=-1cm] (System) {};
+      \node[box, right=of User, xshift=2cm, yshift=-0cm] (Engine) {Engine};
       \node[box, below=of Engine, yshift=0.5cm] (Cloud-Connector) {Cloud-Connector};
       \node[box, below=of Cloud-Connector, yshift=0.5cm] (RuntimeInstance) {RuntimeInstance};
 
       \node (Rackspace) [tcloud, right=of System, xshift=0.5cm, yshift=1.5cm] {Rackspace};
       \node (EC2) [tcloud, below=of Rackspace] {EC2};
 
-      \draw[arrow] (Body.east) -- (Engine.west);
+      \draw[arrow] (User.east) -- (Engine.west);
       \draw[arrow] (Engine.south) -| (Cloud-Connector.north);
 
       \draw[arrow] (Cloud-Connector.east) -- (Rackspace.west);
       \draw[arrow] (Cloud-Connector.east) -- (EC2.west);
 
       \draw[arrow] (Cloud-Connector.south) -| (RuntimeInstance.north);
-      \draw[arrow] (RuntimeInstance.west) -- (Body.east);
+      \draw[arrow] (RuntimeInstance.west) -- (User.east);
 
-      \node (Label01) [below=of Body, yshift=-1.5cm] {User};
-      \node (Label02) [right=of Label01, xshift=1.2cm] {Cloudml-engine};
+      \node (Label02) [below=of System, xshift=1.2cm] {Cloudml-engine};
       \node [right=of Label02, xshift=1.2cm] {Cloud providers};
 
     \end{tikzpicture}
