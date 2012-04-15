@@ -126,6 +126,14 @@ this will result in an identical topological setup on a supported provider.
 \texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
 physical parts maintainable by the user.
 
+The method call to \texttt{build} is described in \citefig{sequencediagram}.
+In this figure \texttt{RuntimeInstance} is returned directly to Alice,
+because these are asynchronous elements within CloudML which end users can gather 
+information through.
+This is empathized within \citefig{sequencediagram} through \texttt{getStatus} method calls.
+\texttt{Instance} is never visualized, this is because it is an internal format
+within CloudML and does not need to be presented in the sequence diagram,
+
 \paragraph{Unanticipated scalability needs.}
 
 In the described scenario Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
