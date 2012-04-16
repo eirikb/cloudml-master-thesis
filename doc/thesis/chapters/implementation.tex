@@ -3,17 +3,9 @@
 \input{figs/cloudml-engine-flow}
 \input{figs/pom-example}
 \input{figs/cloudml-engine-usage}
+\input{figs/dependency-tree}
 
 \todo{Read over, copied from design, actors model}
-
-~\cite{actors:haller07}.
-With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
-The model is extended by adding a callback-based pattern allowing each node to provide 
-information on property and status changes.
-Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
-and do other jobs / idle while the nodes are provisioned with the actors model.
-The terms are divided for a node before and under provisioning, the essential is to introduce 
-\emph{M@RT} to achieve a logical separation.
 
 \hr
 
@@ -91,6 +83,18 @@ This repository is provided by CloudBees,
 how to include the library is viewable in~\citefig{pom-example}.
 
 \paragraph{Actors.}
+
+Actors ~\cite{actors:haller07}.
+With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
+The model is extended by adding a callback-based pattern allowing each node to provide 
+information on property and status changes.
+Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
+and do other jobs / idle while the nodes are provisioned with the actors model.
+The terms are divided for a node before and under provisioning, the essential is to introduce 
+\emph{M@RT} to achieve a logical separation.
+
+\hr
+
 As mentioned earlier \emph{cloudml-engine} utilizes the actors model through Scala,
 this approach is used to achieve asynchronous provisioning.
 This is important as provisioning can consume up to minutes for each instance.
@@ -133,10 +137,4 @@ demand LoadBalancers on Rackspace for specific geographical locations.
 It does not contain any entities, and only does logical code. 
 It is built to support several libraries and interface these. At the moment it only implements the earlier
 mentioned library jclouds.
-
-\section{Comparisons}
-
-Comparing challenges with some selected providers and technologies from \citechap{state-of-the-art}.
-
-\input{tables/requirements-comparison}
 
