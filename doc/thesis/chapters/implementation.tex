@@ -1,40 +1,23 @@
 \mychapter{implementation}{Implementation/realization - cloudml-engine}
-\input{figs/cloudml-engine}
-\input{figs/cloudml-engine-flow}
-\input{figs/pom-example}
-\input{figs/cloudml-engine-usage}
-\input{figs/dependency-tree}
 
-\todo{Read over, copied from design, actors model}
-
-\hr
-
-\todo{Maven dependency graph}
-
-The envision and design of CloudML is implemented as a proof-of-concept project \emph{cloudml-engine}.
-The project is split into four different modules~(\citefig{cloudml-engine}). 
-Each module serves a logical task of CloudML.
-This chapter will go into depths of technologies and structures of the implementation.
-
-\mypar{Implementation}
 CloudML is implemented as a proof of concept framework~\cite{cloudml-engine}
 (from here known as \emph{cloudml-engine}). 
 Because of Javas popularity cloudml-engine was written in a JVM based language with Maven as build tool.
 Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
 for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
 
-
 \section{Technologies}
 
-\emph{Cloudml-engine} is based on state-of-the-art technologies that appeal to the academic community.
+The implementation, \emph{cloudml-engine}, 
+is based on state-of-the-art technologies that appeal to the academic community.
 Technologies chosen for \emph{cloudml-engine} are not of great importance to the concept of CloudML itself,
 but it still important to understand which technologies were chosen, what close alternatives exists
 and why they were chosen.
 
 \paragraph{Language.} 
-\emph{Cloudml-engine} is written in Scala, a multi-paradigm JVM based programming language.
-This language was chosen because JVM is a popular platform, and then especially Java.
-Scala is compatible with Java and Java can interact with libraries written in Scala as well.
+\emph{Cloudml-engine} is written in Scala, a multi-paradigm \myac{JVM} based programming language.
+This language was chosen because \myac{JVM} is a popular platform, and then especially Java.
+Scala is compatible with Java and libraries written in Scala can be interacted with by Java as well.
 The reason not to use plain Java was because Scala is an appealing state-of-the-art language that emphasizes 
 on functional programming which is leveraged in the implementation.
 Scala also has a built in system for Actors model~\cite{actors:haller07} which is utilized in the implementation.
@@ -103,12 +86,18 @@ a callback-based pattern to inform users of the library when instance statues
 are updated and properties are added.
 
 \section{Modules and application flow}
+\input{figs/pom-example}
+\input{figs/cloudml-engine-usage}
+\input{figs/dependency-tree}
 
 \emph{Cloudml-engine} is divided into four main modules~(\citefig{cloudml-engine}).
 This is to distribute workload and divide \emph{cloudml-engine} into logical parts for each task.
 
-\paragraph{Engine.} The main entry point to the application, this is a Scala Object used to initialize
-provisioning.
+\paragraph{Engine.} 
+\input{figs/cloudml-engine}
+\input{figs/cloudml-engine-flow}
+
+The main entry point to the application, this is a Scala Object used to initialize provisioning.
 Interaction between \texttt{user} and \texttt{Engine} is visible in \citefig{cloudml-engine-flow} 
 where the user will initialize provisioning by calling \texttt{Engine}.
 \texttt{Engine} will also do orchestration between the three other modules
