@@ -9,13 +9,13 @@ of the implementation which constitutes CloudML.
 \input{figs/meta-model}
 In this section the meta model from CloudML will be presented.
 The model is visualized in \citefig{meta-model}, and will be described through a specific scenario.
-The scenario also describes the implementation design through how it is used.
+The scenario also describe parts of the implementation design through how it is used.
 
 \paragraph{Scenario introduction.}
 
 CloudML is introduced by using a scenarios where ``Alice'' is provisioning the 
-\emph{BankManager} application from \citechap{challenges} to \myac{AWS},
-initially using the topology shown in~\citefig{singlenode}.
+\emph{BankManager} application from \citechap{challenges} to \myac{AWS}.
+Initially she is using the topology shown in~\citefig{singlenode}.
 This topology introduces a single node which hosts every tier of the application.
 This topology is not uncommon, but it does not scale very well, 
 and does not benefit from cloud advantages.
@@ -28,7 +28,8 @@ she must also have \emph{security credentials},
 
 The roles, or actors, which Alice assumes in this scenario, regarding \citefig{big-picture},
 are both \emph{cloud expert} and \emph{user}.
-She will define the topologies, create the templates and use CloudML to provision her models.
+She will define the topologies, create the templates and use 
+the \emph{engine} to provision her models.
 In addition to these roles she is also partly \emph{application designer/developer}
 because of tight coupling between running instances and application deployment.
 
@@ -46,7 +47,7 @@ Although the form is different, the physical object type (String) is the same.
 \paragraph{Topology considerations.}
 
 Alice establishes a \emph{single-node} based topology, as seen in~(\citefig{singlenode}).
-Since this single node handles both computation and storage Alice decides to 
+Since this single node handle both computation and storage Alice decides to 
 increase capabilities of both processing (number of \texttt{Cores}) and 
 \texttt{Disk} size on the \texttt{Node}.
 Both these attributes are incremented because the instance hosts
@@ -56,13 +57,13 @@ for the chosen topology \eg, more computation power for
 \emph{front-end} nodes and more disk for \emph{back-end} nodes.
 All \texttt{Properties} are optional and thus Alice does not have to define them all.
 
-The approach of using one single node is good in terms of simplicity since all important
-components of the application is located in one single place.
-Other advantages can distinguish themselves as well, such as network connections where
+The approach of using one single node is good in terms of simplicity,
+since all important components of the application is located in one single place.
+Other advantages distinguish themselves as well, such as network connections where
 the address of other components are determined to be localhost (\emph{this computer}).
 But for scalability and modularity the \emph{single-node} approach is restraining.
 \eg, if the application consumes too much \myac{CPU} power, 
-this slows the application totality down and decrease usability.
+this slows the application totality down and decreases usability.
 There is no strong link between CloudML and the application, but to maintain
 scalability some measurements must be manually developed into \emph{BankManager}.
 So the initial application code includes support for work load distribution through 
@@ -71,7 +72,7 @@ application design and deployment considerations.
 \paragraph{From templates to nodes.}
 
 In the end Alice insert all data about topologies into a \emph{textual file} which describes the topology.
-This file is a \texttt{Template}, and is referred to by \texttt{name}.
+This file is a \texttt{Template}, and is referred to by its attribute ``\texttt{name}''.
 The template file include physical descriptions of \texttt{Node},
 and a list of the type \texttt{Property} for each node.
 Every \texttt{Node} has a \texttt{name} used to reference the node under provisioning.
@@ -98,6 +99,8 @@ as represented by the object diagram in \citefig{scenario1-2}.
 Noticeable, \texttt{Instance} only refer to template by a \emph{String}, \texttt{templateName}.
 This is semantically correct because the template is a transparent entity
 in the context of provisioning, and is only used as a reference.
+\texttt{Instance} is also an \emph{internal} element in CloudML and might not 
+have to be indirectly or directly exposed to end users.
 
 The \texttt{build} method support provisioning of several templates to one account (same provider),
 but in this scenario that is not utilized.
@@ -113,8 +116,8 @@ which will not retain a full multicloud deployment.
 as \texttt{Properties} from \texttt{Node} still contain valid data.
 When \texttt{CloudMLEngine} start provisioning a set of \texttt{RuntimeInstances} are created immediately 
 and returned to Alice.
-These are models@run.time within CloudML, designed to provide asynchronous provisioning,
-which will treat with \citereq{m@rt}.
+These are models@run.time within CloudML, designed to provide asynchronous provisioning
+according to \citereq{m@rt}.
 They are reflections of \texttt{Instance}, and they aggregate instances.
 
 When all \texttt{Nodes} are provisioned successfully and sufficient meta-data are gathered
@@ -136,19 +139,21 @@ within CloudML and does not need to be presented in the sequence diagram,
 
 \paragraph{Unanticipated scalability needs.}
 
-In the described scenario Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
+In the described scenario, Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
 In many cases this setup is sufficient, but major advantages
 could be gained through the opportunity of horizontal scalability (\emph{scale out}).
-There are many benefits to this, 
+There are distinct benefits to this, 
 \eg, if Alice deployed an application which should suddenly, 
 rapidly and unexpectedly gain popularity her current setup (one single node) might not be sufficient.
 In case of such event Alice should change her topology from the one seen in 
-\citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes,
-or even \citefig{frontends} with ``unlimited'' amount of nodes.
+\citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes.
+Or even the topology seen in \citefig{frontends}, with ``unlimited'' amount of nodes.
 This topology is more advanced and utilizes the cloud on a higher level.
 It has three nodes, two for the application logic (front-end) and one for the database (back-end).
 In front it has a \emph{load balancer} which is a cloud service ensuring that requests
 are spread between front-end nodes based on predefined rules.
+Even though this service is meant for balancing requests to front-ends,
+it can actually be used internally in between local nodes.
 
 Alice changes her topology by editing her existing \texttt{Template} files 
 to contain three nodes instead of one. 
@@ -161,7 +166,7 @@ More about this in \citechap{perspectives}.
 
 When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
 be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
-during provisioning according to \emph{models@run.time}~(M@RT) approach.
+during provisioning according to \myac{M@RT} approach.
 This was not necessary for the initial scenario setup, but could still be applied
 as good practice.
 
@@ -182,7 +187,7 @@ There is nothing which concretely separate front-end nodes from back-end nodes,
 this can only be determined from node \texttt{name} or what attributes are altered.
 The separation is completely up to Alice when doing the deployment,
 \ie, nothing in CloudML will restrain or limit Alice 
-when it comes to work distribution between nodes.
+when it comes to work load distribution between nodes.
 
 As with the instances in \citefig{scenario1-2} the instances in \citefig{scenario2-2}
 are reflections of the nodes (and template) in \citefig{scenario2-1}.
@@ -196,7 +201,7 @@ for the reasons mentioned earlier.
 \paragraph{Programming language and application environment.}
 
 When considering \emph{programming language} and \emph{application environment} 
-the important aspects were the ones mentioned in \citereq{foundation},
+the important aspects are the ones mentioned in \citereq{foundation},
 \begin{ii}
   \iitem ease of use,
   \iitem community size,
@@ -209,28 +214,29 @@ For the implementation to be a successful approach towards CloudML
 the aspects chosen must also be relevant for future improvements.
 At the same time the aspects chosen must be appealing to existing communities of interest,
 without this it will not gain the footing it needs.
-The most important aspects are precept \iii{2}, \iii{5} and \iii{6}.
+The most important aspects are therefore precept \iii{2}, \iii{5} and \iii{6}.
 
-Programming languages and environment considered were:
+Programming languages and environment considered are:
 \begin{description}
-  \item[Java (\myac{JVM})] Well known and recognized in both the enterprise domain, as well as the academic world.
+  \item[Java (\myac{JVM}).] Well known and recognized in both the enterprise domain, as well as the academic world.
     Support object-oriented programming and a vast amount of libraries are supported by the \myac{JVM}.
-  \item[JavaScript (Node.js)] A newer and more unknown type of technology which has yet to 
+  \item[JavaScript (Node.js).] A newer and unfamiliar type of technology which has yet to 
     make a large footprint in the two domains. 
-    It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follow a 
+    It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follows a 
     CommonJS-based module pattern over an event-driven architecture.
-  \item[Scala (\myac{JVM})] Same environment as Java, but a more modern language focus and support on both 
+  \item[Scala (\myac{JVM}).] Same environment as Java, 
+    but a more modern language which focuses and supports both 
     object-oriented programming and functional programming.
     This language is gaining popularity among both the academic and enterprise domain.
     Libraries supported by Java are also supported by Scala.
-  \item[Python] well known in the academic world. Also follows both object-oriented and functional programming as
+  \item[Python.] Well known in the academic world. Also follows both object-oriented and functional programming as
     Scala.
-  \item[C\# (.NET)] Language and environment by Microsoft.
+  \item[C\# (.NET).] Language and environment by Microsoft.
 \end{description}
-Languages in the previous list are introduced by their overall popularity.
-Some where introduces despite this, such as \emph{Node.js}, 
-which were brought in as an consideration because of the abilities to operate
-with \myac{JSON}, its aim at web development on the cloud and the modernity.
+Languages in this list are introduced because of their overall popularity.
+Some where introduced despite this, such as \emph{Node.js}, 
+which is brought in as an consideration because of the abilities to operate
+with \myac{JSON}, its aim at web development on the cloud and its modernity.
 
 \paragraph{Asynchronous information gathering and distribution.}
 
@@ -265,7 +271,7 @@ Of these solutions the most promising one is \emph{Actor model} because it is mo
 at solving asynchronous communication.
 The other solutions can provide assistance by accommodating communications through events, 
 but by them selves they do not solve the issue of slow provisioning.
-The actor model can be implemented in many different ways as well, even on different tiers.
+The actor model can be implemented in many different ways, even on different tiers.
 Both requirement \citereq{foundation} and \citereq{software-reuse} can assist with either
 a built-in functionality in the language, environment or an external library or framework.
 
