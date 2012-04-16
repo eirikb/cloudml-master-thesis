@@ -159,13 +159,13 @@ The approach for this requirement is to find sufficient solutions for such model
 and at the same time keep in mind the dependency towards \citereq{foundation}.
 There are several different approaches that could be made when implementing 
 these models, such as using:
-\begin{enumerate}
-  \item Standard Java classes and expect users to do \emph{short polling} (client 
+\begin{description}
+  \item[Java] Standard Java classes and expect users to do \emph{short polling} (client 
   must poll for updates at a set interval, \eg, every 5 seconds).
-  \item \emph{Command pattern} to send events on node updates.
-  \item \emph{Aspect-oriented programming} to enhance asynchronous support and modularity.
-  \item \emph{Publish subscribe pattern} to let users subscribe to events of updating instances.
-\end{enumerate}
+  \item[Command pattern] Send events on node updates.
+  \item[Actor model] Enhance asynchronous support and modularity.
+  \item[Publish subscribe pattern] Let users subscribe to events of updating instances.
+\end{description}
 It is also possible to combine one or several of these approaches.
 What needs to be done here is to identify which approaches that are most sufficient 
 in regards to 

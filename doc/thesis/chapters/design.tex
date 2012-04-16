@@ -235,11 +235,27 @@ with \myac{JSON}, its aim at web development on the cloud and the modernity.
 \section{Asynchronous information harvesting}
 
 Provisioning nodes is by its nature an asynchronous action that can take minutes to execute.
-For CloudML to achieve this asynchronous behavior several approaches could be made,
-as mentioned in \citechap{requirements}, \eg, command pattern, aspect-oriented programming,
+For CloudML to compensate with this asynchronous behavior several approaches could be made,
+as mentioned in \citechap{requirements}, \eg, command pattern, actor model,
 or publish-subscribe pattern.
+The core idea of integration and benefits of these approaches are:
+\begin{description}
+  \item[Command pattern] Simple and well known design pattern. 
+    This is tightly bound to using an object-oriented language for \citereq{foundation}.
+  \item[Actor model] Solve the problem with asynchronous communication through passing messages.
+  \item[Publish-subscribe pattern] Messages are distributed through \emph{events}.
+    This solution expects some network communication.
+\end{description}
+Of these solutions the most promising one is \emph{Actor model} because it is more directly aimed
+at solving asynchronous communication.
+The other solutions can provide assistance by accommodating communications through events, 
+but by them selves they do not solve the issue of slow provisioning.
+The actor model can be implemented in many different ways as well, even on different tiers.
+Both requirement \citereq{foundation} and \citereq{software-reuse} can assist with either
+a built-in functionality in the language, environment or an external library or framework.
 
 When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
-which can have a different \emph{states} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
-When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, including
-the most necessary metadata, when all nodes reaches this state the task of provisioning is concluded.
+which can have a different \emph{state} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
+When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, 
+including the most necessary metadata.
+When all nodes reaches this state the task of provisioning is concluded.
