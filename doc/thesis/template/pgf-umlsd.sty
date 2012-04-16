@@ -92,7 +92,7 @@ Sequence Diagrams.]
 }
 
 \newcommand{\newthreadhack}[3][gray!30]{
-  \newinst[3]{#2}{#3}
+  \newinst[4.5]{#2}{#3}
   \stepcounter{threadnum}
   \node[below of=inst\theinstnum,node distance=0.8cm] (thread\thethreadnum) {};
   \tikzstyle{threadcolor\thethreadnum}=[fill=#1]

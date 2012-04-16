@@ -100,7 +100,7 @@ In the implementation there will be four different models:
   \item Instances in form of runtime instances (\emph{models@run.time}).
 \end{enumerate}
 Of these the first is influenced by the \citereq{lexical-template} requirement and
-the last by the \citereq{models@run.time} requirement.
+the last by the \citereq{m@rt} requirement.
 
 \req{lexical-template}{Lexical template}
 This requirement is tightly coupled with that of \citereq{mda} but narrowed 
@@ -116,7 +116,7 @@ Since the language will be a simple way to template configuration,
 a well known data markup language would be sufficient for the core syntax, such as 
 \myac{JSON} or \myac{XML}.
 
-Textual templates that can be shared through mediums such as e-mail or 
+Textual templates that can be shared through mediums such as E-mail or 
 \myac{VCS} such as Subversion or Git.
 This is important for end users to be able to maintain templates that defines the stacks they have built, 
 for future reuse.
@@ -159,13 +159,13 @@ The approach for this requirement is to find sufficient solutions for such model
 and at the same time keep in mind the dependency towards \citereq{foundation}.
 There are several different approaches that could be made when implementing 
 these models, such as using:
-\begin{enumerate}
-  \item Standard Java classes and expect users to do \emph{short polling} (client 
+\begin{description}
+  \item[Java.] Standard Java classes and expect users to do \emph{short polling} (client 
   must poll for updates at a set interval, \eg, every 5 seconds).
-  \item \emph{Command pattern} to send events on node updates.
-  \item \emph{Aspect-oriented programming} to enhance asynchronous support and modularity.
-  \item \emph{Publish subscribe pattern} to let users subscribe to events of updating instances.
-\end{enumerate}
+  \item[Command pattern.] Send events on node updates.
+  \item[Actor model.] Enhance asynchronous support and modularity.
+  \item[Publish subscribe pattern.] Let users subscribe to events of updating instances.
+\end{description}
 It is also possible to combine one or several of these approaches.
 What needs to be done here is to identify which approaches that are most sufficient 
 in regards to 
