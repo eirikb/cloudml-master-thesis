@@ -22,6 +22,8 @@ LATEX_WORK_FILES = $(TARGET).aux $(TARGET).bbl $(TARGET).blg \
 	$(TARGET).lof $(TARGET).log $(TARGET).lot $(TARGET).toc \
 	texput.log
 
+DOT_FILES = $(*.dot)
+
 .PHONY : all clean realclean $(SVG_FIGS) pdf fig
 
 all: realclean pdf
@@ -47,6 +49,7 @@ ${TARGET}.dvi: $(TARGET).tex $(EPS_FIG) $(REFERENCES) $(TEX_FILES)
 
 $(TARGET).pdf: $(TARGET).tex $(PDF_FIG) $(REFERENCES) $(TEX_FILES)
 	node ../articles/build/build.js
+	dot2tex -f tikz --codeonly dot/cloudml.dot > figs/dependency-tree-generated.tex
 	pdflatex -shell-escape $<
 	bibtex $(TARGET)
 	pdflatex -shell-escape $<
