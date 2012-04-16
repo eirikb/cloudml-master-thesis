@@ -1,13 +1,12 @@
 \mychapter{implementation}{Implementation/realization - cloudml-engine}
 
-CloudML is implemented as a proof of concept framework~\cite{cloudml-engine}
-(from here known as \emph{cloudml-engine}). 
-Because of Javas popularity cloudml-engine was written in a JVM based language with Maven as build tool.
-Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
-for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
+In the previous chapter the design of CloudML was introduced.
+In this chapter the implementation of this design will be presented and described.
 
 \section{Technologies}
 
+CloudML is implemented as a proof of concept framework~\cite{cloudml-engine}
+(from here known as \emph{cloudml-engine}). 
 The implementation, \emph{cloudml-engine}, 
 is based on state-of-the-art technologies that appeal to the academic community.
 Technologies chosen for \emph{cloudml-engine} are not of great importance to the concept of CloudML itself,
@@ -15,6 +14,7 @@ but it still important to understand which technologies were chosen, what close 
 and why they were chosen.
 
 \paragraph{Language.} 
+
 \emph{Cloudml-engine} is written in Scala, a multi-paradigm \myac{JVM} based programming language.
 This language was chosen because \myac{JVM} is a popular platform, and then especially Java.
 Scala is compatible with Java and libraries written in Scala can be interacted with by Java as well.
@@ -23,21 +23,23 @@ on functional programming which is leveraged in the implementation.
 Scala also has a built in system for Actors model~\cite{actors:haller07} which is utilized in the implementation.
 
 \paragraph{Lexical format.}
-For the lexical representation of CloudML \emph{JavaScript Object Notation}~(JSON) was chosen.
-JSON is a web-service friendly, human-readable data interchange format and an alternative to XML.
+
+For the lexical representation of CloudML \myac{JSON} was chosen.
+\myac{JSON} is a web-service friendly, human-readable data interchange format and an alternative to \myac{XML}.
 This format was chosen because of popularity in the cloud community \todo{source?}
 and its usage area as data transmit format between servers and web applications.
 This means \emph{cloudml-engine} can be extended to work as a RESTFul web-service server.
 
-The JSON format is parsed in Scala using the lift-json parser which provides implicit
+The \myac{JSON} format is parsed in Scala using the \emph{lift-json} parser which provides implicit
 mapping to Scala case-classes. This library is part of the lift framework,
 but can be included as an external component without additional lift-specific dependencies.
 GSON was considered as an alternative, but mapping to Scala case-classes was not as 
 fluent compared to lift-json.
 
 \paragraph{Automatic build system.}
+
 There are two main methods used to build Scala programs, either using a Scala-specific tool called 
-\emph{Scala Build Tool}~(SBT) or a more general tool called Maven. 
+\myac{SBT} or a more general tool called Maven. 
 For \emph{cloudml-engine} to have an academic appeal it were essential to choose the technology
 with most closeness to Java, hence Maven was chosen.
 Maven support modules which were used to split \emph{cloudml-engine} into the appropriate 
@@ -48,6 +50,7 @@ although this is not dependency management in between \emph{cloudml-engine} modu
 how to add \emph{cloudml-engine} as a dependency itself.
 
 \paragraph{Cloud connection.}
+
 The bridge between \emph{cloudml-engine} and cloud providers is an important aspect of the application, and as a requirement
 it was important to use an existing library to achieve this connection.
 Some libraries have already been mentioned in the \emph{APIs} section in~\citechap{state-of-the-art},
@@ -57,7 +60,13 @@ it possible to add jclouds directly as a module dependency.
 Jclouds contains a template system which is used through code directly, this is utilized 
 to map CloudML templates to jclouds templates.
 
+\hr
+
+Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
+for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
+
 \paragraph{Distribution.}
+
 \emph{Cloudml-engine} is not just a proof-of-concept for the sake of conceptual assurance, but it is 
 also a running, functional library which can be used by anyone for testing or considerations.
 Beside the source repository\cite{cloudml-engine} the library is deployed to a remote repository
@@ -86,6 +95,7 @@ a callback-based pattern to inform users of the library when instance statues
 are updated and properties are added.
 
 \section{Modules and application flow}
+
 \input{figs/pom-example}
 \input{figs/cloudml-engine-usage}
 \input{figs/dependency-tree}
@@ -94,6 +104,7 @@ are updated and properties are added.
 This is to distribute workload and divide \emph{cloudml-engine} into logical parts for each task.
 
 \paragraph{Engine.} 
+
 \input{figs/cloudml-engine}
 \input{figs/cloudml-engine-flow}
 
@@ -108,21 +119,27 @@ The first versions of \emph{cloudml-engine} did not use \texttt{Engine} as orche
 instead relied on each module to be a sequential step, this proved to be harder to maintain
 and also introduced cyclic dependencies.
 
-\paragraph{Kernel.} \texttt{Kernel} contains CloudML specific entities such as Node and Template.
-The logical task of \texttt{Kernel} is to map JSON formatted strings to \texttt{Templates} including \texttt{Nodes}.
-This is some of the core parts of the DSL, hence it is called \emph{\texttt{Kernel}}.
+\paragraph{Kernel.} 
+
+\texttt{Kernel} contains CloudML specific entities such as Node and Template.
+The logical task of \texttt{Kernel} is to map \myac{JSON} formatted strings to \texttt{Templates} including \texttt{Nodes}.
+This is some of the core parts of the \myac{DSL}, hence it is called \emph{\texttt{Kernel}}.
 \texttt{Accounts} are separate parts that are parsed equally as \texttt{Templates},
  but by another method call. All this is transparent for users as all data will
 be provided directly to \texttt{Engine} which will handle the task
 of calling \texttt{Kernel} correctly.
 
-\paragraph{Repository.} Has \texttt{Instance} entities, these are equivalent to \texttt{Nodes} in \texttt{Kernel},
+\paragraph{Repository.} 
+
+Has \texttt{Instance} entities, these are equivalent to \texttt{Nodes} in \texttt{Kernel},
 but are specific for provisioning. Repository will do a mapping from \emph{Nodes} (including \emph{Template})
 to \emph{Instances}. Future versions of \texttt{Repository} will also do some logical superficial validation
 against \emph{Node} properties, for instance at the writing moment it is not possible to 
 demand LoadBalancers on Rackspace for specific geographical locations.
 
-\paragraph{Cloud-Connector.} is the module bridging between \emph{cloudml-engine} and providers.
+\paragraph{Cloud-Connector.} 
+
+The module bridging between \emph{cloudml-engine} and providers.
 It does not contain any entities, and only does logical code. 
 It is built to support several libraries and interface these. At the moment it only implements the earlier
 mentioned library jclouds.
