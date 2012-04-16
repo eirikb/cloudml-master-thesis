@@ -1,9 +1,9 @@
 \mychapter{design}{Analysis and design - CloudML}
 
 In the previous chapter, \citechap{vision}, the core vision of CloudML was presented,
-including descriptions of surrounding elements \ie, actors and topologies.
-In this chapter the focus is narrowed down to the design of the implementation which
-consitutes CloudML.
+including descriptions of surrounding elements \eg, actors and topologies.
+In this chapter the focus is narrowed down to the design and considerations 
+of the implementation which constitutes CloudML.
 
 \section{Meta model}
 \input{figs/meta-model}
@@ -144,7 +144,7 @@ There are many benefits to this,
 rapidly and unexpectedly gain popularity her current setup (one single node) might not be sufficient.
 In case of such event Alice should change her topology from the one seen in 
 \citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes,
-or even \citefig{frontends} with ``unlimied'' amount of nodes.
+or even \citefig{frontends} with ``unlimited'' amount of nodes.
 This topology is more advanced and utilizes the cloud on a higher level.
 It has three nodes, two for the application logic (front-end) and one for the database (back-end).
 In front it has a \emph{load balancer} which is a cloud service ensuring that requests
