@@ -9,11 +9,11 @@
       \node[box, below=of PSM1] (Code1) {Code};
       \node[box, below=of PSM2] (Code2) {Code};
 
-      \draw [arrow] (CIM) -- (PIM);
-      \draw [arrow] (PIM) -- (PSM1);
-      \draw [arrow] (PIM) -- (PSM2);
-      \draw [arrow] (PSM1) -- (Code1);
-      \draw [arrow] (PSM2) -- (Code2);
+      \draw [arrow] (CIM) -- ($(PIM.north) + (0,.1cm)$);
+      \draw [arrow] (PIM) -- ($(PSM1.north) + (0,.1cm)$);
+      \draw [arrow] (PIM) -- ($(PSM2.north) + (0,.1cm)$);
+      \draw [arrow] (PSM1) -- ($(Code1.north) + (0,.1cm)$);
+      \draw [arrow] (PSM2) -- ($(Code2.north) + (0,.1cm)$);
     \end{tikzpicture}
   \end{center}
   \caption{Model-Driven Architecture.}
