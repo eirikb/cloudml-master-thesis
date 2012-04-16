@@ -13,29 +13,29 @@ The scenario also describe parts of the implementation design through how it is 
 
 \paragraph{Scenario introduction.}
 
-CloudML is introduced by using a scenarios where ``Alice'' is provisioning the 
+CloudML is introduced by using a scenario where ``Alice'' is provisioning the 
 \emph{BankManager} application from \citechap{challenges} to \myac{AWS}.
 Initially she is using the topology shown in~\citefig{singlenode}.
-This topology introduces a single node which hosts every tier of the application.
+This topology introduces a single node, which hosts every tier of the application.
 This topology is not uncommon, but it does not scale very well, 
 and does not benefit from cloud advantages.
 
 It is compulsory that she possesses an \myac{AWS} account in advance of the scenario.
 This is essential information needed for the scenario to be successful,
-and since she is indirectly using \myac{AWS} \myac{API}s 
+and since she is indirectly using \myac{AWS} \myac{API}s,
 she must also have \emph{security credentials},
 \ie, \emph{Access Key ID} and \emph{Secret Access Key}.
 
 The roles, or actors, which Alice assumes in this scenario, regarding \citefig{big-picture},
-are both \emph{cloud expert} and \emph{user}.
+are both \emph{cloud expert} and \emph{users}.
 She will define the topologies, create the templates and use 
 the \emph{engine} to provision her models.
-In addition to these roles she is also partly \emph{application designer/developer}
+In addition to these roles she is also partly \emph{application designer/developer},
 because of tight coupling between running instances and application deployment.
 
 \paragraph{Authentication.}
 
-She associate Access Key ID and Secret Access Key with 
+She associates Access Key ID and Secret Access Key with 
 \texttt{Credential} and \texttt{Password} in \citefig{meta-model}.
 \texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
 The \texttt{Connector} is a common interface against supported providers.
@@ -46,8 +46,8 @@ Although the form is different, the physical object type (String) is the same.
 
 \paragraph{Topology considerations.}
 
-Alice establishes a \emph{single-node} based topology, as seen in~(\citefig{singlenode}).
-Since this single node handle both computation and storage Alice decides to 
+Alice establishes a \emph{single-node} based topology, as seen in \citefig{singlenode}.
+Since this single node handles both computation and storage Alice decides to 
 increase capabilities of both processing (number of \texttt{Cores}) and 
 \texttt{Disk} size on the \texttt{Node}.
 Both these attributes are incremented because the instance hosts
@@ -61,7 +61,7 @@ The approach of using one single node is good in terms of simplicity,
 since all important components of the application is located in one single place.
 Other advantages distinguish themselves as well, such as network connections where
 the address of other components are determined to be localhost (\emph{this computer}).
-But for scalability and modularity the \emph{single-node} approach is restraining.
+For scalability and modularity the \emph{single-node} approach is restraining.
 \eg, if the application consumes too much \myac{CPU} power, 
 this slows the application totality down and decreases usability.
 There is no strong link between CloudML and the application, but to maintain
@@ -71,7 +71,7 @@ application design and deployment considerations.
 
 \paragraph{From templates to nodes.}
 
-In the end Alice insert all data about topologies into a \emph{textual file} which describes the topology.
+In the end Alice inserts all data about topologies into a \emph{textual file} which describes the topology.
 This file is a \texttt{Template}, and is referred to by its attribute ``\texttt{name}''.
 The template file include physical descriptions of \texttt{Node},
 and a list of the type \texttt{Property} for each node.
@@ -89,10 +89,10 @@ This starts the asynchronous job of configuring and creating
 In \citefig{scenario1-1} an object diagram describe the initial configuration at runtime,
 after CloudML has interpreted the template files.
 As mentioned, the node has increased two important attributes to support both higher computation 
-demand and storage capabilities. \ie, $2$ cores and $2000$ in disk size 
+demand and storage capabilities, \ie, $2$ cores and $2000$ in disk size 
 (\myac{GB} respectively, but measurement can change depending on implementation of \citereq{software-reuse}).
-By not altering any other attributes on the respective nodes they will be set to default values.
-This is an positive expectation, since the nodes will handle specific tasks which does not 
+By not altering any other attributes on the respective nodes, they will be set to default values.
+This is an positive expectation, since the nodes will handle specific tasks, which does not 
 demand enhancing of other attributes.
 The Instance produced by the template and node is in the form of a single object,
 as represented by the object diagram in \citefig{scenario1-2}.
@@ -114,14 +114,15 @@ which will not retain a full multicloud deployment.
 
 \texttt{RuntimeInstance} is specifically designed to complement \texttt{Node} with \texttt{RuntimeProperties},
 as \texttt{Properties} from \texttt{Node} still contain valid data.
-When \texttt{CloudMLEngine} start provisioning a set of \texttt{RuntimeInstances} are created immediately 
+When \texttt{CloudMLEngine} start provisioning, a set of \texttt{RuntimeInstances} are created immediately 
 and returned to Alice.
 These are models@run.time within CloudML, designed to provide asynchronous provisioning
 according to \citereq{m@rt}.
 They are reflections of \texttt{Instance}, and they aggregate instances.
 
-When all \texttt{Nodes} are provisioned successfully and sufficient meta-data are gathered
-Alice can start the deployment, CloudML has then completed its scoped task of provisioning.
+When all \texttt{Nodes} are provisioned successfully and sufficient meta-data are gathered,
+Alice can start the deployment.
+CloudML has then completed its scoped task of provisioning.
 Alice could later decide to use another provider, either as replacement or complement to her current setup,
 because of availability, financial benefits or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
@@ -175,7 +176,7 @@ as good practice.
 
 The benefits of a topology where the application is distributed over several nodes 
 is the scalability and modularity which were lacking in the \emph{single-node} topology.
-\eg, if the user demand should rapidly increase Alice could change her topology to
+For instance, if the user demand should rapidly increase, Alice could change her topology to
 provision more front-end nodes as seen in \citefig{frontends}.
 This could be done presumably without greater changes to origin application,
 since the application is initially designed for such a distributed topology.
