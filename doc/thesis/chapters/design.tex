@@ -232,7 +232,22 @@ Some where introduces despite this, such as \emph{Node.js},
 which were brought in as an consideration because of the abilities to operate
 with \myac{JSON}, its aim at web development on the cloud and the modernity.
 
-\section{Asynchronous information harvesting}
+\paragraph{Asynchronous information gathering and distribution.}
+
+\subparagraph{The design.}
+
+When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
+which can have a different \emph{state} such as 
+\emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
+The states are updated asynchronously, and can either be 
+\emph{observed}, \emph{polled} or do \emph{push} itself based on the type of implementation.
+Considerations for implementation will be described later.
+
+When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider 
+has guaranteed its existence, including the most necessary metadata.
+When all nodes reaches this state the task of provisioning is concluded.
+
+\subparagraph{Implementation considerations.}
 
 Provisioning nodes is by its nature an asynchronous action that can take minutes to execute.
 For CloudML to compensate with this asynchronous behavior several approaches could be made,
@@ -254,8 +269,3 @@ The actor model can be implemented in many different ways as well, even on diffe
 Both requirement \citereq{foundation} and \citereq{software-reuse} can assist with either
 a built-in functionality in the language, environment or an external library or framework.
 
-When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
-which can have a different \emph{state} such as \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
-When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider has guaranteed its existence, 
-including the most necessary metadata.
-When all nodes reaches this state the task of provisioning is concluded.
