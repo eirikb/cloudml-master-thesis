@@ -2,8 +2,19 @@
 
 In the previous chapter the design of CloudML was introduced.
 In this chapter the implementation of this design will be presented and described.
+First section is a technical overview of some of the general solutions within 
+the implementation.
+The rest of the chapter is split into different sections, one for each important part of the implementation.
+Topics are about
+\begin{ii}
+  \iitem submodules and their tasks,
+  \iitem the depdency system,
+  \iitem communication with cloud providers,
+  \iitem \myac{M@RT} through actor model and
+  \iitem data serialization.
+\end{ii}
 
-\mysection{technologies}{Technologies}
+\mysection{technologies}{Technology overview}
 
 CloudML is implemented as a \emph{proof-of-concept} framework~\cite{cloudml-engine}
 (from here known as \emph{cloudml-engine}). 
@@ -31,18 +42,17 @@ Here is a list describing some of the languages and environments considered:
     object-oriented programming and functional programming.
     This language is gaining popularity among both the academic and enterprise domain.
     Libraries supported by Java are also supported by Scala.
-  \item[Python.] Well known in the academic world. Also follows both object-oriented and functional programming as
+  \item[Python.] Well known in the academic world. Follows both object-oriented and functional programming as
     Scala.
   \item[C\# (.NET).] Language and environment by Microsoft.
 \end{description}
 Languages in this list are introduced because of their overall popularity.
-Some where introduced despite this, such as \emph{Node.js}, 
+Some were introduced despite this, such as \emph{Node.js}, 
 which is brought in as an consideration because of the abilities to operate
 with \myac{JSON}, cloud interaction and modernity.
 
-Based on these considerations Scala is chosen, a multi-paradigm \myac{JVM} based programming language.
-And so \emph{Cloudml-engine} is written in Scala.
-This language is chosen because:
+Based on these considerations Scala is a good choice, it fulfills the core ideas and match
+the requirement \citereq{foundation}:
 \begin{itemize} 
   \item \myac{JVM} is a popular platform, and then especially Java.
   \item Compatible with Java and libraries written in Scala can be interacted with by Java as well.
@@ -50,132 +60,27 @@ This language is chosen because:
   \item Emphasizes on functional programming which is leveraged in the implementation.
   \item Built in system for actor model~\cite{actors:haller07}, which is utilized in the implementation.
 \end{itemize}
-
-\paragraph{Lexical format.}
-\input{tables/requirements-lexical}
-
-As described in \citechap{requirements} there exists numerous implementations of different lexical formats.
-Three of these formats are chosen as the most important ones,
-\begin{ii}
-  \iitem XML,
-  \iitem JSON and
-  \iitem YAML
-\end{ii}
-The most important points about these formats are described in \citesec{technological-assessments},
-\ie,
-\begin{ii}
-  \iitem community,
-  \iitem technology support,
-  \iitem human-readable and
-  \iitem web-service friendly.
-\end{ii}
-Here is an extracted list of the most relevant alternatives:
-\begin{description}
-  \item[XML.] A well-known format in both academic domain and industry.
-    It is used by and for many different applications and tools for tasks such as configuration,
-    rendering and data exchange.
-    It is human-readable to some extent, but it is difficult with larger data sets because
-    of factors such as \emph{duplication} (node names are duplicated for termination). 
-    The markup is often used in web services, for instance in SOAP, 
-    and it was the initial data exchange format for \myac{XHR} (AJAX).
-  \item[JSON.] This format is growing in popularity as more adapt to using it for
-    different purposes.
-    Such purposes as communicating between browsers and web servers, storing configuration,
-    or interchange between nodes in a \myac{SOA} environment.
-    The format itself does not have any duplications, and is therefore easier read by humans
-    than \myac{XML}.
-  \item[YAML.] Strong focus on human-readability, by removing characters that can seem
-    distracting for the human eye, \eg, brackets and braces.
-    It supports features common in programming languages, such as
-    \eg, referencing (\textbf{*}), tagging documents (\textbf{!!}) and associative arrays.
-    Not very suited language for web service communication.
-\end{description}
-The different points are expressed in \citetable{requirements-lexical}, 
-compared against the three different formats.
-In the table they are weighted from zero ($0$) to tree ($3$) where zero is
-least supported and three is most supported.
-
-For the lexical representation of CloudML, \myac{JSON} was chosen.
-\myac{JSON} is a web-service friendly, human-readable data interchange format and an alternative to \myac{XML}.
-This format was chosen because of popularity in the cloud community \todo{source?}
-and its usage area as data transmit format between servers and web applications.
-This means \emph{cloudml-engine} can be extended to work as a RESTFul web-service server.
-
-The \myac{JSON} format is parsed in Scala using the \emph{lift-json} parser which provides implicit
-mapping to Scala case-classes. This library is part of the lift framework,
-but can be included as an external component without additional lift-specific dependencies.
-GSON was considered as an alternative, but mapping to Scala case-classes was not as 
-fluent compared to lift-json.
+Based on these benefits Scala is chosen, and \emph{cloudml-engine} is written in this language.
 
 \paragraph{Automatic build system.}
 
-There are two main methods used to build Scala programs, either using a Scala-specific tool called 
-\myac{SBT} or a more general tool called Maven. 
-For \emph{cloudml-engine} to have an academic appeal it were essential to choose the technology
-with most closeness to Java, hence Maven was chosen.
-Maven support modules which were used to split \emph{cloudml-engine} into the appropriate 
-modules as shown in~\citefig{cloudml-engine}. 
-The dependency system in Maven between modules is used to match the dependencies outlined in~\citefig{cloudml-engine}.
-Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example},
-although this is not dependency management in between \emph{cloudml-engine} modules but rather
-how to add \emph{cloudml-engine} as a dependency itself.
-
-\paragraph{Cloud connection.}
-
-The bridge between \emph{cloudml-engine} and cloud providers is an important aspect of the application, 
-and as a requirement
-it was important to use an existing library to achieve this connection.
-Some libraries have already been mentioned in the \emph{APIs} section in~\citechap{state-of-the-art},
-of these only \emph{jclouds} is based on Java-technologies and therefore suites \emph{cloudml-engine}.
-Jclouds uses Maven for building as well, and is part of Maven central which makes 
-it possible to add jclouds directly as a module dependency.
-Jclouds contains a template system which is used through code directly, this is utilized 
-to map CloudML templates to jclouds templates.
-
-\hr
-
-Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
-for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
-
-\paragraph{Distribution.}
-
-\emph{Cloudml-engine} is not just a proof-of-concept for the sake of conceptual assurance, but it is 
-also a running, functional library which can be used by anyone for testing or considerations.
-Beside the source repository\cite{cloudml-engine} the library is deployed to a remote repository
-\cite{cloudbees-cloudml-engine} as a Maven module.
-This repository is provided by CloudBees, 
-how to include the library is viewable in~\citefig{pom-example}.
-
-\paragraph{Actors.}
-
-Actors ~\cite{actors:haller07}.
-With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
-The model is extended by adding a callback-based pattern allowing each node to provide 
-information on property and status changes.
-Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
-and do other jobs / idle while the nodes are provisioned with the actors model.
-The terms are divided for a node before and under provisioning, the essential is to introduce 
-\emph{M@RT} to achieve a logical separation.
-
-\hr
-
-As mentioned earlier \emph{cloudml-engine} utilizes the actors model through Scala,
-this approach is used to achieve asynchronous provisioning.
-This is important as provisioning can consume up to minutes for each instance.
-Beside the standard model provided by Scala \emph{cloudml-engine} uses
-a callback-based pattern to inform users of the library when instance statues
-are updated and properties are added.
+There are two main methods used to automatically build Scala programs, 
+either using a Scala-specific tool called \myac{SBT} or a more general tool called Maven. 
+For \emph{cloudml-engine} to have an academic appeal it is essential to choose the technology
+with most closeness to Java, hence Maven is the best option.
+More about the module dependencies in \citesec{dependencies}.
 
 \section{Modules and application flow}
 
 \input{figs/pom-example}
-\input{figs/cloudml-engine-usage}
 \input{figs/dependency-tree}
 
 \emph{Cloudml-engine} is divided into four main modules~(\citefig{cloudml-engine}).
 This is to distribute workload and divide \emph{cloudml-engine} into logical parts for each task.
 
 \paragraph{Engine.} 
+
+\input{figs/cloudml-engine-usage}
 
 \input{figs/cloudml-engine}
 \input{figs/cloudml-engine-flow}
@@ -210,10 +115,110 @@ to \emph{Instances}. Future versions of \texttt{Repository} will also do some lo
 against \emph{Node} properties, for instance at the writing moment it is not possible to 
 demand LoadBalancers on Rackspace for specific geographical locations.
 
-\paragraph{Cloud-Connector.} 
+\mysection{dependencies}{Internal and external dependencies}
+
+Maven support modules which were used to split \emph{cloudml-engine} into the appropriate 
+modules as shown in~\citefig{cloudml-engine}. 
+The dependency system in Maven between modules is used to match the dependencies outlined in~\citefig{cloudml-engine}.
+Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example},
+although this is not dependency management in between \emph{cloudml-engine} modules but rather
+how to add \emph{cloudml-engine} as a dependency itself.
+
+
+\section{Cloud connection}
 
 The module bridging between \emph{cloudml-engine} and providers.
 It does not contain any entities, and only does logical code. 
 It is built to support several libraries and interface these. At the moment it only implements the earlier
 mentioned library jclouds.
+
+The bridge between \emph{cloudml-engine} and cloud providers is an important aspect of the application, 
+and as a requirement it is important to use an existing library to achieve this connection.
+Some libraries have already been mentioned in the \emph{APIs} section in~\citechap{state-of-the-art},
+of these only \emph{jclouds} is based on Java-technologies and therefore suites \emph{cloudml-engine}.
+Jclouds uses Maven for building as well, and is part of Maven central which makes 
+it possible to add jclouds directly as a module dependency.
+Jclouds contains a template system which is used through code directly, this is utilized 
+to map CloudML templates to jclouds templates.
+
+\hr
+
+Cloudml-engine use jclouds.org library to connect with cloud providers, giving it support
+for 24 providers out of the box to minimize \emph{complexity} as well as stability and \emph{robustness}.
+
+\section{Actor model}
+
+Actors ~\cite{actors:haller07}.
+With this asynchronous solution CloudML got concurrent communication with nodes under provisioning.
+The model is extended by adding a callback-based pattern allowing each node to provide 
+information on property and status changes.
+Developers exploring the implementation can then choose to ``listen'' for updating events from each node,
+and do other jobs / idle while the nodes are provisioned with the actors model.
+The terms are divided for a node before and under provisioning, the essential is to introduce 
+\emph{M@RT} to achieve a logical separation.
+
+\hr
+
+As mentioned earlier \emph{cloudml-engine} utilizes the actors model through Scala,
+this approach is used to achieve asynchronous provisioning.
+This is important as provisioning can consume up to minutes for each instance.
+Beside the standard model provided by Scala \emph{cloudml-engine} uses
+a callback-based pattern to inform users of the library when instance statues
+are updated and properties are added.
+
+\section{From text to objects}
+\input{tables/requirements-lexical}
+
+As described in \citechap{requirements} there exists numerous implementations of different lexical formats.
+Three of these formats are chosen as the most important ones,
+\begin{ii}
+  \iitem XML,
+  \iitem JSON and
+  \iitem YAML.
+\end{ii}
+The most important points about these formats are described in \citesec{technological-assessments},
+\ie,
+\begin{ii}
+  \iitem community,
+  \iitem technology support,
+  \iitem human-readable and
+  \iitem web-service friendly.
+\end{ii}
+Here is an extracted list of the most relevant alternatives:
+\begin{description}
+  \item[XML.] A well-known format in both academic domain and industry.
+    It is used by and for many different applications and tools for tasks such as configuration,
+    rendering and data exchange.
+    It is human-readable to some extent, but it is difficult with larger data sets because
+    of factors such as \emph{duplication} (node names are duplicated for termination). 
+    The markup is often used in web services, for instance in SOAP, 
+    and it was the initial data exchange format for \myac{XHR} (AJAX).
+  \item[JSON.] This format is growing in popularity as more adapt to using it for
+    different purposes.
+    Such purposes as communicating between browsers and web servers, storing configuration,
+    or interchange between nodes in a \myac{SOA} environment.
+    The format itself does not have any duplications, and is therefore easier read by humans
+    than \myac{XML}.
+  \item[YAML.] Strong focus on human-readability, by removing characters that can seem
+    distracting for the human eye, \eg, brackets and braces.
+    It supports features common in programming languages, such as
+    \eg, referencing (\textbf{*}), tagging documents (\textbf{!!}) and associative arrays.
+    Not very suited language for web service communication.
+\end{description}
+The different points are expressed in \citetable{requirements-lexical}, 
+compared against the three different formats.
+In the table they are weighted from zero ($0$) to three ($3$),
+where zero is least supported and three is most supported,
+\ie, how well the formats cover the aspects described in \citesec{technological-assessments}.
+
+For the lexical representation of CloudML, \myac{JSON} is the best alternative.
+This format is used because of thebenefits described over,
+as well as the values seen in \citetable{requirements-lexical}.
+
+
+The \myac{JSON} format is parsed in Scala using the \emph{lift-json} parser which provides implicit
+mapping to Scala case-classes. This library is part of the lift framework,
+but can be included as an external component without additional lift-specific dependencies.
+GSON was considered as an alternative, but mapping to Scala case-classes was not as 
+fluent compared to lift-json.
 
