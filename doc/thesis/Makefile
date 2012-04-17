@@ -50,7 +50,6 @@ ${TARGET}.dvi: $(TARGET).tex $(EPS_FIG) $(REFERENCES) $(TEX_FILES)
 $(TARGET).pdf: $(TARGET).tex $(PDF_FIG) $(REFERENCES) $(TEX_FILES)
 	# Them hacks
 	node ../articles/build/build.js
-	dot2tex --figpreamble="\Large" -f tikz --codeonly dot/cloudml.dot > figs/dependency-tree-generated.tex
 	# Them normal
 	pdflatex -shell-escape $<
 	bibtex $(TARGET)
