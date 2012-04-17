@@ -246,7 +246,7 @@ The core idea of integration and benefits of these approaches are:
   \item[Publish-subscribe pattern] Messages are distributed through \emph{events}.
     This solution expects some network communication.
 \end{description}
-Of these solutions the most promising one is \emph{Actor model} because it is more directly aimed
+Of these solutions the most promising one is \emph{actor model} because it is more directly aimed
 at solving asynchronous communication.
 The other solutions can provide assistance by accommodating communications through events, 
 but by them selves they do not solve the issue of slow provisioning.
@@ -254,3 +254,28 @@ The actor model can be implemented in many different ways, even on different tie
 Both requirement \citereq{foundation} and \citereq{software-reuse} can assist with either
 a built-in functionality in the language, environment or an external library or framework.
 
+\paragraph{Lexical format.}
+
+Requirement \citereq{lexical-template} from \citechap{requirements} consists of two
+important core elements.
+The first is \emph{important aspect}, \ie, functional demands the format must fulfill,
+such as how popular it is and how well it is supported by programming languages.
+Second element is that of \emph{data format}, \ie, the actual language used to 
+serialize data.
+This last element is not important for design, and will be introduced and
+further described in \citesec{technologies} (\citechap{implementation}).
+The important aspects of a lexical format for CloudML are:
+\begin{itemize}
+  \item Renowned among software developer communities, industry and the academic domain.
+    The language will be used directly by these parties, so it is beneficial
+    that they are familiar with the syntax.
+  \item Integrates (supporting libraries) with most common existing technologies.
+    The range of technological foundations (\citereq{foundation}) should not be
+    limited by the format.
+  \item Human-readable, to some extent.
+    End users need to create and edit these files, often by hand.
+    Therefore it must be readable and manually maintainable.
+  \item Function with web-services and web-based technologies.
+    CloudML is a language designed for \emph{cloud environments},
+    so choosing a format which works well in between services as well as on the web is crucial.
+\end{itemize}
