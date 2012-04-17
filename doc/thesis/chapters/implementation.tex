@@ -3,26 +3,91 @@
 In the previous chapter the design of CloudML was introduced.
 In this chapter the implementation of this design will be presented and described.
 
-\section{Technologies}
+\mysection{technologies}{Technologies}
 
 CloudML is implemented as a \emph{proof-of-concept} framework~\cite{cloudml-engine}
 (from here known as \emph{cloudml-engine}). 
 The implementation, \emph{cloudml-engine}, 
-is based on state-of-the-art technologies that appeal to the academic community.
+is based on \emph{state-of-the-art} technologies that appeal to the academic community.
 Technologies chosen for \emph{cloudml-engine} are not of great importance to the concept of CloudML itself,
-but it still important to understand which technologies were chosen, what close alternatives exists
-and why they were chosen.
+but it is still important to understand which technologies are chosen, what close alternatives exists
+and why they are chosen.
 
-\paragraph{Language.} 
+\paragraph{Language and environment.} 
 
-\emph{Cloudml-engine} is written in Scala, a multi-paradigm \myac{JVM} based programming language.
-This language was chosen because \myac{JVM} is a popular platform, and then especially Java.
-Scala is compatible with Java and libraries written in Scala can be interacted with by Java as well.
-The reason not to use plain Java was because Scala is an appealing state-of-the-art language that emphasizes 
-on functional programming which is leveraged in the implementation.
-Scala also has a built in system for Actors model~\cite{actors:haller07} which is utilized in the implementation.
+The importance of a \emph{programming language} and \emph{environment} were
+described in \citesec{technological-assessments}.
+These are core ideas to fulfill \citereq{foundation}, emphasizing the importance of a strong foundation.
+Here is a list describing some of the languages and environments considered:
+\begin{description}
+  \item[Java (\myac{JVM}).] Well known and recognized in both the enterprise domain, as well as the academic world.
+    Support object-oriented programming and a vast amount of libraries are supported by the \myac{JVM}.
+  \item[JavaScript (Node.js).] A newer and unfamiliar type of technology which has yet to 
+    make a large footprint in the two domains. 
+    It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follows a 
+    CommonJS-based module pattern over an event-driven architecture.
+  \item[Scala (\myac{JVM}).] Same environment as Java, 
+    but a more modern language which focuses and supports both 
+    object-oriented programming and functional programming.
+    This language is gaining popularity among both the academic and enterprise domain.
+    Libraries supported by Java are also supported by Scala.
+  \item[Python.] Well known in the academic world. Also follows both object-oriented and functional programming as
+    Scala.
+  \item[C\# (.NET).] Language and environment by Microsoft.
+\end{description}
+Languages in this list are introduced because of their overall popularity.
+Some where introduced despite this, such as \emph{Node.js}, 
+which is brought in as an consideration because of the abilities to operate
+with \myac{JSON}, cloud interaction and modernity.
+
+Based on these considerations Scala is chosen, a multi-paradigm \myac{JVM} based programming language.
+And so \emph{Cloudml-engine} is written in Scala.
+This language is chosen because:
+\begin{itemize} 
+  \item \myac{JVM} is a popular platform, and then especially Java.
+  \item Compatible with Java and libraries written in Scala can be interacted with by Java as well.
+  \item The reason not to use plain Java is because Scala is an appealing state-of-the-art language.
+  \item Emphasizes on functional programming which is leveraged in the implementation.
+  \item Built in system for actor model~\cite{actors:haller07}, which is utilized in the implementation.
+\end{itemize}
 
 \paragraph{Lexical format.}
+\input{tables/requirements-lexical}
+
+As described in \citechap{requirements} there exists numerous implementations of different lexical formats.
+Three of these formats are chosen as the most important ones,
+\begin{ii}
+  \iitem XML,
+  \iitem JSON and
+  \iitem YAML
+\end{ii}
+The most important points about these formats are described in \citesec{technological-assessments},
+\ie,
+\begin{ii}
+  \iitem community,
+  \iitem technology support,
+  \iitem human-readable and
+  \iitem web-service friendly.
+\end{ii}
+Here is an extracted list of the most relevant alternatives:
+\begin{description}
+  \item[XML.] A well-known format in both academic domain and industry.
+    It is used by and for many different applications and tools for tasks such as configuration,
+    rendering and data exchange.
+    It is human-readable to some extent, but it is difficult with larger data sets because
+    of factors such as \emph{duplication} (node names are duplicated for termination). 
+    The markup is often used in web services, for instance in SOAP, 
+    and it was the initial data exchange format for \myac{XHR} (AJAX).
+  \item[JSON.] This format is growing in popularity as more adapt to using it for
+    different purposes.
+    Such purposes as communicating between browsers and web servers, storing configuration,
+    or interchange between nodes in a \myac{SOA} environment.
+    The format itself does not have any duplications, and is therefore easier read by humans
+    than \myac{XML}.
+  \item[YAML.] 
+\end{description}
+The different points are expressed in \citetable{requirements-lexical}, 
+compared against the three different formats.
 
 For the lexical representation of CloudML \myac{JSON} was chosen.
 \myac{JSON} is a web-service friendly, human-readable data interchange format and an alternative to \myac{XML}.
