@@ -84,12 +84,18 @@ Here is an extracted list of the most relevant alternatives:
     or interchange between nodes in a \myac{SOA} environment.
     The format itself does not have any duplications, and is therefore easier read by humans
     than \myac{XML}.
-  \item[YAML.] 
+  \item[YAML.] Strong focus on human-readability, by removing characters that can seem
+    distracting for the human eye, \eg, brackets and braces.
+    It supports features common in programming languages, such as
+    \eg, referencing (\textbf{*}), tagging documents (\textbf{!!}) and associative arrays.
+    Not very suited language for web service communication.
 \end{description}
 The different points are expressed in \citetable{requirements-lexical}, 
 compared against the three different formats.
+In the table they are weighted from zero ($0$) to tree ($3$) where zero is
+least supported and three is most supported.
 
-For the lexical representation of CloudML \myac{JSON} was chosen.
+For the lexical representation of CloudML, \myac{JSON} was chosen.
 \myac{JSON} is a web-service friendly, human-readable data interchange format and an alternative to \myac{XML}.
 This format was chosen because of popularity in the cloud community \todo{source?}
 and its usage area as data transmit format between servers and web applications.
