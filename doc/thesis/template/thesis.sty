@@ -19,12 +19,13 @@
     {#1.\@}}}
 \ExplSyntaxOff
 
-%Omit final dot from each def.
-\def\wrt{\latinabbrev{w.r.t}}
-\def\eg{\emph{\latinabbrev{e.g}}}
+%% Omit final dot from each def.
 \def\etal{\emph{\latinabbrev{et al}} }
 \def\etc{\latinabbrev{etc}}
-\def\ie{\emph{\latinabbrev{i.e}}}
+
+\newcommand{\eg}[0]{\emph{e.g.},\xspace}
+\newcommand{\ie}[0]{\emph{i.e.},\xspace}
+\newcommand{\wrt}[0]{\emph{w.r.t.},\xspace}
 
 \newcounter{iicounter}
 \newenvironment{ii}[0]{\setcounter{iicounter}{0}}{}

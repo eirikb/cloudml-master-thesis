@@ -1,9 +1,9 @@
 \mychapter{design}{Analysis and design - CloudML}
 
 In the previous chapter, \citechap{vision}, the core vision of CloudML was presented,
-including descriptions of surrounding elements \eg, actors and topologies.
+including descriptions of surrounding elements, \eg actors and topologies.
 In this chapter the focus is narrowed down to the design and considerations 
-of the implementation which constitutes CloudML.
+of the implementation that constitutes CloudML.
 
 \section{Meta model}
 \input{figs/meta-model}
@@ -24,7 +24,7 @@ It is compulsory that she possesses an \myac{AWS} account in advance of the scen
 This is essential information needed for the scenario to be successful,
 and since she is indirectly using \myac{AWS} \myac{API}s,
 she must also have \emph{security credentials},
-\ie, \emph{Access Key ID} and \emph{Secret Access Key}.
+\ie \emph{Access Key ID} and \emph{Secret Access Key}.
 
 The roles, or actors, which Alice assumes in this scenario, regarding \citefig{big-picture},
 are both \emph{cloud expert} and \emph{users}.
@@ -41,7 +41,7 @@ She associates Access Key ID and Secret Access Key with
 The \texttt{Connector} is a common interface against supported providers.
 This component of CloudML is directly associated with \citereq{multicloud}.
 \texttt{Credential} is in this case in the form of an Access Key ID (random GUID),
-but with other providers it might be in another form, \eg, a username for Rackspace.
+but with other providers it might be in another form, \eg a username for Rackspace.
 Although the form is different, the physical object type (String) is the same.
 
 \paragraph{Topology considerations.}
@@ -53,7 +53,7 @@ increase capabilities of both processing (number of \texttt{Cores}) and
 Both these attributes are incremented because the instance hosts
 the main application as well as the database.
 The characteristics Alice choose for her \texttt{Nodes} and \texttt{Properties} are fitted
-for the chosen topology \eg, more computation power for 
+for the chosen topology \eg more computation power for 
 \emph{front-end} nodes and more disk for \emph{back-end} nodes.
 All \texttt{Properties} are optional and thus Alice does not have to define them all.
 
@@ -62,7 +62,7 @@ since all important components of the application is located in one single place
 Other advantages distinguish themselves as well, such as network connections where
 the address of other components are determined to be localhost (\emph{this computer}).
 For scalability and modularity the \emph{single-node} approach is restraining.
-\eg, if the application consumes too much \myac{CPU} power, 
+\eg if the application consumes too much \myac{CPU} power, 
 this slows the application totality down and decreases usability.
 There is no strong link between CloudML and the application, but to maintain
 scalability some measurements must be manually developed into \emph{BankManager}.
@@ -89,7 +89,7 @@ This starts the asynchronous job of configuring and creating
 In \citefig{scenario1-1} an object diagram describe the initial configuration at runtime,
 after CloudML has interpreted the template files.
 As mentioned, the node has increased two important attributes to support both higher computation 
-demand and storage capabilities, \ie, $2$ cores and $2000$ in disk size 
+demand and storage capabilities, \ie $2$ cores and $2000$ in disk size 
 (\myac{GB} respectively, but measurement can change depending on implementation of \citereq{software-reuse}).
 By not altering any other attributes on the respective nodes, they will be set to default values.
 This is an positive expectation, since the nodes will handle specific tasks, which does not 
@@ -106,7 +106,7 @@ The \texttt{build} method support provisioning of several templates to one accou
 but in this scenario that is not utilized.
 There is also a constraint/limitation, a set of templates can not be simultaneously 
 cross-deployed to different providers,
-\ie, not possible to define cross-provider (\emph{multicloud}) nodes in a single topology.
+\ie not possible to define cross-provider (\emph{multicloud}) nodes in a single topology.
 This is for the sake of tidiness, clarity and technical limitations.
 CloudML will support multicloud provisioning,
 just that such functionality is achieved by sequential re-provisioning 
@@ -144,7 +144,7 @@ In the described scenario, Alice provision \emph{BankManager} to one single inst
 In many cases this setup is sufficient, but major advantages
 could be gained through the opportunity of horizontal scalability (\emph{scale out}).
 There are distinct benefits to this, 
-\eg, if Alice deployed an application which should suddenly, 
+\eg if Alice deployed an application which should suddenly, 
 rapidly and unexpectedly gain popularity her current setup (one single node) might not be sufficient.
 In case of such event Alice should change her topology from the one seen in 
 \citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes.
@@ -159,7 +159,7 @@ it can actually be used internally in between local nodes.
 Alice changes her topology by editing her existing \texttt{Template} files 
 to contain three nodes instead of one. 
 She also changes the node attributes to suite their new needs better,
-\ie, increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
+\ie increasing amount of \texttt{Cores}, and increased \texttt{Disk} for back-end \texttt{Node}.
 Then she executes \texttt{build} on \texttt{CloudMLEngine} again,
 which will provision the new nodes for her.
 She will get three new nodes, and the previous provisioned nodes must be manually terminated.
@@ -187,7 +187,7 @@ but there are three nodes instead of one, and the attributes are divided between
 There is nothing which concretely separate front-end nodes from back-end nodes,
 this can only be determined from node \texttt{name} or what attributes are altered.
 The separation is completely up to Alice when doing the deployment,
-\ie, nothing in CloudML will restrain or limit Alice 
+\ie nothing in CloudML will restrain or limit Alice 
 when it comes to work load distribution between nodes.
 
 As with the instances in \citefig{scenario1-2} the instances in \citefig{scenario2-2}
@@ -236,7 +236,7 @@ When all nodes reaches this state the task of provisioning is concluded.
 
 Provisioning nodes is by its nature an asynchronous action that can take minutes to execute.
 For CloudML to compensate with this asynchronous behavior several approaches could be made,
-as mentioned in \citechap{requirements}, \eg, command pattern, actor model,
+as mentioned in \citechap{requirements}, \eg command pattern, actor model,
 or publish-subscribe pattern.
 The core idea of integration and benefits of these approaches are:
 \begin{description}
@@ -258,9 +258,9 @@ a built-in functionality in the language, environment or an external library or 
 
 Requirement \citereq{lexical-template} from \citechap{requirements} consists of two
 important core elements.
-The first is \emph{important aspect}, \ie, functional demands the format must fulfill,
+The first is \emph{important aspect}, \ie functional demands the format must fulfill,
 such as how popular it is and how well it is supported by programming languages.
-Second element is that of \emph{data format}, \ie, the actual language used to 
+Second element is that of \emph{data format}, \ie the actual language used to 
 serialize data.
 This last element is not important for design, and will be introduced and
 further described in \citesec{technologies} (\citechap{implementation}).
