@@ -4,44 +4,49 @@
 
         \node (UserLibrary) [class] { \textbf{UserLibrary} };
 
-        \node (CloudMLEngine) [class, rectangle split, rectangle split parts=3, below=of UserLibrary] {
+        \node (CloudMLEngine) [class, text width=7cm, rectangle split, rectangle split parts=3, below=of UserLibrary] {
                 \textbf{CloudMLEngine}
                 \nodepart{second}
-                \nodepart{third}+build(Acc,Li(Templ))
+                \nodepart{third}+build(a: Account, t: List[Template]): List[RuntimeInstance]
           };
-        \node (AuxNode01) [text width=4cm, below=of CloudMLEngine] {};
 
-        \node (Account) [class, rectangle split, rectangle split parts=2, left=of CloudMLEngine, label=left:*] {
+        \node (Account) [class, rectangle split, rectangle split parts=2, 
+          left=of CloudMLEngine, xshift=-0cm, label=left:*] {
                 \textbf{Account}
                 \nodepart{second}+name: String
           };
         \node (Credential) [class, below=of Account, label=67.5:1] { \textbf{Credential} };
-        \node (Password) [class, rectangle split, rectangle split parts=2, below=of Credential, xshift=-4cm] {
-                \textbf{Password}
-                \nodepart{second}+identity: String \\ ++credential: String
-          };
-        \node (KeyPair) [class, rectangle split, rectangle split parts=2, below=of Credential] {
+        \node (KeyPair) [class, rectangle split, rectangle split parts=2, below=of Credential, xshift=-1cm] {
                 \textbf{KeyPair}
                 \nodepart{second}+public: String
+          };
+        \node (Password) [class, rectangle split, rectangle split parts=2, right=of KeyPair] {
+                \textbf{Password}
+                \nodepart{second}+identity: String \\ ++credential: String
           };
 
         \node (Connector) [class, right=of CloudMLEngine, label=175:*, label=67.5:1] { \textbf{Connector} };
         \node (AmazonEC2) [class, below=of Connector, xshift=-2cm] { \textbf{AmazonEC2} };
         \node (Rackspace) [class, below=of Connector, xshift=2cm] { \textbf{Rackspace} };
 
-        \node (Instance) [class, rectangle split, rectangle split parts=2, below=of AuxNode01] { 
+        \node (Instance) [class, rectangle split, rectangle split parts=2, below=of CloudMLEngine,
+          xshift=2cm, yshift=-1cm] { 
           \textbf{Instance} 
           \nodepart{second}templateName: String
         };
-        \node (RuntimeInstance) [darkclass, below=of Instance, yshift=-1cm, label=67.5:*] { \textbf{RuntimeInstance} };
+        \node (RuntimeInstance) [darkclass, below=of Instance, xshift=-0cm, label=67.5:*] { \textbf{RuntimeInstance} };
         \node (RuntimeProp) [darkclass, left=of RuntimeInstance, label=5:*] { \textbf{RuntimeProp} };
-        \node (PublicIP) [darkclass, rectangle split, rectangle split parts=2, below=of RuntimeProp, xshift=-2cm] {
+        \node (PublicIP) [darkclass, rectangle split, rectangle split parts=2, below=of RuntimeProp] {
                 \textbf{PublicIP}
-                \nodepart{second}+Value: Address
+                \nodepart{second}+value: Address
           };
-        \node (PrivateIP) [darkclass, rectangle split, rectangle split parts=2, below=of RuntimeProp, xshift=2cm] {
+        \node (Status) [darkclass, rectangle split, rectangle split parts=2, left=of PublicIP] {
+                \textbf{Status}
+                \nodepart{second}+value: String 
+          };
+        \node (PrivateIP) [darkclass, rectangle split, rectangle split parts=2, right=of PublicIP] {
                 \textbf{PrivateIP}
-                \nodepart{second}+Value: Address
+                \nodepart{second}+value: Address
           };
 
         \node (Template) [class, rectangle split, rectangle split parts=2, right=of Instance, label=-5:*] {
@@ -53,7 +58,7 @@
                 \nodepart{second}+name: String
           };
         \node (Property) [class, below=of Node, label=67.5:*] { \textbf{Property} };
-        \node (Location) [class, rectangle split, rectangle split parts=2, below=of Property, yshift=-0.25cm] {
+        \node (Location) [class, rectangle split, rectangle split parts=2, below=of Property, yshift=-0cm] {
                 \textbf{Location}
                 \nodepart{second}+value: String
           };
@@ -83,10 +88,11 @@
 
         \draw[extend] (PublicIP) -- ++(0, 0.9) -| (RuntimeProp);
         \draw[extend] (PrivateIP) -- ++(0, 0.9) -| (RuntimeProp);
+        \draw[extend] (Status) -- ++(0, 0.9) -| (RuntimeProp);
 
-        \draw[line] (Account) -- ++(0, 1) -| (Connector);
+        \draw[line] (Account) -- ++(0, 1.5) -| (Connector);
 
-        \draw[aggregate] (UserLibrary) -| (9, -1) -- (9, -5) -| (Template.east);
+        \draw[aggregate] (UserLibrary) -| (11, -1) -- (11, -5) -| (Template.east);
         \draw[aggregate] (UserLibrary) -| (Account.west);
 
         \draw[aggregate] (Account) -- (Credential.north);
@@ -96,8 +102,7 @@
         \draw[aggregate] (Template) -- (Node.north);
         \draw[aggregate] (Node) --  (Property.north);
 
-        \draw[line] (Node.west) -- ++(0, 1) -| (Instance.east);
-        \draw[line] (Instance.east) -| ++(0.5, -2) -- ++(0, -2) -| (Property.west);
+        \draw[line] (Instance.east) -| ++(0.5, 0) -- ++(0, -2) -| (Node.west);
 
         \draw[aggregate] (RuntimeInstance.north) -- (Instance);
 
