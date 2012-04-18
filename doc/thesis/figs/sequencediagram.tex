@@ -1,28 +1,31 @@
-\begin{figure}
-  \hspace*{-.75cm}
+\begin{figure}[tb]
   \begin{sequencediagram}
-    \newthread{u}{alice:User}
-    \newthreadhack{c}{:Engine}
+    \newthread{u}{:User}
+    \newthreadhack{c}{:CloudML}
     \newinst{r}{:RuntimeInstance}
     \newthread{a}{:AWS}
-
+    
     \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{List(\texttt{RuntimeInstance})}
       \begin{call}{c}{Initialize()}{r}{}
       \end{call}
     \end{call}
     \begin{messcall}{c}{provision node}{a}
     \end{messcall}
-
-    \begin{call}{u}{getStatus()}{r}{\emph{Building}}
+    
+    \begin{call}{u}{getStatus()}{r}{\emph{"Building"}}
     \end{call}
-
-    \begin{messcall}{a}{property update}{c}
+    
+    \begin{messcall}{a}{status(\emph{"Starting"})}{c}
     \end{messcall}
-
-    \begin{call}{u}{getStatus()}{r}{\emph{Starting}}
+    
+    \begin{messcall}{c}{update(\emph{"Starting"})}{r}
+    \end{messcall}
+    
+    
+    \begin{call}{u}{getStatus()}{r}{\emph{"Starting"}}
     \end{call}
   \end{sequencediagram}
-
-  \caption{Sequence diagram of CloudML.}
+  
+  \caption{CloudML asynchronous provisionning process (Sequence diagram).}
   \label{fig:sequencediagram}
 \end{figure}

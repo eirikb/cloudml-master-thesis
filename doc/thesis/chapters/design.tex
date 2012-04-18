@@ -7,21 +7,22 @@ of the implementation that constitutes CloudML.
 
 \section{Meta-model}
 \input{figs/meta-model}
+
 In this section the meta-model of CloudML will be presented.
 The model is visualized in \citefig{meta-model}, and will be described through a specific scenario.
 The scenario also describe parts of the implementation design through how it is used.
 
 \paragraph{Scenarios introduction.}
 
-CloudML is introduced by using a scenario where ``Alice'' is provisioning the 
-\emph{BankManager} application from \citechap{challenges} to \myac{AWS}.
+CloudML is introduced by using a scenario where a user named ``Alice'' is provisioning the 
+\emph{BankManager} application from \citechap{challenges} to the \myac{AWS} cloud.
 It is compulsory that she possesses an \myac{AWS} account in advance of the scenario.
 This is essential information needed for the scenario to be successful,
 and since she is indirectly using \myac{AWS} \myac{API}s,
 she must also have \emph{security credentials},
 \ie \emph{Access Key ID} and \emph{Secret Access Key}.
 
-The roles Alice assumes in this scenario, regarding \citefig{big-picture},
+The roles assumed by Alice this scenario, regarding \citefig{big-picture},
 are both \emph{cloud expert} and \emph{users}.
 She will define the topologies, create the templates and use 
 the \emph{engine} to provision her models.
@@ -43,7 +44,7 @@ Although the form is different, the physical object type (String) is the same.
 
 Initially she is using the topology shown in~\citefig{singlenode}.
 This topology introduces a single node, which hosts every tier of the application.
-This is not an uncommon topology.
+This is not an uncommon topology for development purpose.
 
 \paragraph{Topology considerations.}
 
@@ -51,31 +52,30 @@ Alice establishes a \emph{single-node} based topology, as seen in \citefig{singl
 Since this single node handles both computation and storage Alice decides to 
 increase capabilities of both processing (number of \texttt{Cores}) and 
 \texttt{Disk} size on the \texttt{Node}.
-Both these attributes are incremented because the instance hosts
+Both of these attributes are incremented because the instance hosts
 the main application as well as the database.
 
 The approach of using one single node is good in terms of simplicity,
-since all important components of the application is located in one single place.
+since all important components of the application are located in one single place.
 Other advantages distinguish themselves as well, such as network connections where
 the address of other components are determined to be ``this computer'' (\emph{localhost}).
 
 \paragraph{Building templates.}
 
-In the end Alice inserts all data about topologies into a \emph{textual file}, which describes the topology.
-This file is a \texttt{Template}, and is referred to by its attribute ``\texttt{name}''.
-The template file include physical descriptions of \texttt{Node},
+In the end Alice inserts all data about topologies into a \texttt{Template}. 
+The template include physical descriptions of \texttt{Node},
 and a list of the type \texttt{Property} for each node.
 Every \texttt{Node} has a \texttt{name} used to reference the node under provisioning.
-The properties a node can have are configurations of attributes on a set of given capabilities.
+The properties a node can have configurations of attributes on a set of given capabilities.
 These configurations are what define what type of tasks a node is suitable for.
-In Alices case the node has increased two important attributes to support both higher computation 
+In Alice's case the node has increased two important attributes to support both higher computation 
 demand and storage capabilities, \ie $2$ cores and $2000$ \myac{GB}
 \footnote{
-  Size in \myac{GB}, but measurement can change depending on implementation of \citereq{software-reuse}.
+  Size is expressed in \myac{GB}, but measurement can change depending on implementation of \citereq{software-reuse}.
 }
-in disk size.
+in hard drive size.
 By not altering any other attributes on the respective nodes, they will be set to minimal values.
-This is an positive expectation, since the nodes will handle specific tasks, which does not 
+This is a positive expectation, since the nodes will handle specific tasks, which does not 
 demand enhancing of other attributes.
 
 \paragraph{Provisioning.}
@@ -108,7 +108,7 @@ The method call to \texttt{build} is described in \citefig{sequencediagram}.
 In this figure \texttt{RuntimeInstance} is returned directly to Alice,
 because these are asynchronous elements within CloudML, which end users can gather 
 information through.
-This is empathized within \citefig{sequencediagram} through \texttt{getStatus} method calls.
+This is emphasized within \citefig{sequencediagram} through \texttt{getStatus} method calls.
 \texttt{Instance} is never visualized, this is because it is an internal format
 within CloudML and does not need to be presented in the sequence diagram,
 
@@ -130,9 +130,9 @@ application design and deployment considerations.
 In the described scenario, Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
 In many cases this setup is sufficient, but major advantages
 could be gained through the opportunity of horizontal scalability (\emph{scale out}).
-There are distinct benefits to this, 
-\eg if Alice deployed an application that should suddenly, 
-rapidly and unexpectedly gain popularity her current setup (one single node) might not be sufficient.
+There are distinct benefits to this.
+If Alice deployed an application that should suddenly, 
+rapidly and unexpectedly gain popularity, her current setup (one single node) might not be sufficient.
 In case of such event Alice should change her topology from the one seen in 
 \citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes.
 Or even the topology seen in \citefig{frontends}, with ``unlimited'' amount of nodes.
@@ -177,8 +177,6 @@ This could be done presumably without greater changes to origin application,
 since the application is initially designed for such a distributed topology.
 
 An object diagram of the topology is shown in \citefig{scenario2-1}.
-It is similar to the object diagram from \citefig{scenario1-1},
-but there are three nodes instead of one, and the attributes are divided between them.
 There is nothing that concretely separate front-end nodes from back-end nodes,
 this can only be determined from node \texttt{name} or what attributes are altered.
 The separation is completely up to Alice when doing the deployment,
@@ -231,18 +229,16 @@ The most important aspects are therefore precept \iii{2}, \iii{5} and \iii{6}.
 
 \paragraph{The design.}
 
-When a node is being propagated it changes type to \texttt{RuntimeInstance}, 
-which can have a different \emph{state} such as 
+When a node is being propagated it changes type to 
+\texttt{RuntimeInstance}, which can have a different \emph{state} such as 
 \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
-The states are updated asynchronously, and can either be 
-\emph{observed}, \emph{polled} or do \emph{push} itself based on the type of implementation.
-Considerations for implementation will be described later.
+Considerations for implementation will be described in \citesec{modules}.
 
 When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider 
 has guaranteed its existence, including the most necessary metadata.
 When all nodes reaches this state the task of provisioning is concluded.
 
-\paragraph{Implementation considerations.}
+\paragraph{Patterns.}
 
 Provisioning nodes is by its nature an asynchronous action that can take minutes to execute.
 For CloudML to compensate with this asynchronous behavior several approaches could be made,
@@ -250,6 +246,7 @@ as mentioned in \citechap{requirements}, \eg command pattern, actor model,
 or publish-subscribe pattern.
 The core idea of integration and benefits of these approaches are:
 \begin{description}
+  \item[Observer pattern.] \ldots
   \item[Command pattern.] Simple and well known design pattern. 
     This is tightly bound to using an object-oriented language for \citereq{foundation}.
   \item[Actor model.] Solve the problem with asynchronous communication through passing messages.
