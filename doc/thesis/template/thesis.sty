@@ -93,11 +93,12 @@
 
 \newcounter{reqcounter}
 \newcommand{\req}[2]{
+  \expandafter\def\csname reqtext@#1\endcsname{#2}
   \bigskip
   \refstepcounter{reqcounter} \label{req:#1} $ \leadsto R_{\thereqcounter} $ : \textbf{#2.}
 }
 \newcommand{\citereq}[1]{
-  $R_{\ref{req:#1}}$
+  $R_{\ref{req:#1}}$~(\emph{\MakeLowercase{\csname reqtext@#1\endcsname}})
 }
 
 \newcommand{\hr}{
