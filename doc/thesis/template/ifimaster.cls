@@ -2,7 +2,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]  % Any version, really!
 
-\ProvidesClass{ifimaster}[2010/01/17 v1.0 Ifi/UiO document class]
+\ProvidesClass{template/ifimaster}[2010/01/17 v1.0 Ifi/UiO document class]
 
 %% Initial code part:
 
