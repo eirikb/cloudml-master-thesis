@@ -1,4 +1,5 @@
 \begin{figure}[tb]
+  \hspace*{-2cm}
   \begin{sequencediagram}
     \newthread{u}{:User}
     \newthreadhack{c}{:CloudML}
@@ -7,24 +8,52 @@
     \newinst{r3}{r3}
     \newthread{a}{:AWS}
     
-    \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{List(\texttt{RuntimeInstance})}
+    \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{
+        List(\texttt{r1}, \texttt{r2}, \texttt{r3})}
       \begin{call}{c}{Initialize()}{r1}{}
       \end{call}
+      \begin{call}{c}{Initialize()}{r2}{}
+      \end{call}
+      \begin{call}{c}{Initialize()}{r3}{}
+      \end{call}
     \end{call}
-    \begin{messcall}{c}{provision node}{a}
+    \begin{messcall}{c}{provision(\texttt{r1})}{a}
+    \end{messcall}
+    \begin{messcall}{c}{provision(\texttt{r2})}{a}
+    \end{messcall}
+    \begin{messcall}{c}{provision(\texttt{r3})}{a}
     \end{messcall}
     
-    \begin{call}{u}{getStatus()}{r}{\emph{"Building"}}
+    \begin{call}{u}{getStatus()}{r1}{\emph{"Building"}}
+    \end{call}
+    \begin{call}{u}{getStatus()}{r2}{\emph{"Building"}}
     \end{call}
     
-    \begin{messcall}{a}{status(\emph{"Starting"})}{c}
+    \begin{messcall}{a}{status(\texttt{r1}, \emph{"Starting"})}{c}
     \end{messcall}
-    
-    \begin{messcall}{c}{update(\emph{"Starting"})}{r}
+    \begin{messcall}{c}{update(\emph{"Starting"})}{r1}
     \end{messcall}
     
     
     \begin{call}{u}{getStatus()}{r1}{\emph{"Starting"}}
+    \end{call}
+    \begin{call}{u}{getStatus()}{r2}{\emph{"Building"}}
+    \end{call}
+
+    \begin{messcall}{a}{status(\texttt{r1}, \emph{"Started"})}{c}
+    \end{messcall}
+    \begin{messcall}{c}{update(\emph{"Started"})}{r1}
+    \end{messcall}
+    \begin{messcall}{a}{status(\texttt{r2}, \emph{"Starting"})}{c}
+    \end{messcall}
+    \begin{messcall}{c}{update(\emph{"Starting"})}{r2}
+    \end{messcall}
+
+    \begin{call}{u}{getStatus()}{r1}{\emph{"Started"}}
+    \end{call}
+    \begin{call}{u}{getStatus()}{r2}{\emph{"Starting"}}
+    \end{call}
+    \begin{call}{u}{getStatus()}{r3}{\emph{"Building"}}
     \end{call}
   \end{sequencediagram}
   
