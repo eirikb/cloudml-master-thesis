@@ -4,5 +4,5 @@ Bibtex built by node.js (invoked from thesis.tex.sh)
   
 Before you start:
 
-    cd ../articles/buil
+    cd ../articles/build
     npm install
