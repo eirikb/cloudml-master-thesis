@@ -7,7 +7,7 @@
 
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
 
-        \node (AWS) [rectangle, draw, rounded corners, right of=Browser, 
+        \node (AWS) [rectangle, draw, rounded corners, right of=Browser, label=below:AWS,
           minimum width=12cm, minimum height=5cm, xshift=9cm, yshift=0cm] {};
 
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
@@ -15,10 +15,10 @@
         \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
-        \node (Backend-master) [class, below=of Backend, yshift=-4cm] { \textbf{Back-end master} };
+        \node (Backend-master) [class, below=of Backend, yshift=-5cm] { \textbf{Back-end master} };
 
         \node (Rackspace) [rectangle, draw, rounded corners, left of=Backend-master, 
-          minimum width=12cm, minimum height=5cm, xshift=-2.5cm, yshift=0cm] {};
+          minimum width=12cm, minimum height=5cm, xshift=-2.5cm, label=below:Rackspace] {};
 
         \node (Slave1) [class, left=of Backend-master, yshift=1cm] { \textbf{Slave} };
         \node (Slave2) [class, below=of Slave1, yshift=-1cm] { \textbf{Slave} };
@@ -38,6 +38,6 @@
       \end{tikzpicture}
   \end{center}
 
-  \caption{Different architectural ways to provision nodes (topologies).}
-  \label{fig:topologies}
+  \caption{Multicloud topology.
+  \label{fig:topology-multicloud}
 \end{figure}
