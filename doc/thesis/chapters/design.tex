@@ -117,7 +117,6 @@ Alice can start the deployment.
 CloudML has then completed its scoped task of provisioning.
 
 \subsection{Three nodes topology}
-\input{figs/sequence-threenodes}
 
 For scalability and modularity the \emph{single-node} approach is restraining,
 \ie it does not scale very well, and does not benefit from cloud advantages.
@@ -155,11 +154,16 @@ for the chosen topology.
 All \texttt{Properties} are optional and thus Alice does not have to define them all.
 
 \paragraph{Rebuild.}
+\input{figs/sequence-threenodes}
 
 Then she executes \texttt{build} on \texttt{CloudMLEngine} again,
 which will provision the new nodes for her.
 She will get three new nodes, and the previous provisioned nodes must be manually terminated.
 More about this in \citechap{perspectives}.
+The outline of how nodes are provisioned is shown in \citefig{sequence-threenodes}.
+This figure is similar to \citefig{sequence-singlenode}, but with three nodes instead of one.
+Another difference is that \texttt{User} does more calls to \texttt{CloudML},
+which express how statuses between \texttt{RI}s is updating.
 
 When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
 be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML

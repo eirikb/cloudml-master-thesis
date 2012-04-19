@@ -1,11 +1,11 @@
-\begin{figure}[th]
-  \hspace*{-2cm}
-  \begin{sequencediagram}
+\begin{figure}[tb]
+  %\hspace*{-2cm}
+  \begin{sequencediagram}[scale=0.9, transform shape]
     \newthread{u}{:User}
     \newthreadhack{c}{:CloudML}
-    \newinst{r1}{r1}
-    \newinst{r2}{r2}
-    \newinst{r3}{r3}
+    \newinst{r1}{r1:RI}
+    \newinst{r2}{r2:RI}
+    \newinst{r3}{r3:RI}
     \newthread{a}{:AWS}
     
     \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{
@@ -60,6 +60,6 @@
     \end{call}
   \end{sequencediagram}
   
-  \caption{CloudML asynchronous provisionning process (Sequence diagram).}
+  \caption{Asynchronous provisionning with three nodes. \texttt{RI} is an abbrevation of RuntimeInstance, to save space.}
   \label{fig:sequence-threenodes}
 \end{figure}
