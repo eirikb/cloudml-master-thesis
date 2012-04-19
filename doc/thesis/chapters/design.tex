@@ -79,7 +79,7 @@ This is a positive expectation, since the nodes will handle specific tasks, whic
 demand enhancing of other attributes.
 
 \paragraph{Provisioning.}
-\input{figs/sequencediagram}
+\input{figs/sequence-singlenode}
 \input{figs/scenario1}
 
 With these models Alice initializes provisioning by calling 
@@ -104,11 +104,11 @@ These are \myac{M@RT} within CloudML, designed to provide asynchronous provision
 according to \citereq{m@rt}.
 They are reflections of \texttt{Instance}, and they aggregate instances.
 
-The method call to \texttt{build} is described in \citefig{sequencediagram}.
+The method call to \texttt{build} is described in \citefig{sequence-singlenode}.
 In this figure \texttt{RuntimeInstance} is returned directly to Alice,
 because these are asynchronous elements within CloudML, which end users can gather 
 information through.
-This is emphasized within \citefig{sequencediagram} through \texttt{getStatus} method calls.
+This is emphasized within \citefig{sequence-singlenode} through \texttt{getStatus} method calls.
 \texttt{Instance} is never visualized, this is because it is an internal format
 within CloudML and does not need to be presented in the sequence diagram,
 
@@ -250,7 +250,7 @@ The core idea of integration and benefits of these approaches are:
   \item[Observer pattern.] The essence of this pattern is a one-to-many distribution of events between objects.
     This can be explained with a restaurant as an example, with one chef and two waiters.
     The chef is \emph{observable} and the two waiters are \emph{observers}.
-    The chef does some work (cooking), and when he is complete with a dish he notify all observers.
+    The chef does some work (cooking), and when he or she is complete with a dish all observers are notified.
     Now the observers receive this event and can act upon it, 
     \eg the first waiter ignores the dish because it does not belong to any of his or her tables, 
     while the other waiter takes the dish to appropriate table.
@@ -260,8 +260,9 @@ The core idea of integration and benefits of these approaches are:
     In the restaurant-example one can consider a general \emph{waiter} to be the interface,
     and the two waiters would each be separate implementations, 
     \eg \emph{TableAToC} and \emph{TableDToH}.
-    When the chef \emph{invokes} the method \emph{execute} on any type of \emph{waiter} he does not
-    need to know anything about their implementation, each waiter will know themselves which table to visit.
+    When the chef \emph{invokes} the method \emph{execute} on any type of \emph{waiter}, 
+    he or she does not need to know anything about their implementation, 
+    each waiter will know themselves which table to visit.
   \item[Actor model.] Solve the problem with asynchronous communication through passing messages
     in between \emph{actors}.
     These messages are decoupled from the sender, resulting in proper asynchronous communication.
