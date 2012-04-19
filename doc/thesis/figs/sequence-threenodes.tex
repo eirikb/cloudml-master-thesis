@@ -1,4 +1,4 @@
-\begin{figure}[tb]
+\begin{figure}[th]
   \hspace*{-2cm}
   \begin{sequencediagram}
     \newthread{u}{:User}
@@ -17,11 +17,14 @@
       \begin{call}{c}{Initialize()}{r3}{}
       \end{call}
     \end{call}
-    \begin{messcall}{c}{provision(\texttt{r1})}{a}
-    \end{messcall}
-    \begin{messcall}{c}{provision(\texttt{r2})}{a}
-    \end{messcall}
-    \begin{messcall}{c}{provision(\texttt{r3})}{a}
+
+    %\begin{messcall}{c}{provision(\texttt{r1})}{a}
+    %\end{messcall}
+    %\begin{messcall}{c}{provision(\texttt{r2})}{a}
+    %\end{messcall}
+    %\begin{messcall}{c}{provision(\texttt{r3})}{a}
+    %\end{messcall}
+    \begin{messcall}{c}{provision nodes(\texttt{r1}, \texttt{r2}, \texttt{r3})}{a}
     \end{messcall}
     
     \begin{call}{u}{getStatus()}{r1}{\emph{"Building"}}
