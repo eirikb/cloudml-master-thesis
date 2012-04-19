@@ -160,8 +160,16 @@ Then she executes \texttt{build} on \texttt{CloudMLEngine} again,
 which will provision the new nodes for her.
 She will get three new nodes, and the previous provisioned nodes must be manually terminated.
 More about this in \citechap{perspectives}.
-The outline of how nodes are provisioned is shown in \citefig{sequence-threenodes}.
+The outline of how nodes are provisioned is shown in \citefig{sequence-threenodes-1}.
+In the figure \texttt{RI} is an abbreviation of RuntimeInstance, to save space.
+It is also split into three parts expressing different steps, 
+\begin{ii}
+  \iitem provisioning, 
+  \iitem node communications and
+  \iitem how a load balancer service is established.
+\end{ii}.
 This figure is similar to \citefig{sequence-singlenode}, but with three nodes instead of one.
+Both percept \iii{1} and \iii{2} are found in \citefig{sequence-singlenode}.
 Another difference is that \texttt{User} does more calls to \texttt{CloudML},
 which express how statuses between \texttt{RI}s is updating.
 
