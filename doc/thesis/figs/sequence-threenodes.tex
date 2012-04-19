@@ -1,0 +1,33 @@
+\begin{figure}[tb]
+  \begin{sequencediagram}
+    \newthread{u}{:User}
+    \newthreadhack{c}{:CloudML}
+    \newinst{r1}{r1}
+    \newinst{r2}{r2}
+    \newinst{r3}{r3}
+    \newthread{a}{:AWS}
+    
+    \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{List(\texttt{RuntimeInstance})}
+      \begin{call}{c}{Initialize()}{r1}{}
+      \end{call}
+    \end{call}
+    \begin{messcall}{c}{provision node}{a}
+    \end{messcall}
+    
+    \begin{call}{u}{getStatus()}{r}{\emph{"Building"}}
+    \end{call}
+    
+    \begin{messcall}{a}{status(\emph{"Starting"})}{c}
+    \end{messcall}
+    
+    \begin{messcall}{c}{update(\emph{"Starting"})}{r}
+    \end{messcall}
+    
+    
+    \begin{call}{u}{getStatus()}{r1}{\emph{"Starting"}}
+    \end{call}
+  \end{sequencediagram}
+  
+  \caption{CloudML asynchronous provisionning process (Sequence diagram).}
+  \label{fig:sequence-threenodes}
+\end{figure}
