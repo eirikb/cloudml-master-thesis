@@ -273,8 +273,17 @@ The core idea of integration and benefits of these approaches are:
     When a meal is done the chef can inform the correct waiter (one associated with correct table).
     The benefit here is that the message is decoupled and asynchronous, so the chef can start
     working on the next meal without waiting for the waiter to return.
-  \item[Publish-subscribe pattern.] Messages are distributed through \emph{events}.
-    This solution expects some network communication.
+  \item[Publish-subscribe pattern.] This pattern is very similar to observer pattern in behavior,
+    but is more focused on message distribution logic.
+    Compared to observer pattern the \emph{observable} can be considered a \emph{publisher} and
+    \emph{observers} can be called \emph{subscribers}.
+    When a \emph{publisher} send a message it does not send it directly to any receivers,
+    instead there is a filter-based logic which selects receivers based on condition they set themselves.
+    In the restaurant example, similar to that with observer pattern, the chef is \emph{publisher}
+    and both waiters are \emph{subscribers}.
+    When the chef completes a meal he or she notify the waiters based on their \emph{conditions},
+    \eg the first waiter listen for events of type \emph{TableA}, \emph{TableB} and \emph{TableC}.
+    If the finished meal was assigned for table $A$ the first waiter would get the message.
 \end{description}
 Of these solutions the most promising one is \emph{actor model} because it is more directly aimed
 at solving asynchronous communication.
