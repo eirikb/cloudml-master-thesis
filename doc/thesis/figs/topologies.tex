@@ -46,17 +46,20 @@
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
-        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
-        \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
+        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end 1} };
+        \node (Frontend2) [class, below=of Frontend1, yshift=.5cm] { \textbf{Front-end 2} };
+        \node (Frontendn) [class, below=of Frontend2] { \textbf{Front-end n} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
 
         \draw[extend] (Browser.east) -- (LoadBalancer.west);
         \draw[extend] (LoadBalancer.east) -- (Frontend1.west);
         \draw[extend] (LoadBalancer.east) -- (Frontend2.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontendn.west);
         \draw[extend] (Frontend1.east) -- (Backend.west);
         \draw[extend] (Frontend2.east) -- (Backend.west);
+        \draw[extend] (Frontendn.east) -- (Backend.west);
 
-        \draw[loosely dotted, line width=3pt] (Frontend1.south) -- (Frontend2.north);
+        \draw[loosely dotted, line width=3pt] (Frontend2.south) -- (Frontendn.north);
       \end{tikzpicture}
       \label{fig:frontends}
     }
@@ -65,21 +68,27 @@
       \begin{tikzpicture}[scale=0.6, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
-        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
-        \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
+        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end 1} };
+        \node (Frontend2) [class, below=of Frontend1, yshift=.5cm] { \textbf{Front-end 2} };
+        \node (Frontendn) [class, below=of Frontend2] { \textbf{Front-end n} };
         \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end master} };
-        \node (Slave1) [class, right=of Backend, yshift=1cm] { \textbf{Slave} };
-        \node (Slave2) [class, below=of Slave1, yshift=-1cm] { \textbf{Slave} };
+        \node (Slave1) [class, right=of Backend, yshift=1cm] { \textbf{Slave 1} };
+        \node (Slave2) [class, below=of Slave1, yshift=.5cm] { \textbf{Slave 2} };
+        \node (Slaven) [class, below=of Slave2] { \textbf{Slave n} };
 
         \draw[extend] (Browser.east) -- (LoadBalancer.west);
         \draw[extend] (LoadBalancer.east) -- (Frontend1.west);
         \draw[extend] (LoadBalancer.east) -- (Frontend2.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontendn.west);
         \draw[extend] (Frontend1.east) -- (Backend.west);
         \draw[extend] (Frontend2.east) -- (Backend.west);
+        \draw[extend] (Frontendn.east) -- (Backend.west);
         \draw[extend] (Backend.east) -- (Slave1.west);
         \draw[extend] (Backend.east) -- (Slave2.west);
+        \draw[extend] (Backend.east) -- (Slaven.west);
 
-        \draw[loosely dotted, line width=3pt] (Frontend1.south) -- (Frontend2.north);
+        \draw[loosely dotted, line width=3pt] (Frontend2.south) -- (Frontendn.north);
+        \draw[loosely dotted, line width=3pt] (Slave2.south) -- (Slaven.north);
       \end{tikzpicture}
       \label{fig:frontendbackends}
     }
