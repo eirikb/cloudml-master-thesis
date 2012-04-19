@@ -244,12 +244,26 @@ Provisioning nodes is by its nature an asynchronous action that can take minutes
 For CloudML to compensate with this asynchronous behavior several approaches could be made,
 as mentioned in \citechap{requirements}, \eg command pattern, actor model,
 or publish-subscribe pattern.
+Patterns tightly bound to using an object-oriented language for \citereq{foundation}.
 The core idea of integration and benefits of these approaches are:
 \begin{description}
-  \item[Observer pattern.] \ldots
-  \item[Command pattern.] Simple and well known design pattern. 
-    This is tightly bound to using an object-oriented language for \citereq{foundation}.
-  \item[Actor model.] Solve the problem with asynchronous communication through passing messages.
+  \item[Observer pattern.] The essence of this pattern is a one-to-many distribution of events between objects.
+    This can be explained with a restaurant as an example, with one chef and two waiters.
+    The chef is \emph{observable} and the two waiters are \emph{observers}.
+    The chef does some work (cooking), and when he is complete with a dish he notify all observers.
+    Now the observers receive this event and can act upon it, 
+    \eg the first waiter ignores the dish because it does not belong to any of his or her tables, 
+    while the other waiter takes the dish to appropriate table.
+  \item[Command pattern.] Is about encapsulating data and logic. 
+    Implementations have a known method, \eg \emph{execute} which comes from an \emph{interface}.
+    So logic could be transparent when invoking them.
+    In the restaurant-example one can consider a general \emph{waiter} to be the interface,
+    and the two waiters would each be separate implementations, 
+    \eg \emph{TableAToC} and \emph{TableDToH}.
+    When the chef \emph{invokes} the method \emph{execute} on any type of \emph{waiter} he does not
+    need to know anything about their implementation, each waiter will know themselves which table to visit.
+  \item[Actor model.] Solve the problem with asynchronous communication through passing messages
+    in between \emph{actors}.
   \item[Publish-subscribe pattern.] Messages are distributed through \emph{events}.
     This solution expects some network communication.
 \end{description}
