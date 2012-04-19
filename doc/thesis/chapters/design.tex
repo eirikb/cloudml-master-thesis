@@ -264,6 +264,15 @@ The core idea of integration and benefits of these approaches are:
     need to know anything about their implementation, each waiter will know themselves which table to visit.
   \item[Actor model.] Solve the problem with asynchronous communication through passing messages
     in between \emph{actors}.
+    These messages are decoupled from the sender, resulting in proper asynchronous communication.
+    Actors can also create new actors.
+    With the restaurant-example one can imagine all three elements, \ie chef, first and second waiter,
+    to be individual actors.
+    The chef must know about the first waiter, 
+    but the waiters do not necessarily need to know about each other.
+    When a meal is done the chef can inform the correct waiter (one associated with correct table).
+    The benefit here is that the message is decoupled and asynchronous, so the chef can start
+    working on the next meal without waiting for the waiter to return.
   \item[Publish-subscribe pattern.] Messages are distributed through \emph{events}.
     This solution expects some network communication.
 \end{description}
