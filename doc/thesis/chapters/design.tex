@@ -14,7 +14,7 @@ The scenario also describe parts of the implementation design through how it is 
 
 \paragraph{Scenarios introduction.}
 
-CloudML is introduced by using a scenario where a user named ``Alice'' is provisioning the 
+CloudML is introduced by using two different scenarios where a user named ``Alice'' is provisioning the 
 \emph{BankManager} application from \citechap{challenges} to the \myac{AWS} cloud.
 It is compulsory that she possesses an \myac{AWS} account in advance of the scenario.
 This is essential information needed for the scenario to be successful,
@@ -22,7 +22,7 @@ and since she is indirectly using \myac{AWS} \myac{API}s,
 she must also have \emph{security credentials},
 \ie \emph{Access Key ID} and \emph{Secret Access Key}.
 
-The roles assumed by Alice this scenario, regarding \citefig{big-picture},
+The roles assumed by Alice in this scenario, regarding \citefig{big-picture},
 are both \emph{cloud expert} and \emph{users}.
 She will define the topologies, create the templates and use 
 the \emph{engine} to provision her models.
@@ -36,7 +36,7 @@ She associates \emph{Access Key ID} and \emph{Secret Access Key} with
 \texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
 The \texttt{Connector} is a common interface against supported providers.
 This component of CloudML is directly associated with \citereq{multicloud}.
-\texttt{Credential} is in this case in the form of an Access Key ID (random GUID),
+\texttt{Credential} is in this case in the form of an \texttt{Access Key ID} (random GUID),
 but with other providers it might be in another form, \eg a username for Rackspace.
 Although the form is different, the physical object type (String) is the same.
 
@@ -44,13 +44,13 @@ Although the form is different, the physical object type (String) is the same.
 
 Initially she is using the topology shown in~\citefig{singlenode}.
 This topology introduces a single node, which hosts every tier of the application.
-This is not an uncommon topology for development purpose.
+This is not an uncommon topology for development purposes.
 
 \paragraph{Topology considerations.}
 
 Alice establishes a \emph{single-node} based topology, as seen in \citefig{singlenode}.
-Since this single node handles both computation and storage Alice decides to 
-increase capabilities of both processing (number of \texttt{Cores}) and 
+Since this single node handles both computation and storage, 
+Alice decides to increase capabilities of both processing (number of \texttt{Cores}) and 
 \texttt{Disk} size on the \texttt{Node}.
 Both of these attributes are incremented because the instance hosts
 the main application as well as the database.
@@ -63,10 +63,10 @@ the address of other components are determined to be ``this computer'' (\emph{lo
 \paragraph{Building templates.}
 
 In the end Alice inserts all data about topologies into a \texttt{Template}. 
-The template include physical descriptions of \texttt{Node},
-and a list of the type \texttt{Property} for each node.
-Every \texttt{Node} has a \texttt{name} used to reference the node under provisioning.
-The properties a node can have configurations of attributes on a set of given capabilities.
+The template include physical descriptions of the \texttt{Node},
+and a list of the type \texttt{Property} for the node.
+The \texttt{Node} has a \texttt{name} used to reference the node under provisioning.
+The properties the node can have are configurations of attributes on a set of given capabilities.
 These configurations are what define what type of tasks a node is suitable for.
 In Alice's case the node has increased two important attributes to support both higher computation 
 demand and storage capabilities, \ie $2$ cores and $2000$ \myac{GB}
@@ -123,9 +123,11 @@ For scalability and modularity the \emph{single-node} approach is restraining,
 If the application consumes too much \myac{CPU} power, 
 this slows the application totality down and decreases usability.
 There is no strong link between CloudML and the application, but to maintain
-scalability some measurements must be manually developed into \emph{BankManager}.
+scalability some measures must be manually developed into \emph{BankManager}.
 So the initial application code includes support for work load distribution through 
 application design and deployment considerations.
+In \emph{BankManager} these measures consists of manually setting 
+physical database address before deploying the application.
 
 In the described scenario, Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
 In many cases this setup is sufficient, but major advantages
@@ -133,7 +135,7 @@ could be gained through the opportunity of horizontal scalability (\emph{scale o
 There are distinct benefits to this.
 If Alice deployed an application that should suddenly, 
 rapidly and unexpectedly gain popularity, her current setup (one single node) might not be sufficient.
-In case of such event Alice should change her topology from the one seen in 
+In case of such event Alice should change her topology from her initial one seen in 
 \citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes.
 Or even the topology seen in \citefig{frontends}, with ``unlimited'' amount of nodes.
 This topology is more advanced and utilizes the cloud on a higher level.
@@ -141,11 +143,11 @@ It has three nodes, two for the application logic (front-end) and one for the da
 In front it has a \emph{load balancer}, which is a cloud service ensuring that requests
 are spread between front-end nodes based on predefined rules.
 Even though this service is meant for balancing requests to front-ends,
-it can actually be used internally in between local nodes.
+it can actually be used internally in between local nodes as well.
 
 \paragraph{New template.}
 
-Alice changes her topology by editing her existing \texttt{Template} files 
+Alice changes her topology by editing her existing \texttt{Template} 
 to contain three nodes instead of one. 
 She also changes the node attributes to suite their new needs better,
 \ie increasing amount of \texttt{Cores} on front-end, and increased \texttt{Disk} for back-end \texttt{Node}.
@@ -161,17 +163,17 @@ which will provision the new nodes for her.
 She will get three new nodes, and the previous provisioned nodes must be manually terminated.
 More about this in \citechap{perspectives}.
 The outline of how nodes are provisioned is shown in \citefig{sequence-threenodes-1}.
-In the figure \texttt{RI} is an abbreviation of RuntimeInstance, to save space.
+In the figure \texttt{RI} is an abbreviation of \texttt{RuntimeInstance}, to save space.
 It is also split into three parts expressing different steps, 
 \begin{ii}
   \iitem provisioning, 
   \iitem node communications and
   \iitem how a load balancer service is established.
-\end{ii}.
+\end{ii}
 This figure is similar to \citefig{sequence-singlenode}, but with three nodes instead of one.
 Both percept \iii{1} and \iii{2} are found in \citefig{sequence-singlenode}.
 Another difference is that \texttt{User} does more calls to \texttt{CloudML},
-which express how statuses between \texttt{RI}s is updating.
+which express how statuses between \texttt{RI}s are updating.
 
 When connecting front-end instances of \emph{BankManager} to back-end instances Alice must 
 be aware of the back-ends \texttt{PrivateIP} address, which she will retrieve from CloudML
@@ -208,7 +210,7 @@ Alice could later decide to use another provider, either as replacement or compl
 because of availability, financial benefits or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
 this will result in an identical topological setup on a supported provider.
-\texttt{UserLibrary} visualizes that \texttt{Account} and \texttt{Template} are 
+\texttt{UserLibrary} in \citefig{figs/meta-model} visualizes that \texttt{Account} and \texttt{Template} are 
 physical parts maintainable by the user.
 
 The \texttt{build} method support provisioning of several templates to one account (same provider).
@@ -216,7 +218,7 @@ There is also a constraint/limitation, a set of templates can not be simultaneou
 cross-deployed to different providers,
 \ie not possible to define cross-provider (\emph{multicloud}) nodes in a single topology.
 This is for the sake of tidiness, clarity and technical limitations.
-CloudML will support multicloud provisioning,
+CloudML support multicloud provisioning,
 just that such functionality is achieved by sequential re-provisioning,
 which will not retain a full multicloud deployment.
 
@@ -275,9 +277,9 @@ The core idea of integration and benefits of these approaches are:
 \begin{description}
   \item[Observer pattern.] The essence of this pattern is a one-to-many distribution of events between objects.
     This can be explained with a restaurant as an example, with one chef and two waiters.
-    The chef is \emph{observable} and the two waiters are \emph{observers}.
+    The chef is an \emph{observable} and the two waiters are \emph{observers}.
     The chef does some work (cooking), and when he or she is complete with a dish all observers are notified.
-    Now the observers receive this event and can act upon it, 
+    The observers receive this event and can act upon it, 
     \eg the first waiter ignores the dish because it does not belong to any of his or her tables, 
     while the other waiter takes the dish to appropriate table.
   \item[Command pattern.] Is about encapsulating data and logic. 
@@ -288,8 +290,8 @@ The core idea of integration and benefits of these approaches are:
     \eg \emph{TableAToC} and \emph{TableDToH}.
     When the chef \emph{invokes} the method \emph{execute} on any type of \emph{waiter}, 
     he or she does not need to know anything about their implementation, 
-    each waiter will know themselves which table to visit.
-  \item[Actor model.] Solve the problem with asynchronous communication through passing messages
+    each waiter will know by themselves which table to visit.
+  \item[Actor model.] Solves the problem with asynchronous communication through passing messages
     in between \emph{actors}.
     These messages are decoupled from the sender, resulting in proper asynchronous communication.
     Actors can also create new actors.
@@ -304,7 +306,7 @@ The core idea of integration and benefits of these approaches are:
     but is more focused on message distribution logic.
     Compared to observer pattern the \emph{observable} can be considered a \emph{publisher} and
     \emph{observers} can be called \emph{subscribers}.
-    When a \emph{publisher} send a message it does not send it directly to any receivers,
+    When a \emph{publisher} sends a message it does not send it directly to any receivers,
     instead there is a filter-based logic which selects receivers based on condition they set themselves.
     In the restaurant example, similar to that with observer pattern, the chef is \emph{publisher}
     and both waiters are \emph{subscribers}.
@@ -316,9 +318,21 @@ Of these solutions the most promising one is \emph{actor model} because it is mo
 at solving asynchronous communication.
 The other solutions can provide assistance by accommodating communications through events, 
 but by them selves they do not solve the issue of slow provisioning.
-The actor model can be implemented in many different ways, even on different tiers.
+An interesting approach is to combine the \emph{actor model} with one of the patterns.
+By doing this the behavior functionality is combined with the asynchronous benefits within the actor model.
+Of the previous mentioned patterns only \emph{observer} and \emph{publish-subscribe} patterns 
+fit well with designed behavior of CloudML.
+Of these \emph{publish-subscribe} is the most scalable and dynamic one (in runtime),
+but also the most complicated.
+When combining the \emph{actor model} with such pattern it is important to keep the implementation
+as simple as possible, without withholding functionality.
+Hence the best solution for CloudML is to combine \emph{actor model} with \emph{observer pattern}.
+
+The \emph{actor model} can be implemented in many different ways, even on different tiers.
 Both requirement \citereq{foundation} and \citereq{software-reuse} can assist with either
 a built-in functionality in the language, environment or an external library or framework.
+The observer pattern can be implemented in many ways,
+\eg using \texttt{java.util.Observer} and \texttt{java.util.Observable}.
 
 \subsection{Lexical format.}
 
@@ -336,10 +350,9 @@ The important aspects of a lexical format for CloudML are:
     The language will be used directly by these parties, so it is beneficial
     that they are familiar with the syntax.
   \item Integrates (supporting libraries) with most common existing technologies.
-    The range of technological foundations (\citereq{foundation}) should not be
-    limited by the format.
+    The range of \citereq{foundation} should not be limited by the format.
   \item Human-readable, to some extent.
-    End users need to create and edit these files, often by hand.
+    End users needs to create and edit these files, often by hand.
     Therefore it must be readable and manually maintainable.
   \item Function with web-services and web-based technologies.
     CloudML is a language designed for \emph{cloud environments},
