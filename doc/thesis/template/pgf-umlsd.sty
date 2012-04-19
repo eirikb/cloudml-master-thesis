@@ -253,8 +253,8 @@ Sequence Diagrams.]
 }
 
 % the environment of sequence diagram
-\newenvironment{sequencediagram}{
-  \begin{tikzpicture}
+\newenvironment{sequencediagram}[1][]{
+  \begin{tikzpicture}[#1]
     \setlength{\unitlength}{1cm}
     \tikzstyle{sequence}=[coordinate]
     \tikzstyle{inststyle}=[rectangle, draw, anchor=west, minimum
