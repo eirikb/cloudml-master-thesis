@@ -2,20 +2,20 @@
   \begin{sequencediagram}
     \newthread{u}{:User}
     \newthreadhack{c}{:CloudML}
-    \newinst{r}{:RuntimeInstance}
+    \newinst{r}{r:RuntimeInstance}
     \newthread{a}{:AWS}
     
-    \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{List(\texttt{RuntimeInstance})}
+    \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{List(\texttt{r})}
       \begin{call}{c}{Initialize()}{r}{}
       \end{call}
     \end{call}
-    \begin{messcall}{c}{provision node}{a}
+    \begin{messcall}{c}{provision(\texttt{r})}{a}
     \end{messcall}
     
     \begin{call}{u}{getStatus()}{r}{\emph{"Building"}}
     \end{call}
     
-    \begin{messcall}{a}{status(\emph{"Starting"})}{c}
+    \begin{messcall}{a}{status(\texttt{r}, \emph{"Starting"})}{c}
     \end{messcall}
     
     \begin{messcall}{c}{update(\emph{"Starting"})}{r}
