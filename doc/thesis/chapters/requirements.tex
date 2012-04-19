@@ -158,14 +158,13 @@ so the core idea is to fetch this kind of data directly from models@run.time.
 The approach for this requirement is to find sufficient solutions for such models,
 and at the same time keep in mind the dependency towards \citereq{foundation}.
 There are several different approaches that could be made when implementing 
-these models, such as using:
-\begin{description}
-  \item[Java.] Standard Java classes and expect users to do \emph{short polling} (client 
-  must poll for updates at a set interval, \eg every 5 seconds).
-  \item[Command pattern.] Send events on node updates.
-  \item[Actor model.] Enhance asynchronous support and modularity.
-  \item[Publish subscribe pattern.] Let users subscribe to events of updating instances.
-\end{description}
+these models, such as using
+\begin{ii}
+  \iitem observer pattern,
+  \iitem command pattern,
+  \iitem actor model or
+  \iitem publish-subscribe pattern.
+\end{ii}
 It is also possible to combine one or several of these approaches.
 What needs to be done here is to identify which approaches that are most sufficient 
 in regards to 
