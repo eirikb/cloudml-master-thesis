@@ -11,33 +11,31 @@
           minimum width=12cm, minimum height=5cm, xshift=9cm, yshift=0cm] {};
 
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
-        \node (Frontend1) [class, right=of LoadBalancer, yshift=1cm] { \textbf{Front-end} };
-        \node (Frontend2) [class, below=of Frontend1, yshift=-1cm] { \textbf{Front-end} };
-        \node (Backend) [class, right=of Frontend1, yshift=-1cm] { \textbf{Back-end} };
+        \topologyntimes{right=of LoadBalancer}{Frontend}{Front-end}
+        \node (Backend) [class, right=of Frontend-1, yshift=-1cm] { \textbf{Back-end} };
 
         \node (Backend-master) [class, below=of Backend, yshift=-5cm] { \textbf{Back-end master} };
 
         \node (Rackspace) [rectangle, draw, rounded corners, left of=Backend-master, 
           minimum width=12cm, minimum height=5cm, xshift=-2.5cm, label=below:Rackspace] {};
 
-        \node (Slave1) [class, left=of Backend-master, yshift=1cm] { \textbf{Slave} };
-        \node (Slave2) [class, below=of Slave1, yshift=-1cm] { \textbf{Slave} };
-
+        \topologyntimes{left=of Backend-master}{Slave}{Slave}
 
         \draw[extend] (Browser.east) -- (LoadBalancer.west);
-        \draw[extend] (LoadBalancer.east) -- (Frontend1.west);
-        \draw[extend] (LoadBalancer.east) -- (Frontend2.west);
-        \draw[extend] (Frontend1.east) -- (Backend.west);
-        \draw[extend] (Frontend2.east) -- (Backend.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend-1.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend-2.west);
+        \draw[extend] (LoadBalancer.east) -- (Frontend-n.west);
+        \draw[extend] (Frontend-1.east) -- (Backend.west);
+        \draw[extend] (Frontend-2.east) -- (Backend.west);
+        \draw[extend] (Frontend-n.east) -- (Backend.west);
 
         \draw[extend] (Backend) -- (Backend-master);
-        \draw[extend] (Backend-master.west) -- (Slave1.east);
-        \draw[extend] (Backend-master.west) -- (Slave2.east);
-
-        \draw[loosely dotted, line width=3pt] (Frontend1.south) -- (Frontend2.north);
+        \draw[extend] (Backend-master.west) -- (Slave-1.east);
+        \draw[extend] (Backend-master.west) -- (Slave-2.east);
+        \draw[extend] (Backend-master.west) -- (Slave-n.east);
       \end{tikzpicture}
   \end{center}
 
-  \caption{Multicloud topology.
+  \caption{Multicloud topology.}
   \label{fig:topology-multicloud}
 \end{figure}
