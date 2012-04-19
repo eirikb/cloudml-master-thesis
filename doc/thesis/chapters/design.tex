@@ -204,7 +204,6 @@ for the reasons mentioned earlier.
 \subsection{Multicloud provisioning}
 \input{figs/topology-multicloud}
 
-Hello \\
 Alice could later decide to use another provider, either as replacement or complement to her current setup,
 because of availability, financial benefits or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
@@ -220,6 +219,17 @@ This is for the sake of tidiness, clarity and technical limitations.
 CloudML will support multicloud provisioning,
 just that such functionality is achieved by sequential re-provisioning,
 which will not retain a full multicloud deployment.
+
+\paragraph{\myac{AWS} and Rackspace combined.}
+
+To describe the layout of a multicloud provisioning with CloudML,
+a scenario is invented and a complementary figure is crafted.
+In the new scenario Alice creates a topology spanning over two providers,
+as seen in \citefig{topology-multicloud}.
+The first \ldots MORE TO COME!
+
+\ie both \myac{AWS} and Rackspace.
+
 
 \mysection{technological-assessments}{Technological assessments and considerations}
 
