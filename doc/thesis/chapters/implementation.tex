@@ -30,22 +30,30 @@ The importance of a \emph{programming language} and \emph{environment} were
 described in \citesec{technological-assessments}.
 These are core ideas to fulfill \citereq{foundation}, emphasizing the importance of a strong foundation.
 Here is a list describing some of the languages and environments considered:
-\begin{description}
-  \item[Java (\myac{JVM}).] Well known and recognized in both the enterprise domain, as well as the academic world.
-    Support object-oriented programming and a vast amount of libraries are supported by the \myac{JVM}.
-  \item[JavaScript (Node.js).] A newer and unfamiliar type of technology which has yet to 
-    make a large footprint in the two domains. 
-    It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follows a 
-    CommonJS-based module pattern over an event-driven architecture.
-  \item[Scala (\myac{JVM}).] Same environment as Java, 
-    but a more modern language which focuses and supports both 
-    object-oriented programming and functional programming.
-    This language is gaining popularity among both the academic and enterprise domain.
-    Libraries supported by Java are also supported by Scala.
-  \item[Python.] Well known in the academic world. Follows both object-oriented and functional programming as
-    Scala.
-  \item[C\# (.NET).] Language and environment by Microsoft.
-\end{description}
+\begin{itemize}
+  \item Java (\myac{JVM})
+  \item JavaScript (Node.js)
+  \item Scala (\myac{JVM})
+  \item Python
+  \item C\# (.NET)
+\end{itemize}
+
+
+%\begin{description}
+%  \item[Java (\myac{JVM}).] Well known and recognized in both the enterprise domain, as well as the academic world.
+%    Support object-oriented programming and a vast amount of libraries are supported by the \myac{JVM}.
+%  \item[JavaScript (Node.js).] A newer and unfamiliar type of technology which has yet to 
+%    make a large footprint in the two domains. 
+%    It is based on the \myac{JIT}-powered JavaScript engine V8 created by Google and follows a 
+%    CommonJS-based module pattern over an event-driven architecture.
+%  \item[Scala (\myac{JVM}).] Same environment as Java, 
+%    but a more modern language which focuses and supports both 
+%    object-oriented programming and functional programming.
+%    Libraries supported by Java are also supported by Scala.
+%  \item[Python.] Well known in the academic world. Follows both object-oriented and functional programming as
+%    Scala.
+%  \item[C\# (.NET).] Language and environment by Microsoft.
+%\end{description}
 Languages in this list are introduced because of their overall popularity.
 Some were introduced despite this, such as \emph{Node.js}, 
 which is brought in as an consideration because of the abilities to operate
@@ -53,13 +61,33 @@ with \myac{JSON}, cloud interaction and modernity.
 
 Based on these considerations Scala is a good choice, it fulfills the core ideas and match
 the requirement \citereq{foundation}:
-\begin{itemize} 
-  \item \myac{JVM} is a popular platform, and then especially Java.
-  \item Compatible with Java and libraries written in Scala can be interacted with by Java as well.
-  \item The reason not to use plain Java is because Scala is an appealing state-of-the-art language.
-  \item Emphasizes on functional programming which is leveraged in the implementation.
-  \item Built in system for actor model~\cite{actors:haller07}, which is utilized in the implementation.
-\end{itemize}
+\begin{description} 
+  \item[Ease of use.]
+    Scala is a \emph{state-of-the-art} language with many technological advantages,
+    \eg supporting both functional and object-oriented programming.
+    With both paradigms imperative programmers such as Java developers as well as functional
+    programmers such as Clojure developers would be familiar with the language design.
+    
+    Emphasizes on functional programming which is leveraged in the implementation.
+    Built in system for actor model~\cite{actors:haller07}, which is utilized in the implementation.
+    This also assists in relation to \citereq{m@rt}.
+
+    \myac{JVM} is a popular platform, as the main platform for Java.
+    Scala runs on the \myac{JVM}, which means that all the libraries and work put into Java
+    over the years can be utilized directly by Scala.
+  \item[Community size.]
+    This language is gaining popularity among both the academic and enterprise domain.
+  \item[Closed/open source.] Scala is open source.
+  \item[Modernity.]
+    The reason not to use plain Java is because Scala is an appealing \emph{state-of-the-art} language.
+    The language is under constant development and new features and enhancements keeps improving
+    the language.
+  \item[Matureness.]
+    Compatible with Java and libraries written in Scala can be interacted with by Java as well.
+    This means that even though Scala is chosen for the implementation of CloudML,
+    it can still be used by other languages supported by the \myac{JVM},
+    \eg Java, Groovy and Clojure.
+\end{description}
 Based on these benefits Scala is chosen, and \emph{cloudml-engine} is written in this language.
 
 \paragraph{Automatic build system.}
