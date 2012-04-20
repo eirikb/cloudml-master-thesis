@@ -1,6 +1,6 @@
 \begin{figure}[tb]
   \begin{center}
-    \subfigure[Application modules]{
+    \subfigure[Application module dependencies]{
       \begin{tikzpicture}[scale=0.8, transform shape]
         \node (AuxNode01) [text width=4cm] {};
         \node (Engine) [class, left=of AuxNode01, rectangle split, rectangle split parts=2] { 
@@ -28,6 +28,21 @@
         \draw [arrow] (Cloud-Connector) -- (Repository.east);
         \draw [arrow] (Repository) -- (Kernel);
         \draw [extend] (AuxNode02) -- (Engine);
+      \end{tikzpicture}
+    }
+
+    \subfigure[Application module orchestration/flow]{
+      \begin{tikzpicture}[scale=0.8, transform shape]
+        \node (Engine) [class] { \textbf{Engine} };
+        \node (Kernel) [class, below=of Engine] { \textbf{Kernel} };
+        \node (Repository) [class, above=of Engine] { \textbf{Repository} };
+        \node (Cloud-Connector) [class, right=of Engine] { \textbf{Cloud-Connector} };
+        \node (AuxNode01) [left=of Engine] {};
+
+        \draw [arrow, <->] (Engine) -- node[right] {2} (Kernel);
+        \draw [arrow, <->] (Engine) -- node[right] {3} (Repository);
+        \draw [arrow, <->] (Engine) -- node[above] {4} (Cloud-Connector);
+        \draw [extend, <->] (AuxNode01) -- node[above]{1} node[below]{5} (Engine);
       \end{tikzpicture}
     }
 
