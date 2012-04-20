@@ -1,4 +1,4 @@
-\def\top{
+\def\topthreenodes {
   \newthread{u}{:User}
   \newthreadhack{c}{:CloudML}
   \newinst{r1}{r1:RI}
@@ -10,7 +10,7 @@
 \begin{figure}[tb]
   \centering
   \begin{sequencediagram}[scale=0.9, transform shape]
-    \top
+    \topthreenodes
     \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{
         List(\texttt{r1}, \texttt{r2}, \texttt{r3})}
     \begin{call}{c}{Initialize()}{r1}{}
@@ -29,8 +29,8 @@
 \end{figure}
 \begin{figure}[tb]
   \centering
-  \begin{sequencediagram}[scale=0.9, transform shape]
-    \top
+  \begin{sequencediagram}[scale=0.8, transform shape]
+    \topthreenodes
     \begin{call}{u}{getStatus()}{r1}{\emph{"Building"}}
     \end{call}
     \begin{call}{u}{getStatus()}{r2}{\emph{"Building"}}
@@ -69,11 +69,7 @@
 \begin{figure}[tb]
   \centering
   \begin{sequencediagram}[scale=0.9, transform shape]
-    \newthread{u}{:User}
-    \newthreadhack{c}{:CloudML}
-    \newinst{r1}{r1:RI}
-    \newinst{r2}{r2:RI}
-    \newinst{r3}{r3:RI} \newthread{a}{:AWS}
+    \topthreenodes
 
     \begin{messcall}{a}{status(\texttt{r3}, \emph{"Starting"})}{c}
     \end{messcall}
