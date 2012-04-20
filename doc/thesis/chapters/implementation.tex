@@ -84,65 +84,13 @@ languages supported by the \myac{JVM}.
 This is best achieved by using Maven, as \myac{SBT} is directed at Scala.
 More about the module dependencies in \citesec{dependencies}.
 
-\mysection{modules}{Modules and application flow}
-
-\emph{Cloudml-engine} is divided into four main modules~(\citefig{cloudml-engine}).
-This is to distribute workload and divide \emph{cloudml-engine} into logical parts for different tasks.
-
-\paragraph{Engine.} 
-
-\input{figs/cloudml-engine-usage}
-\input{figs/cloudml-engine}
-\input{figs/cloudml-engine-flow}
-
-The main entry point to the application is \texttt{Engine}, this is a \emph{Scala Object} used to initialize provisioning.
-A \emph{Scala Object} works as a \emph{singleton}, 
-\ie it does not have to be initialized and there exists only one instance of it.
-Interaction between \texttt{user} and \texttt{Engine} is expressed in \citefig{cloudml-engine-flow} 
-where the user will initialize provisioning by calling \texttt{Engine}.
-\texttt{Engine} will also do orchestration between the three other modules
-as shown in \citefig{cloudml-engine-orchestartion}.
-Since \texttt{Cloud-connector} is managed by \texttt{Engine},
-other actions run against instances are done through \texttt{Engine}.
-The first versions of \emph{cloudml-engine} did not use \texttt{Engine} as orchestrator but
-instead relied on each module to be a sequential step, this proved to be harder to maintain
-and also introduced cyclic dependencies.
-\texttt{Engine} has dependencies to all the other modules,
-as expressed in \citefig{cloudml-engine-dependencies}.
-
-\paragraph{Kernel.} 
-
-CloudML specific entities are kept in \texttt{Kernel},
-such as \texttt{Node} and \texttt{Template}.
-This is some of the core parts of the \myac{DSL}, hence it is called \emph{\texttt{Kernel}}.
-The logical task of \texttt{Kernel} is to map \myac{JSON} formatted strings to 
-\texttt{Templates} including \texttt{Nodes}.
-\texttt{Accounts} are separate parts that are parsed equally as \texttt{Templates},
- but by another method call. All this is transparent for users as all data will
-be provided directly to \texttt{Engine} which will handle the task
-of calling \texttt{Kernel} correctly.
-In \citefig{cloudml-engine-dependencies} is it shown that \texttt{Kernel}
-has no dependency to other modules, while all the other modules depend on \texttt{Kernel}.
-This stresses the fact that \texttt{Kernel} is the most fundamental part,
-closest to the \myac{DSL}.
-According to \citefig{cloudml-engine-orchestration} \texttt{Kernel} is the first module
-to be called by \texttt{Engine}, as it will convert incoming text (\emph{String})
-to internal format of \texttt{Nodes}.
-
-\paragraph{Repository.} 
-
-\texttt{Instance} are entities within \texttt{Repository},
-these are equivalent to \texttt{Nodes} in \texttt{Kernel},
-but are specific for provisioning.
-Repository will do a mapping from \emph{Nodes} (including \emph{Template})
-to \emph{Instances}. Future versions of \texttt{Repository} will also do some logical superficial validation
-against \emph{Node} properties.
-At the writing moment (\date{April 2012}) it is not possible to 
-demand load balancers (as a service) on Rackspace for specific geographical locations.
-
 \mysection{dependencies}{Internal and external dependencies}
+\input{figs/cloudml-engine-usage}
 \input{figs/pom-example}
 \input{figs/dependency-graph}
+
+%this is a \emph{Scala Object} used to initialize provisioning.
+%A \emph{Scala Object} works as a \emph{singleton}, 
 
 Maven support modules which were used to split \emph{cloudml-engine} into the appropriate 
 modules as shown in~\citefig{cloudml-engine}. 
