@@ -4,28 +4,29 @@
     \begin{tikzpicture}
       \stickman{User}{User}
 
-      \node[box, right=of User, minimum width=3.8cm, minimum height=3.5cm, xshift=1cm, yshift=-1cm] (System) {};
+      \node[box, right=of User, minimum width=3.8cm, minimum height=3.5cm, xshift=1cm, yshift=-1cm,
+        label=below:Cloudml-engine] (System) {};
       \node[box, right=of User, xshift=2cm, yshift=-0cm] (Engine) {Engine};
-      \node[box, below=of Engine, yshift=0.5cm] (Cloud-Connector) {Cloud-Connector};
-      \node[box, below=of Cloud-Connector, yshift=0.5cm] (RuntimeInstance) {RuntimeInstance};
+      \node[box, below=of Engine, yshift=0.5cm] (Cloud-connector) {Cloud-connector};
+      \node[box, below=of Cloud-connector, yshift=0.5cm] (RuntimeInstance) {RuntimeInstance};
 
       \node (Rackspace) [tcloud, right=of System, xshift=0.5cm, yshift=1.5cm] {Rackspace};
-      \node (EC2) [tcloud, below=of Rackspace] {EC2};
+      \node (EC2) [tcloud, below=of Rackspace, label=below:Cloud providers] {EC2};
 
       \draw[arrow] (User.east) -- (Engine.west);
-      \draw[arrow] (Engine.south) -| (Cloud-Connector.north);
+      \draw[arrow] (Engine.south) -| ($(Cloud-connector.north) + (0, .1cm)$);
 
-      \draw[arrow] (Cloud-Connector.east) -- (Rackspace.west);
-      \draw[arrow] (Cloud-Connector.east) -- (EC2.west);
+      \draw[arrow] ($(Cloud-connector.east) + (.1cm, 0)$) -- (Rackspace.west);
+      \draw[arrow] ($(Cloud-connector.east) + (.1cm, 0)$) -- (EC2.west);
 
-      \draw[arrow] (Cloud-Connector.south) -| (RuntimeInstance.north);
+      \draw[arrow] (Cloud-connector.south) -| ($(RuntimeInstance.north) + (0, .1cm)$);
       \draw[arrow] (RuntimeInstance.west) -- (User.east);
 
-      \node (Label02) [below=of System, xshift=1.2cm] {Cloudml-engine};
-      \node [right=of Label02, xshift=1.2cm] {Cloud providers};
+      %\node (Label02) [below=of System, xshift=1.2cm] {Cloudml-engine};
+      %\node [right=of Label02, xshift=1.2cm] {Cloud providers};
 
     \end{tikzpicture}
   \end{center}
-  \caption{Usage flow in cloudml-engine}
+  \caption{Usage flow in cloudml-engine.}
   \label{fig:cloudml-engine-flow}
 \end{figure}

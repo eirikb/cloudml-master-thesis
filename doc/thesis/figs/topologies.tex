@@ -3,7 +3,7 @@
   text centered, anchor=north, text=black, text width=3.5cm, top color=white, bottom color=black!10]
 
   \begin{center}
-    \subfigure[Single node]{
+    \subfigure[Single node.]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (Node) [class, right=of Browser] { \textbf{Front-end And Back-end} };
@@ -13,7 +13,7 @@
       \label{fig:singlenode}
     }
 
-    \subfigure[Two nodes]{
+    \subfigure[Two nodes.]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (Frontend) [class, right=of Browser] { \textbf{Front-end} };
@@ -25,7 +25,7 @@
       \label{fig:twonodes}
     }
 
-    \subfigure[Three nodes]{
+    \subfigure[Three nodes.]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
@@ -42,7 +42,7 @@
       \label{fig:threenodes}
     }
 
-    \subfigure[Several front-ends]{
+    \subfigure[Several front-ends.]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
@@ -60,7 +60,7 @@
       \label{fig:frontends}
     }
 
-    \subfigure[Several front-ends and back-ends (slaves)]{
+    \subfigure[Several front-ends and back-ends (slaves).]{
       \begin{tikzpicture}[scale=0.6, transform shape]
         \node (Browser) [browser, text width=1.5cm] { \textbf{Browser} };
         \node (LoadBalancer) [tdiamond, right=of Browser] { \textbf{Load balancer} };
@@ -82,7 +82,7 @@
       \label{fig:frontendbackends}
     }
 
-    \subfigure[Legend]{
+    \subfigure[Legend.]{
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Browser) [browser, label=below:Non-system interaction] { Browser };
         \node (Node) [class, right=of Browser, label=below:Provisioned instance] { Node };
