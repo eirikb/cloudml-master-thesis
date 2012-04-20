@@ -204,13 +204,12 @@ The template name is referenced within each \texttt{Instance}
 for the reasons mentioned earlier.
 
 \subsection{Multicloud provisioning}
-\input{figs/topology-multicloud}
 
 Alice could later decide to use another provider, either as replacement or complement to her current setup,
 because of availability, financial benefits or support.
 To do this she must change the provider name in \texttt{Account} and call \texttt{build} on \texttt{CloudMLEngine} again,
 this will result in an identical topological setup on a supported provider.
-\texttt{UserLibrary} in \citefig{figs/meta-model} visualizes that \texttt{Account} and \texttt{Template} are 
+\texttt{UserLibrary} in \citefig{meta-model} visualizes that \texttt{Account} and \texttt{Template} are 
 physical parts maintainable by the user.
 
 The \texttt{build} method support provisioning of several templates to one account (same provider).
@@ -223,15 +222,24 @@ just that such functionality is achieved by sequential re-provisioning,
 which will not retain a full multicloud deployment.
 
 \paragraph{\myac{AWS} and Rackspace combined.}
+\input{figs/topology-multicloud}
 
 To describe the layout of a multicloud provisioning with CloudML,
 a scenario is invented and a complementary figure is crafted.
 In the new scenario Alice creates a topology spanning over two providers,
 as seen in \citefig{topology-multicloud}.
-The first \ldots MORE TO COME!
-
-\ie both \myac{AWS} and Rackspace.
-
+In the figure the user connects to a \texttt{load balancer}, 
+then the request is distributed between a set of \texttt{front-ends} which will 
+retrieve appropriate data from a \texttt{back-end}.
+This is similar to \citefig{threenodes} with three nodes.
+Everything so far is under the realm of \myac{AWS},
+including a \texttt{load balancer}, $n$ amount of nodes for \texttt{front-end} computation
+and one \texttt{back-end} node.
+In this case the \texttt{back-end} does not hold any data, instead it is connected
+to another node \emph{cross provider} to Rackspace.
+On Rackspace a set of nodes are built to hold data,
+one \texttt{back-end master} manages a set of $n$ \texttt{slaves}.
+The \texttt{slave} nodes hold all data.
 
 \mysection{technological-assessments}{Technological assessments and considerations}
 
@@ -260,7 +268,7 @@ The most important aspects are therefore precept \iii{2}, \iii{5} and \iii{6}.
 When a node is being propagated it changes type to 
 \texttt{RuntimeInstance}, which can have a different \emph{state} such as 
 \emph{Configuring}, \emph{Building}, \emph{Starting} and \emph{Started}.
-Considerations for implementation will be described in \citesec{modules}.
+Considerations for implementation are described in \citesec{modules}.
 
 When a \texttt{RuntimeInstance} reaches \emph{Starting} state the provider 
 has guaranteed its existence, including the most necessary metadata.
