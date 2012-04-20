@@ -131,11 +131,14 @@ to internal format of \texttt{Nodes}.
 
 \paragraph{Repository.} 
 
-Has \texttt{Instance} entities, these are equivalent to \texttt{Nodes} in \texttt{Kernel},
-but are specific for provisioning. Repository will do a mapping from \emph{Nodes} (including \emph{Template})
+\texttt{Instance} are entities within \texttt{Repository},
+these are equivalent to \texttt{Nodes} in \texttt{Kernel},
+but are specific for provisioning.
+Repository will do a mapping from \emph{Nodes} (including \emph{Template})
 to \emph{Instances}. Future versions of \texttt{Repository} will also do some logical superficial validation
-against \emph{Node} properties, for instance at the writing moment it is not possible to 
-demand LoadBalancers on Rackspace for specific geographical locations.
+against \emph{Node} properties.
+At the writing moment (\date{April 2012}) it is not possible to 
+demand load balancers (as a service) on Rackspace for specific geographical locations.
 
 \mysection{dependencies}{Internal and external dependencies}
 \input{figs/pom-example}
