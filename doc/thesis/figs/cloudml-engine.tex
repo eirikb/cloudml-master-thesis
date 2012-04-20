@@ -16,16 +16,16 @@
           \textbf{Repository} 
           \nodepart{second}Instance domains. Convert Nodes to Instances.
         };
-        \node (Cloud-Connector) [class, right=of AuxNode01, rectangle split, rectangle split parts=2] { 
-          \textbf{Cloud-Connector} 
+        \node (Cloud-connector) [class, right=of AuxNode01, rectangle split, rectangle split parts=2] { 
+          \textbf{Cloud-connector} 
           \nodepart{second}Connects to providers (jclouds).
         };
 
         \draw [arrow] (Engine) -- (Kernel);
-        \draw [arrow] (Engine) -- (Cloud-Connector);
+        \draw [arrow] (Engine) -- (Cloud-connector);
         \draw [arrow] (Engine) -- (Repository);
-        \draw [arrow] (Cloud-Connector) -- (Kernel.east);
-        \draw [arrow] (Cloud-Connector) -- (Repository.east);
+        \draw [arrow] (Cloud-connector) -- (Kernel.east);
+        \draw [arrow] (Cloud-connector) -- (Repository.east);
         \draw [arrow] (Repository) -- (Kernel);
         \draw [extend] (AuxNode02) -- (Engine);
       \end{tikzpicture}
@@ -36,12 +36,12 @@
         \node (Engine) [class] { \textbf{Engine} };
         \node (Kernel) [class, below=of Engine] { \textbf{Kernel} };
         \node (Repository) [class, above=of Engine] { \textbf{Repository} };
-        \node (Cloud-Connector) [class, right=of Engine] { \textbf{Cloud-Connector} };
+        \node (Cloud-connector) [class, right=of Engine] { \textbf{Cloud-connector} };
         \node (AuxNode01) [left=of Engine] {};
 
         \draw [arrow, <->] (Engine) -- node[right] {2} (Kernel);
         \draw [arrow, <->] (Engine) -- node[right] {3} (Repository);
-        \draw [arrow, <->] (Engine) -- node[above] {4} (Cloud-Connector);
+        \draw [arrow, <->] (Engine) -- node[above] {4} (Cloud-connector);
         \draw [extend, <->] (AuxNode01) -- node[above]{1} node[below]{5} (Engine);
       \end{tikzpicture}
     }
@@ -60,6 +60,6 @@
       \end{tikzpicture}
     }
   \end{center}
-  \caption{Architecture of cloudml-engine}
+  \caption{Modules in \emph{cloudml-engine}, dependencies and orchestration.}
   \label{fig:cloudml-engine}
 \end{figure}
