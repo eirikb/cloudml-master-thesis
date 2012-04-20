@@ -88,7 +88,7 @@ More about the module dependencies in \citesec{dependencies}.
 \input{figs/pom-example}
 
 \emph{Cloudml-engine} is divided into four main modules~(\citefig{cloudml-engine}).
-This is to distribute workload and divide \emph{cloudml-engine} into logical parts for each task.
+This is to distribute workload and divide \emph{cloudml-engine} into logical parts for different tasks.
 
 \paragraph{Engine.} 
 
@@ -98,7 +98,7 @@ This is to distribute workload and divide \emph{cloudml-engine} into logical par
 \input{figs/cloudml-engine-flow}
 
 The main entry point to the application, this is a Scala Object used to initialize provisioning.
-Interaction between \texttt{user} and \texttt{Engine} is visible in \citefig{cloudml-engine-flow} 
+Interaction between \texttt{user} and \texttt{Engine} is expressed in \citefig{cloudml-engine-flow} 
 where the user will initialize provisioning by calling \texttt{Engine}.
 \texttt{Engine} will also do orchestration between the three other modules
 as shown in \citefig{cloudml-engine}.
