@@ -89,9 +89,23 @@ It is also important to make the library available for developers using Java or 
 languages supported by the \myac{JVM}.
 This is best achieved by using Maven, as \myac{SBT} is directed at Scala.
 
-Maven support modules which were used to split \emph{cloudml-engine} into the appropriate 
-modules as shown in~\citefig{cloudml-engine}. 
-The dependency system in Maven between modules is used to match the dependencies outlined in~\citefig{cloudml-engine}.
+In \citesec{modules} CloudML were split into four different modules, as seen in \citefig{cloudml-modules}.
+Maven support modules, these are used to split \emph{cloudml-engine} into the appropriate 
+modules.
+
+A full Maven dependency graph is expressed in \citefig{dependency-graph}.
+There are two graphs, both of \emph{cloudml-engine}.
+The first graph~(\citefig{dependency-graph-without-test}) excludes the \emph{test-scope},
+while~\citefig{dependency-graph-with-test} includes it.
+The \emph{test-scope} is a Maven scope which marks the dependencies to only be included
+when running a specific \emph{goal}, \eg test.
+In this graph the internal and external dependencies in \emph{cloudml-engine} are expressed.
+All external dependencies, 
+\eg \texttt{org.jclouds.jclouds-all}~(\citefig{dependency-graph}),
+contain even more dependencies to other libraries and internal modules.
+These dependencies are all omitted in both graphs.
+
+The dependencies are defined in \emph{pom.xml}-files.
 Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example},
 although this is not dependency management in between \emph{cloudml-engine} modules but rather
 how to add \emph{cloudml-engine} as a dependency itself.
