@@ -73,7 +73,13 @@ the requirement \citereq{foundation}:
 \end{description}
 Based on these benefits Scala is chosen, and \emph{cloudml-engine} is written in this language.
 
-\paragraph{Automatic build system.}
+
+\mysection{dependencies}{Automatic build system}
+\input{figs/pom-example}
+\input{figs/dependency-graph}
+
+%this is a \emph{Scala Object} used to initialize provisioning.
+%A \emph{Scala Object} works as a \emph{singleton}, 
 
 There are two main methods used to automatically build Scala programs, 
 either using a Scala-specific tool called \myac{SBT} or a more general tool called Maven. 
@@ -82,14 +88,6 @@ with most closeness to Java, hence Maven is the best option.
 It is also important to make the library available for developers using Java or other
 languages supported by the \myac{JVM}.
 This is best achieved by using Maven, as \myac{SBT} is directed at Scala.
-More about the module dependencies in \citesec{dependencies}.
-
-\mysection{dependencies}{Internal and external dependencies}
-\input{figs/pom-example}
-\input{figs/dependency-graph}
-
-%this is a \emph{Scala Object} used to initialize provisioning.
-%A \emph{Scala Object} works as a \emph{singleton}, 
 
 Maven support modules which were used to split \emph{cloudml-engine} into the appropriate 
 modules as shown in~\citefig{cloudml-engine}. 
