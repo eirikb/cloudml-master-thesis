@@ -183,27 +183,6 @@ The most important points about these formats are described in \citesec{technolo
   \iitem human-readable and
   \iitem web-service friendly.
 \end{ii}
-Here is an extracted list of the most relevant alternatives:
-\begin{description}
-  \item[XML.] A well-known format in both academic domain and industry.
-    It is used by and for many different applications and tools for tasks such as configuration,
-    rendering and data exchange.
-    It is human-readable to some extent, but it is difficult with larger data sets because
-    of factors such as \emph{duplication} (node names are duplicated for termination). 
-    The markup is often used in web services, for instance in SOAP, 
-    and it was the initial data exchange format for \myac{XHR} (AJAX).
-  \item[JSON.] This format is growing in popularity as more adapt to using it for
-    different purposes.
-    Such purposes as communicating between browsers and web servers, storing configuration,
-    or interchange between nodes in a \myac{SOA} environment.
-    The format itself does not have any duplications, and is therefore easier read by humans
-    than \myac{XML}.
-  \item[YAML.] Strong focus on human-readability, by removing characters that can seem
-    distracting for the human eye, \eg brackets and braces.
-    It supports features common in programming languages, such as
-    \eg referencing (\textbf{*}), tagging documents (\textbf{!!}) and associative arrays.
-    Not very suited language for web service communication.
-\end{description}
 The different points are expressed in \citetable{requirements-lexical}, 
 compared against the three different formats.
 In the table they are weighted from zero ($0$) to three ($3$),
@@ -211,9 +190,37 @@ where zero is least supported and three is most supported,
 \ie how well the formats cover the aspects described in \citesec{technological-assessments}.
 
 For the lexical representation of CloudML, \myac{JSON} is the best alternative.
-This format is used because of thebenefits described over,
-as well as the values seen in \citetable{requirements-lexical}.
+This format is used because of the values seen in \citetable{requirements-lexical}.
 
+Here is an extracted list of the most relevant points compared against the \myac{JSON} format:
+\begin{description}
+  \item[Community.] This format is growing in popularity as more adapt to using it for
+    different purposes, \eg databases, web-service communications, configuration files or \myac{i18n}.
+  \item[Technology support.]
+    There exists parsing libraries for most languages,
+    for each of the languages listed in \citesec{technologies}.
+  \item[Human-readable.]
+    The format itself does not have any duplications, and is therefore easier read by humans
+    than \myac{XML}.
+  \item[Web-service friendly.]
+    Used for both communicating between browsers and web servers, 
+    and interchange between nodes in a \myac{SOA} environment.
+\end{description}
+%\begin{description}
+%  \item[XML.] A well-known format in both academic domain and industry.
+%    It is used by and for many different applications and tools for tasks such as configuration,
+%    rendering and data exchange.
+%    It is human-readable to some extent, but it is difficult with larger data sets because
+%    of factors such as \emph{duplication} (node names are duplicated for termination). 
+%    The markup is often used in web services, for instance in SOAP, 
+%    and it was the initial data exchange format for \myac{XHR} (AJAX).
+%  \item[JSON.] T
+%  \item[YAML.] Strong focus on human-readability, by removing characters that can seem
+%    distracting for the human eye, \eg brackets and braces.
+%    It supports features common in programming languages, such as
+%    \eg referencing (\textbf{*}), tagging documents (\textbf{!!}) and associative arrays.
+%    Not very suited language for web service communication.
+%\end{description}
 
 The \myac{JSON} format is parsed in Scala using the \emph{lift-json} parser which provides implicit
 mapping to Scala case-classes. This library is part of the lift framework,
