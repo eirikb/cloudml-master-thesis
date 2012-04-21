@@ -369,27 +369,27 @@ The important aspects of a lexical format for CloudML are:
 
 \mysection{modules}{Modules and application flow}
 
-\emph{Cloudml-engine} is divided into four main modules~(\citefig{cloudml-engine}).
-This is to distribute workload and divide \emph{cloudml-engine} into logical parts for different tasks.
+CloudML is divided into four main modules~(\citefig{cloudml-modules}).
+This is to distribute workload and divide CloudML into logical parts for different tasks.
 
 \paragraph{Engine.} 
 
-\input{figs/cloudml-engine}
-\input{figs/cloudml-engine-flow}
+\input{figs/cloudml-modules}
+\input{figs/cloudml-modules-flow}
 
 The main entry point to the application is \texttt{Engine}. 
 \ie it does not have to be initialized and there exists only one instance of it.
-Interaction between \texttt{user} and \texttt{Engine} is expressed in \citefig{cloudml-engine-flow} 
+Interaction between \texttt{user} and \texttt{Engine} is expressed in \citefig{cloudml-modules-flow} 
 where the user will initialize provisioning by calling \texttt{Engine}.
 \texttt{Engine} will also do orchestration between the three other modules
-as shown in \citefig{cloudml-engine-orchestration}.
+as shown in \citefig{cloudml-modules-orchestration}.
 Since \texttt{Cloud-connector} is managed by \texttt{Engine},
 other actions run against instances are done through \texttt{Engine}.
-The first versions of \emph{cloudml-engine} did not use \texttt{Engine} as orchestrator but
+The first versions of \emph{cloudml-modules} did not use \texttt{Engine} as orchestrator but
 instead relied on each module to be a sequential step, this proved to be harder to maintain
 and also introduced cyclic dependencies.
 \texttt{Engine} has dependencies to all the other modules,
-as expressed in \citefig{cloudml-engine-dependencies}.
+as expressed in \citefig{cloudml-modules-dependencies}.
 
 \paragraph{Kernel.} 
 
@@ -402,11 +402,11 @@ The logical task of \texttt{Kernel} is to map \myac{JSON} formatted strings to
  but by another method call. All this is transparent for users as all data will
 be provided directly to \texttt{Engine} which will handle the task
 of calling \texttt{Kernel} correctly.
-In \citefig{cloudml-engine-dependencies} is it shown that \texttt{Kernel}
+In \citefig{cloudml-modules-dependencies} is it shown that \texttt{Kernel}
 has no dependency to other modules, while all the other modules depend on \texttt{Kernel}.
 This stresses the fact that \texttt{Kernel} is the most fundamental part,
 closest to the \myac{DSL}.
-According to \citefig{cloudml-engine-orchestration} \texttt{Kernel} is the first module
+According to \citefig{cloudml-modules-orchestration} \texttt{Kernel} is the first module
 to be called by \texttt{Engine}, as it will convert incoming text (\emph{String})
 to internal format of \texttt{Nodes}.
 
@@ -427,11 +427,11 @@ The connections to providers are established through the module \texttt{Cloud-co
 This module uses an external software allowing CloudML to connect to several providers
 through a common interface.
 This software fulfills \citereq{software-reuse}.
-The connections to providers are expressed in \citefig{cloudml-engine-flow}.
-As expressed in \citefig{cloudml-engine-dependencies} \texttt{Cloud-connector}
+The connections to providers are expressed in \citefig{cloudml-modules-flow}.
+As expressed in \citefig{cloudml-modules-dependencies} \texttt{Cloud-connector}
 depend on both \texttt{Kernel} and \texttt{Repository}.
 These dependencies match its task, as it must have knowledge about both 
 \texttt{Templates} and \texttt{RuntimeInstance}.
-This module is the last step before returning to the user, as seen in \citefig{cloudml-engine-orchestration}.
-In \citefig{cloudml-engine-flow} it is expressed that \texttt{Cloud-connector} initializes
+This module is the last step before returning to the user, as seen in \citefig{cloudml-modules-orchestration}.
+In \citefig{cloudml-modules-flow} it is expressed that \texttt{Cloud-connector} initializes
 the actors (\texttt{RuntimeInstance}) which are provided to the \texttt{User}.
