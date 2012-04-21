@@ -75,7 +75,6 @@ Based on these benefits Scala is chosen, and \emph{cloudml-engine} is written in
 
 
 \mysection{dependencies}{Automatic build system}
-\input{figs/pom-example}
 \input{figs/dependency-graph}
 
 %this is a \emph{Scala Object} used to initialize provisioning.
@@ -105,10 +104,10 @@ All external dependencies,
 contain even more dependencies to other libraries and internal modules.
 These dependencies are all omitted in both graphs.
 
-The dependencies are defined in \emph{pom.xml}-files.
-Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example},
-although this is not dependency management in between \emph{cloudml-engine} modules but rather
-how to add \emph{cloudml-engine} as a dependency itself.
+%The dependencies are defined in \emph{pom.xml}-files.
+%Parts of a dependency reference in a Maven configuration can be seen in~\citefig{pom-example},
+%although this is not dependency management in between \emph{cloudml-engine} modules but rather
+%how to add \emph{cloudml-engine} as a dependency itself.
 
 \section{Cloud connection}
 
@@ -230,7 +229,23 @@ fluent compared to lift-json.
 
 \section{Usage}
 
-\input{figs/cloudml-engine-usage}
+This section gives information on general usage of \emph{cloudml-engine}.
+Usages such as: 
+\begin{itemize}
+  \item Including when developing applications.
+  \item How it is distributed.
+  \item Method call to initialize provisioning.
+\end{itemize}
+\emph{Cloudml-engine} can be included into a vast variety of applications,
+ranging from native desktop applications to web-service based applications,
+or even smartphone apps.
+
+\paragraph{Inclusion through dependencies.}
+\input{figs/pom-example}
+
+\emph{Cloudml-engine} is a Maven module, and therefore it can be included in 
+applications by adding it as a Maven dependency.
+Such dependency reference is expressed as a Maven configuration in~\citefig{pom-example}.
 
 \paragraph{Distribution.}
 
@@ -240,3 +255,13 @@ Beside the source repository\cite{cloudml-engine} the library is deployed to a r
 \cite{cloudbees-cloudml-engine} as a Maven module.
 This repository is provided by CloudBees, 
 how to include the library is viewable in~\citefig{pom-example}.
+In this figure \emph{cloudml-engine} is reachable by Maven by adding a \texttt{repository} node
+to the configuration.
+This is a necessity because the library is yet (\date{April 2012}) to be deployed to Maven central.
+
+\paragraph{Engine callout.}
+\input{figs/cloudml-engine-usage}
+
+After successfully included \emph{cloudml-engine} as a dependency
+the library is accessible.
+A Scala callout to \texttt{Engine} is expressed in \citefig{cloudml-engine-usage}.
