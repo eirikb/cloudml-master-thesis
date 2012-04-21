@@ -48,7 +48,7 @@ the requirement \citereq{foundation}:
   \item[Ease of use.]
     Scala is a \emph{state-of-the-art} language with many technological advantages,
     \eg supporting both functional and object-oriented programming.
-    With both paradigms imperative programmers such as Java developers as well as functional
+    With both paradigms, imperative programmers such as Java developers as well as functional
     programmers such as Clojure developers would be familiar with the language design.
     
     Emphasizes on functional programming which is leveraged in the implementation.
@@ -56,7 +56,7 @@ the requirement \citereq{foundation}:
     This also assists in relation to \citereq{m@rt}.
 
     \myac{JVM} is a popular platform, as the main platform for Java.
-    Scala runs on the \myac{JVM}, which means that all the libraries and work put into Java
+    Scala runs on the \myac{JVM}, and support all the libraries and work put into Java
     over the years can be utilized directly by Scala.
   \item[Community size.]
     This language is gaining popularity among both the academic and enterprise domain.
@@ -85,7 +85,6 @@ This is best achieved by using Maven, as \myac{SBT} is directed at Scala.
 More about the module dependencies in \citesec{dependencies}.
 
 \mysection{dependencies}{Internal and external dependencies}
-\input{figs/cloudml-engine-usage}
 \input{figs/pom-example}
 \input{figs/dependency-graph}
 
@@ -196,3 +195,15 @@ but can be included as an external component without additional lift-specific de
 GSON was considered as an alternative, but mapping to Scala case-classes was not as 
 fluent compared to lift-json.
 
+\section{Usage}
+
+\input{figs/cloudml-engine-usage}
+
+\paragraph{Distribution.}
+
+\emph{Cloudml-engine} is not just a proof-of-concept for the sake of conceptual assurance, but it is 
+also a running, functional library which can be used by anyone for testing or considerations.
+Beside the source repository\cite{cloudml-engine} the library is deployed to a remote repository
+\cite{cloudbees-cloudml-engine} as a Maven module.
+This repository is provided by CloudBees, 
+how to include the library is viewable in~\citefig{pom-example}.
