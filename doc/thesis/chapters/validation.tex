@@ -9,13 +9,14 @@ The validation will provision on two different providers, \myac{AWS} and Rackspa
 
 \paragraph{Template.}
 \input{codes/validation-threenodes}
+\input{codes/validation-account}
 
 The implementation uses \myac{JSON} to define templates as a human readable serialization mechanism.
-The lexical representation of \citefig{threenodes} can be seen in \citelist{validation-threenodes}. 
+The lexical representation of \citefig{threenodes} can be seen in \citelist{validation-threenodes}.
 There are a total of three files:
 \begin{description}
   \item[account.json.]
-    Used to authenticate against a provider.
+    Expressed in \citelist{validation-accont}, used to authenticate against a provider.
     In \citelist{validation-threenodes} \texttt{aws-ec2} is set as \texttt{provider},
     \ie nodes are created on \myac{AWS}.
     The two other properties, \texttt{identity} and \texttt{credential} are used for authentication.
@@ -49,7 +50,8 @@ These benefits match the requirement \citereq{lexical-template}.
 \paragraph{Client.}
 \input{codes/validation-client.tex}
 
-To validate the templates 
+Validation is done through a \myac{CLI}-based client application.
+Code snippets of this client is expressed in \citelist{validation-client}.
 
 \paragraph{Building.}
 \input{codes/validation-output.tex}
