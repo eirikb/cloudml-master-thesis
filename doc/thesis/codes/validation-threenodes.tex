@@ -1,0 +1,28 @@
+\begin{figure}
+  \begin{center}
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{json}
+{
+  "name": "test",
+  "loadBalancer": {
+    "name": "test",
+    "protocol": "http",
+    "loadBalancerPort": 80,
+    "instancePort": 80
+  },
+  "nodes": [{
+    "name": "test1"
+  }, {
+    "name": "test2"
+  }]
+}
+    \end{minted}
+  \end{center}
+  \caption{Template for validation.}
+  \label{list:validation-threenodes}
+\end{figure}
+
