@@ -42,7 +42,7 @@ The splitting is by design, as a \texttt{template} is not directly bound to a to
 and is also why \texttt{build} accept a list of templates.
 The whole text represents the \texttt{Template} and consequently 
 ``\texttt{nodes}'' is a list of \texttt{Node} from the model.
-The JSON is textual which makes it \emph{shareable} as files.
+The \myac{JSON} is textual which makes it \emph{shareable} as files.
 Once such a file is created it can be reused (\emph{reproducibility}) 
 on any supported provider (\emph{multicloud}).
 These benefits match the requirement \citereq{lexical-template}.
@@ -50,8 +50,27 @@ These benefits match the requirement \citereq{lexical-template}.
 \paragraph{Client.}
 \input{codes/validation-client.tex}
 
-Validation is done through a \myac{CLI}-based client application.
+Validation is done through a \myac{CLI}-based client application written in Scala.
 Code snippets of this client is expressed in \citelist{validation-client}.
+The snippets does not contain code to read the files, this is left out to save space.
+File reading is done through Scala with \texttt{io.Source.fromFile(\emph{filename}).mkString}.
+What files to read is specified through command line arguments,
+where the first argument corresponds to account information,
+and subsequent arguments are template files.
+
+To initialize provisioning the client calls 
+\texttt{val runtimeInstances = Engine(account, templates)}.
+According to the meta model~(\citefig{meta-model}) this is \texttt{build}.
+The name ``build'' is a general term, while the usage in \citelist{validation-client}
+is a Scala-specific pattern.
+
+After receiving a list of \texttt{RuntimeInstances} the client runs through these 
+objects and attach ``listeners''.
+These listeners works according to the observer pattern,
+when a property is added or the instance changes status,
+a callback is made to the client.
+This callback is done asynchronous through actor model.
+Both of these solutions solves the requirement \citereq{m@rt}.
 
 \paragraph{Building.}
 \input{codes/validation-output.tex}
