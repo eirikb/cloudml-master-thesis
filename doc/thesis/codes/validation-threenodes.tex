@@ -7,7 +7,7 @@
                    frame=lines,
                    framesep=2mm]{json}
 {
-  "name": "test",
+  "name": "front-ends",
   "loadBalancer": {
     "name": "test",
     "protocol": "http",
@@ -22,7 +22,18 @@
     "name": "front-end2",
     "minCores": 2,
     "minRam": 1000
-  }, {   
+  }]
+}
+    \end{minted}
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{json}
+{
+  "name": "back-end",
+  "nodes": [{   
     "name": "back-end",
     "minDisk": 2000
   }]

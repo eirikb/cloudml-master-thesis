@@ -1,14 +1,20 @@
 \mychapter{validation}{Validation \& Experiments}
 
 To validate how CloudML addresses the requirements from~\citechap{requirements},
-a topology of three nodes is provisioned~(\citefig{threenodes}).
+a topology of three nodes~(\citefig{threenodes}) is provisioned.
 This topology is the same as Alice used for her second scenario in \citesec{meta-model}.
 The setup is sufficient to do a full deployment of the \emph{BankManager} application.
 
 The implementation uses \myac{JSON} to define templates as a human readable serialization mechanism.
 The lexical representation of \citefig{threenodes} can be seen in \citelist{validation-threenodes}. 
-The whole text represents the \texttt{Template} of \citefig{threenodes} and consequently 
-``nodes'' is a list of \texttt{Node} from the model.
+There are a total of three nodes, and one load balancer.
+Each node have specific attributes regarding their tasks, similar to Alice's scenario,
+but as an addiontal precaution the \texttt{front-end} nodes have increased \myac{RAM}.
+All nodes in the template are bound to the load balancer~(\texttt{loadBalancer})
+defined within the template.
+Additinal nodes which should not be bound 
+The whole text represents the \texttt{Template} and consequently 
+``\texttt{nodes}'' is a list of \texttt{Node} from the model.
 The JSON is textual which makes it \emph{shareable} as files.
 Once such a file is created it can be reused (\emph{reproducibility}) 
 on any supported provider (\emph{multicloud}).
