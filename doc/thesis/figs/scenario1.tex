@@ -8,7 +8,7 @@
         };
         \node (Node) [class, rectangle split, rectangle split parts=2, right=of Template] {
           \textbf{:Node}
-          \nodepart{second}name=``node1'' \\ cores=2 \\ disk=2000
+          \nodepart{second}name=``node1'' \\ cores=2 \\ disk=500
         };
 
         \draw[line] (Template) -- (Node);
@@ -20,7 +20,7 @@
       \begin{tikzpicture}[scale=0.7, transform shape]
         \node (Instance) [class, text width=5cm, rectangle split, rectangle split parts=2] {
           \textbf{:Instance}
-          \nodepart{second}name=``node1'' \\ cores=2 \\ disk=2000 \\ templateName=``template1''
+          \nodepart{second}name=``node1'' \\ cores=2 \\ disk=500 \\ templateName=``template1''
         };
       \end{tikzpicture}
       \label{fig:scenario1-2}

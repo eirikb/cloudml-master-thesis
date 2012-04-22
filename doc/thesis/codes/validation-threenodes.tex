@@ -1,5 +1,19 @@
 \begin{figure}
   \begin{center}
+    account.json:
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{json}
+{
+  "provider": "aws-ec2", 
+  "identity": "...",
+  "credential": "..."
+}
+    \end{minted}
+    front-ends.json:
     \begin{minted}[mathescape,
                    linenos,
                    numbersep=5pt,
@@ -8,12 +22,12 @@
                    framesep=2mm]{json}
 {
   "name": "front-ends",
-  "loadBalancer": {
-    "name": "test",
-    "protocol": "http",
-    "loadBalancerPort": 80,
-    "instancePort": 80
-  },
+%  "loadBalancer": {
+%    "name": "test",
+%    "protocol": "http",
+%    "loadBalancerPort": 80,
+%    "instancePort": 80
+%  },
   "nodes": [{   
     "name": "front-end1",
     "minCores": 2,
@@ -25,6 +39,7 @@
   }]
 }
     \end{minted}
+    back-end.json:
     \begin{minted}[mathescape,
                    linenos,
                    numbersep=5pt,
@@ -35,7 +50,7 @@
   "name": "back-end",
   "nodes": [{   
     "name": "back-end",
-    "minDisk": 2000
+    "minDisk": 500
   }]
 }
     \end{minted}
