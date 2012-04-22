@@ -1,53 +1,30 @@
 \mychapter{validation}{Validation \& Experiments}
 
-\todo{
-  \begin{itemize}
-    \item How BankManager proves concepts of the templates (subsection 1) with cloudml-engine
-  \end{itemize}
-  Uncomment text
-}
+To validate how CloudML addresses the requirements from~\citechap{requirements},
+a topology of three nodes is provisioned~(\citefig{threenodes}).
+This topology is the same as Alice used for her second scenario in \citesec{meta-model}.
+The setup is sufficient to do a full deployment of the \emph{BankManager} application.
 
-\section{Comparisons}
-
-\todo{Moved here from implementation.}
-
-Comparing challenges with some selected providers and technologies from \citechap{state-of-the-art}.
-
-\input{tables/requirements-comparison}
-
-
-To validate how CloudML addressed the requirements from~\citechap{requirements},
-the \emph{BankManager} application were provisioned using different topologies~(Fig[\ref{fig:singlenode},~\ref{fig:threenodes}]).
 The implementation uses \myac{JSON} to define templates as a human readable serialization mechanism.
-The lexical representation of \citefig{singlenode} can be seen in \citelist{singlenode}. 
+The lexical representation of \citefig{threenodes} can be seen in \citelist{validation-threenodes}. 
 The whole text represents the \texttt{Template} of \citefig{architecture} and consequently 
 ``nodes'' is a list of \texttt{Node} from the model.
 The JSON is textual which makes it \emph{shareable} as files.
 Once such a file is created it can be reused (\emph{reproducibility}) 
 on any supported provider (\emph{multicloud}).
 
-%\begin{lstlisting}[
-  %language=javascript,
-  %label=list:singlenode,
-  %caption=One single node]
-%{ "nodes": [ { "name": "testnode" } ] }
-%\end{lstlisting}
-
-The topology described in \citefig{threenodes} is represented in \citelist{threenodes},
+The topology described in \citefig{threenodes} is represented in \citelist{validation-template},
 the main difference from \citelist{singlenode} is that there are two more nodes and a total of 
 five more properties.
 Characteristics of each node are carefully chosen based on each nodes feature area, for instance 
 front-end nodes have more computation power, while the back-end node will have more disk.
 
-%\begin{lstlisting}[
-  %language=javascript,
-  %label=list:threenodes,
-  %caption=Three nodes]
-%{
-  %"nodes": [ 
-    %{ "name": "frontend1", "minRam": 512, "minCores": 2 },
-    %{ "name": "frontend2", "minRam": 512, "minCores": 2 },
-    %{ "name": "backend", "minDisk": 100 }
-  %]
-%}
-%\end{lstlisting}
+\paragraph{Template.}
+\input{codes/validation-threenodes}
+
+Template!
+
+\section{Comparisons}
+\input{tables/requirements-comparison}
+
+Comparing challenges with some selected providers and technologies from \citechap{state-of-the-art}.
