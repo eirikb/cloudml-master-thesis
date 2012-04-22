@@ -14,10 +14,17 @@
     "loadBalancerPort": 80,
     "instancePort": 80
   },
-  "nodes": [{
-    "name": "test1"
-  }, {
-    "name": "test2"
+  "nodes": [{   
+    "name": "front-end1",
+    "minCores": 2,
+    "minRam": 1000
+  }, {   
+    "name": "front-end2",
+    "minCores": 2,
+    "minRam": 1000
+  }, {   
+    "name": "back-end",
+    "minDisk": 2000
   }]
 }
     \end{minted}
