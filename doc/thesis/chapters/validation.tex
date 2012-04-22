@@ -37,6 +37,7 @@ The topology is split into two templates to support a load balancer,
 as every node within a template will be bound to a given load balancer.
 This feature is implemented in \emph{cloudml-engine}, but at writing moment~(\date{April 2012}),
 is not supported by jclouds.
+More about the load balancer in~\citechap{perspectives}.
 %since the \texttt{back-end} node should not be bound to the load balancer.
 The splitting is by design, as a \texttt{template} is not directly bound to a topology,
 and is also why \texttt{build} accept a list of templates.
@@ -72,16 +73,42 @@ a callback is made to the client.
 This callback is done asynchronous through actor model.
 Both of these solutions solves the requirement \citereq{m@rt}.
 
-\paragraph{Building.}
+\paragraph{Provisioning.}
 \input{codes/validation-output.tex}
+
+The client is built using Maven, to execute it the \texttt{scala:run}-\emph{goal} is called.
+The three files,
+\begin{ii}
+  \iitem account.json,
+  \iitem front-ends.json and
+  \iitem back-end.json,
+\end{ii}
+are passed in as arguments to the client.
+The final command looks like this:
+\texttt{mvn scala:run \\ -DaddArgs="account.json|front-ends.json|back-end.json"}.
+Output from executing this command is expressed in \citelist{validation-output}.
+Some of the output is chunked away to save space.
+The text in \citelist{validation-output} correlates to the 
+client expressed in~\citelist{validation-client},
+\ie information about status changes and when each node is successfully provisioned.
+
+The output is identical for both \myac{AWS} and Rackspace.
 
 \paragraph{After provisioning.}
 \input{figs/validation-aws.tex}
 \input{figs/validation-rackspace.tex}
 
-\paragraph{Load balancer.}
-\input{codes/validation-loadbalancer.tex}
+To validate the experiment screenshots of the cloud console of each provider are made.
 
+The screenshot of \myac{AWS} console~(\citefig{validation-aws}) shows that three nodes
+are successfully provisioned.
+Two of the nodes is of the type \texttt{c1.medium} which corresponds to the template configuration.
+The last node is a \texttt{t1.micro}, \ie this is the \texttt{back-end} node.
+This is further emphasized by the fact that it uses \myac{EBS} as \texttt{Root device},
+to achieve additional disk space.
+
+Screenshot of Rackspace indicate similar consistencies,
+\eg \texttt{RAM Amount} for each node, which corresponds with the template.
 
 \section{Comparisons}
 \input{tables/requirements-comparison}
