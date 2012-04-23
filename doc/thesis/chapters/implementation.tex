@@ -139,8 +139,6 @@ it possible to add jclouds directly as a module dependency.
 Jclouds contains a template system which is used through code directly, this is utilized 
 to map CloudML templates to jclouds templates.
 
-
-
 \section{Asynchronous provisioning}
 
 Provisioning can consume up to minutes for each instance,
@@ -175,10 +173,19 @@ are updated and properties are added.
 The terms are divided for a node before and under provisioning, the essential is to introduce 
 \emph{M@RT} to achieve a logical separation.
 
-\paragraph{Actor model code snippet.}
+\paragraph{Code snippet.}
 \input{codes/runtimeinstance}
 
-\citelist{runtimeinstance} expresses code.
+In \citelist{runtimeinstance} express a code snippet from \emph{coudml-engine}.
+Within this snippet both the actor model as well as the observer pattern are utilized.
+The actor model is implemented through built in functionality in Scala,
+through \texttt{import scala.actors.Actor}.
+By extending \texttt{Actor} the \texttt{RuntimeInstance} class becomes an actor.
+The \texttt{loop} and \texttt{receive}-parts~(line 18 to line 19) are specific to this functionality,
+and will be triggered on incoming messages.
+The incoming message is parsed through Scala \emph{pattern matching} against case classes,
+respectively the case class created in line 9.
+The observer pattern is expressed through ``listeners''\ldots\ldots\ldots\ldots.
 
 \section{From text to objects}
 \input{tables/requirements-lexical}
