@@ -27,6 +27,7 @@
 \usepackage[numbers]{natbib}
 \usepackage{setspace}
 \usepackage{captcont}
+\usepackage{pdfpages}
 \usetikzlibrary{positioning,shapes,shadows,arrows,calc}
 
 \title{CloudML}
@@ -76,6 +77,10 @@
 
 \input{chapters/conclusions}
 \input{chapters/perspectives}
+
+\appendix
+\chapter{First appendix - CloudMDE article}
+\includepdf[pages=-]{pdfs/cloudmde.pdf}
 
 \backmatter{}
 \bibliography{../articles/bibliography}
