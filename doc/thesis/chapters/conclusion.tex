@@ -1,24 +1,34 @@
 \mychapter{conclusion}{Conclusion}
-\note{
-  Short and sharp
-}
 
-\todo{
-  \begin{itemize}
-    \item Summary of CloudML
-    \begin{itemize}
-      \item What subsection in solution solves what subsection in problem
-    \end{itemize}
-    \item CloudML
-    \item Implementation
-    \item Perspectives (2 paragraphs, can be section)
-      \begin{itemize}
-        \item Look into the future
-          \begin{itemize}
-            \item Deployments
-          \end{itemize}
-        \item short term
-        \item long term
-      \end{itemize}
-  \end{itemize}
-}
+In this thesis four main parts have been presented.
+First the background part introducing the domain of cloud computing and model-driven engineering.
+Then the second part highlighting sets of technologies, frameworks, ideas and 
+\mac{API}s which are currently used in the two domains.
+Third the challenges with these solutions are stressed, as well as a set of \emph{requirements}
+CloudML must fulfill to tackle these challenges.
+Lastly, CloudML is presented, in three phases,
+\begin{iI}
+  \iitem vision,
+  \iitem design and
+  \iitem implementation.
+\end{ii}
+
+In the vision chapter the core idea of CloudML were introduced,
+and even means to tackle \citereq{m@rt} were outlined through pure vision.
+The design chapter stated how CloudML should be built up,
+what the meta-model should look like,
+what underlying technologies should be used.
+All through a scenario where Alice performs provisioning.
+In this chapter the means to tackle \citereq{m@rt} are reinforced through
+the view of design.
+The requirements of \citereq{foundation} and \citereq{software-reuse}
+are addressed through what underlying technology to use and alternatives.
+Lastly the implementation chapter outline how CloudML is implemented
+as \emph{cloudml-engine}, and how this solution is built up.
+Both \citereq{mda} and \citereq{lexical-template} are tackled in this chapter
+by concretely choosing data format and syntax based on the design chapter.
+
+Lastly the implementation is validated through an experiment where
+it is physically executed against two providers, \myac{AWS} and Rackspace.
+This experiment concludes the work put into CloudML at this point to
+be successful.
