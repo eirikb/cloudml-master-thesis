@@ -1,15 +1,15 @@
-\mychapter{background}{Background: Cloud computing and Model-Driven Engineering}
+\mychapter{background}{Background: Cloud Computing and Model-Driven Engineering}
 
 In this chapter the essential background topics for this thesis are introduced.
-The first topic is cloud computing, a way of providing computing power as a service
+The first topic is Cloud Computing, a way of providing computing power as a service
 instead of being a product.
 The second topic is about Model-Driven Engineering and Model-Driven Architecture
-and these in some relation to cloud computing.
+and these in some relation to Cloud Computing.
 
-\section{Cloud computing}
+\section{Cloud Computing}
 \input{tables/tabproviders}
 
-Cloud computing is gaining popularity and more companies are starting 
+Cloud Computing is gaining popularity and more companies are starting 
 to explore the possibilities as well as the limitation to the cloud.
 A good example of cloud adaptation in a large scale scenario is when
 the White House moved their recovery.gov~\cite{recovery} operation to
@@ -18,14 +18,14 @@ at the current time, and even more on a long-term basis.
 This section is based on the \myac{NIST} standard.
 
 The definitions under are mainly based on definitions provided by 
-the \myac{NIST} which is one of the leaders in cloud computing standardization.
-The main providers of cloud computing in \date{April 2012}
+the \myac{NIST} which is one of the leaders in Cloud Computing standardization.
+The main providers of Cloud Computing in \date{April 2012}
 are Google, Amazon with \myac{AWS}~\cite{aws} and Microsoft.
 A non-exhaustive list of common providers is reproduced in \citetable{providerservices}.
 
 \subsection{Characteristics}
 
-Cloud computing is about providing computation as services\cite{nist:mell11}, 
+Cloud Computing is about providing computation as services\cite{nist:mell11}, 
 such as virtual instances and file storage, rather than products. 
 Cloud characteristics are what define
 the difference between normal hosting and computing as a service.
@@ -51,7 +51,7 @@ $25,088$ triggered by a Japanese television screening of the movie ``Castle in t
 Each ``tweet'' essentially becomes at least one request to Twitter services.
 On a normal basis the service does not have to cope with this amount of requests, so
 this event was a strong and unpredicted fluctuation in day-to-day operations,
-and this is the kind of scenarios that cloud computing can help to tackle with
+and this is the kind of scenarios that Cloud Computing can help to tackle with
 characteristics such as \emph{on-demand self-service}.
 With \emph{on-demand self-service} allocation will automatically scale upwards as popularity increases 
 and downwards as resources become superfluous.
@@ -106,13 +106,13 @@ charge by resource load and not only amount of resources allocated.
 \subsection{Service models}
 \input{figs/cloudlayers}
 
-\emph{Service models} are definitions of different layers in cloud computing.
+\emph{Service models} are definitions of different layers in Cloud Computing.
 The layers represent the amount of abstraction developers get from each \emph{service model}.
 Higher layers have more abstraction, but can be more limited, while lower levels 
 have less abstraction and are more customizable.
 Limitations could be in many different forms, such as bound to a specific operating system,
 programming language or framework.
-There are three main architectural service models in cloud computing\cite{nist:mell11}
+There are three main architectural service models in Cloud Computing\cite{nist:mell11}
 as seen as vertical integration levels in \citefig{cloudlayers},
 namely \myac{IaaS}, \myac{PaaS} and \myac{SaaS}.
 IaaS is on the lowest closest to physical hardware and SaaS on the highest
@@ -153,7 +153,7 @@ Examples of providers of IaaS are \myac{AWS} \myac{EC2} and Rackspace CloudServe
 
 \paragraph{PaaS.}
 
-Cloud computing is built to guide and assist developers through abstractions, and the next
+Cloud Computing is built to guide and assist developers through abstractions, and the next
 layer in the \emph{service model} is designed to aid developers by detaching them
 from configuration of operating system and frameworks.
 Developers are limited to capabilities the provider support,
@@ -199,8 +199,8 @@ The core purpose is to provide complete applications as services, in many cases 
 Google products such as Gmail, Google Apps and  Google Calendar are examples of 
 SaaS applications.
 What separates SaaS applications from other applications are the underlying cloud infrastructure,
-by utilizing the five characteristics of cloud computing SaaS applications achieve 
-cloud computing advantages.
+by utilizing the five characteristics of Cloud Computing SaaS applications achieve 
+Cloud Computing advantages.
 
 It is not imposed that SaaS deployments are web applications, they can also consist of
 different technologies such as \myac{REST} \myac{API}s or SOAP services, but in any case it is 
@@ -269,7 +269,7 @@ geographical deployment within a given country.
 
 \section{Model-Driven Engineering}
 
-By combining the domain of cloud computing with the one of modeling 
+By combining the domain of Cloud Computing with the one of modeling 
 it is possible to achieve benefits such as improved communication when designing 
 a system and better understanding of the system itself.
 This statement is emphasized by Booch \etal in the UML:
@@ -282,13 +282,13 @@ This statement is emphasized by Booch \etal in the UML:
   system we are building, often exposing opportunities for
   simplification and reuse. We build models to manage risk.
 }{\cite{unified:booch05}}
-When it comes to cloud computing these definitions are even more important
+When it comes to Cloud Computing these definitions are even more important
 because of financial aspects since provisioned nodes instantly draw credit.
 The definition of ``modeling'' can be assessed from the previous epigraph, but it is 
 also important to choose correct models for the task.
 Stanoevska-Slabeva emphasizes in one of her studies that grid computing
 ``\emph{is the starting point and basis for Cloud Computing.}''~\cite{introduction:wozniak10}.
-As grid computing bear similarities towards cloud computing in terms of virtualization 
+As grid computing bear similarities towards Cloud Computing in terms of virtualization 
 and utility computing
 it is possible to use the same \myac{UML} diagrams for IaaS as previously used in grid computing.
 The importance of this re-usability of models is based on the origin of grid computing, 
@@ -306,7 +306,7 @@ The importance of choosing correct models is emphasized by~\cite{unified:booch05
 }{\cite{unified:booch05}}
 These definition precepts state that several models (precept \iii{4}) on different levels (precept \iii{2}) 
 of precision should be used to model the same system.
-From this it is concludable that several models can be used to describe one or several cloud computing perspectives.
+From this it is concludable that several models can be used to describe one or several Cloud Computing perspectives.
 Nor are there any restraints to only use \myac{UML} diagrams or even diagrams at all.
 As an example \myac{AWS} CloudFormation implements a lexical model of their \emph{cloud services},
 while CA AppLogic has a visual and more \myac{UML} component-based diagram of their capabilities.
