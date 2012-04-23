@@ -1,0 +1,35 @@
+\begin{figure}[tb]
+  \begin{center}
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   frame=lines,
+                   framesep=2mm]{scala}
+
+import no.sintef.cloudml.engine.Engine
+import no.sintef.cloudml.repository.domain._
+  ...
+val runtimeInstances = Engine(account, templates)
+println("Got " + runtimeInstances.size + " nodes")
+runtimeInstances.foreach(ri => {
+  println("Adding listener to: " + ri.instance.name + 
+    " (" + ri.status + ")")
+  ri.addListener( (event) =>  {
+    event match {
+      case Event.Property => 
+      case Event.Status => 
+        println("Status changed for " + ri.instance.name + 
+          ": " + ri.stat
+        if (ri.status ==  Status.Started) {
+          println("Node " + ri.instance.name + 
+            " is now running: " + ri)
+        }
+    }
+  }
+})
+    \end{minted}
+  \end{center}
+  \caption{Code snipptes of client used for validation (Scala).}
+  \label{list:validation-client}
+\end{figure}
+

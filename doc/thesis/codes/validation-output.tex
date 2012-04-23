@@ -1,0 +1,35 @@
+\begin{figure}[tb]
+  \begin{center}
+    \begin{minted}[numbersep=5pt,
+                   frame=lines,
+                   framesep=2mm]{text}
+mvn scala:run 
+  -DaddArgs="account.json|front-ends.json|back-end.json"
+
+[INFO] Scanning for projects...
+[INFO]
+   ...
+Got 3 nodes
+Adding listener to: front-end1 (Building)
+Adding listener to: front-end2 (Configuring)
+Adding listener to: back-end (Configuring)
+Status changed for front-end1: Starting
+Status changed for front-end1: Started
+Node front-end1 is now running: 
+  RuntimeInstance(Instance(front-end1,2,2,0,))
+Status changed for front-end2: Building
+Status changed for front-end2: Starting
+Status changed for front-end2: Started
+Node front-end2 is now running: 
+  RuntimeInstance(Instance(front-end2,2,2,0,))
+Status changed for back-end: Building
+Status changed for back-end: Starting
+Status changed for back-end: Started
+Node back-end is now running: 
+  RuntimeInstance(Instance(back-end,0,1,500,))
+    \end{minted}
+  \end{center}
+  \caption{Output from running validation client.}
+  \label{list:validation-output}
+\end{figure}
+

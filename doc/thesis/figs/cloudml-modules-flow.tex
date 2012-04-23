@@ -4,11 +4,11 @@
     \begin{tikzpicture}
       \stickman{User}{User}
 
-      \node[box, right=of User, minimum width=3.8cm, minimum height=3.5cm, xshift=1cm, yshift=-1cm,
-        label=below:Cloudml-engine] (System) {};
-      \node[box, right=of User, xshift=2cm, yshift=-0cm] (Engine) {Engine};
+      \node[box, right=of User, minimum width=4.5cm, minimum height=3.5cm, xshift=1cm, yshift=-1cm,
+        label=below:CloudML] (System) {};
+      \node[box, right=of User, xshift=2.5cm, yshift=-0cm] (Engine) {Engine};
       \node[box, below=of Engine, yshift=0.5cm] (Cloud-connector) {Cloud-connector};
-      \node[box, below=of Cloud-connector, yshift=0.5cm] (RuntimeInstance) {RuntimeInstance};
+      \node[class, below=of Cloud-connector, yshift=0.5cm] (RuntimeInstance) {RuntimeInstance};
 
       \node (Rackspace) [tcloud, right=of System, xshift=0.5cm, yshift=1.5cm] {Rackspace};
       \node (EC2) [tcloud, below=of Rackspace, label=below:Cloud providers] {EC2};
@@ -23,6 +23,6 @@
       \draw[arrow] (RuntimeInstance.west) -- (User.east);
     \end{tikzpicture}
   \end{center}
-  \caption{Usage flow in cloudml-engine.}
-  \label{fig:cloudml-engine-flow}
+  \caption{Usage flow in CloudML.}
+  \label{fig:cloudml-modules-flow}
 \end{figure}

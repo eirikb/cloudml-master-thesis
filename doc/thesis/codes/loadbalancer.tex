@@ -1,0 +1,24 @@
+\begin{figure}[tb]
+  \begin{center}
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{json}
+{
+  "name": "test",
+  "loadBalancer": {
+    "name": "test",
+    "protocol": "http",
+    "loadBalancerPort": 80,
+    "instancePort": 80
+  }, 
+  "nodes": []
+}
+    \end{minted}
+  \end{center}
+  \caption{Template including load balancer.}
+  \label{list:validation-loadbalancer}
+\end{figure}
+

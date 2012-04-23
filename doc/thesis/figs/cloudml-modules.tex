@@ -29,7 +29,7 @@
         \draw [arrow] (Repository) -- (Kernel);
         \draw [extend] (AuxNode02) -- (Engine);
       \end{tikzpicture}
-      \label{fig:cloudml-engine-dependencies}
+      \label{fig:cloudml-modules-dependencies}
     }
 
     \subfigure[Application module orchestration/flow. 
@@ -46,7 +46,7 @@
         \draw [arrow, <->] (Engine) -- node[above] {4} (Cloud-connector);
         \draw [extend, <->] (AuxNode01) -- node[above]{1} node[below]{5} (Engine);
       \end{tikzpicture}
-      \label{fig:cloudml-engine-orchestration}
+      \label{fig:cloudml-modules-orchestration}
     }
 
     \subfigure[Legend.]{
@@ -63,6 +63,6 @@
       \end{tikzpicture}
     }
   \end{center}
-  \caption{Modules in \emph{cloudml-engine}, dependencies and orchestration.}
-  \label{fig:cloudml-engine}
+  \caption{Modules in CloudML, dependencies and orchestration.}
+  \label{fig:cloudml-modules}
 \end{figure}

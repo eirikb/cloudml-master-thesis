@@ -1,0 +1,42 @@
+\begin{figure}[tb]
+  \begin{center}
+    front-ends.json:
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{json}
+{
+  "name": "front-ends",
+  "nodes": [{   
+    "name": "front-end1",
+    "minCores": 2,
+    "minRam": 1000
+  }, {   
+    "name": "front-end2",
+    "minCores": 2,
+    "minRam": 1000
+  }]
+}
+    \end{minted}
+    back-end.json:
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{json}
+{
+  "name": "back-end",
+  "nodes": [{   
+    "name": "back-end",
+    "minDisk": 500
+  }]
+}
+    \end{minted}
+  \end{center}
+  \caption{Template for validation.}
+  \label{list:validation-threenodes}
+\end{figure}
+
