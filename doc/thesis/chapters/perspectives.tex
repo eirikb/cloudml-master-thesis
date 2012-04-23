@@ -51,6 +51,32 @@ and providers increases, \eg if features such as live managing should be introdu
 
 \section{Long term}
 
+\paragrapn{Full deployment.}
+
+CloudML as presented in this thesis is designed and implemented to provision nodes over a multicloud environment.
+This idea can in some simplified version be said to only create instances on a set of supported providers.
+The truth is that CloudML fulfills more than just that, and even to conquer such task by itself is not a small feat.
+
+Although in reality end users are looking for something more than just creating instances in the cloud,
+they eventually want to move their application to the cloud environment.
+And to handle this they want a library which does as much of this as possible,
+from pressing a button to having an application up and running on the cloud.
+
+What CloudML should struggle to achieve in future versions is more means to accomplish \emph{full deployments}.
+To accomplish this there are several topics to address, such as
+\begin{ii}
+  \iitem third party software,
+  \ittem operating system,
+  \ittem package managers,
+  \iitem authentication,
+  \iitem communication between nodes.
+\end{ii}
+Additional software must be considered to assist in many of these topics, \eg Puppet to handle third party software and installations.
+
+\paragraph{Live managing.}
+
+After provisioning is com
+
 Manually terminating nodes = managing after provisioning.
 ref maderia.
 
