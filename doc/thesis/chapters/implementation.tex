@@ -110,6 +110,7 @@ These dependencies are all omitted in both graphs.
 %how to add \emph{cloudml-engine} as a dependency itself.
 
 \section{Cloud connection}
+\input{codes/connector-facade}
 
 The connection between CloudML and cloud providers is facilitated 
 to a separate module, called \texttt{cloud-connector}.
@@ -117,6 +118,14 @@ In the implementation this module is the bridge between providers and \emph{clou
 It is built to support several libraries and interface these,
 this is achieved by implementing a type of \emph{facade pattern}.
 It does not contain any entities, and only executes logical code. 
+
+The \emph{facade pattern} used to select which library to use is expressed in
+\citelist{connector-facade}.
+In this listing an implementation of \texttt{CloudConnector} is returned
+based on Scala \emph{pattern matching}.
+By default the implementation using jclouds is returned~(\texttt{JcloudsConnector}).
+This is the files where cloud-based libraries are either added or removed.
+End users will not use this facade, instead it is used by \texttt{Engine}.
 
 The bridge between \emph{cloudml-engine} and cloud providers is an important aspect of the application, 
 and as a requirement it is important to use an existing library to achieve this connection.
@@ -129,6 +138,8 @@ Jclouds uses Maven for building as well, and is part of Maven central which make
 it possible to add jclouds directly as a module dependency.
 Jclouds contains a template system which is used through code directly, this is utilized 
 to map CloudML templates to jclouds templates.
+
+
 
 \section{Asynchronous provisioning}
 
