@@ -8,21 +8,53 @@ then not just for the implementation but in core design.
 
 \section{Short term}
 
-Load balancer.
-SSH Keys
-Move logic into actors
+\paragraph{Load balancer.}
+\input{codes/loadbalancer.tex}
+
+The feature of load balancer is implemented in \emph{cloudml-engine}, but at writing moment~(\date{April 2012}),
+is not supported by jclouds.
+The library, jclouds, have interfaces which suggest how to interact to create load balancers,
+but full support of creating them is not yet complete.
+
+Core design of introducing a load balancer into CloudML is expressed in \citelist{loadbalancer}.
+The idea is to simply let every node within a template be bound to a given load balancer.
+As a template is not bound to reflect a topology, but rather be part of one.
+
+These interfaces in jclouds to create load balancers are utilized in \emph{cloudml-engine}, but not supported.
+The main point about implementing this was that when jclouds fully support load balancers the dependency version
+can be updated to the latest version, which would in theory give full support for this new feature.
+
+\paragraph{\myac{SSH} keys.}
+
+The current version of CloudML does not express how SSH keys should be defined.
+In \emph{cloudml-engine} this is solved to use the default approach by jclodus library,
+\ie for \myac{AWS} keys are generated as provisioning takes place.
+
+Examples of solutions could be to include credentials in the template file, or the account file.
+The authentication method between providers differ, \eg in \myac{AWS} SSH keys are assigned to a node,
+while in Rackspace a root password is returned for each node.
+To implement a common solution \emph{cloudml-engine} could use this password to automatically 
+log into each node, inject a given \myac{SSH} key, obscure root password by changing it and log out.
+
+\paragraph{Refactoring of actor logic.}
+
+Logic for provisioning is currently located in \texttt{cloud-connector} module.
+The reason for this is because the implementation built so it can differ between which library is used for provisioning, 
+which currently is jclouds.
+
+What can be done as an improved alternative is to move the provisioning logic out of \texttt{cloud-connector} 
+module and into the actor classes~(\texttt{RuntimeInstance}).
+The modularity of not being bound to a specific library is still important, and this must be abstracted away.
+In the end the \texttt{repository} module would become increasingly more complex in term of pure construction.
+The advantage of this would become clear as the complexity of the bridge between \emph{cloudml-engine}
+and providers increases, \eg if features such as live managing should be introduced.
 
 \section{Long term}
 
 Manually terminating nodes = managing after provisioning.
 ref maderia.
 
-\\
-
 Full deployment is planed for next version of CloudML.
 
 \note{Live managing.}
 
-\paragraph{Load balancer.}
-
-\input{codes/loadbalancer.tex}

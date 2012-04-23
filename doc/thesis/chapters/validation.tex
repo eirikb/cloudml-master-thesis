@@ -35,9 +35,7 @@ There are a total of three files:
 %defined within the template.
 The topology is split into two templates to support a load balancer,
 as every node within a template will be bound to a given load balancer.
-This feature is implemented in \emph{cloudml-engine}, but at writing moment~(\date{April 2012}),
-is not supported by jclouds.
-More about the load balancer in~\citechap{perspectives}.
+The load balancer is yet introduced as it is not supported, more about the load balancer in~\citechap{perspectives}.
 %since the \texttt{back-end} node should not be bound to the load balancer.
 The splitting is by design, as a \texttt{template} is not directly bound to a topology,
 and is also why \texttt{build} accept a list of templates.
