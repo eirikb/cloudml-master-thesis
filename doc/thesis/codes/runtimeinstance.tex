@@ -1,0 +1,36 @@
+\begin{figure}[tb]
+  \begin{center}
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   frame=lines,
+                   framesep=2mm]{scala}
+object Status extends Enumeration {
+  val Configuring, Building, Starting, Started = Value
+}
+...
+case class RuntimeInstance(node: Node) extends Actor {
+  ...
+  var status = Status.Configuring
+  def addListener(listener: Listener) {
+    listeners = listener +: listeners
+  }
+  def act() {
+    loop {
+      receive {
+        case AddProperty (name, value) => 
+          properties(name) = value
+          listeners.foreach(_(Event.Property))
+        case SetStatus (s) =>
+          status = s
+          listeners.foreach(_(Event.Status))
+      }
+    }
+  }
+}
+    \end{minted}
+  \end{center}
+  \caption{Code snippet of actor model implementation~(\texttt{RuntimeInstane}).}
+  \label{list:runtimeinstance}
+\end{figure}
+
