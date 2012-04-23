@@ -71,16 +71,37 @@ To accomplish this there are several topics to address, such as
   \iitem authentication,
   \iitem communication between nodes.
 \end{ii}
-Additional software must be considered to assist in many of these topics, \eg Puppet to handle third party software and installations.
+Additional software must be considered to assist in many of these topics,
+\eg Puppet to handle third party software and installations.
+\\
+\todo{Mention published (submitted?) article?}
 
-\paragraph{Live managing.}
+\paragraph{Cloud management.}
 
-After provisioning is com
-
-Manually terminating nodes = managing after provisioning.
-ref maderia.
-
-Full deployment is planed for next version of CloudML.
-
-\note{Live managing.}
-
+After provisioning, or even deployment, is complete the users are left for them selves to
+manage any instances related to a provisioning.
+Such management could be to 
+\begin{ii}
+  \iitem terminate nodes, 
+  \iitem stop nodes, 
+  \iitem restart nodes,
+  \iitem apply vertical scaling or
+  \iitem assign load balancer.
+\end{ii}
+The web-based consoles offered by providers are of a high standard,
+\eg the \myac{AWS} console displayed in~\citefig{validation-aws}.
+Because of this quality in consoles, 
+there is not a greater problem for users to do management themselves.
+Although such functionality could be built into CloudML,
+not just as an alternative, 
+but as an improvement for users already relying on CloudML.
+The implementation, \emph{cloudml-engine}, possesses the ability to terminate nodes
+through a method call, provided a nodes \emph{ID}. 
+This functionality have been mainly used for testing purposes, 
+but is fully operational and available.
+Although just providing the means of functionalities needed to fulfill management is not
+sufficient for CloudML, as a model-driven approach there must be a
+refined link between templates, provisioning and management.
+This is the main perspective of management in CloudML,
+to find solutions to tackle the management problem through researching in the model-based realm.
+%wut
