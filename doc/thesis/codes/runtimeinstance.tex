@@ -5,12 +5,18 @@
                    numbersep=5pt,
                    frame=lines,
                    framesep=2mm]{scala}
+import scala.actors.Actor
+import scala.actors.Actor._
 object Status extends Enumeration {
   val Configuring, Building, Starting, Started = Value
 }
-...
+object Event extends Enumeration {
+  val Status = Value
+}
+case class SetStatus(status: Status.Value)
 case class RuntimeInstance(node: Node) extends Actor {
-  ...
+  private type Listener = (Event.Value) => Unit
+  private var listeners: List[Listener] = Nil
   var status = Status.Configuring
   def addListener(listener: Listener) {
     listeners = listener +: listeners
@@ -18,9 +24,6 @@ case class RuntimeInstance(node: Node) extends Actor {
   def act() {
     loop {
       receive {
-        case AddProperty (name, value) => 
-          properties(name) = value
-          listeners.foreach(_(Event.Property))
         case SetStatus (s) =>
           status = s
           listeners.foreach(_(Event.Status))
