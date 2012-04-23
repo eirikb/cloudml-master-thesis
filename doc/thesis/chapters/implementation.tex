@@ -178,6 +178,7 @@ The terms are divided for a node before and under provisioning, the essential is
 
 In \citelist{runtimeinstance} express a code snippet from \emph{coudml-engine}.
 Within this snippet both the actor model as well as the observer pattern are utilized.
+
 The actor model is implemented through built in functionality in Scala,
 through \texttt{import scala.actors.Actor}.
 By extending \texttt{Actor} the \texttt{RuntimeInstance} class becomes an actor.
@@ -185,7 +186,12 @@ The \texttt{loop} and \texttt{receive}-parts~(line 18 to line 19) are specific t
 and will be triggered on incoming messages.
 The incoming message is parsed through Scala \emph{pattern matching} against case classes,
 respectively the case class created in line 9.
-The observer pattern is expressed through ``listeners''\ldots\ldots\ldots\ldots.
+
+The observer pattern is expressed through ``listeners'', defined on line 11 and line 12.
+Clients using the library can ``listen'' for updates on \texttt{RuntimeInstance}
+by adding themselves through \texttt{addListener}~(line 14).
+In \citelist{runtimeinstance} \texttt{Status} is highlighted to exemplify 
+the callback behavior, which is shown in line 22.
 
 \section{From text to objects}
 \input{tables/requirements-lexical}
