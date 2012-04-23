@@ -1,0 +1,27 @@
+\begin{figure}[tb]
+  \begin{center}
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   frame=lines,
+                   framesep=2mm]{scala}
+trait CloudConnector {
+  def createInstances(template: Template): 
+      List[RuntimeInstance]
+  def destroyInstance(id: String)
+}
+object CloudConnector {
+  def apply(account: Account, instanceType: String): 
+      CloudConnector = instanceType match {
+    case "jclouds" =>
+      new JcloudsConnector(account);
+    case _ =>
+      new JcloudsConnector(account);
+  }
+}
+    \end{minted}
+  \end{center}
+  \caption{Facade used in \texttt{cloud-connector}.}
+  \label{list:connector-facade}
+\end{figure}
+
