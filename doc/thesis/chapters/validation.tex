@@ -43,7 +43,7 @@ as every node within a template will be bound to a given load balancer.
 The splitting is by design, as a \texttt{template} is not directly bound to a topology,
 and is also why \texttt{build} accept a list of templates.
 The whole text represents the \texttt{Template} and consequently 
-``\texttt{nodes}'' is a list of \texttt{Node} from the model.
+\texttt{``nodes''} is a list of \texttt{Node} from the model.
 The \myac{JSON} is textual which makes it \emph{shareable} as files.
 Once such a file is created it can be reused (\emph{reproducibility}) 
 on any supported provider (\emph{multi-cloud}).
@@ -59,7 +59,7 @@ and returned to the client.
 In the background (inside \emph{cloudml-engine}) these instances are
 provisioned asynchronously.
 On line $6$ each of these instances are looped through, and a callback-based
-``listener'' is added to each one (line $9$).
+\emph{``listener''} is added to each one (line $9$).
 The callback is triggered on line $10$ when an \texttt{Event} is sent 
 to the object.
 In case this \texttt{Event} is a \texttt{Status} (line $12$) information
@@ -76,14 +76,14 @@ and subsequent arguments are template files.
 To initialize provisioning the client calls 
 \texttt{val runtimeInstances = Engine(account, templates)}.
 According to the meta model~(\citefig{meta-model}) this is the \texttt{build}-operation.
-The name ``\emph{build}'' is a general term, while the usage in \citelist{validation-client}
+The name \emph{``build''} is a general term, while the usage in \citelist{validation-client}
 is a Scala-specific pattern.
 What Scala does here is syntactic sugar, when the client calls \texttt{Engine()},
 Scala converts this into \texttt{Engine.apply()}.
 This operation is overridden in \texttt{Engine}, so the logic is controlled by \emph{cloudml-engine}.
 
 After receiving a list of \texttt{RuntimeInstances} the client runs through these 
-objects and attach ``listeners''.
+objects and attach \emph{``listeners''}.
 These listeners works according to the observer pattern,
 when a property is added or the instance changes status,
 a callback is made to the client.

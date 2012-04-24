@@ -15,7 +15,7 @@ The scenario also describe parts of the implementation design through how it is 
 
 \paragraph{Scenarios introduction.}
 
-CloudML is introduced by using two different scenarios where a user named ``Alice'' is provisioning the 
+CloudML is introduced by using two different scenarios where a user named \emph{``Alice''} is provisioning the 
 \emph{BankManager} application from \citechap{challenges} to the \myac{AWS} cloud.
 It is compulsory that she possesses an \myac{AWS} account in advance of the scenario.
 This is essential information needed for the scenario to be successful,
@@ -59,7 +59,7 @@ the main application as well as the database.
 The approach of using one single node is good in terms of simplicity,
 since all important components of the application are located in one single place.
 Other advantages distinguish themselves as well, such as network connections where
-the address of other components are determined to be ``this computer'' (\emph{localhost}).
+the address of other components are determined to be \emph{``this computer''} (\emph{localhost}).
 
 \paragraph{Building templates.}
 
@@ -139,7 +139,7 @@ If Alice deployed an application that should suddenly,
 rapidly and unexpectedly gain popularity, her current setup (one single node) will not be sufficient.
 In case of such event Alice should change her topology from her initial one seen in 
 \citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes.
-Or even the topology seen in \citefig{frontends}, with ``unlimited'' amount of nodes.
+Or even the topology seen in \citefig{frontends}, with \emph{``unlimited''} amount of nodes.
 This topology is more advanced and utilizes the cloud on a higher level.
 It has three nodes, two for the application logic (front-end) and one for the database (back-end).
 In front it has a \emph{load balancer}, which is a cloud service ensuring that requests

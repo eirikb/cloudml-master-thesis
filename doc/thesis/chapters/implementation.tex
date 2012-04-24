@@ -152,7 +152,7 @@ actor model and observer pattern.
 The asynchronous solution in CloudML is based on actor model~\cite{actors:haller07},
 resulting in concurrent communication with nodes under provisioning.
 By adopting this behavior developers exploring the implementation can then choose
-to ``listen'' for updating events from each node,
+to \emph{``listen''} for updating events from each node,
 and do other jobs / idle while the nodes are provisioned.
 
 The actor model in CloudML is based on built-in implementations in Scala, 
@@ -188,8 +188,8 @@ and will be triggered on incoming messages.
 The incoming message is parsed through Scala \emph{pattern matching} against case classes,
 respectively the case class created in line 9.
 
-The observer pattern is expressed through ``listeners'', defined on line 11 and line 12.
-Clients using the library can ``listen'' for updates on \texttt{RuntimeInstance}
+The observer pattern is expressed through \emph{``listeners''}, defined on line 11 and line 12.
+Clients using the library can \emph{``listen''} for updates on \texttt{RuntimeInstance}
 by adding themselves through \texttt{addListener}~(line 14).
 In \citelist{runtimeinstance} \texttt{Status} is highlighted to exemplify 
 the callback behavior, which is shown in line 22.
