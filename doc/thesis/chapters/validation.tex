@@ -67,7 +67,8 @@ about the status is printed to \myac{CLI}.
 If this status is \texttt{Started} the client will print that the instance is running.
 
 The snippets does not contain code to read the files, this is left out to save space.
-File reading is done through Scala with \texttt{io.Source.fromFile(\emph{filename}).mkString}.
+File reading is done through Scala by calling \\
+\texttt{io.Source.fromFile(\emph{filename}).mkString}.
 What files to read is specified through command line arguments,
 where the first argument corresponds to account information,
 and subsequent arguments are template files.
