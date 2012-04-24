@@ -3,29 +3,37 @@
     \newthread{u}{:User}
     \newthreadhack{c}{:CloudML}
     \newinst{r}{r:RuntimeInstance}
-    \newthread{a}{:AWS}
-    
+    \newinst{a}{:CloudConnector}
+
     \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{List(\texttt{r})}
       \begin{call}{c}{Initialize()}{r}{}
       \end{call}
     \end{call}
-    \begin{messcall}{c}{provision(\texttt{r})}{a}
+
+    \begin{call}{u}{getStatus()}{r}{\emph{"Configuring"}}
+    \end{call}
+    \begin{messcall}{c}{update(\emph{"Building"})}{r}
     \end{messcall}
-    
+    \begin{call}{c}{buildTemplates(\texttt{r})}{a}{}
+    \end{call}
     \begin{call}{u}{getStatus()}{r}{\emph{"Building"}}
     \end{call}
-    
-    \begin{messcall}{a}{status(\texttt{r}, \emph{"Starting"})}{c}
-    \end{messcall}
-    
     \begin{messcall}{c}{update(\emph{"Starting"})}{r}
     \end{messcall}
     
+    \begin{call}{c}{provision(\texttt{r})}{a}{}
+      \begin{call}{u}{getStatus()}{r}{\emph{"Starting"}}
+      \end{call}
+    \end{call}
     
-    \begin{call}{u}{getStatus()}{r}{\emph{"Starting"}}
+    \begin{messcall}{c}{update(\emph{"Started"})}{r}
+    \end{messcall}
+    
+    
+    \begin{call}{u}{getStatus()}{r}{\emph{"Started"}}
     \end{call}
   \end{sequencediagram}
   
-  \caption{CloudML asynchronous provisionning process (Sequence diagram).}
+  \caption{CloudML asynchronous provisioning process (Sequence diagram).}
   \label{fig:sequence-singlenode}
 \end{figure}

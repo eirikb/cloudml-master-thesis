@@ -129,12 +129,13 @@ application design and deployment considerations.
 In \emph{BankManager} these measures consists of manually setting 
 physical database address before deploying the application.
 
-In the described scenario, Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
-In many cases this setup is sufficient, but major advantages
+In the previous described scenario, 
+Alice provision \emph{BankManager} to one single instance on \myac{AWS}.
+This setup is sufficient for development purposes, but major advantages
 could be gained through the opportunity of horizontal scalability (\emph{scale out}).
 There are distinct benefits to this.
 If Alice deployed an application that should suddenly, 
-rapidly and unexpectedly gain popularity, her current setup (one single node) might not be sufficient.
+rapidly and unexpectedly gain popularity, her current setup (one single node) will not be sufficient.
 In case of such event Alice should change her topology from her initial one seen in 
 \citefig{singlenode} with one node, to that of \citefig{threenodes} with three nodes.
 Or even the topology seen in \citefig{frontends}, with ``unlimited'' amount of nodes.
@@ -160,8 +161,8 @@ All \texttt{Properties} are optional and thus Alice does not have to define them
 
 Then she executes \texttt{build} on \texttt{CloudMLEngine} again,
 which will provision the new nodes for her.
-She will get three new nodes, and the previous provisioned nodes must be manually terminated.
-More about this in \citechap{perspectives}.
+She will get three new nodes, and the previous provisioned nodes must be manually terminated
+(more about this in \citechap{perspectives}).
 The outline of how nodes are provisioned is shown in \citefig{sequence-threenodes-1}.
 In the figure \texttt{RI} is an abbreviation of \texttt{RuntimeInstance}, to save space.
 It is also split into three parts expressing different steps, 
@@ -307,13 +308,14 @@ The core idea of integration and benefits of these approaches are:
     to be individual actors.
     The chef must know about the first waiter, 
     but the waiters do not necessarily need to know about each other.
-    When a meal is done the chef can inform the correct waiter (one associated with correct table).
+    When a meal is done the chef can inform the correct waiter 
+    (the one associated with the correct table).
     The benefit here is that the message is decoupled and asynchronous, so the chef can start
     working on the next meal without waiting for the waiter to return.
   \item[Publish-subscribe pattern.] This pattern is very similar to observer pattern in behavior,
     but is more focused on message distribution logic.
-    Compared to observer pattern the \emph{observable} can be considered a \emph{publisher} and
-    \emph{observers} can be called \emph{subscribers}.
+    Compared to observer pattern the \emph{observable} are considered a \emph{publisher} and
+    \emph{observers} are called \emph{subscribers}.
     When a \emph{publisher} sends a message it does not send it directly to any receivers,
     instead there is a filter-based logic which selects receivers based on condition they set themselves.
     In the restaurant example, similar to that with observer pattern, the chef is \emph{publisher}
@@ -330,7 +332,7 @@ An interesting approach is to combine the \emph{actor model} with one of the pat
 By doing this the behavior functionality is combined with the asynchronous benefits within the actor model.
 Of the previous mentioned patterns only \emph{observer} and \emph{publish-subscribe} patterns 
 fit well with designed behavior of CloudML.
-Of these \emph{publish-subscribe} is the most scalable and dynamic one (in run-time),
+Of these \emph{publish-subscribe} is the most scalable and dynamic one (at run-time),
 but also the most complicated.
 When combining the \emph{actor model} with such pattern it is important to keep the implementation
 as simple as possible, without withholding functionality.
@@ -378,7 +380,7 @@ This is to distribute workload and divide CloudML into logical parts for differe
 \input{figs/cloudml-modules-flow}
 
 The main entry point to the application is \texttt{Engine}. 
-\ie it does not have to be initialized and there exists only one instance of it.
+This means it does not have to be initialized and there exists only one instance of it.
 Interaction between \texttt{user} and \texttt{Engine} is expressed in \citefig{cloudml-modules-flow} 
 where the user will initialize provisioning by calling \texttt{Engine}.
 \texttt{Engine} will also do orchestration between the three other modules

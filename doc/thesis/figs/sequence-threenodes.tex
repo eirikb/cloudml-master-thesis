@@ -4,7 +4,7 @@
   \newinst{r1}{r1:RI}
   \newinst{r2}{r2:RI}
   \newinst{r3}{r3:RI}
-  \newthread{a}{:AWS}
+  \newinst{a}{:AWS}
 }
 
 \begin{figure}[tb]
@@ -24,7 +24,7 @@
     \begin{messcall}{c}{provision(\texttt{r1}, \texttt{r2}, \texttt{r3})}{a}
     \end{messcall}
   \end{sequencediagram}
-  \captcont{Three nodes provisioning: Provisioning.}
+  \caption{Provisioning three nodes provisioning.}
   \label{fig:sequence-threenodes-1}
 \end{figure}
 \begin{figure}[tb]
@@ -63,13 +63,17 @@
     \begin{call}{u}{getStatus()}{r3}{\emph{"Building"}}
     \end{call}
   \end{sequencediagram}
-  \captcont{Three nodes provisioning (continued): Asynchronous message communication.}
+  \caption{Asynchronous message communication between three nodes.}
   \label{fig:sequence-threenodes-2}
 \end{figure}
 \begin{figure}[tb]
   \centering
   \begin{sequencediagram}[scale=0.9, transform shape]
-    \topthreenodes
+    \newthreadhack{c}{:CloudML}
+    \newinst{r1}{r1:RI}
+    \newinst{r2}{r2:RI}
+    \newinst{r3}{r3:RI}
+    \newthread{a}{:AWS}
 
     \begin{messcall}{a}{status(\texttt{r3}, \emph{"Starting"})}{c}
     \end{messcall}
@@ -87,6 +91,6 @@
     \begin{messcall}{c}{createLoadBalancer(\texttt{r1}, \texttt{r2}, \texttt{r3})}{a}
     \end{messcall}
   \end{sequencediagram}
-  \caption{Three nodes provisioning (continued): Load balancer.}
+  \caption{Load balancer for three nodes.}
   \label{fig:sequence-threenodes-3}
 \end{figure}
