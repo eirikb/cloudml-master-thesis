@@ -164,6 +164,9 @@ which will provision the new nodes for her.
 She will get three new nodes, and the previous provisioned nodes must be manually terminated
 (more about this in \citechap{perspectives}).
 The outline of how nodes are provisioned is shown in \citefig{sequence-threenodes-1}.
+The asynchronous behavior is expressed in \citefig{sequence-threenodes-2}.
+This behavior is similar to that shown in \citefig{sequence-singlenode},
+but show how communication can flow with increased amount of \texttt{RuntimeInstances}.
 In the figure \texttt{RI} is an abbreviation of \texttt{RuntimeInstance}, to save space.
 It is also split into three parts expressing different steps, 
 \begin{ii}

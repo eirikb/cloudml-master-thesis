@@ -4,7 +4,7 @@
   \newinst{r1}{r1:RI}
   \newinst{r2}{r2:RI}
   \newinst{r3}{r3:RI}
-  \newinst{a}{:AWS}
+  \newinst{a}{:CloudConnector}
 }
 
 \begin{figure}[tb]
@@ -13,15 +13,29 @@
     \topthreenodes
     \begin{call}{u}{build(\texttt{account},List(\texttt{template}))}{c}{
         List(\texttt{r1}, \texttt{r2}, \texttt{r3})}
-    \begin{call}{c}{Initialize()}{r1}{}
-    \end{call}
-    \begin{call}{c}{Initialize()}{r2}{}
-    \end{call}
-    \begin{call}{c}{Initialize()}{r3}{}
-    \end{call}
+      \begin{call}{c}{Initialize()}{r1}{}
+      \end{call}
+      \begin{call}{c}{Initialize()}{r2}{}
+      \end{call}
+      \begin{call}{c}{Initialize()}{r3}{}
+      \end{call}
     \end{call}
 
-    \begin{messcall}{c}{provision(\texttt{r1}, \texttt{r2}, \texttt{r3})}{a}
+    \begin{messcall}{c}{update(\emph{"Building"})}{r1}
+    \end{messcall}
+    \begin{messcall}{c}{update(\emph{"Building"})}{r2}
+    \end{messcall}
+    \begin{messcall}{c}{update(\emph{"Building"})}{r3}
+    \end{messcall}
+
+    \begin{call}{c}{buildTemplates(\texttt{r1}, \texttt{r2}, \texttt{r3})}{a}{}
+    \end{call}
+
+    \begin{messcall}{c}{update(\emph{"Starting"})}{r1}
+    \end{messcall}
+    \begin{messcall}{c}{update(\emph{"Starting"})}{r2}
+    \end{messcall}
+    \begin{messcall}{c}{update(\emph{"Starting"})}{r3}
     \end{messcall}
   \end{sequencediagram}
   \caption{Provisioning three nodes provisioning.}
@@ -31,66 +45,39 @@
   \centering
   \begin{sequencediagram}[scale=0.8, transform shape]
     \topthreenodes
-    \begin{call}{u}{getStatus()}{r1}{\emph{"Building"}}
-    \end{call}
-    \begin{call}{u}{getStatus()}{r2}{\emph{"Building"}}
+    \begin{call}{u}{getStatus()}{r2}{\emph{"Starting"}}
     \end{call}
 
-    \begin{messcall}{a}{status(\texttt{r1}, \emph{"Starting"})}{c}
-    \end{messcall}
-    \begin{messcall}{c}{update(\emph{"Starting"})}{r1}
-    \end{messcall}
-
-
-    \begin{call}{u}{getStatus()}{r1}{\emph{"Starting"}}
+    \begin{call}{c}{provision(\texttt{r1})}{a}{}
     \end{call}
-    \begin{call}{u}{getStatus()}{r2}{\emph{"Building"}}
-    \end{call}
-
-    \begin{messcall}{a}{status(\texttt{r1}, \emph{"Started"})}{c}
-    \end{messcall}
     \begin{messcall}{c}{update(\emph{"Started"})}{r1}
     \end{messcall}
-    \begin{messcall}{a}{status(\texttt{r2}, \emph{"Starting"})}{c}
+
+    \begin{messcall}{c}{update(\emph{"Started"})}{r1}
     \end{messcall}
-    \begin{messcall}{c}{update(\emph{"Starting"})}{r2}
-    \end{messcall}
+
 
     \begin{call}{u}{getStatus()}{r1}{\emph{"Started"}}
     \end{call}
     \begin{call}{u}{getStatus()}{r2}{\emph{"Starting"}}
     \end{call}
-    \begin{call}{u}{getStatus()}{r3}{\emph{"Building"}}
+
+    \begin{call}{c}{provision(\texttt{r2})}{a}{}
+      \begin{call}{u}{getStatus()}{r2}{\emph{"Starting"}}
+      \end{call}
     \end{call}
-  \end{sequencediagram}
-  \caption{Asynchronous message communication between three nodes.}
-  \label{fig:sequence-threenodes-2}
-\end{figure}
-\begin{figure}[tb]
-  \centering
-  \begin{sequencediagram}[scale=0.9, transform shape]
-    \newthreadhack{c}{:CloudML}
-    \newinst{r1}{r1:RI}
-    \newinst{r2}{r2:RI}
-    \newinst{r3}{r3:RI}
-    \newthread{a}{:AWS}
+    \begin{messcall}{c}{update(\emph{"Started"})}{r2}
+    \end{messcall}
+    \begin{call}{u}{getStatus()}{r2}{\emph{"Started"}}
+    \end{call}
 
-    \begin{messcall}{a}{status(\texttt{r3}, \emph{"Starting"})}{c}
-    \end{messcall}
-    \begin{messcall}{c}{update(\emph{"Starting"})}{r3}
-    \end{messcall}
-    \begin{messcall}{a}{status(\texttt{r2}, \emph{"Started"})}{c}
-    \end{messcall}
-    \begin{messcall}{c}{update(\emph{"Started"})}{r3}
-    \end{messcall}
-    \begin{messcall}{a}{status(\texttt{r2}, \emph{"Started"})}{c}
-    \end{messcall}
-    \begin{messcall}{c}{update(\emph{"Started"})}{r3}
-    \end{messcall}
-
+    \begin{call}{u}{getStatus()}{r1}{\emph{"Started"}}
+    \end{call}
+    \begin{call}{u}{getStatus()}{r3}{\emph{"Starting"}}
+    \end{call}
     \begin{messcall}{c}{createLoadBalancer(\texttt{r1}, \texttt{r2}, \texttt{r3})}{a}
     \end{messcall}
   \end{sequencediagram}
-  \caption{Load balancer for three nodes.}
-  \label{fig:sequence-threenodes-3}
+  \caption{Asynchronous message communication between three nodes.}
+  \label{fig:sequence-threenodes-2}
 \end{figure}
