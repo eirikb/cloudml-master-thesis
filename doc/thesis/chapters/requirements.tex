@@ -1,11 +1,15 @@
 \mychapter{requirements}{Requirements}
+\input{figs/requirements}
 
 In \citechap{challenges} challenges were identified, in this chapter those challenges
 will be addressed and tackled through requirements.
-The requirements are descriptions of important aspects and needs derived from the previous chapter, 
+The requirements are descriptions of important aspects and needs derived from the previous chapter.
 A table overview will display consecutive challenges and requirements. 
 This table is angled to the challenges point of view to clarify requirements relation to challenges,
 and one requirement can try to solve several challenges.
+
+The requirements are expressed in \citefig{requirements}.
+Four of these requirements have dependencies to each other.
 
 \req{software-reuse}{Software reuse}
 There were several technological difficulties with the scripts from the scenario in 
@@ -65,8 +69,8 @@ which aspects they fulfill.
 
 Types of technologies are undefined but some are mandatory such as 
 \begin{ii}
-  \iitem programming language (Java, C\#) and 
-  \iitem application environment (JDK, .NET).
+  \iitem programming language (\eg Java, C\#) and 
+  \iitem application environment (\eg JDK, .NET).
 \end{ii}
 Beside this it is also important to state which type of application the solution should be, 
 \begin{ii}
@@ -88,7 +92,7 @@ at the same time base this on a human readable lexical format to address \emph{r
 make it \emph{shareable}.
 
 Unlike the other requirements this is a non-physical need, 
-and as seen in \citefig{requirement-dependencies}
+and as seen in \citefig{requirements}
 there are no dependencies from or to this requirement.
 But other requirements such as \citereq{lexical-template} are directly based on this one.
 
@@ -133,10 +137,10 @@ Some examples of these languages are
   \iitem \myac{SDL} or
   \iitem \myac{OGDL}.
 \end{ii}
-As shown in \citefig{requirement-dependencies} there is a two-way dependency between 
+As shown in \citefig{requirements} there is a two-way dependency between 
 this requirement and \citereq{foundation} requirement.
 This dependency can have impact both ways, but unlike the other dependencies in
-\citefig{requirement-dependencies} there exist bindings all the four precedings in
+\citefig{requirements} there exist bindings all the four precedings in
 most languages and systems.
 Templates could even be stored as any binary type of serialization, 
 but this might not be as sufficient as lexical types, more on this
@@ -170,7 +174,7 @@ What needs to be done here is to identify which approaches that are most suffici
 in regards to 
 \begin{ii} 
   \iitem finding an approach that solved the requirement,
-  \iitem sustain constraints in regard of dependencies as seen in \citefig{requirement-dependencies}, and
+  \iitem sustain constraints in regard of dependencies as seen in \citefig{requirements}, and
   \iitem identify approaches that can be combined and what benefits this would give.
 \end{ii} 
 
@@ -201,7 +205,6 @@ while the challenge \emph{complexity} is tackled by both
 \citereq{software-reuse} and \citereq{mda}.
 
 \section{Requirement dependencies}
-\input{figs/requirement-dependencies}
 
 Some of the requirements have depend on each other, for instance \citereq{software-reuse} is about finding
 and utilizing an existing library or framework, but this will also directly affect or be affected by
@@ -214,12 +217,12 @@ There are three requirements,
     where all have a two-way dependency to the 
   \iitem \citereq{foundation} requirement,
 \end{ii}
-as illustrated in \citefig{requirement-dependencies}.
+as illustrated in \citefig{requirements}.
 These dependency links will affect the end result of all the four previous mentioned requirements.
 For example a library chosen in precept \iii{2} would affect precept \iii{4}, which again would affect
 how precept \iii{1} will be solved. 
 It could also affect precept \iii{3} as different textual solutions can function better in
 different environments.
-Since \citereq{foundation} is a central dependency (\citefig{requirement-dependencies})
+Since \citereq{foundation} is a central dependency (\citefig{requirements})
 this requirements is weighted more than the others.
 
