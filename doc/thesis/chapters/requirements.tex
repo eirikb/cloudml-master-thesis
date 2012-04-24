@@ -150,12 +150,14 @@ in \citechap{design}.
 Models that reflect the provisioning models and updates asynchronously. 
 As identified by the scenario in \citechap{challenges} metadata from provisioning is crucial to perform
 a proper deployment in steps after the provisioning is complete.
-One way to solve this issue is by utilizing \emph{models@run.time}, which is the most obvious choice in a
+One way to solve this issue is by utilizing \myac{M@RT}, which is the most obvious choice in a
 model-driven approach.
 Models will apply to several parts of the application, such as for topology designing and for the actual propagation.
+Models are often used to clarify understanding of a system,
+a run-time model is similar to such model, but focuses on a system in operating state.
 
-The models@run.time are meant to support any deployment system which should
-be run sequentially after a complete provisioning.
+The models@run.time approach~\cite{DBLP:journals/dagstuhl-reports/AssmannBCF11}
+is meant to support any deployment system which should be run sequentially after a complete provisioning.
 For such deployment to be successful metadata from the provisioning could be needed,
 so the core idea is to fetch this kind of data directly from models@run.time.
 
