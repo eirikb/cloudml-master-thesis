@@ -2,10 +2,13 @@
 
 To validate how CloudML addresses the requirements from~\citechap{requirements},
 a topology of three nodes~(\citefig{threenodes}) is provisioned.
+The experiment aims at validating that a topology can be expressed as CloudML lexical templates.
+The experiment should also prove that nodes are provisioned through \emph{cloudml-engine}
+to two different providers, without changing the templates.
+The validation will provision on two different providers, \myac{AWS} and Rackspace.
+
 This topology is the same as Alice used for her second scenario in \citesec{meta-model}.
 The setup is sufficient to do a full deployment of the \emph{BankManager} application.
-
-The validation will provision on two different providers, \myac{AWS} and Rackspace.
 
 \paragraph{Template.}
 \input{codes/validation-threenodes}
@@ -25,7 +28,7 @@ There are a total of three files:
   \item[front-ends.json.]
     Defines front-end nodes of the topology.
     Each node have specific attributes regarding their tasks, similar to Alice's scenario,
-    but as an addiontal precaution the \texttt{front-end} nodes have increased \myac{RAM}.
+    but as an additional precaution the \texttt{front-end} nodes have increased \myac{RAM}.
   \item[back-end.json.]
     Defines the back-end node of the topology.
     Even though this is a separate file it is a part of the same topology,
@@ -35,7 +38,7 @@ There are a total of three files:
 %defined within the template.
 The topology is split into two templates to support a load balancer,
 as every node within a template will be bound to a given load balancer.
-The load balancer is yet introduced as it is not supported, more about the load balancer in~\citechap{perspectives}.
+%The load balancer is yet introduced as it is not supported, more about the load balancer in~\citechap{perspectives}.
 %since the \texttt{back-end} node should not be bound to the load balancer.
 The splitting is by design, as a \texttt{template} is not directly bound to a topology,
 and is also why \texttt{build} accept a list of templates.
@@ -59,9 +62,12 @@ and subsequent arguments are template files.
 
 To initialize provisioning the client calls 
 \texttt{val runtimeInstances = Engine(account, templates)}.
-According to the meta model~(\citefig{meta-model}) this is \texttt{build}.
-The name ``build'' is a general term, while the usage in \citelist{validation-client}
+According to the meta model~(\citefig{meta-model}) this is the \texttt{build}-operation.
+The name ``\emph{build}'' is a general term, while the usage in \citelist{validation-client}
 is a Scala-specific pattern.
+What Scala does here is syntactic sugar, when the client calls \texttt{Engine()},
+Scala converts this into \texttt{Engine.apply()}.
+This operation is overridden in \texttt{Engine}, so the logic is controlled by \emph{cloudml-engine}.
 
 After receiving a list of \texttt{RuntimeInstances} the client runs through these 
 objects and attach ``listeners''.
