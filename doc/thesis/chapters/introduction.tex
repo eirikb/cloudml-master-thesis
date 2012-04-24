@@ -25,9 +25,24 @@ The main issue is technological inconsistencies for provisioning between provide
 \eg \myac{AWS} offer \myac{CLI} tools, while Rackspace only offer web-based \myac{API}s.
 Although most providers offer APIs these are different as well, 
 they are inconsistent in layout, usage and entities.
-Intercloud~\cite{intercloud}, or ``multicloud''.
+The result of this is \emph{vendor lock-in}, the means used to provision an application to
+a given cloud must be reconsidered if it is to be re-provisioned on another provider.
+
+This thesis introduces the first version of CloudML,
+a modeling language designed to tackle the inconsistencies between providers
+with a model-based approach.
+This research is done in the context of the REMICS EU FP7 project,
+which aims to provide automated support to migrate legacy applications into
+clouds~\cite{DBLP:conf/services/MohagheghiS11}.
+With CloudML users can design cloud topologies with models,
+and while provisioning they are provided ``run-time models'' of 
+resources under provisioning,
+according to models@run.time approach~\cite{DBLP:journals/dagstuhl-reports/AssmannBCF11}.
 
 \paragraph{Publications.}
+
+In context of this thesis a paper was written and submitted,
+there is also two additional papers originating from the same research.
 
 \begin{itemize}
   \item
