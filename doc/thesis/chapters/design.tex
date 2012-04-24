@@ -35,7 +35,7 @@ She associates \emph{Access Key ID} and \emph{Secret Access Key} with
 \texttt{Credential} and \texttt{Password} in \citefig{meta-model}.
 \texttt{Credential} is used to authenticate her to supported providers through \texttt{Connector}.
 The \texttt{Connector} is a common interface against supported providers.
-This component of CloudML is directly associated with \citereq{multicloud}.
+This component of CloudML is directly associated with \citereq{multi-cloud}.
 \texttt{Credential} is in this case in the form of an \texttt{Access Key ID} (random GUID),
 but with other providers it might be in another form, \eg a username for Rackspace.
 Although the form is different, the physical object type (String) is the same.
@@ -203,7 +203,7 @@ are reflections of the nodes (and template) in \citefig{scenario2-1}.
 The template name is referenced within each \texttt{Instance} 
 for the reasons mentioned earlier.
 
-\subsection{Multicloud provisioning}
+\subsection{Multi-cloud provisioning}
 
 Alice could later decide to use another provider, either as replacement or complement to her current setup,
 because of availability, financial benefits or support.
@@ -215,19 +215,19 @@ physical parts maintainable by the user.
 The \texttt{build} method support provisioning of several templates to one account (same provider).
 There is also a constraint/limitation, a set of templates can not be simultaneously 
 cross-deployed to different providers,
-\ie not possible to define cross-provider (\emph{multicloud}) nodes in a single topology.
+\ie not possible to define cross-provider (\emph{multi-cloud}) nodes in a single topology.
 This is for the sake of tidiness, clarity and technical limitations.
-CloudML support multicloud provisioning,
+CloudML support multi-cloud provisioning,
 just that such functionality is achieved by sequential re-provisioning,
-which will not retain a full multicloud deployment.
+which will not retain a full multi-cloud deployment.
 
 \paragraph{\myac{AWS} and Rackspace combined.}
-\input{figs/topology-multicloud}
+\input{figs/topology-multi-cloud}
 
-To describe the layout of a multicloud provisioning with CloudML,
+To describe the layout of a multi-cloud provisioning with CloudML,
 a scenario is invented and a complementary figure is crafted.
 In the new scenario Alice creates a topology spanning over two providers,
-as seen in \citefig{topology-multicloud}.
+as seen in \citefig{topology-multi-cloud}.
 In the figure the user connects to a \texttt{load balancer}, 
 then the request is distributed between a set of \texttt{front-ends} which will 
 retrieve appropriate data from a \texttt{back-end}.
