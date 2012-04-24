@@ -54,6 +54,18 @@ These benefits match the requirement \citereq{lexical-template}.
 
 Validation is done through a \myac{CLI}-based client application written in Scala.
 Code snippets of this client is expressed in \citelist{validation-client}.
+On line $4$ in this client a list of \texttt{RuntimeInstances} are created
+and returned to the client.
+In the background (inside \emph{cloudml-engine}) these instances are
+provisioned asynchronously.
+On line $6$ each of these instances are looped through, and a callback-based
+``listener'' is added to each one (line $9$).
+The callback is triggered on line $10$ when an \texttt{Event} is sent 
+to the object.
+In case this \texttt{Event} is a \texttt{Status} (line $12$) information
+about the status is printed to \myac{CLI}.
+If this status is \texttt{Started} the client will print that the instance is running.
+
 The snippets does not contain code to read the files, this is left out to save space.
 File reading is done through Scala with \texttt{io.Source.fromFile(\emph{filename}).mkString}.
 What files to read is specified through command line arguments,
