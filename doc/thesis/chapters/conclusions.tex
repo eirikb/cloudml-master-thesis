@@ -43,15 +43,47 @@ These are the ``\emph{key results}'' composed by this thesis:
 \begin{description}
   \item[meta-model.]
     A meta-model was designed, with model-driven engineering in mind.
+    The meta-model was presented through a scenario where ``\emph{Alice}''
+    provision nodes based on two specific topologies.
+    The first topology consisting of a single node, to exemplify the simplest topology.
+    The second setup was based on three nodes, representing a common multi-tier
+    topology for development purposes.
+    Lastly a description of how a multi-cloud provision was presented, 
+    expressing how this is intended with the meta-model.
   \item[Engine.]
     An engine capable of provisioning nodes on a set of supported cloud providers
     was implemented.
+    The engine takes advantage of the automatic building system Maven,
+    enhancing the support for internal and external modules.
+    Through Maven the engine becomes increasingly adaptable for developers
+    seeking to include or utilize CloudML.
+    Internally the engine is split into four logical sub-modules.
+    Scala is used as programming language for the engine,
+    providing a \emph{state-of-the-art} set of features,
+    \eg combination of object-oriented and functional programming.
   \item[Lexical templates.]
-    The engine was constructed to interpret topologies through parsing of lexical files.
+    The engine was constructed to interpret topologies through parsing of lexical templates.
+    These templates are technically implemented through the data format \myac{JSON}.
+    This is a web-service friendly data format, which is commonly used to exchange data
+    over web-based communication channels.
+    This fact effectively makes the engine adaptable as a web-service end-point.
+    \myac{JSON} is a human-readable language, which let end users create and edit
+    templates manually with any text-based editor.
   \item[External library.]
     24 cloud providers are supported by the engine, through the advantage of 
     utilizing an external library.
+    Such ``\emph{bridge}'' libraries connect the engine to cloud providers.
+    The engine is designed so these ``\emph{bridge}'' libraries are abstracted
+    behind a version of the facade pattern.
+    The library focused upon in this thesis is \emph{jclouds},
+    a library written in Java.
+    This library is fluently added as a dependency in the Engine's Maven dependency.
   \item[Models@run.time.]
     \myac{M@RT} was utilized and combined with observer pattern to
     achieve asynchronous provisioning.
+    As provisioning of one single node can take up to minutes to complete it was
+    essential to implement asynchronous functionality.
+    To achieve desired asynchronous behavior in CloudML,
+    the engine exploited the advantage of combining observer pattern with Scala's
+    built in actor model.
 \end{description}
