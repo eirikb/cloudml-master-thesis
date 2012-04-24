@@ -9,7 +9,8 @@ of the implementation that constitutes CloudML.
 \input{figs/meta-model}
 
 In this section the meta-model of CloudML will be presented.
-The model is visualized in \citefig{meta-model}, and will be described through a specific scenario.
+The meta-model is visualized in \citefig{meta-model},
+and will be described through a specific scenario.
 The scenario also describe parts of the implementation design through how it is used.
 
 \paragraph{Scenarios introduction.}
@@ -23,7 +24,7 @@ she must also have \emph{security credentials},
 \ie \emph{Access Key ID} and \emph{Secret Access Key}.
 
 The roles assumed by Alice in this scenario, regarding \citefig{big-picture},
-are both \emph{cloud expert} and \emph{users}.
+are both \emph{cloud expert} and \emph{user}.
 She will define the topologies, create the templates and use 
 the \emph{engine} to provision her models.
 In addition to these roles she is also partly \emph{application designer/developer},
@@ -42,7 +43,7 @@ Although the form is different, the physical object type (String) is the same.
 
 \subsection{Single node topology}
 
-Initially she is using the topology shown in~\citefig{singlenode}.
+Initially Alice is using the topology shown in~\citefig{singlenode}.
 This topology introduces a single node, which hosts every tier of the application.
 This is not an uncommon topology for development purposes.
 
@@ -69,8 +70,7 @@ The \texttt{Node} has a \texttt{name} used to reference the node under provision
 The properties the node can have are configurations of attributes on a set of given capabilities.
 These configurations are what define what type of tasks a node is suitable for.
 In Alice's case the node has increased two important attributes to support both higher computation 
-demand and storage capabilities, \ie $2$ cores and $500$ \myac{GB}
-\footnote{
+demand and storage capabilities, \ie $2$ cores and $500$ \myac{GB}\footnote{
   Size is expressed in \myac{GB}, but measurement can change depending on implementation of \citereq{software-reuse}.
 }
 in hard drive size.
@@ -87,7 +87,7 @@ With these models Alice initializes provisioning by calling
 This starts the asynchronous job of configuring and creating 
 \texttt{Instances} based on \texttt{Nodes}.
 In \citefig{scenario1-1} an object diagram describe the initial configuration at run-time,
-after CloudML has interpreted the template files.
+after CloudML has interpreted the templates.
 The instance produced by the template and node is in the form of a single object,
 as represented by the object diagram in \citefig{scenario1-2}.
 \texttt{Instance} only refer to template by a \emph{String}, \texttt{templateName}.
