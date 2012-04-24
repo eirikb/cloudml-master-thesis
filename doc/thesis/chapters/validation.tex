@@ -111,17 +111,16 @@ client expressed in~\citelist{validation-client},
 The output is identical for both \myac{AWS} and Rackspace.
 
 \paragraph{After provisioning.}
-\input{figs/validation-aws.tex}
-\input{figs/validation-rackspace.tex}
+\input{figs/validation-consoles.tex}
 
 To validate the experiment screenshots of the cloud console of each provider are made.
 
-The screenshot of \myac{AWS} console~(\citefig{validation-aws}) shows that three nodes
+The screenshot of \myac{AWS} console~(\citefig{validation-consoles}) shows that three nodes
 are successfully provisioned.
 Two of the nodes is of the type \texttt{c1.medium} which corresponds to the template configuration.
 The last node is a \texttt{t1.micro}, \ie this is the \texttt{back-end} node.
 This is further emphasized by the fact that it uses \myac{EBS} as \texttt{Root device},
 to achieve additional disk space.
 
-Screenshot of Rackspace~(\citefig{validation-rackspace}) indicate similar consistencies,
+Screenshot of Rackspace~(\citefig{validation-consoles}) indicate similar consistencies,
 \eg \texttt{RAM Amount} for each node, which corresponds with the template.
