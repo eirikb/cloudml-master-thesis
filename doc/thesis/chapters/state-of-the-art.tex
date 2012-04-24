@@ -4,13 +4,13 @@ There already exists scientific research projects, \myac{API}s, frameworks
 and other technologies which aim at consolidating, interfacing and utilizing cloud technologies.
 This chapter introduces some of these concepts, and does this by dividing the chapter into four parts:
 \begin{enumerate}
-  \item Model-Driven Approaches which aims presenting frameworks and projects that utilize
+  \item Model-Driven Approaches that aims to present frameworks and projects that utilize
   models on a larger scale.
   \item \myac{API}s are about frameworks that connects to cloud providers, often with multicloud support,
   these projects can be used as middleware for other systems.
   \item Deployments are about projects that do full deployment of applications, inclusing provisioning.
   These are often more academic.
-  Lastly the chapter will discuss \iitem Example of cloud surveys, some real-world examples
+  \item Lastly the chapter will discuss \iitem Example of cloud surveys, some real-world examples
   that might not be directly related to provisioning but are important and interesting regardless.
 \end{enumerate}
 
@@ -48,8 +48,9 @@ The last section, \emph{Output}, will generate output to users when provisioning
 here it is possible for users to pick from a set of variables to get the information they need.
 
 This template system makes it easier for users to duplicate a setup many times, 
-and as the templates support parameters this process can be as dynamic as the user design it to be. 
-This is a model in form or lexical syntax, both the template itself 
+and as the templates support parameters,
+this process can be as dynamic as the user design it to be. 
+This is a model in form of lexical syntax, both the template itself 
 and the resources that can be used.
 For a company that is fresh in the world of cloud computing this service 
 could be considered too advance. 
@@ -109,7 +110,7 @@ so end users don't have to bother with IP addresses.
 Extensive work have been done towards simplifying and combining cloud technologies through
 abstractions, interfaces and integrations.
 Much of this work is in form of \myac{API}s, mostly in two different forms.
-Either as programming libraries that can be utilized directly from a given 
+First as programming libraries that can be utilized directly from a given 
 programming language or environment such as Java or Python.
 The other common solution is to have an online facade against public providers,
 in this solution the APIs are mostly in \myac{REST} form.
@@ -140,7 +141,7 @@ as the \myac{API} lacks correlation between resources and method calls.
 This is a library written in Java and can be used from any \myac{JVM}-based language.
 Provider support is implemented in \emph{drivers}, and they even support deployments
 to some \myac{PaaS} solutions such as \myac{GAE}.
-\emph{jclouds} divide their library in two different parts, one for computing powers 
+The \emph{jclouds} developers divides their library in two different parts, one for computing powers 
 such as \myac{EC2} and one for \emph{blob} storage like S3. 
 Some blob storage services are accessible on the compute side of the library such
 as \myac{EBS}.
@@ -151,33 +152,33 @@ connections, the library enhance this by providing a stub aimed at testing.
 
 \paragraph{libcloud.}~\cite{libcloud}
 
-Libcloud is an \myac{API} that aims to support the largest cloud providers through a common \myac{API}. 
+\emph{Libcloud} is an \myac{API} that aims to support the largest cloud providers through a common \myac{API}. 
 The classes are based around \emph{drivers} that extends from a common ontology, 
 then provider-specific attributes and logic is added to the implementation.
-Libcoud is very similar to jclouds but the \myac{API} code base is written in Python. 
-The \myac{API} is Python-only and could therefor be considered to have high tool-chain dependency.
+Libcoud is very similar to \emph{jclouds} but the \myac{API} code base is written in Python. 
+The \myac{API} is Python-only and could therefore be considered to have high tool-chain dependency.
 
 \paragraph{Deltacloud.}~\cite{deltacloud}
 
-Deltacloud has a similar procedure as jclouds and libcloud, but with a \myac{REST} \myac{API}. 
+\emph{Deltacloud} has a similar procedure as \emph{jclouds} and \emph{libcloud}, but with a \myac{REST} \myac{API}. 
 So they also work on the term \emph{driver}, but instead of having a library to a 
-programming language the users are presented with an web-based \myac{API} they can call
-on Deltacloud servers. 
+programming language,
+the users are presented with an web-based \myac{API} they can call on \emph{Deltacloud} servers. 
 As well as having similar problems as other \myac{API}s this approach means 
 that every call has to go through their servers, similar to a proxy. 
 This can work with the benefits that many middleware softwares have, such as caching, queues, 
 redundancy and transformations.
-The main disadvantages are single point of failure and version inconsistencies.
-Deltacloud provide two sets of native libraries, one in Ruby and another in C, which
+The main disadvantages are single point of failure (bottleneck) and version inconsistencies.
+\emph{Deltacloud} provide two sets of native libraries, one in Ruby and another in C, which
 makes it easier to communicate with the \myac{REST} \myac{API}.
-Previously discussed \emph{jclouds} also support Deltacloud, as it would interface this
+Previously discussed \emph{jclouds} also support \emph{Deltacloud}, as it would interface this
 with a \emph{driver} as any other web-based \myac{API}.
 
 \section{Deployments}
 
 There are also some solutions that specifically aim at full deployments,
-contra provisioning single instances or services these solutions
-provision everything needed to fully deploy an application with a given ontology.
+versus provisioning single instances or services these solutions
+provision everything needed to fully deploy an application with a given topology.
 
 \paragraph{mOSAIC.}~\cite{portable:petcu12} 
 
@@ -187,9 +188,9 @@ They focus on abstractions for application developers and state they can easily 
 scalability, fault-tolerance, QoS, \etc.)''}~\cite{architecturing:petcu11}.
 There are two abstraction layers, one for cloud provisioning 
 and one for application-logic.
-mOSAIC will select a proper cloud based on how developers describe their application,
+The mOSAIC solution will select a proper cloud based on how developers describe their application,
 several clouds can be selected based on their properties.
-mOSAIC will use the \myac{IaaS} solutions of cloud providers to deploy users application,
+The mOSAIC solution will use the \myac{IaaS} solutions of cloud providers to deploy users application,
 then communication between these clouds will be done using 
 ``cloud based message queues technologies''.
 
@@ -212,14 +213,14 @@ at full cloud deployments of multi-tier topologies,
 they also follow a model-based approach. 
 The description of a given topology is done by using \myac{XML} files, with these files
 developers can replicate a \emph{stack}.
-The \myac{XML} contain information about the instances, such as \emph{ostype} for Operating System
+The \myac{XML} contain information about the instances, such as \texttt{ostype} for Operating System
 and \emph{image-description} to describe properties of an instance such as amount of 
-memory (\emph{req\_memory}).
+memory (\texttt{req\_memory}).
 They also allow small scripts to be written directly into the \myac{XML} through a node
-\emph{runoncescript} which can do some additional configuration on a propagated node.
+\texttt{runoncescript} which can do some additional configuration on a propagated node.
 A resource manager keep track of resources in a system, grouping instances after their attributes.
 
-\section{Example of cloud surveys}
+\section{Example of cloud solution}
 
 In this section real-world examples are presented, such as popular IaaS and PaaS solutions
 and other technologies which are widely used today.
