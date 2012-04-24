@@ -4,18 +4,17 @@ In this chapter the essential background topics for this thesis are introduced.
 The first topic is Cloud Computing, a way of providing computing power as a service
 instead of being a product.
 The second topic is about Model-Driven Engineering and Model-Driven Architecture
-and these in some relation to Cloud Computing.
+and these in relation to Cloud Computing.
 
 \section{Cloud Computing}
 \input{tables/tabproviders}
 
 Cloud Computing is gaining popularity and more companies are starting 
-to explore the possibilities as well as the limitation to the cloud.
+to explore the possibilities as well as the limitation of the cloud.
 A good example of cloud adaptation in a large scale scenario is when
-the White House moved their recovery.gov~\cite{recovery} operation to
+the White House moved their \emph{recovery.gov}~\cite{recovery} operation to
 a cloud infrastructure, this was estimated to save them \$750,000
 at the current time, and even more on a long-term basis.
-This section is based on the \myac{NIST} standard.
 
 The definitions under are mainly based on definitions provided by 
 the \myac{NIST} which is one of the leaders in Cloud Computing standardization.
@@ -25,19 +24,19 @@ A non-exhaustive list of common providers is reproduced in \citetable{providerse
 
 \subsection{Characteristics}
 
-Cloud Computing is about providing computation as services\cite{nist:mell11}, 
+Cloud Computing is about providing computation as services~\cite{nist:mell11}, 
 such as virtual instances and file storage, rather than products. 
 Cloud characteristics are what define
 the difference between normal hosting and computing as a service.
 
 \paragraph{On-demand self-service.} 
 
-With \emph{on-demand self-service} consumers can achieve provisioning without any human interaction.
+With \emph{on-demand self-service}, consumers can achieve provisioning without any human interaction.
 On-demand means dynamic scalability and elasticity of resource allocation,
 self-service so that users do not need to manually do these allocations themselves.
-Consider an online election system, for most of the year it will have 
+Considering an online election system, for most of the year it will have 
 low usage demands, but before and under election days it will have to serve
-a much larger amount of requests. With \emph{on-demand self-service} the online election system
+a humongous amount of requests. With \emph{on-demand self-service} the online election system
 could automatically be given more resources such as memory, computation power or even
 increase the number of instances to handle peak loads.
 The previous example has planned (or known) peak intervals, so even though automatic handling
@@ -46,8 +45,8 @@ But sometimes predicting peak loads can be difficult, such as when a product sud
 becomes more popular than first anticipated.
 Twitter is a good example of a service that can have difficulties in estimating 
 the amount of user demand and total amount of incoming requests.
-For instance in the year $2011$ they achieved a record in \myac{TPS} of
-$25,088$ triggered by a Japanese television screening of the movie ``Castle in the Sky''.
+For instance in the year $2011$ they achieved a record of $25,088$ \myac{TPS},
+triggered by a Japanese television screening of the movie ``Castle in the Sky''.
 Each ``tweet'' essentially becomes at least one request to Twitter services.
 On a normal basis the service does not have to cope with this amount of requests, so
 this event was a strong and unpredicted fluctuation in day-to-day operations,
@@ -58,7 +57,7 @@ and downwards as resources become superfluous.
 
 \paragraph{Broad network access.}
 
-When working against cloud solutions, in form of management, monitoring or other 
+When working cloud with solutions, in form of management, monitoring or other 
 interactions it is important that capabilities are available over standard network mechanisms,
 supporting familiar protocols such as \myac{HTTP}/HTTPS and \myac{SSH}.
 So users can utilize tools and software they already possesses
@@ -77,7 +76,8 @@ This is a provider side characteristic which directly influence \emph{on-demand 
 There is also a sense of location independence, users can choose geographical locations
 on higher abstracted levels such as country or sate, but not always as detailed or specific as city.
 It is important that users can choose at least country as geographical location
-for their product deployments for instance to reduce latency between product and customers
+for their product deployments, 
+for instance to reduce latency between product and customers
 based on customer location or data storing rules set by government.
 
 \paragraph{Rapid elasticity.}
@@ -86,14 +86,15 @@ Already allocated resources can expand vertically to meet new demands,
 so instead of provisioning more instances (horizontal scaling) existing
 instances are given more resources such as \myac{RAM} and \myac{CPU}.
 Towards the characteristic of \emph{on-demand self-service} allocation
-can happen instantly, which means on unexpected peak loads the pressure will be
-instantly handled by scaling upwards.
-It is important to underline that such features can be financially cost heavy if not limited,
+can happen instantly, which means that on unexpected peak loads,
+the pressure will be instantly handled by scaling upwards.
+It is important to underline that such features can be financially problematic if not limited,
 because costs reflect resource allocation.
 
 \paragraph{Measured service.}
 
-Monitoring and control of resource usages.
+Resources allocated in the cloud can be monitored by cloud providers,
+accommodating end users with monitoring data on resources they rent.
 Can be used for statistics for users, for instance to do analytical research on product popularity
 or determine user groups based on geographical data or browser usage.
 The providers themselves use this information to handle \emph{on-demand services},
@@ -125,7 +126,7 @@ and is therefore the \emph{service model} closest to standard hosting solutions.
 Stanoevska-Slabeva~\cite{introduction:wozniak10} emphasizes that
 \emph{''infrastructure had been available as a service for quite some time``} and this 
 \emph{''has been referred to as utility computing, such as Sun Grid Compute Utility``}.
-Which means IaaS can also be compared to grid computing, 
+Which means that IaaS can also be compared to grid computing, 
 a well known computing model in the academic world.
 \epigraph{The capability provided to the consumer is to provision 
   processing, storage, networks, and other fundamental computing resources where the 
@@ -157,10 +158,10 @@ Cloud Computing is built to guide and assist developers through abstractions, an
 layer in the \emph{service model} is designed to aid developers by detaching them
 from configuration of operating system and frameworks.
 Developers are limited to capabilities the provider support,
-such as programming languages (Java, C\#), environments (\myac{JVM}, .NET, Node.js), 
-storage systems (flat files, NoSQL databases, \myac{RDBMS}),
-services (load balancers, backup, content delivery)
-and tools (plugin for Eclipse, command line tools)~\cite{nist:mell11}.
+such as programming languages (\eg Java, C\#), environments (\eg \myac{JVM}, .NET, Node.js), 
+storage systems (\eg flat files, NoSQL databases, \myac{RDBMS}),
+services (\eg load balancers, backup, content delivery)
+and tools (\eg plugin for Eclipse, command line tools)~\cite{nist:mell11}.
 For example the first versions of \myac{GAE} did only support
 an internal key-value based database called BigTable, which is still their main database.
 This database is transparently interfaced using their \myac{API}, 
@@ -175,17 +176,18 @@ test utilities for deployed applications and translucent scaling.
 In the end developers can put all focus on developing applications 
 instead of spending time and resources on unrelated tasks.
 
-PaaS providers support deployments through online \myac{API}s, in many cases by providing 
+Examples of \myac{PaaS} providers are Google with \myac{GAE} and
+the company Heroku with their eponymous service.
+Amazon also entered the \myac{PaaS} market with their service named Elastic Beanstalk,
+which is an abstraction over \myac{EC2} as IaaS underneath.
+Multiple PaaS providers utilize \myac{EC2} as underlying infrastructure, examples of such
+providers are Heroku and Nodester, this is a tendency with increasing popularity.
+
+\myac{PaaS} providers support deployments through online \myac{API}s, in many cases by providing 
 specific tools such as command line interfaces or plugins to \myac{IDE}s like Eclipse.
 It is common for the \myac{API} to have client built on technologies related to the technology supported by the PaaS,
 for instance Heroku has a Ruby-based client and Nodejitsu has an executable Node.js-module as client.
 
-Examples of PaaS providers are Google with \myac{GAE} and
-the company Heroku with their eponymous service.
-Amazon also entered the PaaS market with their service named Elastic Beanstalk,
-which is an abstraction over \myac{EC2} as IaaS underneath.
-Multiple PaaS providers utilize \myac{EC2} as underlying infrastructure, examples of such
-providers are Heroku and Nodester, this is a tendency with increasing popularity.
 
 \paragraph{SaaS.}
 
@@ -198,9 +200,9 @@ and with highest level of abstraction.
 The core purpose is to provide complete applications as services, in many cases end products.
 Google products such as Gmail, Google Apps and  Google Calendar are examples of 
 SaaS applications.
-What separates SaaS applications from other applications are the underlying cloud infrastructure,
-by utilizing the five characteristics of Cloud Computing SaaS applications achieve 
-Cloud Computing advantages.
+What separates SaaS applications from other applications are the underlying cloud infrastructure.
+By utilizing the five characteristics of Cloud Computing,
+SaaS applications achieve Cloud Computing advantages.
 
 It is not imposed that SaaS deployments are web applications, they can also consist of
 different technologies such as \myac{REST} \myac{API}s or SOAP services, but in any case it is 
@@ -281,7 +283,7 @@ This statement is emphasized by Booch \etal in the UML:
   system's architecture. We build models to better understand the
   system we are building, often exposing opportunities for
   simplification and reuse. We build models to manage risk.
-}{\cite{unified:booch05}}
+}{\citet{unified:booch05}}
 When it comes to Cloud Computing these definitions are even more important
 because of financial aspects since provisioned nodes instantly draw credit.
 The definition of ``modeling'' can be assessed from the previous epigraph, but it is 
@@ -303,7 +305,7 @@ The importance of choosing correct models is emphasized by~\cite{unified:booch05
   are connected to reality. \iitem No single model is
   sufficient. Every nontrivial system is best approached through a
   small set of nearly independent models.\end{ii}
-}{\cite{unified:booch05}}
+}{\citet{unified:booch05}}
 These definition precepts state that several models (precept \iii{4}) on different levels (precept \iii{2}) 
 of precision should be used to model the same system.
 From this it is concludable that several models can be used to describe one or several Cloud Computing perspectives.
@@ -346,7 +348,7 @@ Beside the models there are five different steps as explained by Singh~\cite{mod
       and \myac{PSM}, and this is often associated with code generation. 
       However, this is not the only kind of mapping required.
     }{\citet{modeldriven:kent02}}
-    From this it is possible to determine that a \myac{PSM} is more specific to a platform then \myac{PIM}, such as 
+    From this it is possible to determine that a \myac{PSM} is more specific to a platform than \myac{PIM}, such as 
     programming language or environment.
   \item \emph{Generate code form \myac{PSM}.}
     A \myac{PSM} should be specific enough that code can be generated from the models.
