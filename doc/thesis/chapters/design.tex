@@ -86,7 +86,7 @@ With these models Alice initializes provisioning by calling
 \texttt{build} on \texttt{CloudMLEngine}, providing \texttt{Credential} and \texttt{Template}.
 This starts the asynchronous job of configuring and creating 
 \texttt{Instances} based on \texttt{Nodes}.
-In \citefig{scenario1-1} an object diagram describe the initial configuration at runtime,
+In \citefig{scenario1-1} an object diagram describe the initial configuration at run-time,
 after CloudML has interpreted the template files.
 The instance produced by the template and node is in the form of a single object,
 as represented by the object diagram in \citefig{scenario1-2}.
@@ -330,7 +330,7 @@ An interesting approach is to combine the \emph{actor model} with one of the pat
 By doing this the behavior functionality is combined with the asynchronous benefits within the actor model.
 Of the previous mentioned patterns only \emph{observer} and \emph{publish-subscribe} patterns 
 fit well with designed behavior of CloudML.
-Of these \emph{publish-subscribe} is the most scalable and dynamic one (in runtime),
+Of these \emph{publish-subscribe} is the most scalable and dynamic one (in run-time),
 but also the most complicated.
 When combining the \emph{actor model} with such pattern it is important to keep the implementation
 as simple as possible, without withholding functionality.
