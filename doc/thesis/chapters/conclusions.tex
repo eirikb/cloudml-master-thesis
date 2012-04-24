@@ -28,7 +28,6 @@ as \emph{cloudml-engine}, and how this solution is built up.
 Both \citereq{mda} and \citereq{lexical-template} are tackled in this chapter
 by concretely choosing data format and syntax based on the design chapter.
 
-
 \section{Results}
 \input{tables/requirements-comparison}
 
@@ -39,3 +38,15 @@ This experiment concludes the work put into CloudML at this point to be successf
 The requirements from \citechap{requirements} are compared against selected
 technologies and frameworks from \citechap{state-of-the-art}.
 These comparisons are expressed in \citetable{requirements-comparison}.
+
+These are the ``\emph{key results}'' composed by this thesis:
+\begin{enumerate}
+  \item A meta-model was designed, with model-driven engineering in mind.
+  \item An engine capable of provisioning nodes on a set of supported cloud providers
+    was implemented.
+  \item The engine was constructed to interpret topologies through parsing of lexical files.
+  \item 24 cloud providers are supported by the engine, through the advantage of 
+    utilizing an external library.
+  \item \myac{M@RT} was utilized and combined with observer pattern to
+    achieve asynchronous provisioning.
+\end{enumerate}
