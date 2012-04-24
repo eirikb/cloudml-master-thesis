@@ -45,7 +45,21 @@
 \onehalfspacing
 %\doublespacing
 
-\chapter*{Abstract}
+%\chapter*{Abstract}
+\begin{abstract}
+  The Cloud-computing paradigm advocates the use of resources
+  available ``in the clouds''. In front of the multiplicity of cloud
+  providers, it becomes cumbersome to manually tackle this
+  heterogeneity. In this paper, we propose to define an abstraction
+  layer used to model resources available in the clouds. This cloud
+  modelling language (CloudML) allows cloud users to focus on their
+  needs, \ie the modelling the resources they expect to retrieve in
+  the clouds. An automated provisioning engine is then used to
+  automatically analyse these requirements and actually provision
+  resources in clouds. The approach is implemented, and was
+  experimented on prototypical examples to provision resources in
+  major public clouds (\eg Amazon EC2 and Rackspace).
+\end{abstract}
 
 \tableofcontents{}
 \listoffigures{}
@@ -54,6 +68,7 @@
 \input{acronyms}
 
 \chapter*{Preface}
+{\scriptsize
 \begin{minted}[]{brainfuck}
 >++++++++++
 [>+++++++>+++>++++++++++++>+++++++++++>++++++++++++>+++++++++++>
@@ -80,6 +95,7 @@
 >.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.
 >.>.>.>.>.>.>.>.
 \end{minted}
+}
 
 
 \mainmatter{}
