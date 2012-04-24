@@ -31,9 +31,8 @@ The application is based on a three-tier architecture with
 \begin{ii} 
   \iitem presentation tier with a web-based interface,
   \iitem logic tier with controllers and services and
-  \iitem database tier with models and entities.
-\end{ii}
-Three or more tiers in a web application is a common solution, even more so for applications 
+  \iitem database tier with models and entities. \end{ii}Three 
+or more tiers in a web application is a common solution, especially for applications 
 based on the \myac{MVC} architectural pattern.
 The advantage with this architecture is that the lowest tier (database) can be physically
 detached from the tiers above, the application can then be distributed between several nodes.
@@ -43,7 +42,6 @@ Having more tiers and distributing these over several nodes is an architecture o
 found in \myac{SOA} solutions.
 
 \paragraph{Topologies.}
-
 \input{figs/topologies}
 
 Some examples of provisioning topologies are illustrated in \citefig{topologies}.
@@ -76,10 +74,10 @@ The providers chosen are
 \end{ii}
 These are strong providers with a respectable amount of customers, as two of the leaders in cloud computing.
 They also have different graphical interfaces, APIs and toolchains which makes them suitable
-for a scenario researching multicloud challenges.
+for a scenario addressing multicloud challenges.
 
-The topology chosen for this scenario is that of three nodes\citefig{threenodes}.
-This topology is advance enough that it needs a \texttt{load balancer} in front of two
+The topology chosen for this scenario have three nodes,~\citefig{threenodes}.
+This topology is advanced enough that it needs a \texttt{load balancer} in front of two
 \texttt{front-end} nodes, and yet the simplest topology of the ones that benefits from a \texttt{load balancer}.
 It is important to include most of the technologies and services that needs testing.
 
@@ -109,7 +107,7 @@ Rackspace had at that moment no command-line tools, so a \myac{REST} client had 
 From this example it became clear that there were multiple challenges to address
 when deploying applications to cloud infrastructure.
 This thesis is scoped to cloud provisioning, but the goal of this provisioning step is to 
-enable a successful deployment, see \citechap{perspectives}. 
+enable a successful deployment~(see \citechap{perspectives}).
 It is therefore crucial to involve a full deployment in the scenario to discover
 important challenges.
 
@@ -162,8 +160,8 @@ Or availability decreases and results in decrease of service uptime damaging rev
 \paragraph{Reproducibility.}
 
 The scripts provisioned nodes based on command-line arguments
-and did not persist the designed topology in any way, 
-this made topologies cumbersome to reproduce.
+and did not persist the designed topology in any way.
+This made topologies cumbersome to reproduce.
 If the topology could be persisted in any way, for example serialized files,
 it would be possible to reuse these files at a later time.
 The persisted topologies could also be reused on other clouds making a 
@@ -205,7 +203,7 @@ save run-time specific metadata to successfully deploy the application.
 In the \emph{BankManager} example the crucial metadata is information needed to connect 
 front-end nodes with the back-end node, but other deployments is likely to need the same 
 or different metadata for other tasks.
-This metadata is collected in \iii{1}, and used in \iii{3} and \iii{4}.
+This metadata is collected in step \iii{1}, and used in step \iii{3} and step \iii{4}.
 
 \section{Summary}
 
