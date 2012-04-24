@@ -1,4 +1,4 @@
-\mychapter{implementation}{Implementation/realization - cloudml-engine}
+\mychapter{implementation}{Implementation/realization: The cloudml-engine library}
 
 In the previous chapter the design of CloudML was introduced.
 In this chapter the implementation of this design will be presented and described.
@@ -7,7 +7,7 @@ the implementation.
 The rest of the chapter is split into different sections, one for each important part of the implementation.
 Topics are about
 \begin{ii}
-  \iitem submodules and their tasks,
+  \iitem sub-modules and their tasks,
   \iitem the dependency system,
   \iitem communication with cloud providers,
   \iitem \myac{M@RT} through actor model and
@@ -51,8 +51,9 @@ the requirement \citereq{foundation}:
     With both paradigms, imperative programmers such as Java developers as well as functional
     programmers such as Clojure developers would be familiar with the language design.
     
-    Emphasizes on functional programming which is leveraged in the implementation.
-    Built in system for actor model~\cite{actors:haller07}, which is utilized in the implementation.
+    This language emphasizes on functional programming which is leveraged in the implementation.
+    Scala has a built in system for actor model~\cite{actors:haller07}, 
+    which is utilized in the implementation.
     This also assists in relation to \citereq{m@rt}.
 
     \myac{JVM} is a popular platform, as the main platform for Java.
@@ -113,7 +114,7 @@ These dependencies are all omitted in both graphs.
 \input{codes/connector-facade}
 
 The connection between CloudML and cloud providers is facilitated 
-to a separate module, called \texttt{cloud-connector}.
+through a separate module, called \texttt{cloud-connector}.
 In the implementation this module is the bridge between providers and \emph{cloudml-engine}.
 It is built to support several libraries and interface these,
 this is achieved by implementing a type of \emph{facade pattern}.
@@ -123,7 +124,7 @@ The \emph{facade pattern} used to select which library to use is expressed in
 \citelist{connector-facade}.
 In this listing an implementation of \texttt{CloudConnector} is returned
 based on Scala \emph{pattern matching}.
-By default the implementation using jclouds is returned~(\texttt{JcloudsConnector}).
+By default the implementation using \emph{jclouds} is returned~(\texttt{JcloudsConnector}).
 This is the files where cloud-based libraries are either added or removed.
 End users will not use this facade, instead it is used by \texttt{Engine}.
 
@@ -134,16 +135,16 @@ of these only \emph{jclouds} is based on Java-technologies and therefore suites 
 This library gives CloudML support for 24 providers out of the box to minimize \emph{complexity},
 as well as stability and robustness.
 These advantages directly resolves resolves \citereq{software-reuse}.
-Jclouds uses Maven for building as well, and is part of Maven central which makes 
-it possible to add jclouds directly as a module dependency.
-Jclouds contains a template system which is used through code directly, this is utilized 
-to map CloudML templates to jclouds templates.
+\emph{Jclouds} uses Maven for building as well, and is part of Maven central which makes 
+it possible to add \emph{jclouds} directly as a module dependency.
+\emph{Jclouds} contains a template system which is used through code directly, this is utilized 
+to map CloudML templates to \emph{jclouds} templates.
 
 \section{Asynchronous provisioning}
 
 Provisioning can consume up to minutes for each instance,
 it is therefore essential to make use of asynchronous behavior.
-The solution, \emph{coudml-engine}, combines two different approaches to achieve this,
+The solution, \emph{cloudml-engine}, combines two different approaches to achieve this,
 actor model and observer pattern.
 
 \paragraph{Actor model.}
