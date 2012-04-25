@@ -1,32 +1,27 @@
 \begin{table}
   \begin{center}
     \caption{Result of how requirements were tackled.}
-    \begin{tabular}{| l | p{12cm} |}
+    \begin{tabular}{| l | p{7cm} |}
       \hline
         \textbf{Requirement} &
         \textbf{CloudML solution} \\
       \hline
-        \citereq{software-reuse} & The engine in CloudML include and rely heavily 
-                                   on an external library.
+        \citereq{software-reuse} & The engine rely heavily on an external library,
+                                   interfacing cloud providers with the engine.
                                    This library is used to interface cloud providers
-                                   with the engine.
-                                   In the end this solution prevents CloudML from
-                                   \emph{``reinventing the wheel''}, and keep focus 
-                                   on the task at hand.
-                                   \\ \hline
-        \citereq{foundation} & The implementation of CloudML is developed in Scala.
-                               This language introduces \emph{``state-of-the-art''}
-                               features, while at the same time leverage support for
+                                   with the engine.  \\ \hline
+        \citereq{foundation} & Implementation utilizing Scala,
+                               a \emph{``state-of-the-art''} language.
+                               The language also leverage support for
                                software industry through the \myac{JVM}.\\ \hline
         \citereq{mda} & In CloudML a model-based meta-model is designed.
                         The solution also let end users design templates with models. \\ \hline
-        \citereq{lexical-template} & The engine is capable of parsing and interpreting templates.
-                                     Then it configure and provision instances based on these templates.
-                                     These templates are lexical, in the form of \myac{JSON}.  \\ \hline
-        \citereq{m@rt} & Because of long time intervals for node provisioning CloudML introduces
-                         \myac{M@RT}. This is done through asynchronous behavior of actor model,
-                                      which is built into the underlying technology, Scala.
-                                      Then the actor model is combined with observer pattern,
+        \citereq{lexical-template} & The engine is capable of parsing and interpreting 
+                                     \myac{JSON}-based templates.
+                                     Then it configure and provision instances based on these templates.  \\ \hline
+        \citereq{m@rt} & Asynchronous behavior introduces through the actor model,
+                                      which is built into Scala.
+                                      The actor model is combined with observer pattern,
                                       enhancing the engines ability to do asynchronous callbacks. \\ \hline
         \citereq{multi-cloud} & The library \emph{jclouds} is included in the engine,
                                 giving it support for $24$ providers. \\ \hline
