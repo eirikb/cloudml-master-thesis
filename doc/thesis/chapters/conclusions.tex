@@ -28,8 +28,7 @@ as \emph{cloudml-engine}, and how this solution is built up.
 Both \citereq{mda} and \citereq{lexical-template} are tackled in this chapter
 by concretely choosing data format and syntax based on the design chapter.
 
-\section{Results}
-\input{tables/requirements-comparison}
+\paragraph{Results.}
 
 The implementation is validated through an experiment where
 it is physically executed against two providers, \myac{AWS} and Rackspace.
@@ -41,43 +40,42 @@ These comparisons are expressed in \citetable{requirements-comparison}.
 
 These are the \emph{``key results''} composed by this thesis:
 \begin{description}
-  \item[meta-model.]
+  \item[Meta-model.]
     A meta-model was designed, with model-driven engineering in mind.
-    The meta-model was presented through a scenario where \emph{``Alice''}
+    The meta-model was presented through a scenario where the user
     provisioned nodes based on two specific topologies.
     The first topology consisted of a single node, to exemplify the simplest topology.
     The second setup was based on three nodes, representing a common multi-tier
     topology for development purposes.
-    Lastly a description of how a multi-cloud provision was presented, 
-    expressing how this is intended with the meta-model.
+    Lastly the intention of a multi-cloud provision with the meta-model was described.
   \item[Engine.]
     An engine capable of provisioning nodes on a set of supported cloud providers
     was implemented.
-    The engine takes advantage of the automatic building system Maven,
+    The engine took advantage of the automatic building system Maven,
     enhancing the support for internal and external modules.
-    Through Maven the engine becomes increasingly adaptable for developers
+    Through Maven the engine became increasingly adaptable for developers
     seeking to include or utilize CloudML.
-    Internally the engine is split into four logical sub-modules.
-    Scala is used as programming language for the engine,
+    Internally the engine was split into four logical sub-modules.
+    Scala was used as programming language for the engine,
     providing a \emph{state-of-the-art} set of features,
     \eg combination of object-oriented and functional programming.
   \item[Lexical templates.]
     The engine was constructed to interpret topologies through parsing of lexical templates.
-    These templates are technically implemented through the data format \myac{JSON}.
+    These templates were technically implemented through the data format \myac{JSON}.
     This is a web-service friendly data format, which is commonly used to exchange data
     over web-based communication channels.
-    This fact effectively makes the engine adaptable as a web-service end-point.
+    This fact effectively made the engine adaptable as a web-service end-point.
     \myac{JSON} is a human-readable language, which let end users create and edit
     templates manually with any text-based editor.
   \item[External library.]
-    24 cloud providers are supported by the engine, through the advantage of 
-    utilizing an external library.
-    Such \emph{``bridge''} libraries connect the engine to cloud providers.
-    The engine is designed so these \emph{``bridge''} libraries are abstracted
+    An external library was utilized, giving the engine support for $24$ providers,
+    through the advantage of this library.
+    Such \emph{``bridge''} libraries connected the engine to cloud providers.
+    The engine was designed so these \emph{``bridge''} libraries were abstracted
     behind a version of the facade pattern.
-    The library focused upon in this thesis is \emph{jclouds},
+    The library focused upon in this thesis was \emph{jclouds},
     a library written in Java.
-    This library is fluently added as a dependency in the Engine's Maven dependency.
+    This library was fluently added as a dependency in the Engine's Maven dependency.
   \item[Models@run.time.]
     \myac{M@RT} was utilized and combined with observer pattern to
     achieve asynchronous provisioning.
