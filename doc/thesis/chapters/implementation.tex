@@ -181,7 +181,8 @@ In \citelist{runtimeinstance} express a code snippet from \emph{coudml-engine}.
 Within this snippet both the actor model as well as the observer pattern are utilized.
 
 The actor model is implemented through built in functionality in Scala,
-through \texttt{import scala.actors.Actor}.
+through:
+\mint{scala}|import scala.actors.Actor|
 By extending \texttt{Actor} the \texttt{RuntimeInstance} class becomes an actor.
 The \texttt{loop} and \texttt{receive}-parts~(line 18 to line 19) are specific to this functionality,
 and will be triggered on incoming messages.

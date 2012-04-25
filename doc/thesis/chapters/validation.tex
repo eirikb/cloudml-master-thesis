@@ -67,14 +67,18 @@ about the status is printed to \myac{CLI}.
 If this status is \texttt{Started} the client will print that the instance is running.
 
 The snippets does not contain code to read the files, this is left out to save space.
-File reading is done through Scala by calling \\
-\texttt{io.Source.fromFile(\emph{filename}).mkString}.
+File reading is done through Scala by calling
+\begin{minted}{java}
+io.Source.fromFile(filename).mkString
+\end{minted}
 What files to read is specified through command line arguments,
 where the first argument corresponds to account information,
 and subsequent arguments are template files.
 
-To initialize provisioning the client calls 
-\texttt{val runtimeInstances = Engine(account, templates)}.
+To initialize provisioning the client calls:
+\begin{minted}{scala}
+val runtimeInstances = Engine(account, templates)
+\end{minted}
 According to the meta model~(\citefig{meta-model}) this is the \texttt{build}-operation.
 The name \emph{``build''} is a general term, while the usage in \citelist{validation-client}
 is a Scala-specific pattern.
@@ -102,13 +106,15 @@ The three files,
 \end{ii}
 are passed in as arguments to the client.
 The final command looks like this:
-\texttt{mvn scala:run \\ -DaddArgs="account.json|front-ends.json|back-end.json"}.
+\begin{minted}{bash}
+mvn scala:run 
+-DaddArgs="account.json|front-ends.json|back-end.json"
+\end{minted}
 Output from executing this command is expressed in \citelist{validation-output}.
 Some of the output is chunked away to save space.
 The text in \citelist{validation-output} correlates to the 
 client expressed in~\citelist{validation-client},
 \ie information about status changes and when each node is successfully provisioned.
-
 The output is identical for both \myac{AWS} and Rackspace.
 
 \paragraph{After provisioning.}
