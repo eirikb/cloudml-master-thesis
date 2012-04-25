@@ -48,10 +48,11 @@
 
 %% Acro definitions
 
-\newcommand{\myacdef}[2]{
-  \newacronym[description={\glslink{#1}{#2}}]{#1}{#1}{#2}
-\acrodef{ac:#1}[#1]{\emph{#2}}}
-\newcommand{\myac}[1]{\ac{ac:#1}}
+\newcommand{\myacdef}[2]{\newacronym{#1}{#1}{\emph{#2}}}
+  %\newacronym[description={\glslink{#1}{#2}}]{#1}{#1}{#2}
+%\acrodef{ac:#1}[#1]{\emph{#2}}}
+ 
+\newcommand{\myac}[1]{\gls{#1}}
 
 %% http://tex.stackexchange.com/questions/6985/place-quotation-dictum-in-a-box
 
