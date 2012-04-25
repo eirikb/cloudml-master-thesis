@@ -21,7 +21,6 @@
 \usepackage{template/thesis}
 \usepackage{template/mytikz}
 \usepackage{minted}
-%\usepackage[printonlyused]{acronym}
 \usepackage{framed}
 \usepackage{latexsym}
 \usepackage[numbers]{natbib}
@@ -29,21 +28,14 @@
 \usepackage{captcont}
 \usepackage{pdfpages}
 \usepackage{bibentry}
-\usepackage[style=altlist,
-  nonumberlist,
-  numberedsection,
-  acronym,
-toc]
-{glossaries}
+\usepackage[acronym,toc]{glossaries}
+  %style=altlist,
+  %nonumberlist,
+  %numberedsection,
 \usetikzlibrary{positioning,shapes,shadows,arrows,calc}
 
 \makeglossaries
-
-%   \newacronym[description={\glslink{pos}{Part of Speech}}]{POS}{POS}{Part Of
-%      Speech}
-
 \input{acronyms}
-
 
 \nobibliography*
 
