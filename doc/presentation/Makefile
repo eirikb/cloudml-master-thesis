@@ -1,0 +1,2 @@
+all:
+	jade index.jade

@@ -1,0 +1,38 @@
+!!!5
+html
+  head
+    meta(charset='utf-8')
+    title CloudML
+    link(href='http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono', rel='stylesheet')
+    link#prettify-link(href='src/prettify/prettify.css', rel='stylesheet', disabled=true)
+    link.theme(href='css/default.css', rel='stylesheet', media='screen')
+  body
+    nav#helpers
+      button#nav-prev.nav-prev(title='Previous slide') ⇽
+      button#slide-no(title='Jump to a random slide') 1
+      button#nav-next.nav-next(title='Next slide') ⇾
+      menu
+        button.toc(type='checkbox', data-command='toc', title='Table of Contents') TOC
+        button(type='checkbox', data-command='notes', title='View Slide Notes') ✏
+        button(type='checkbox', data-command='source', title='View slide source') ↻
+        button(type='checkbox', data-command='help', title='View Help') ?
+    .presentation
+      #presentation-counter Loading...
+      .slides
+
+        include slides/title
+        include slides/table-of-contents
+        include slides/background
+        include slides/state-of-the-art
+        include slides/challenges
+        include slides/requirements
+        include slides/vision
+        include slides/implementation
+        include slides/validation
+        include slides/conclusion
+        include slides/perspectives
+
+      #speaker-note.invisible
+
+    script(src='src/prettify/prettify.js', onload='prettyPrint();')
+    script(src='js/utils.js')
