@@ -27,6 +27,12 @@ html
         include slides/perspectives
 
       #speaker-note.invisible
+      #device-nav
+        a(href='#', data-command='prev') Prev
+        a(href='#', data-command='next') Next
 
+    script(src='http://code.jquery.com/jquery.min.js')
     script(src='src/prettify/prettify.js', onload='prettyPrint();')
     script(src='js/utils.js')
+    script(src='js/sync.js')
+    script(src='js/custom.js')

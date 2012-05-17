@@ -384,12 +384,16 @@
         var next = query('#' + this.current + ' + .slide');
         //this.current = (next) ? next.id : this.current;
         this._update((next) ? next.id : this.current);
+
+        sync.emit('goto', this.current);
       }
     },
     prev: function() {
       var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')');
       //this.current = (prev) ? prev.id : this.current;
       this._update((prev) ? prev.id : this.current);
+
+      sync.emit('goto', this.current);
     },
     go: function(slideId, dontPush) {
       //this.current = slideId;
@@ -448,6 +452,7 @@
           this.toggleHightlight(); break;
         case 78:  // N
           this.showNotes(); break;
+          sync.emit('showNotes');
         case 83:  // S
           this.viewSource(); break;
         case 84:  // T
@@ -520,6 +525,7 @@
   query('#toc-list').innerHTML = li_array.join('');
 
   var slideshow = new SlideShow(queryAll('.slide'));
+  slidehack = slideshow;
   
   document.addEventListener('DOMContentLoaded', function() {
     query('.slides').style.display = 'block';
