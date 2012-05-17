@@ -508,8 +508,10 @@
   // Initialize
   var li_array = [];
   var transitionSlides = queryAll('.transitionSlide').forEach(function(el) {
+  var small = query('h2 ~ p', el);
+  small = small ? '<small>' + small.textContent + '</small>' : '';
     li_array.push( ['<li><a data-hash="', el.id, '">',
-                    query('h2', el).textContent, '</a></li>'].join('')
+                    query('h2', el).textContent, '</a>', small, '</li>'].join('')
                    // <img src="',
                    // query('img', el).src.replace(/64/g, '32'),
                  );
@@ -521,6 +523,8 @@
   
   document.addEventListener('DOMContentLoaded', function() {
     query('.slides').style.display = 'block';
+
+    if (window.location.search.match(/shownotes/i)) slideshow.showNotes()
   }, false);
 
   queryAll('#toc-list li a').forEach(function(el) {

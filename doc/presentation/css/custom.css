@@ -1,0 +1,8 @@
+aside.note {
+    display: none;
+} 
+
+#toc-list small {
+    font-size: 14px;
+    margin-left: 20px;
+}
