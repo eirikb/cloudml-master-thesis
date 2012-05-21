@@ -384,12 +384,16 @@
         var next = query('#' + this.current + ' + .slide');
         //this.current = (next) ? next.id : this.current;
         this._update((next) ? next.id : this.current);
+
+        sync.emit('goto', this.current);
       }
     },
     prev: function() {
       var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')');
       //this.current = (prev) ? prev.id : this.current;
       this._update((prev) ? prev.id : this.current);
+
+      sync.emit('goto', this.current);
     },
     go: function(slideId, dontPush) {
       //this.current = slideId;
@@ -448,6 +452,7 @@
           this.toggleHightlight(); break;
         case 78:  // N
           this.showNotes(); break;
+          sync.emit('showNotes');
         case 83:  // S
           this.viewSource(); break;
         case 84:  // T
@@ -508,8 +513,10 @@
   // Initialize
   var li_array = [];
   var transitionSlides = queryAll('.transitionSlide').forEach(function(el) {
+  var small = query('h2 ~ p', el);
+  small = small ? '<small>' + small.textContent + '</small>' : '';
     li_array.push( ['<li><a data-hash="', el.id, '">',
-                    query('h2', el).textContent, '</a></li>'].join('')
+                    query('h2', el).textContent, '</a>', small, '</li>'].join('')
                    // <img src="',
                    // query('img', el).src.replace(/64/g, '32'),
                  );
@@ -518,9 +525,12 @@
   query('#toc-list').innerHTML = li_array.join('');
 
   var slideshow = new SlideShow(queryAll('.slide'));
+  slidehack = slideshow;
   
   document.addEventListener('DOMContentLoaded', function() {
     query('.slides').style.display = 'block';
+
+    if (window.location.search.match(/shownotes/i)) slideshow.showNotes()
   }, false);
 
   queryAll('#toc-list li a').forEach(function(el) {

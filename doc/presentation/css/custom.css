@@ -1,0 +1,27 @@
+aside.note {
+    display: none;
+} 
+
+#toc-list small {
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+#device-nav {
+    display: none;
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#device-nav a {
+    width: 50%;
+    height: 100%;
+}
+
+@media (max-width: 1767px) {
+    #device-nav {
+        display: block;
+    }
+}
