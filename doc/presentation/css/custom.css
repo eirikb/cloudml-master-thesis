@@ -20,8 +20,12 @@ aside.note {
     height: 100%;
 }
 
-@media (max-width: 1767px) {
+@media (max-width: 1000px) {
     #device-nav {
         display: block;
+    }
+
+    #speaker-note {
+        display: none;        
     }
 }
