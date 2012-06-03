@@ -274,6 +274,7 @@
       if (!this._buildList.length) {
         return false;
       }
+
       removeClass(this._buildList.shift(), 'to-build');
       return true;
     },
@@ -386,6 +387,9 @@
         this._update((next) ? next.id : this.current);
 
         sync.emit('goto', this.current);
+      } else {
+      console.log('errr')
+          sync.emit('buildNext', this._getCurrentIndex() - 1);
       }
     },
     prev: function() {

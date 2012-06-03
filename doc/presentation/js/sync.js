@@ -22,6 +22,11 @@ sync = (function() {
         socket.on('showNotes', function() {
             slideack.showNotes();
         });
+
+        socket.on('buildNext', function(i) {
+        console.log('wat')
+            slidehack._slides[i].buildNext();
+        });
     };
 
     document.head.appendChild(script);

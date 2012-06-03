@@ -20,6 +20,28 @@ aside.note {
     height: 100%;
 }
 
+img.maincenter {
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.focus {
+    border: 1px solid;
+}
+
+#speaker-note {
+    display: none;
+}
+
+#speaker-note ul {
+    font-size: 55px;
+}
+#speaker-note ul li {
+    list-style: inherit;
+}
+
 @media (max-width: 1000px) {
     #device-nav {
         display: block;
@@ -27,5 +49,16 @@ aside.note {
 
     #speaker-note {
         display: none;        
+    }
+    
+    .slide {
+        top: 400px;
+    }
+
+    #speaker-note {
+        display: block;
+        height: 50%;
+        top: 50%;
+        z-index: 0;
     }
 }

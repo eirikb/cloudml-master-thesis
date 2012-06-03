@@ -1,0 +1,17 @@
+#meta-model.slide
+  style
+    #meta-model img {
+        height: 470px;
+        position: absolute;
+        margin: 10px;
+    }
+    .centerdiv {
+        width: 610px;
+        margin: 0 auto;
+    }
+  header
+    h1 Meta-model
+  section
+    .centerdiv(data-build)
+        - for (var i = 1; i < 6; i++)
+            img.maincenter(src='img/meta-model' + i + '.png')
