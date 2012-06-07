@@ -1,9 +1,29 @@
 #technologies.slide
+  style
+    img {
+      border-radius: 7px;
+    }
+    .maven {
+        margin-left: -45px;
+    }
+    .json img {
+        float: left;
+        height: 70px;
+    }
+    .json span {
+        font-size:60px;
+        margin-left: 20px;
+    }
   header
     h1 Technologies
   section
-    ul.bullets
-      li Scala
-      li Maven
-      li jclouds
-      li JSON
+    ul
+      li 
+        img(src='http://upload.wikimedia.org/wikipedia/en/8/85/Scala_logo.png')
+      li
+        img.maven(src='http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Maven_logo.svg/400px-Maven_logo.svg.png') 
+      li 
+        img(src='/img/jclouds.png')
+      li.json
+        img(src='http://www.json.org/img/json160.gif')
+        span JSON
