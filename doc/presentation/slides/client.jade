@@ -1,0 +1,27 @@
+#client.slide
+  style
+    #client pre {
+      margin-top: 10px;
+      background: #CCDDEE;
+    }
+    #client section pre:first-child {
+      margin-top: 40px;
+    }
+  header
+    h1 Client
+  section
+    pre.prettyprint <repositories>
+      |     <repository>
+      |         <id>cloudml-engine</id>
+      |         <url>https://repository-eirikb.forge.cloudbees.com/release</url>
+      |     </repository>
+      | </repositories>
+      | <dependencies>
+      |     <dependency>
+      |         <groupId>no.sintef</groupId>
+      |         <artifactId>engine</artifactId>
+      |         <version>0.1</version>
+      |     </dependency>
+      | </dependencies>
+    pre.prettyprint import no.sintef.cloudml.engine.Engine
+    pre.prettyprint val runtimeInstances = Engine(account, List(template))
