@@ -274,6 +274,7 @@
       if (!this._buildList.length) {
         return false;
       }
+
       removeClass(this._buildList.shift(), 'to-build');
       return true;
     },
@@ -386,6 +387,9 @@
         this._update((next) ? next.id : this.current);
 
         sync.emit('goto', this.current);
+      } else {
+      console.log('errr')
+          sync.emit('buildNext', this._getCurrentIndex() - 1);
       }
     },
     prev: function() {
@@ -501,7 +505,7 @@
   // load highlight setting from session storage, if available.
   // session storage can only store strings so we have to assume type coercion
   // for the boolean logic here
-  query('#prettify-link').disabled = !(sessionStorage['highlightOn'] == 'true');
+  //query('#prettify-link').disabled = !(sessionStorage['highlightOn'] == 'true');
 
   // disable style theme stylesheets
   var linkEls = queryAll('link.theme');

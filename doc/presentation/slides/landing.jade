@@ -1,9 +1,30 @@
 #landing-slide.slide
+  style
+    #landing-slide h1, #title-slide h2 {
+      color: black;
+    }
+    #landing-slide h1 {
+      letter-spacing: -2px;
+      font-size: 96px;
+    }
+    #landing-slide h2 {
+      margin-top: -5px;
+      font-size: 40px;
+      letter-spacing: -1px;
+    }
   section.middle
-    header 
+    hgroup
       h1 CloudML
-    p
+      h2 A DSL for model-based realization of 
+      h2 applications in the cloud
+
+    #left-init-key(style='display:none')
+
+  aside.note
+    section
       :markdown
-        A DSL for model-basedrealization
-        of applications in the cloud
-    p This presentation is an HTML5 website</p>
+        Hi, my name is Eirik Brandtzæg and today I will talk about CloudML - 
+        A DSL for model-based realization of applications in the cloud.  
+        I implemented my ideas and wrote my thesis at SINTEF, with assistance from
+        my friend dr. Sébastien Mosser (SINTEF).
+

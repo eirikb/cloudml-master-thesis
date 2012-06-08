@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>CloudML</title><link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet"><link id="prettify-link" href="src/prettify/prettify.css" rel="stylesheet" disabled><link href="css/default.css" rel="stylesheet" media="screen" class="theme"><link href="css/common.css" rel="stylesheet" media="screen"><link href="css/custom.css" rel="stylesheet" media="screen"></head><body><div class="presentation"><div id="presentation-counter">Loading...</div><div class="slides"><div id="landing-slide" class="slide"><style>#landing-slide h1, #title-slide h2 {
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>CloudML</title><link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet"><link href="src/prettify/prettify.css" rel="stylesheet"><link href="css/default.css" rel="stylesheet" media="screen" class="theme"><link href="css/common.css" rel="stylesheet" media="screen"><link href="css/custom.css" rel="stylesheet" media="screen"></head><body><div class="presentation"><div id="presentation-counter">Loading...</div><div class="slides"><div id="landing-slide" class="slide"><style>#landing-slide h1, #title-slide h2 {
   color: black;
 }
 #landing-slide h1 {
@@ -9,8 +9,7 @@
   margin-top: -5px;
   font-size: 40px;
   letter-spacing: -1px;
-}
-</style><section class="middle"><hgroup><h1>CloudML</h1><h2>A DSL for model-based realization of </h2><h2>applications in the cloud</h2></hgroup><div id="left-init-key" style="display:none"></div></section><aside class="note"><section><p>Hi, my name is Eirik Brandtzæg and today I will talk about CloudML - 
+}</style><section class="middle"><hgroup><h1>CloudML</h1><h2>A DSL for model-based realization of </h2><h2>applications in the cloud</h2></hgroup><div id="left-init-key" style="display:none"></div></section><aside class="note"><section><p>Hi, my name is Eirik Brandtzæg and today I will talk about CloudML - 
 A DSL for model-based realization of applications in the cloud.<br></br>I implemented my ideas and wrote my thesis at SINTEF, with assistance from
 my friend dr. Sébastien Mosser (SINTEF).</p></section></aside></div><div id="table-of-contents" class="slide"><header>Today, we will cover...</header><style>#toc-list > li {
   font-size: 26px;
@@ -28,25 +27,163 @@ my friend dr. Sébastien Mosser (SINTEF).</p></section></aside></div><div id="ta
 #toc-list img {
   vertical-align: middle;
   margin-left: 15px;
-}
-</style><section><ul id="toc-list"></ul></section><aside class="note"><section><p>I have split the presentation into groups based on the thesis,
+}</style><section><ul id="toc-list"></ul></section><aside class="note"><section><p>I have split the presentation into groups based on the thesis,
 from background to perspectives.
 However, the sections are flavored by preterite tense and subjective angling.</p>
 
 <p>For example in <em>background</em> I will also talk about my dive into the world about cloud computing,
 how my interest for web development fueled the motivation for my thesis topic
-and my work to familiarize with cloud computing.</p></section></aside></div><div id="background" class="slide transitionSlide"><section class="middle"><h2>Background</h2><p>Motivation and cloud introduction</p><aside class="note"><section><p>As mentioned here I will present my own initial motivation for the thesis,
-as well as cover the basic introduction to cloud computing.
-You have already read the thesis, and should therefore have some
-insight into cloud computing.
-Nevertheless a oral angling might shed new light on the field.</p></section></aside></section></div><div id="motivation" class="slide"><header><h1>Motivation</h1></header><section><ul class="bullets"><li>Web evangelist</li><li>Google App Engine (GAE)</li></ul></section><aside class="note"><section><p>By now I consider myself a web evangelist, as co-developer of sites such as 
-forsvaret.no and contributor to frameworks such as twitter bootstrap.
-And Cloud Computing goes hand in hand with web developing.
-It is not limited to this area, but its the main approach today.</p>
-
-<p>I have been intereseted in GAE since its release in 2008.
-As a Java develper the new PaaS technology was very intriuging,
-with the ability to publish a automatically scaling web-based 
-java application just by clicking a button.
-This was one of the first PaaS solutions, and even used a NoSQL DB solution 
-(the term was yet coined).</p></section></aside></div><div id="stage-of-the-art" class="slide transitionSlide"><section class="middle"><h2>State of the art</h2></section></div><div id="challenges" class="slide transitionSlide"><section class="middle"><h2>Challenges</h2></section></div><div id="requirements" class="slide transitionSlide"><section class="middle"><h2>Requirements</h2></section></div><div id="vision" class="slide transitionSlide"><section class="middle"><h2>Vision</h2></section></div><div id="implementation" class="slide transitionSlide"><section class="middle"><h2>Implementation</h2></section></div><div id="validation" class="slide transitionSlide"><section class="middle"><h2>Validation</h2></section></div><div id="conclusion" class="slide transitionSlide"><section class="middle"><h2>Conclusion</h2></section></div><div id="perspectives" class="slide transitionSlide"><section class="middle"><h2>Perspectives</h2></section></div></div><div id="speaker-note" class="invisible"></div><div id="device-nav"><a href="#" data-command="prev">Prev</a><a href="#" data-command="next">Next</a></div></div><script src="http://code.jquery.com/jquery.min.js"></script><script src="src/prettify/prettify.js" onload="prettyPrint();"></script><script src="js/utils.js"></script><script src="js/sync.js"></script><script src="js/custom.js"></script></body></html>
+and my work to familiarize with cloud computing.</p></section></aside></div><div id="challenges-requirements" class="slide transitionSlide"><section class="middle"><h2>Challenges & requirements</h2></section></div><div id="challenges" class="slide"><header><h1>Challenges</h1></header><section><ul class="bullets"><li>Complexity</li><li>Feedback on failure</li><li>Mulit-cloud</li><li>Reproducibility</li><li>Shareable</li><li>Robustness</li><li>Metadata dependency</li></ul></section></div><div id="requirements" class="slide"><style>#requirements img {
+    height: 350px;
+}</style><header><h1>Requirements</h1></header><section><img src="img/requirements.png" class="maincenter"></section></div><div id="vision" class="slide transitionSlide"><section class="middle"><h2>Vision & concept</h2></section></div><div id="big-picture" class="slide"><style>#big-picture img {
+    height: 470px;
+    position: absolute;
+    margin: 10px;
+}
+.centerdiv {
+    width: 610px;
+    margin: 0 auto;
+}</style><header><h1>Big picture</h1></header><section><div data-build class="centerdiv"><img src="img/big-picture1.png" class="maincenter"><img src="img/big-picture2.png" class="maincenter"><img src="img/big-picture3.png" class="maincenter"><img src="img/big-picture4.png" class="maincenter"><img src="img/big-picture5.png" class="maincenter"></div></section><aside class="note"><section><ul><li>Convert: template ﬁles ➙ native format.</li><li>Convert: nodes ➙ instances, ready for provisioning.</li><li>Connect to desired providers.</li><li>Propagate the instances.</li><li>Produce models@run.time.</li></ul></section></aside></div><div id="meta-model" class="slide"><style>#meta-model img {
+    height: 470px;
+    position: absolute;
+    margin: 10px;
+}
+.centerdiv {
+    width: 610px;
+    margin: 0 auto;
+}</style><header><h1>Meta-model</h1></header><section><div data-build class="centerdiv"><img src="img/meta-model1.png" class="maincenter"><img src="img/meta-model2.png" class="maincenter"><img src="img/meta-model3.png" class="maincenter"><img src="img/meta-model4.png" class="maincenter"><img src="img/meta-model5.png" class="maincenter"></div></section></div><div id="implementation" class="slide transitionSlide"><section class="middle"><h2>Implementation</h2></section></div><div id="technologies" class="slide"><style>#technologies img {
+  border-radius: 7px;
+}
+#technologies .maven {
+    margin-left: -45px;
+}
+#technologies .json img {
+    float: left;
+    height: 70px;
+}
+#technologies .json span {
+    font-size:60px;
+    margin-left: 20px;
+}
+#technologies ul {
+    margin-left: 100px;
+}</style><header><h1>Technologies</h1></header><section><ul><li> <img src="http://upload.wikimedia.org/wikipedia/en/8/85/Scala_logo.png"></li><li><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Maven_logo.svg/400px-Maven_logo.svg.png" class="maven"></li><li> <img src="/img/jclouds.png"></li><li class="json"><img src="http://www.json.org/img/json160.gif"><span>JSON</span></li></ul></section></div><div id="scala" class="slide"><style>#scala img {
+  height: 60px;
+}
+#scala pre {
+  margin-top: 10px;
+  background: #CCDDEE;
+}</style><header><img src="http://upload.wikimedia.org/wikipedia/en/8/85/Scala_logo.png"></header><section><h2>Actors example</h2><pre class="prettyprint">﻿def act() {
+    loop {
+        receive {
+            case SetStatus (s) =>
+                status = s
+                listeners.foreach(_(Event.Status))
+            }
+        }
+    }
+}
+</pre><pre class="prettyprint">﻿runtimeInstance ! SetStatus(Status.Building)</pre><pre class="prettyprint">﻿runtimeInstance.addListener( (event) => 
+    event match {
+        case Event.Status => 
+            println("Stauts set to %s".format(runtimeInstance.status))
+    }
+)
+</pre></section></div><div id="maven" class="slide"><style>#maven img.maincenter {
+    height: 350px;
+}
+#maven header img {
+  height: 60px;
+  float: left;
+}
+#maven section img {
+  margin-top: 40px;
+}</style><header><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Maven_logo.svg/400px-Maven_logo.svg.png" class="maven"><span>modules</span></header><section><img src="img/modules.png" class="maincenter"></section></div><div id="jclouds" class="slide"><style>#jclouds img.maincenter {
+    height: 350px;
+}
+#jclouds header img {
+  height: 60px;
+  float: left;
+}
+#jclouds section img {
+  margin-top: 40px;
+}</style><header><img src="img/jclouds.png" class="maven"></header><section><img src="img/drivers.png" class="maincenter"></section></div><div id="json" class="slide"><style>#json img.maincenter {
+    height: 350px;
+}
+#json header img {
+  height: 60px;
+  float: left;
+}
+#json section img {
+  margin-top: 40px;
+}
+#json span {
+  margin-left: 20px;
+}
+#json pre {
+  margin-top: 10px;
+  background: #CCDDEE;
+}
+#json section pre {
+  margin-top: 40px;
+}</style><header><img src="http://www.json.org/img/json160.gif"><span>JSON</span></header><section><pre class="prettyprint">{
+  "name": "MyTemplate",
+  "nodes": [{
+    "name": "AppNode",
+    "minCores": 2,
+    "locationId": "us-east-1a"
+  }, {
+    "name": "DatabaseNode",
+    "minRam": 4000
+    "locationId": "ap-southeast-1a",
+  }]
+}
+</pre></section></div><div id="validation" class="slide transitionSlide"><section class="middle"><h2>Validation & example</h2></section></div><div id="topology" class="slide"><style>#topology img.maincenter {
+    height: 400px;
+}
+#topology section img {
+  margin-top: 40px;
+}</style><header><h1>Topology</h1></header><section><img src="img/topology.png" class="maincenter"></section></div><div id="topology-lexical" class="slide"><style>#topology-lexical pre {
+  margin-top: 10px;
+  background: #CCDDEE;
+}
+#topology-lexical section pre {
+  margin-top: 40px;
+}</style><header><h1>Lexical topology</h1></header><section><pre class="prettyprint"> {
+  "name": "ExampleTopology",
+    "loadBalancer": {
+        "name": "Load-Balancer",
+        "protocol": "http",
+        "loadBalancerPort": 80,
+        "instancePort": 80
+    },
+    "nodes": [{
+        "name": "Front-end1",
+        "minCores": 2
+    }, {
+        "name": "Front-end2",
+        "minCores": 2
+    }, {
+        "name": "Back-end",
+        "minDisk": 500
+    }]
+}
+</pre></section></div><div id="client" class="slide"><style>#client pre {
+  margin-top: 10px;
+  background: #CCDDEE;
+}
+#client section pre:first-child {
+  margin-top: 40px;
+}</style><header><h1>Client</h1></header><section><pre class="prettyprint">&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;cloudml-engine&lt;/id&gt;
+        &lt;url&gt;https://repository-eirikb.forge.cloudbees.com/release&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;no.sintef&lt;/groupId&gt;
+        &lt;artifactId&gt;engine&lt;/artifactId&gt;
+        &lt;version&gt;0.1&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</pre><pre class="prettyprint">import no.sintef.cloudml.engine.Engine</pre><pre class="prettyprint">val runtimeInstances = Engine(account, List(template))</pre></section></div><div id="perspectives" class="slide transitionSlide"><section class="middle"><h2>Perspectives</h2></section></div><div id="short-term" class="slide"><header><h1>Short term</h1></header><section><ul class="bullets"><li>Load balancer</li><li>Authentication</li><li>Code refactoring</li></ul></section></div><div id="long-term" class="slide"><header><h1>Long term</h1></header><section><ul class="bullets"><li>Full deployment</li><li>Cloud management</li></ul></section></div></div><div id="speaker-note"></div><div id="device-nav"><a href="#" data-command="prev">Prev</a><a href="#" data-command="next">Next</a></div></div><script src="http://code.jquery.com/jquery.min.js"></script><script src="src/prettify/prettify.js" onload="prettyPrint();"></script><script src="js/utils.js"></script><script src="js/sync.js"></script><script src="js/custom.js"></script></body></html>

@@ -1,0 +1,12 @@
+{
+  "name": "MyTemplate",
+  "nodes": [{
+    "name": "AppNode",
+    "minCores": 2,
+    "locationId": "us-east-1a"
+  }, {
+    "name": "DatabaseNode",
+    "minRam": 4000
+    "locationId": "ap-southeast-1a",
+  }]
+}

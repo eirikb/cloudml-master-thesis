@@ -1,0 +1,13 @@
+﻿<repositories>
+    <repository>
+        <id>cloudml-engine</id>
+        <url>https://repository-eirikb.forge.cloudbees.com/release</url>
+    </repository>
+</repositories>
+<dependencies>
+    <dependency>
+        <groupId>no.sintef</groupId>
+        <artifactId>engine</artifactId>
+        <version>0.1</version>
+    </dependency>
+</dependencies>

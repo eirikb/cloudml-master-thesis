@@ -49,7 +49,7 @@ body {
   -moz-transition: margin 0.25s ease-in-out;
   -o-transition: margin-left 0.25s ease-in-out;
   transition: margin 0.25s ease-in-out;
-  background-image: url(../src/img/bg.png);
+  background-image: url(/src/img/bg.png);
 }
 
 .slide:nth-child(even) {
