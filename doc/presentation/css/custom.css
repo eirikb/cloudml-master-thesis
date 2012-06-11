@@ -66,3 +66,14 @@ ul.bullets ul li {
         z-index: 0;
     }
 }
+
+.pagecount {
+    position: absolute;
+    right: 30px;
+    top: 19px;
+}
+
+h1 small {
+    font-size: 25px;
+    margin-left: 25px;
+}

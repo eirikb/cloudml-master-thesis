@@ -16,13 +16,25 @@
     #json pre {
       margin-top: 10px;
       background: #CCDDEE;
+      font-size: 27px;
     }
     #json section pre {
       margin-top: 40px;
     }
+    #json .json {
+        margin-left: 20px; 
+        font-size:60px;
+        padding-left: 85px;
+        background-image: url(http://www.json.org/img/json160.gif);
+        background-repeat: no-repeat;
+        background-size: 70px;
+    }
   header
-    img(src='http://www.json.org/img/json160.gif')
-    span JSON
+    h1 Lexical template
+    small
+    span  (
+    span.json JSON
+    span )
   section
     pre.prettyprint
       include ../code/advanced.json

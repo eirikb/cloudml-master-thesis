@@ -1,7 +1,13 @@
 #topology-lexical.slide
   style
+    #topology-lexical pre.horrible {
+      font-size: 7px;
+    }
     #topology-lexical pre {
+      position: absolute;
       margin-top: 10px;
+      width: 90%;
+      height: 450px;
       background: #CCDDEE;
     }
     #topology-lexical section pre {
@@ -10,5 +16,10 @@
   header
     h1 Lexical topology
   section
-    pre.prettyprint 
-      include ../code/topology.json
+    div(data-build)
+      div
+        pre.prettyprint.horrible
+          include ../code/topology-horrible.bash
+      div
+        pre.prettyprint 
+          include ../code/topology.json
