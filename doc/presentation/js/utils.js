@@ -259,9 +259,11 @@
           elem.parentNode.addEventListener('transitionend', l, false);
           elem.parentNode.addEventListener('oTransitionEnd', l, false);
           removeClass(elem, 'to-build');
+          addClass(elem, 'built');
         } else {
           setTimeout(function() {
             removeClass(elem, 'to-build');
+            addClass(elem, 'built');
             _t._runAutos();
           }, 400);
         }
@@ -271,11 +273,13 @@
       return this._speakerNote;
     },
     buildNext: function() {
+      var e;
       if (!this._buildList.length) {
         return false;
       }
 
-      removeClass(this._buildList.shift(), 'to-build');
+      e = this._buildList.shift();
+      removeClass(e, 'to-build');
       return true;
     },
   };
