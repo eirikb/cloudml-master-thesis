@@ -11,3 +11,13 @@ If this repository should end up as an example to other, it would be wise to kee
 This is nothing I can promise, so if anyone want to make updates feel free to make issues and/or with pull requests.  
 
 Most of this repository was removed to not violate copyright and owner issues, I have tried to put it back together without dependencies so it will still build.
+
+## Thesis
+
+Located at https://github.com/eirikb/cloudml-master-thesis/tree/master/thesis
+
+## Presentation (used under defence)
+
+Located at https://github.com/eirikb/cloudml-master-thesis/tree/master/presentation
+
+
