@@ -1,0 +1,153 @@
+\documentclass[UKenglish]{template/ifimaster}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc,url}
+\urlstyle{sf}
+\usepackage{xargs}
+\usepackage{babel}
+\usepackage{textcomp}
+\usepackage{template/uiosloforside}
+\usepackage{varioref}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{template/pgf-umlsd}
+\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{subfigure}
+\usepackage{minibox}
+\usepackage{expl3}
+\usepackage{times}
+\usepackage{template/thesis}
+\usepackage{template/mytikz}
+\usepackage{minted}
+\usepackage{framed}
+\usepackage{latexsym}
+\usepackage[numbers]{natbib}
+\usepackage{setspace}
+\usepackage{captcont}
+\usepackage{pdfpages}
+\usepackage{bibentry}
+\usepackage[acronym,toc]{glossaries}
+\usepackage{eurosym}
+\usetikzlibrary{positioning,shapes,shadows,arrows,calc}
+
+\makeglossaries
+\input{acronyms}
+
+\nobibliography*
+
+\title{CloudML}
+\subtitle{A DSL for model-based realization of applications in the cloud}
+\author{Eirik Brandtzæg}
+\date{Spring 2012}
+
+\begin{document}
+\uiosloforside[kind={Master thesis}]{}
+
+\frontmatter{}
+\maketitle{}
+\onehalfspacing
+%\doublespacing
+
+%\chapter*{Abstract}
+\begin{abstract}
+  Cloud Computing offers a vast amount of resources,
+  available for end users on a pay-as-you-go basis.
+  The opportunity to choose between several cloud providers
+  is alluded by complexity of cloud solution heterogeneity.
+  Challenges with cloud deployment and resource provisioning
+  are identified in this thesis through experiments,
+  performing full cloud deployments with tools offered by cloud providers.
+  To tackle these challenges a model-based language (named CloudML),
+  is purposed to effectively tackle these challenges through abstraction.
+  This language is supported by an engine able to provision nodes in \emph{``the cloud''}.
+  Topologies for these nodes are defined through lexical templates.
+  The engine supports $24$ cloud providers,
+  through software reuse, by leveraging an existing library.
+  Sufficient metadata for provisioned instances are provided through
+  \emph{models@run.time} approach.
+  The engine is implemented and experiments have been conducted towards
+  provisioning on two of the major cloud providers, Amazon and Rackspace.
+  These experiments are used to validate the effort of this thesis. 
+  Perspectives and future visions of CloudML are expressed
+  in the end of this thesis.
+  This work is integrated as a part of the REMICS project.
+\end{abstract}
+
+\tableofcontents{}
+\listoffigures{}
+\listoftables{}
+
+\chapter*{Preface}
+%{\scriptsize
+%\begin{minted}[]{brainfuck}
+%>++++++++++[>+++++++>+++++++++++>+++++++++++>+++++++++++>++++++++++>+++++++++++
+%+>++++++++++++>+++++++++++>++++++++++++>++++++++++>+++++>+++>+++++++>+++>++++++
+%++++++>+++++++++++>++++++++++++>+++++++++++>++++++++++>+++>+++++++++++>++++++++
+%+++>+++++++++++>++++++++++>+++>++++++++++++>+++++++++++>+++>++++++++++++>++++++
+%++++>++++++++++>+++++++++++>+++++++++++>+++>++++++++>+++++++++++++++++++++++>++
+%++++++++>++++++++++>++++++++++++>++++++++++++>+++++++++++>++++++++++>++++++++++
+%+>+++>++++++++>+++++++++++>++++++++++++>++++++++++++>++++++++++>+++++++++++>+++
+%>++++++++++>+++++++++++>+++++++++++>+++>++++++++++>+++++++++++>++++++++++++>+++
+%>+++++++++++>+++++++++++>++++++++++++>++++++++++>+++++++++++>++++++++++>+++>+++
+%+++++++>++++++++++>++++++++++>+++++++++++>++++++++++>++++++++++>++++++++++++>++
+%+++++++++>+++++++++++>+++++++++++>+++>++++++++++++>+++++++++++>+++>++++++++++>+
+%+++++++++++>++++++++++++>+++++++++++>++++++++++++>++++++++++++>+++>+++++++++++>
+%++++++++++><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+%<<<<<<<<<<<<<<<<<<<<<<-]>+++>->++>++++>+>----->----->----->-->+>---->++>+++>++>
+%->+>--->-->>++>-->----->--->+>++>---->+>++>---->++++>--->>--->++>+++>+++>-->---
+%>----->---->----->+>>++>--->+>----->----->+>++++>++>++>+>++++>++>++++>----->---
+%-->++>----->>----->--->>+>++>>+>>----->->--->---->----->+>>++>---->+>++>--->---
+%-->----->----->----->---->++>->+><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>
+%.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.
+%>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.>.
+%\end{minted}
+%}
+
+I would like to thank SINTEF, and my supervisor Arne J{\o}rgen Berre,
+for providing me with this opportunity to dive into the world of Cloud Computing.
+I also want to thank S{\'e}bastien Mosser for his immense amount of 
+assistance through designing and implementing of CloudML.
+And of course for his accommodation through the writing process of this thesis,
+including repeated feedback.
+The Scala community, Specs2 mailing list and \emph{jclouds} IRC channel have been of great assistance,
+guiding and helping through the implementation of CloudML.
+
+\mainmatter{}
+
+\input{chapters/introduction}
+
+\part{Context}
+
+\input{chapters/background}
+\input{chapters/state-of-the-art}
+\input{chapters/challenges}
+\input{chapters/requirements}
+
+\part{Contribution}
+
+\input{chapters/vision}
+\input{chapters/design}
+\input{chapters/implementation}
+\input{chapters/validation}
+
+\part{Conclusion}
+
+\input{chapters/conclusions}
+\input{chapters/perspectives}
+
+\glsaddall
+\printglossaries
+
+\appendix
+\chapter{First appendix - Towards CloudML}
+\includepdf[pages=-]{pdfs/cloudmde.pdf}
+\chapter{Second appendix - Cloud-Computing}
+\includepdf[pages=-]{pdfs/benevol.pdf}
+
+\backmatter{}
+\bibliography{bibliography,seb}
+\bibliographystyle{plainnat}
+\end{document}
