@@ -1,4 +1,4 @@
-#CloudML
+#[CloudML](http://eirikb.github.com/cloudml-master-thesis/thesis.pdf)
 
 This is my master thesis, _CloudML - A DSL for model-based realization of applications in the cloud_.  
 I have decided to publish the __LaTeX__ sources, as others might find them helpful.  
@@ -14,10 +14,12 @@ Most of this repository was removed to not violate copyright and owner issues, I
 
 ## Thesis
 
-Located at https://github.com/eirikb/cloudml-master-thesis/tree/master/thesis
+Build: http://eirikb.github.com/cloudml-master-thesis/thesis.pdf
+Sources: https://github.com/eirikb/cloudml-master-thesis/tree/master/thesis
 
 ## Presentation (used under defence)
 
-Located at https://github.com/eirikb/cloudml-master-thesis/tree/master/presentation
+Build: http://eirikb.github.com/cloudml-master-thesis/presentation  
+Sources: https://github.com/eirikb/cloudml-master-thesis/tree/master/presentation
 
 
