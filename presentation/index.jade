@@ -1,0 +1,55 @@
+!!!5
+html
+  head
+    meta(charset='utf-8')
+    title CloudML
+    link(href='http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono', rel='stylesheet')
+    link(href='src/prettify/prettify.css', rel='stylesheet')
+    link.theme(href='css/default.css', rel='stylesheet', media='screen')
+    link(href='css/common.css', rel='stylesheet', media='screen')
+    link(href='css/custom.css', rel='stylesheet', media='screen')
+  body
+    .presentation
+      #presentation-counter Loading...
+      .slides
+        include slides/landing
+        include slides/hook
+        include slides/table-of-contents
+        include slides/challenges-requirements
+        include slides/cloud
+        include slides/remics
+        include slides/topologies
+        include slides/context
+        include slides/challenges
+        include slides/requirements
+        include slides/vision
+        include slides/flow
+        include slides/big-picture
+        include slides/meta-model
+        include slides/implementation
+        include slides/technologies
+        include slides/json
+        include slides/maven
+        include slides/jclouds
+        include slides/mart
+        include slides/scala
+        include slides/validation
+        include slides/topology
+        include slides/topology-lexical
+        include slides/client
+        include slides/perspectives
+        include slides/conclusion
+        include slides/conclusion-table
+        include slides/long-term
+        include slides/thanks
+
+      #speaker-note
+      #device-nav
+        a(href='#', data-command='prev') Prev
+        a(href='#', data-command='next') Next
+
+    script(src='http://code.jquery.com/jquery.min.js')
+    script(src='src/prettify/prettify.js', onload='prettyPrint();')
+    script(src='js/utils.js')
+    script(src='js/sync.js')
+    script(src='js/custom.js')

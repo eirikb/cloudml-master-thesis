@@ -1,0 +1,21 @@
+[{
+  "name": "FrontEnds",
+    "loadBalancer": {
+        "name": "Load-Balancer",
+        "protocol": "http",
+        "loadBalancerPort": 80,
+        "instancePort": 80
+    }, "nodes": [{
+        "name": "Front-end1",
+        "minCores": 2
+    }, {
+        "name": "Front-end2",
+        "minCores": 2
+    }]
+  }, {
+    "name": "BackEnd",
+    "nodes": [{
+        "name": "Back-end",
+        "minDisk": 500
+    }]
+}

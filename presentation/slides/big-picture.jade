@@ -1,0 +1,26 @@
+#big-picture.slide
+  style
+    #big-picture img {
+        height: 525px;
+        position: absolute;
+        margin: -10px;
+    }
+    .centerdiv {
+        width: 610px;
+        margin: 0 auto;
+    }
+  header
+    h1 Big picture
+  section
+    .centerdiv(data-build)
+        - for (var i = 1; i < 6; i++)
+            img.maincenter(src='img/big-picture' + i + '.png')
+
+  aside.note
+    section
+      ul
+        li Convert: template ﬁles ➙ native format.
+        li Convert: nodes ➙ instances, ready for provisioning.
+        li Connect to desired providers.
+        li Propagate the instances.
+        li Produce models@run.time.

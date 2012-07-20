@@ -1,0 +1,79 @@
+aside.note {
+    display: none;
+} 
+
+#toc-list small {
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+#device-nav {
+    display: none;
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#device-nav a {
+    width: 50%;
+    height: 100%;
+}
+
+img.maincenter {
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.focus {
+    border: 1px solid;
+}
+
+#speaker-note {
+    display: none;
+}
+
+#speaker-note ul {
+    font-size: 55px;
+}
+#speaker-note ul li {
+    list-style: inherit;
+}
+
+ul.bullets ul li {
+    font-size: 25px;
+}
+
+@media (max-width: 1000px) {
+    #device-nav {
+        display: block;
+    }
+
+    #speaker-note {
+        display: none;        
+    }
+    
+    .slide {
+        top: 400px;
+    }
+
+    #speaker-note {
+        display: block;
+        height: 50%;
+        top: 50%;
+        z-index: 0;
+    }
+}
+
+.pagecount {
+    position: absolute;
+    right: 30px;
+    top: 19px;
+}
+
+h1 small {
+    font-size: 25px;
+    margin-left: 25px;
+}

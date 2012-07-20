@@ -1,0 +1,1 @@
+﻿runtimeInstance ! SetStatus(Status.Building)

@@ -1,0 +1,26 @@
+#topology-lexical.slide
+  style
+    #topology-lexical pre.horrible {
+      font-size: 7px;
+    }
+    #topology-lexical pre {
+      position: absolute;
+      margin-top: 10px;
+      width: 90%;
+      height: 440px;
+      background: #CCDDEE;
+      overflow: hidden;
+    }
+    #topology-lexical section pre {
+      margin-top: 40px;
+    }
+  header
+    h1 Lexical topology
+  section
+    div(data-build)
+      div
+        pre.prettyprint.horrible
+          include ../code/topology-horrible.bash
+      div
+        pre.prettyprint 
+          include ../code/topology.json
