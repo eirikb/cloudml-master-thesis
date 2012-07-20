@@ -1,0 +1,326 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>CloudML</title><link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet"><link href="src/prettify/prettify.css" rel="stylesheet"><link href="css/default.css" rel="stylesheet" media="screen" class="theme"><link href="css/common.css" rel="stylesheet" media="screen"><link href="css/custom.css" rel="stylesheet" media="screen"></head><body><div class="presentation"><div id="presentation-counter">Loading...</div><div class="slides"><div id="landing-slide" class="slide"><style>#landing-slide h1, #title-slide h2 {
+  color: black;
+}
+#landing-slide h1 {
+  letter-spacing: -2px;
+  font-size: 96px;
+}
+#landing-slide h2 {
+  margin-top: -5px;
+  font-size: 40px;
+  letter-spacing: -1px;
+}
+#landing-slide .logo {
+   height: 200px;
+}
+</style><section class="middle"><hgroup><img src="img/logo.png" class="logo"><h2>A DSL for model-based realization of </h2><h2>applications in the cloud</h2><h3>Eirik Brandtzæg 2012-6-12</h3><h3>University of Oslo, SINTEF</h3></hgroup><div id="left-init-key" style="display:none"></div></section></div><div id="hook" class="slide"><header></header><section><ul class="bullets"><li>Nowadays systems must<ul><li>Cost less: Recovery.gov moving to the cloud<ul><li>Estimated to save the White House $750,000</li></ul></li><li>Scale: 25, 088 Tweets Per Second (TPS)</li></ul></li><li>Cloud is supposed to be the solution...</li></ul></section></div><div id="table-of-contents" class="slide"><header>Today, we will cover...</header><style>#toc-list > li {
+  font-size: 26px;
+  opacity: 0.85;
+}
+#toc-list > li:hover {
+  opacity: 1;
+}
+#toc-list a {
+  border-bottom: 0;
+}
+#toc-list a:hover{
+  border-bottom: 2px solid #3f3f3f;
+}
+#toc-list img {
+  vertical-align: middle;
+  margin-left: 15px;
+}
+</style><section><ul id="toc-list"></ul></section><aside class="note"><section><p>I have split the presentation into groups based on the thesis,
+from background to perspectives.
+However, the sections are flavored by preterite tense and subjective angling.</p>
+
+<p>For example in <em>background</em> I will also talk about my dive into the world about cloud computing,
+how my interest for web development fueled the motivation for my thesis topic
+and my work to familiarize with cloud computing.</p></section></aside></div><div id="challenges-requirements" class="slide transitionSlide"><section class="middle"><h2>Context, challenges & requirements</h2></section></div><div id="cloud" class="slide"><style>#cloud img {
+    height: 500px;
+}
+</style><header><h1>Introducing the Cloud</h1></header><section><img src="img/cloud.png" class="maincenter"></section></div><div id="remics" class="slide"><style>#remics img {
+    height: 450px;
+}
+</style><header><h1>REMICS</h1></header><section><img src="img/remics2.png" class="maincenter"></section></div><div id="topologies" class="slide"><style>#topologies img {
+    height: 266px;
+    margin-top: 80px;
+}
+#topologies h3 {
+  font-size: 30px;
+  font-style: italic;
+}
+</style><header><h1>Provisioning resources for a BankManager</h1></header><section><img src="img/topologies.png" class="maincenter"><h3>The topology to be used differs according to architects' goals</h3></section></div><div id="context" class="slide"><style>#context pre {
+  background: #CCDDEE;
+  font-size: 10.5px;
+}
+</style><header><h1>Moving to the cloud</h1></header><section><ul class="bullets"><li>Cloud provides infrastructure on demand</li><li>Developers built some scripts to move an application to the cloud</li></ul><pre class="prettyprint">INSTANCE1=$(./ec2-api-tools/bin/ec2-run-instances -k dev --region eu-west-1 ami-24506250 | grep INSTANCE | awk '{print $2}')
+URL1=$(sh desc.sh $INSTANCE1)
+echo &quot;$INSTANCE1 $URL1&quot;
+INSTANCE2=$(./ec2-api-tools/bin/ec2-run-instances -k dev --region eu-west-1 ami-24506250 | grep INSTANCE | awk '{print $2}')
+URL2=$(sh desc.sh $INSTANCE2)
+echo &quot;$INSTANCE2 $URL2&quot;
+INSTANCE3=$(./ec2-api-tools/bin/ec2-run-instances -k dev --region eu-west-1 ami-24506250 | grep INSTANCE | awk '{print $2}')
+URL3=$(sh desc.sh $INSTANCE3)
+echo &quot;$INSTANCE3 $URL3&quot;
+</pre></section></div><div id="challenges" class="slide"><header><h1>Challenges<small>Published at [BENEVOL'11]</small></h1></header><section><ul class="bullets"><li>Complexity</li><li>Feedback on failure</li><li>Multi-cloud</li><li>Reproducibility</li><li>Shareable</li><li>Robustness</li><li>Metadata dependency</li></ul></section></div><div id="requirements" class="slide"><style>#requirements img {
+    height: 350px;
+}
+</style><header><h1>Requirements</h1></header><section><img src="img/requirements.png" class="maincenter"></section></div><div id="vision" class="slide transitionSlide"><section class="middle"><h2>Vision & concept</h2></section></div><div id="flow" class="slide"><style>#flow img {
+    height: 300px;
+    margin-top: 80px;
+}
+</style><header><h1>Overview</h1></header><section><img src="img/flow.png" class="maincenter"></section></div><div id="big-picture" class="slide"><style>#big-picture img {
+    height: 525px;
+    position: absolute;
+    margin: -10px;
+}
+.centerdiv {
+    width: 610px;
+    margin: 0 auto;
+}
+</style><header><h1>Big picture</h1></header><section><div data-build class="centerdiv"><img src="img/big-picture1.png" class="maincenter"><img src="img/big-picture2.png" class="maincenter"><img src="img/big-picture3.png" class="maincenter"><img src="img/big-picture4.png" class="maincenter"><img src="img/big-picture5.png" class="maincenter"></div></section><aside class="note"><section><ul><li>Convert: template ﬁles ➙ native format.</li><li>Convert: nodes ➙ instances, ready for provisioning.</li><li>Connect to desired providers.</li><li>Propagate the instances.</li><li>Produce models@run.time.</li></ul></section></aside></div><div id="meta-model" class="slide"><style>#meta-model img {
+    height: 525px;
+    position: absolute;
+    margin: -10px;
+}
+.centerdiv {
+    width: 610px;
+    margin: 0 auto;
+}
+</style><header><h1>Meta-model<small>Published at [ECMFA'12 workshop CloudMDE]</small></h1></header><section><div data-build class="centerdiv"><img src="img/meta-model1.png" class="maincenter"><img src="img/meta-model2.png" class="maincenter"><img src="img/meta-model3.png" class="maincenter"><img src="img/meta-model4.png" class="maincenter"><img src="img/meta-model5.png" class="maincenter"></div></section></div><div id="implementation" class="slide transitionSlide"><section class="middle"><h2>Implementation</h2></section></div><div id="technologies" class="slide"><style>#technologies img, #technologies .json span {
+  border-radius: 7px;
+  margin-right: 20px;
+  height: 45px;
+    margin-left: 30px;
+
+}
+#technologies .maven {
+    margin-left: -5px;
+}
+#technologies .json span {
+    font-size:50px;
+    margin-left: 30px;
+    padding-left: 85px;
+    background-image: url(http://www.json.org/img/json160.gif);
+    background-repeat: no-repeat;
+    background-size: 60px;
+}
+</style><header><h1>Technological challenges</h1></header><section><ul class="bullets"><li class="json">Lexical template<span>JSON</span></li><li>Modularity<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Maven_logo.svg/400px-Maven_logo.svg.png" class="maven"></li><li>Multi-cloud, Software reuse<img src="img/jclouds.png"></li><li>Asynchronous, models@run.time<img src="http://upload.wikimedia.org/wikipedia/en/8/85/Scala_logo.png" class="scala"></li></ul></section></div><div id="json" class="slide"><style>#json img.maincenter {
+    height: 350px;
+}
+#json header img {
+  height: 60px;
+  float: left;
+}
+#json section img {
+  margin-top: 40px;
+}
+#json span {
+  margin-left: 20px;
+}
+#json pre {
+  margin-top: 10px;
+  background: #CCDDEE;
+  font-size: 27px;
+}
+#json section pre {
+  margin-top: 40px;
+}
+#json .json {
+    margin-left: 20px; 
+    font-size:60px;
+    padding-left: 85px;
+    background-image: url(http://www.json.org/img/json160.gif);
+    background-repeat: no-repeat;
+    background-size: 70px;
+}
+</style><header><h1>Lexical template</h1><small></small><span>(</span><span class="json">JSON</span><span>)</span></header><section><pre class="prettyprint">{
+  "name": "MyTemplate",
+  "nodes": [{
+    "name": "AppNode",
+    "minCores": 2,
+    "locationId": "us-east-1a"
+  }, {
+    "name": "DatabaseNode",
+    "minRam": 4000
+    "locationId": "ap-southeast-1a",
+  }]
+}
+</pre></section></div><div id="maven" class="slide"><style>#maven img.maincenter {
+    height: 350px;
+}
+#maven header img {
+  height: 50px;
+}
+#maven section img {
+  margin-top: 40px;
+}
+</style><header><h1>Modules </h1><small><span>(</span><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Maven_logo.svg/400px-Maven_logo.svg.png" class="maven"><span>)</span></small></header><section><img src="img/modules.png" class="maincenter"></section></div><div id="jclouds" class="slide"><style>#jclouds img.maincenter {
+    height: 350px;
+}
+#jclouds header img {
+  height: 40px;
+}
+#jclouds section img {
+  margin-top: 40px;
+}
+</style><header><h1>Multi-cloud</h1><small><span>( </span><img src="img/jclouds.png" class="maven"><span>)</span></small></header><section><img src="img/drivers.png" class="maincenter"></section></div><div id="mart" class="slide"><style>#mart img {
+    height: 570px;
+}
+</style><header><h1>Models@run.time</h1></header><section><img src="img/runtimeinstance.png" class="maincenter"></section></div><div id="scala" class="slide"><style>#scala img {
+  height: 60px;
+}
+#scala pre {
+  margin-top: 10px;
+  background: #CCDDEE;
+}
+</style><header><h1>Asynchronous<small>Actor model</small></h1></header><section><pre class="prettyprint">﻿runtimeInstance ! SetStatus(Status.Building)</pre><pre class="prettyprint">﻿def act() {
+    loop {
+        receive {
+            case SetStatus (s) =>
+                status = s
+                listeners.foreach(_(Event.Status))
+            }
+        }
+    }
+}
+</pre><pre class="prettyprint">﻿runtimeInstance.addListener( (event) => 
+    event match {
+        case Event.Status => 
+            println("Status set to %s".format(runtimeInstance.status))
+    }
+)
+</pre></section></div><div id="validation" class="slide transitionSlide"><section class="middle"><h2>Validation & example</h2></section></div><div id="topology" class="slide"><style>#topology img.maincenter {
+    height: 400px;
+}
+#topology section img {
+  margin-top: 40px;
+}
+</style><header><h1>Topology</h1></header><section><img src="img/topology.png" class="maincenter"></section></div><div id="topology-lexical" class="slide"><style>#topology-lexical pre.horrible {
+  font-size: 7px;
+}
+#topology-lexical pre {
+  position: absolute;
+  margin-top: 10px;
+  width: 90%;
+  height: 440px;
+  background: #CCDDEE;
+  overflow: hidden;
+}
+#topology-lexical section pre {
+  margin-top: 40px;
+}
+</style><header><h1>Lexical topology</h1></header><section><div data-build><div><pre class="prettyprint horrible">scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i pem/dev.pem .
+./demoapp/target/bank*.war ec2-user@$1:~/
+sh inject.sh remote-deploy.sh $1
+URL=$(./ec2-api-tools/bin/ec2-describe-instances --region eu-west-1 $1 | grep IN
+STANCE | awk '{print $4'})
+echo $URL
+scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i pem/dev.pem $
+1 ec2-user@$2:~/
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -ti pem/dev.pem
+ec2-user@$2 sudo sh $1
+sudo /etc/init.d/tomcat6 stop
+sudo rm -rf /usr/share/tomcat6/webapps/*
+sudo cp /home/ec2-user/bank*.war /usr/share/tomcat6/webapps/ROOT.war
+sudo /etc/init.d/tomcat6 start
+sudo yum -y update
+sudo yum -y install postgresql postgresql-server
+sudo /etc/init.d/postgresql initdb
+sudo /etc/init.d/postgresql stop
+# Note that good old >> did not work here
+echo "listen_addresses = '*'" | sudo tee -a /var/lib/pgsql/data/postgresql.conf
+echo "host all all  0.0.0.0/0 md5" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+
+sudo /etc/init.d/postgresql start
+sudo yum -y update
+sudo yum -y install tomcat6
+sudo mkdir /var/run/tomcat
+sudo chown tomcat /var/run/tomcat
+INSTANCE1=$(./ec2-api-tools/bin/ec2-run-instances -k dev --region eu-west-1 ami-
+24506250 | grep INSTANCE | awk '{print $2}')
+URL1=$(sh desc.sh $INSTANCE1)
+echo "$INSTANCE1 $URL1"
+
+INSTANCE2=$(./ec2-api-tools/bin/ec2-run-instances -k dev --region eu-west-1 ami-
+24506250 | grep INSTANCE | awk '{print $2}')
+URL2=$(sh desc.sh $INSTANCE2)
+echo "$INSTANCE2 $URL2"
+
+INSTANCE3=$(./ec2-api-tools/bin/ec2-run-instances -k dev --region eu-west-1 ami-
+24506250 | grep INSTANCE | awk '{print $2}')
+URL3=$(sh desc.sh $INSTANCE3)
+echo "$INSTANCE3 $URL3"
+wget http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip
+unzip ec2-api-tools.zip
+mv ec2-api-tools-* ec2-api-tools
+export EC2_HOME=$PWD/ec2-api-tools
+export EC2_PRIVATE_KEY=`ls $PWD/pem/pk*`
+export EC2_CERT=`ls $PWD/pem/cert*`
+</pre></div><div><pre class="prettyprint">[{
+  "name": "FrontEnds",
+    "loadBalancer": {
+        "name": "Load-Balancer",
+        "protocol": "http",
+        "loadBalancerPort": 80,
+        "instancePort": 80
+    }, "nodes": [{
+        "name": "Front-end1",
+        "minCores": 2
+    }, {
+        "name": "Front-end2",
+        "minCores": 2
+    }]
+  }, {
+    "name": "BackEnd",
+    "nodes": [{
+        "name": "Back-end",
+        "minDisk": 500
+    }]
+}
+</pre></div></div></section></div><div id="client" class="slide"><style>#client pre {
+  margin-top: 10px;
+  background: #CCDDEE;
+}
+#client section pre:first-child {
+  margin-top: 40px;
+}
+</style><header><h1>Client</h1></header><section><pre class="prettyprint"><repositories>    &lt;repository&gt;
+        &lt;id&gt;cloudml-engine&lt;/id&gt;
+        &lt;url&gt;https://repository-eirikb.forge.cloudbees.com/release&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;no.sintef&lt;/groupId&gt;
+        &lt;artifactId&gt;engine&lt;/artifactId&gt;
+        &lt;version&gt;0.1&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</pre><pre class="prettyprint">import no.sintef.cloudml.engine.Engine</pre><pre class="prettyprint">val runtimeInstances = Engine(account, List(template))</pre></section></div><div id="perspectives" class="slide transitionSlide"><section class="middle"><h2>Perspectives & conclusions</h2></section></div><div id="conclusion" class="slide"><style>#conclusion ul.bullets {
+  margin-top: 10px;
+}
+#conclusion li {
+  padding: 0;
+}
+</style><header><h1>Conclusions</h1></header><section><ul class="bullets"><li>Software reuse<ul><li>jclouds</li></ul></li><li>Models@run.time<ul><li>Actor model, call-back pattern</li></ul></li><li>Strong technological foundation<ul><li>Scala</li></ul></li><li>Model-driven approach<ul><li>Model-driven templating system. Model-based meta-model</li></ul></li><li>Lexical template<ul><li>JSON-based templates</li></ul></li><li>Multi-cloud<ul><li>jclouds</li></ul></li></ul></section></div><div id="conclusion-table" class="slide"><style>#conclusion-table table {
+  border-spacing: 10px;
+}
+#conclusion-table th, #conclusion-table td {
+  text-align: left;
+  min-width: 90px;
+}
+#conclusion-table .yes {
+  color: green;
+}
+#conclusion-table .no {
+  color: red;
+}
+#conclusion-table .cloudml {
+  font-weight: bold;
+}
+</style><header><h1>Requirements in state of the art</h1></header><section><table><thead><tr><th></th><th>software-reuse </th><th>foundation </th><th class="mda">mda </th><th class="mart">m@rt </th><th>lexical-template</th></tr></thead><tbody><tr><td>Amazon CloudFormation </td><td></td><td></td><td>Yes </td><td class="no">No </td><td>Yes</td></tr><tr><td>CA Applogic </td><td></td><td></td><td>Yes </td><td></td><td class="no">No</td></tr><tr><td>jclouds</td><td></td><td>Yes </td><td>Partly </td><td class="no">No </td><td class="no">No</td></tr><tr><td>mOSAIC </td><td>Yes </td><td>Yes </td><td class="no">No </td><td class="no">No </td><td class="no">No</td></tr><tr><td>Amazon Beanstalk </td><td>Yes </td><td>Yes </td><td class="no">No </td><td class="no">No </td><td class="no">No</td></tr><tr><td class="cloudml">CloudML </td><td class="yes">Yes </td><td class="yes">Yes </td><td class="yes">Yes </td><td class="yes">Yes </td><td class="yes">Yes</td></tr></tbody></table></section></div><div id="long-term" class="slide"><header><h1>Long term</h1></header><section><ul class="bullets"><li>Full deployment<ul><li>Preliminary version accepted at [Cloud'12]</li></ul></li><li>Cloud management</li></ul></section></div><div id="thanks" class="slide"><style>#thanks p {
+  margin: 0px;
+}
+</style><header><h1>Thank you for your attention</h1></header><section><h3>Publications</h3><ul><li><p>BENEVOL’11: Sébastien Mosser, <strong>Brandtzæg, Eirik</strong>, and Parastoo Mohagheghi. Cloud-Computing: from Revolution to Evolution. In BElgian-NEtherlands software eVOLution seminar, pages 1–2, Brussels, Belgium, December 2011. VUB.</p></li><li><p>Cloud’12: <strong>Eirik Brandtzæg</strong>, Parastoo Mohagheghi, and Sébastien Mosser. Towards a Domain-Speciﬁc Language to Deploy Applications in the Clouds. In Third International Conference on Cloud Computing, July 2012.</p></li><li><p>CloudMDE, associated with ECMFA&#39;12: <strong>Eirik Brandtzæg</strong>, Sébastien Mosser, and Parastoo Mohagheghi. Towards CloudML, a Model-based Approach to Provision Resources in the Clouds. In Workshop on Model-Driven Engineering on and for the Cloud, co-located with the European Conference on Modelling Foundations and Application, Lyngby, Danemark, July 2012. Springer LNCS.</p></li><li><p>REMICS Deliverable: Gorka Benguria, Andrey Sadovykh, Sébastien Mosser, Antonin Abhervé, and <strong>Bradtzæg, Eirik</strong>. Platform Independent Model for Cloud (PIM4Cloud). Technical Report D-4.1, EU FP7 REMICS, March 2012.</p></li></ul></section></div></div><div id="speaker-note"></div><div id="device-nav"><a href="#" data-command="prev">Prev</a><a href="#" data-command="next">Next</a></div></div><script src="http://code.jquery.com/jquery.min.js"></script><script src="src/prettify/prettify.js" onload="prettyPrint();"></script><script src="js/utils.js"></script><script src="js/sync.js"></script><script src="js/custom.js"></script></body></html>
