@@ -1,7 +1,7 @@
 Makefile from http://code.google.com/p/latex-makefile  
 Controlled by Variables.ini  
 
-Main chapters located under [chapters](chapters)
+Main chapters located under [chapters](/eirikb/cloudml-master-thesis/tree/master/thesis/chapters)
 
 ## Dependencies
 
