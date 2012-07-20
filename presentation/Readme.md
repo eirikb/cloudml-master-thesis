@@ -1,4 +1,4 @@
-##[Presentation](http://eirikb.github.com/cloudml-master-thesis/presentation/#landing)
+##[Presentation](http://eirikb.github.com/cloudml-master-thesis/presentation)
 
 
 Supports synchronization, so it can be controlled from a mobile phone with a browser.  
